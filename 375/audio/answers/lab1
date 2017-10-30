@@ -1,5 +1,0 @@
-1. The hardware is exactly the same, barring insignificant changes in the Verilog variable naming (r_X instead of rX, where X=0-8)
-
-2. For loops allow for more maintainable and extendable code. To extend to a 16 or 256-tap filter in the original design would require a change/addition of roughly 32 and 512 lines (respectively). With a source with for-loops for the register shifting and multiplication/additions, you'd only need to change at most 3 lines.
-
-3. I wouldn't need to change my implementation; the multiplier interface stays the same. 
