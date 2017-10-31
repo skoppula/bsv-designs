@@ -3,82 +3,82 @@ package PE;
 import FixedPoint::*;
 import Vector::*;
 
-function Bit#(1) threeand( Bit#(1) a, Bit#(1) b, Bit#(1) c );
-    return {a & b & c};
-endfunction
-
-// PE interface
-
 interface PeIfc#( numeric type n);
-    method Action reset_pe();
     method Action load_weights( Vector#(n, Bit#(2)) weights);
+
     method Action add_input( FixedPoint#(2,6) inp);
-    method Action do_nonlinearity_fn();
-    method Action multiply_constant( FixedPoint#(2,6) constant);
+    method Action multiply_constants( FixedPoint#(2,6) pos_constant, FixedPoint#(2,6) neg_constant );
+    method Action combine();
     method Action add_constant( FixedPoint#(2,6) constant );
+    method Action nonlinearity();
+
+    method ActionValue#( FixedPoint#(2,6) ) get_pos_partial_sum();
+    method ActionValue#( FixedPoint#(2,6) ) get_neg_partial_sum();
     method ActionValue#( Vector#(n, Bit#(2)) ) read_weights();
-    method ActionValue#( FixedPoint#(2,6) ) get_partial_sum();
     method ActionValue#( Bool ) is_ready();
+    method Action reset_pe();
 endinterface
 
-// Adder modules
 module mkPE( PeIfc#(n) );
 
+    // 01 is positive weight matrix (W[0]), 10 is negative weight matrix (W[1])
     Vector#(n, Reg#(Bit#(2))) weight_regs <- replicateM(mkReg(0));
-    Reg#(FixedPoint#(2,6)) partialSum <- mkReg(0);
+    Reg#(FixedPoint#(2,6)) pos_partial_sum <- mkReg(0);
+    Reg#(FixedPoint#(2,6)) neg_partial_sum <- mkReg(0);
     Reg#(UInt#(TAdd#(TLog#(n),1))) step <- mkReg(0);
+
+    method Action load_weights( Vector#(n, Bit#(2)) weights);
+        writeVReg(weight_regs, weights);
+    endmethod
+
+    method Action add_input( FixedPoint#(2,6) inp );
+        Bit#(1) a = weight_regs[step][0];
+        Bit#(1) b = weight_regs[step][1];
+        Bit#(8) c = pack(inp);
+        pos_partial_sum <= pos_partial_sum + unpack(c & {a,a,a,a,a,a,a,a});
+        neg_partial_sum <= neg_partial_sum - unpack(c & {b,b,b,b,b,b,b,b});
+        step <= step + 1;
+    endmethod
+
+    method Action combine();
+        pos_partial_sum <= pos_partial_sum + neg_partial_sum;
+    endmethod
+
+    method Action multiply_constants( FixedPoint#(2,6) pos_constant, FixedPoint#(2,6) neg_constant );
+        pos_partial_sum <= pos_partial_sum * pos_constant;
+        neg_partial_sum <= neg_partial_sum * neg_constant;
+    endmethod
+
+    method Action add_constant( FixedPoint#(2,6) constant );
+        pos_partial_sum <= pos_partial_sum + constant;
+    endmethod
+
+    method Action nonlinearity();
+        pos_partial_sum <= pos_partial_sum < 0 ? 0 : pos_partial_sum;
+    endmethod
+
+    method ActionValue#( FixedPoint#(2,6) ) get_pos_partial_sum();
+        return pos_partial_sum;
+    endmethod
+
+    method ActionValue#( FixedPoint#(2,6) ) get_neg_partial_sum();
+        return neg_partial_sum;
+    endmethod
 
     method ActionValue#( Vector#(n, Bit#(2)) ) read_weights();
         return readVReg(weight_regs);
-        // Vector#(n, Bit#(2)) weights = replicate( 0 );
-        // for(Integer i = 0; i < valueOf(n); i=i+1) begin
-        //     weights[i] = weight_regs[i];
-        // end
-        // return weights;
-    endmethod
-
-    method Action load_weights( Vector#(n, Bit#(2)) weights);
-        for(Integer i = 0; i < valueOf(n); i=i+1) begin
-            weight_regs[i] <= weights[i];
-        end
-    endmethod
-
-    method Action reset_pe();
-        partialSum <= 0;
-        step <= 0;
-    endmethod
-
-    method ActionValue#( FixedPoint#(2,6) ) get_partial_sum();
-        return partialSum;
-    endmethod
-
-    method Action do_nonlinearity_fn();
-        partialSum <= partialSum < 0 ? 0 : partialSum;
-    endmethod
-
-    method Action multiply_constant( FixedPoint#(2,6) constant );
-        partialSum <= partialSum * constant;
-    endmethod
-
-    method Action add_constant( FixedPoint#(2,6) constant );
-        partialSum <= partialSum + constant;
-    endmethod
-
-    // -1 = 0b11
-    // 1 = 0b01
-    method Action add_input( FixedPoint#(2,6) inp);
-        if ( (weight_regs[step][0] & weight_regs[step][1]) == 1) begin
-            Bit#(8) inp_bits = pack(inp);
-            partialSum <= partialSum + unpack((~inp_bits)+1);
-        end else if(weight_regs[step][0] == 1) begin
-            partialSum <= partialSum + inp;
-        end
-        step <= step + 1;
     endmethod
 
     method ActionValue#( Bool ) is_ready();
         return step == fromInteger(valueOf(n));
     endmethod
+
+    method Action reset_pe();
+        pos_partial_sum <= 0;
+        neg_partial_sum <= 0;
+        step <= 0;
+    endmethod
+
 endmodule
 
 endpackage: PE

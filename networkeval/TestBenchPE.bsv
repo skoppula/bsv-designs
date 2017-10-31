@@ -16,8 +16,8 @@ module mkTbPE();
 
     Vector#(8, Bit#(2)) weights = replicate( 0 );
     weights[0] = 1; weights[1] = 1;
-    weights[2] = 3; weights[3] = 0;
-    weights[4] = 1; weights[5] = 3;
+    weights[2] = 2; weights[3] = 0;
+    weights[4] = 1; weights[5] = 2;
     weights[6] = 0; weights[7] = 1;
 
     Vector#(8, FixedPoint#(2,6)) inputs = replicate( 0.0 );
@@ -41,17 +41,19 @@ module mkTbPE();
                 pe1.add_input(inputs[cycle1-1]);
             end
 
-            FixedPoint#(2,6) rcvd_ans <- pe1.get_partial_sum();
-            FixedPoint#(2,0) weight = unpack(weights[cycle1-2]);
+            FixedPoint#(2,6) pos_rcvd_ans <- pe1.get_pos_partial_sum();
+            FixedPoint#(2,6) neg_rcvd_ans <- pe1.get_neg_partial_sum();
+
+            FixedPoint#(2,0) weight = unpack({0, weights[cycle1-2][0]} + {weights[cycle1-2][1], weights[cycle1-2][1]});
             FixedPoint#(2,6) product = fxptSignExtend(weight)*inputs[cycle1-2];
             psum <= psum + product;
 
-            if((psum + product) != rcvd_ans) begin
+            if((psum + product) != (pos_rcvd_ans + neg_rcvd_ans)) begin
                 $write("Fail! ");
                 fxptWrite(5, inputs[cycle1-2]); $write(" x ");
                 fxptWrite(5, weight); $write(" = ");
                 fxptWrite(5, product); $write(" result:  ");
-                fxptWrite(5, rcvd_ans); $write(" expected:  ");
+                fxptWrite(5, pos_rcvd_ans + neg_rcvd_ans); $write(" expected:  ");
                 fxptWrite(5, psum + product);
                 $display();
                 $finish;
@@ -72,10 +74,13 @@ module mkTbPE();
             pe3.add_input(inputs[cycle3-1]);
 
         end else if (cycle3 == 9) begin
-            pe3.do_nonlinearity_fn();
+            pe3.nonlinearity();
+
+        end else if (cycle3 == 10) begin
+            pe3.combine();
 
         end else begin
-            FixedPoint#(2,6) rcvd_ans <- pe3.get_partial_sum();
+            FixedPoint#(2,6) rcvd_ans <- pe3.get_pos_partial_sum();
             if(0.0 != rcvd_ans) begin
                 $write("Failed nonlinearity!");
             end else begin
@@ -102,7 +107,7 @@ module mkTbPE();
         cycle2 <= cycle2 + 1;
     endrule
 
-    rule test_end (cycle3 > 10 && cycle1 > 10 && cycle2 > 8);
+    rule test_end (cycle3 > 11 && cycle1 > 10 && cycle2 > 8);
         $finish;
     endrule
 endmodule
