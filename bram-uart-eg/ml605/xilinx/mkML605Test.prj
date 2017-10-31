@@ -1,0 +1,8 @@
+verilog work "../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v"
+verilog work "../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v"
+verilog work "../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v"
+verilog work "../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v"
+verilog work "../vlog/mkUARTSpec.v"
+verilog work "../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v"
+verilog work "../vlog/mkBRAMUARTTest.v"
+verilog work "../vlog/mkML605Test.v"

@@ -1,0 +1,1023 @@
+Release 14.6 - xst P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> 
+Reading design: mkML605Test.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "mkML605Test.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "mkML605Test"
+Output Format                      : NGC
+Target Device                      : xc6vlx240t-1-ff1156
+
+---- Source Options
+Top Module Name                    : mkML605Test
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v" into library work
+Parsing module <FIFO2>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v" into library work
+Parsing module <SizedFIFO>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" into library work
+Parsing module <BRAM1Load>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v" into library work
+Parsing module <BRAM1>.
+Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" into library work
+Parsing module <mkUARTSpec>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v" into library work
+Parsing module <ResetInverter>.
+Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" into library work
+Parsing module <mkBRAMUARTTest>.
+Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" into library work
+Parsing module <mkML605Test>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <mkML605Test>.
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 94: Assignment to CAN_FIRE_uart_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 95: Assignment to WILL_FIRE_uart_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 101: Assignment to CAN_FIRE_uart_cts ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 102: Assignment to WILL_FIRE_uart_cts ignored, since the identifier is never used
+
+Elaborating module <BUFG>.
+
+Elaborating module <ResetInverter>.
+
+Elaborating module <mkBRAMUARTTest>.
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 400: Assignment to CAN_FIRE_uart_pins_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 401: Assignment to WILL_FIRE_uart_pins_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 407: Assignment to CAN_FIRE_uart_pins_cts ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 408: Assignment to WILL_FIRE_uart_pins_cts ignored, since the identifier is never used
+
+Elaborating module <BRAM1(PIPELINED=1'b0,ADDR_WIDTH=32'b01011,DATA_WIDTH=32'b010000,MEMSIZE=12'b100000000000)>.
+
+Elaborating module <SizedFIFO(p1width=32'b010000,p2depth=32'b011,p3cntr_width=32'b01,guarded=32'b01)>.
+
+Elaborating module <mkUARTSpec>.
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 284: Assignment to CAN_FIRE_pins_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 285: Assignment to WILL_FIRE_pins_rxd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 291: Assignment to CAN_FIRE_pins_cts ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 292: Assignment to WILL_FIRE_pins_cts ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 301: Assignment to CAN_FIRE_rx ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 302: Assignment to WILL_FIRE_rx ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 306: Assignment to CAN_FIRE_tx ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 307: Assignment to WILL_FIRE_tx ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 311: Assignment to CAN_FIRE_clear ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 312: Assignment to WILL_FIRE_clear ignored, since the identifier is never used
+
+Elaborating module <SizedFIFO(p1width=32'b01000,p2depth=32'b01000,p3cntr_width=32'b011,guarded=32'b01)>.
+
+Elaborating module <FIFO2(width=32'b01000,guarded=32'b01)>.
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 358: Assignment to CAN_FIRE_RL_u_rx_rxd_old ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 359: Assignment to WILL_FIRE_RL_u_rx_rxd_old ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 382: Assignment to CAN_FIRE_RL_u_rx_ticker_update_counter ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 383: Assignment to WILL_FIRE_RL_u_rx_ticker_update_counter ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 399: Assignment to WILL_FIRE_RL_u_rx_rx_f_upd_count ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 412: Assignment to CAN_FIRE_RL_u_tx_ticker_update_counter ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 413: Assignment to WILL_FIRE_RL_u_tx_ticker_update_counter ignored, since the identifier is never used
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 463: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 488: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 543: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 603: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+
+Elaborating module <BRAM1Load(FILENAME="y.txt",PIPELINED=1'b0,ADDR_WIDTH=32'b01011,DATA_WIDTH=32'b010000,MEMSIZE=12'b100000000000,BINARY=1'b0)>.
+Reading initialization file \"y.txt\".
+WARNING:HDLCompiler:1670 - "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" Line 72: Signal <RAM> in initial block is partially initialized.
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 528: Assignment to CAN_FIRE_RL_action_l92c33 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 575: Assignment to CAN_FIRE___me_check_34 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 576: Assignment to WILL_FIRE___me_check_34 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 579: Assignment to CAN_FIRE___me_check_35 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 580: Assignment to WILL_FIRE___me_check_35 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 583: Assignment to CAN_FIRE___me_check_36 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 584: Assignment to WILL_FIRE___me_check_36 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 587: Assignment to CAN_FIRE___me_check_37 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 588: Assignment to WILL_FIRE___me_check_37 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 591: Assignment to CAN_FIRE___me_check_38 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 592: Assignment to WILL_FIRE___me_check_38 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 595: Assignment to CAN_FIRE___me_check_39 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 596: Assignment to WILL_FIRE___me_check_39 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 599: Assignment to CAN_FIRE___me_check_40 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 600: Assignment to WILL_FIRE___me_check_40 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 632: Assignment to WILL_FIRE_RL_auto_finish ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 662: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_overRun ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 666: Assignment to CAN_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 668: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 679: Assignment to CAN_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 680: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 702: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_overRun ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 706: Assignment to CAN_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 708: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 730: Assignment to CAN_FIRE___me_check_25 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 731: Assignment to WILL_FIRE___me_check_25 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 734: Assignment to CAN_FIRE___me_check_26 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 735: Assignment to WILL_FIRE___me_check_26 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 738: Assignment to CAN_FIRE___me_check_27 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 739: Assignment to WILL_FIRE___me_check_27 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 742: Assignment to CAN_FIRE___me_check_28 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 743: Assignment to WILL_FIRE___me_check_28 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 746: Assignment to CAN_FIRE___me_check_29 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 747: Assignment to WILL_FIRE___me_check_29 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 750: Assignment to CAN_FIRE___me_check_30 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 751: Assignment to WILL_FIRE___me_check_30 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 754: Assignment to CAN_FIRE___me_check_31 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 755: Assignment to WILL_FIRE___me_check_31 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 758: Assignment to CAN_FIRE___me_check_33 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 759: Assignment to WILL_FIRE___me_check_33 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 762: Assignment to CAN_FIRE___me_check_32 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 763: Assignment to WILL_FIRE___me_check_32 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 794: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_cnt_finalAdd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 826: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_cnt_finalAdd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 830: Assignment to CAN_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 831: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 834: Assignment to CAN_FIRE_RL_start_reg__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 835: Assignment to WILL_FIRE_RL_start_reg__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 838: Assignment to CAN_FIRE_RL_state_handle_abort ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 839: Assignment to WILL_FIRE_RL_state_handle_abort ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 842: Assignment to CAN_FIRE_RL_state_every ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 843: Assignment to WILL_FIRE_RL_state_every ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 846: Assignment to CAN_FIRE_RL_state_fired__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 847: Assignment to WILL_FIRE_RL_state_fired__dreg_update ignored, since the identifier is never used
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1006: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1115: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1182: Assignment to wptr_w ignored, since the identifier is never used
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <mkML605Test>.
+    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v".
+    Summary:
+	no macro.
+Unit <mkML605Test> synthesized.
+
+Synthesizing Unit <ResetInverter>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v".
+    Summary:
+	no macro.
+Unit <ResetInverter> synthesized.
+
+Synthesizing Unit <mkBRAMUARTTest>.
+    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v".
+INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <RDY_rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <RDY_clear> of the instance <uart> is unconnected or connected to loadless signal.
+    Found 16-bit register for signal <feature2>.
+    Found 3-bit register for signal <featureBRAM_serverAdapter_cnt>.
+    Found 2-bit register for signal <featureBRAM_serverAdapter_s1>.
+    Found 1-bit register for signal <featureRAM_error_r>.
+    Found 11-bit register for signal <fptr_r>.
+    Found 11-bit register for signal <fptr_w>.
+    Found 7-bit register for signal <jj_1_delay_count>.
+    Found 10-bit register for signal <jj_delay_count>.
+    Found 1-bit register for signal <running>.
+    Found 1-bit register for signal <start_reg>.
+    Found 1-bit register for signal <start_reg_1>.
+    Found 1-bit register for signal <state_fired>.
+    Found 5-bit register for signal <state_mkFSMstate>.
+    Found 16-bit register for signal <weight>.
+    Found 16-bit register for signal <weight2>.
+    Found 3-bit register for signal <weightBRAM_serverAdapter_cnt>.
+    Found 2-bit register for signal <weightBRAM_serverAdapter_s1>.
+    Found 1-bit register for signal <weightRAM_error_r>.
+    Found 11-bit register for signal <wptr_r>.
+    Found 32-bit register for signal <i>.
+    Found 16-bit register for signal <feature>.
+    Found finite state machine <FSM_0> for signal <state_mkFSMstate>.
+    -----------------------------------------------------------------------
+    | States             | 18                                             |
+    | Transitions        | 286                                            |
+    | Inputs             | 18                                             |
+    | Outputs            | 18                                             |
+    | Clock              | CLK (rising_edge)                              |
+    | Reset              | RST_N_GND_4_o_equal_105_o (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00000                                          |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 16-bit adder for signal <MUX_feature2$write_1__VAL_2> created at line 853.
+    Found 32-bit adder for signal <MUX_i$write_1__VAL_1> created at line 854.
+    Found 7-bit adder for signal <MUX_jj_1_delay_count$write_1__VAL_1> created at line 855.
+    Found 16-bit adder for signal <MUX_weight$write_1__VAL_2> created at line 857.
+    Found 11-bit adder for signal <fptr_r$D_IN> created at line 934.
+    Found 11-bit adder for signal <fptr_w$D_IN> created at line 939.
+    Found 11-bit adder for signal <wptr_r$D_IN> created at line 1079.
+    Found 3-bit adder for signal <n0457> created at line 1158.
+    Found 3-bit adder for signal <featureBRAM_serverAdapter_cnt_6_PLUS_IF_featur_ETC___d32> created at line 1158.
+    Found 3-bit adder for signal <n0463> created at line 1174.
+    Found 3-bit adder for signal <weightBRAM_serverAdapter_cnt_5_PLUS_IF_weightB_ETC___d91> created at line 1174.
+    Found 3-bit comparator greater for signal <weightBRAM_serverAdapter_cnt[2]_PWR_4_o_LessThan_29_o> created at line 685
+    Found 16-bit comparator not equal for signal <n0251> created at line 1149
+    Found 16-bit comparator not equal for signal <n0253> created at line 1150
+    Found 3-bit comparator greater for signal <featureBRAM_serverAdapter_cnt_6_SLT_3___d194> created at line 1162
+    Found 32-bit comparator greater for signal <i_54_ULT_8___d155> created at line 1164
+    Summary:
+	inferred  11 Adder/Subtractor(s).
+	inferred 162 D-type flip-flop(s).
+	inferred   5 Comparator(s).
+	inferred   8 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <mkBRAMUARTTest> synthesized.
+
+Synthesizing Unit <BRAM1>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v".
+        PIPELINED = 1'b0
+        ADDR_WIDTH = 32'b00000000000000000000000000001011
+        DATA_WIDTH = 32'b00000000000000000000000000010000
+        MEMSIZE = 12'b100000000000
+    Found 2048x16-bit single-port RAM <Mram_RAM> for signal <RAM>.
+    Found 16-bit register for signal <DO_R>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <BRAM1> synthesized.
+
+Synthesizing Unit <SizedFIFO_1>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v".
+        p1width = 32'b00000000000000000000000000010000
+        p2depth = 32'b00000000000000000000000000000011
+        p3cntr_width = 32'b00000000000000000000000000000001
+        guarded = 32'b00000000000000000000000000000001
+    Set property "RAM_STYLE = DISTRIBUTED" for signal <arr>.
+    Found 2x16-bit dual-port RAM <Mram_arr> for signal <arr>.
+    Found 1-bit register for signal <tail>.
+    Found 1-bit register for signal <ring_empty>.
+    Found 1-bit register for signal <not_ring_full>.
+    Found 1-bit register for signal <hasodata>.
+    Found 16-bit register for signal <D_OUT>.
+    Found 1-bit register for signal <head>.
+    Found 1-bit adder for signal <incr_tail> created at line 99.
+    Found 1-bit adder for signal <incr_head> created at line 100.
+    Found 1-bit comparator equal for signal <next_head[0]_tail[0]_equal_7_o> created at line 168
+    Found 1-bit comparator not equal for signal <next_tail[0]_head[0]_equal_8_o> created at line 183
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  21 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <SizedFIFO_1> synthesized.
+
+Synthesizing Unit <mkUARTSpec>.
+    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v".
+    Found 1-bit register for signal <u_rx_curr_rx_valid>.
+    Found 1-bit register for signal <u_rx_last_stop>.
+    Found 1-bit register for signal <u_rx_parity_bit>.
+    Found 1-bit register for signal <u_rx_r_framing_error>.
+    Found 1-bit register for signal <u_rx_r_overrun_error>.
+    Found 1-bit register for signal <u_rx_r_parity_error>.
+    Found 4-bit register for signal <u_rx_rx_f_r_count>.
+    Found 3-bit register for signal <u_rx_state>.
+    Found 16-bit register for signal <u_rx_ticker_counter>.
+    Found 3-bit register for signal <u_tx_bit_count>.
+    Found 1-bit register for signal <u_tx_parity_bit>.
+    Found 2-bit register for signal <u_tx_state>.
+    Found 16-bit register for signal <u_tx_ticker_counter>.
+    Found 8-bit register for signal <u_rx_curr_rx>.
+    Found 1-bit register for signal <u_rx_r_rxd_old>.
+    Found 8-bit register for signal <u_tx_curr_tx>.
+    Found 3-bit register for signal <u_rx_bit_count>.
+    Found finite state machine <FSM_2> for signal <u_tx_state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 18                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Reset              | RST_N_GND_7_o_equal_98_o (positive)            |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 11                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+INFO:Xst:1799 - State 011 is never reached in FSM <u_rx_state>.
+    Found finite state machine <FSM_1> for signal <u_rx_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 19                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Reset              | RST_N_GND_7_o_equal_98_o (positive)            |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit subtractor for signal <u_rx_rx_f_r_count[3]_GND_7_o_sub_63_OUT> created at line 531.
+    Found 16-bit subtractor for signal <u_rx_ticker_counter[15]_GND_7_o_sub_77_OUT> created at line 566.
+    Found 16-bit subtractor for signal <u_tx_ticker_counter$D_IN> created at line 621.
+    Found 3-bit adder for signal <u_rx_bit_count[2]_GND_7_o_add_43_OUT> created at line 451.
+    Found 4-bit adder for signal <u_rx_rx_f_r_count[3]_GND_7_o_add_61_OUT> created at line 530.
+    Found 3-bit adder for signal <u_tx_bit_count[2]_GND_7_o_add_79_OUT> created at line 574.
+    Found 4-bit comparator lessequal for signal <n0007> created at line 288
+    Found 1-bit comparator not equal for signal <n0040> created at line 398
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred  65 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   4 Multiplexer(s).
+	inferred   2 Finite State Machine(s).
+Unit <mkUARTSpec> synthesized.
+
+Synthesizing Unit <SizedFIFO_2>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v".
+        p1width = 32'b00000000000000000000000000001000
+        p2depth = 32'b00000000000000000000000000001000
+        p3cntr_width = 32'b00000000000000000000000000000011
+        guarded = 32'b00000000000000000000000000000001
+    Set property "RAM_STYLE = DISTRIBUTED" for signal <arr>.
+WARNING:Xst:3035 - Index value(s) does not match array range for signal <arr>, simulation mismatch.
+    Found 7x8-bit dual-port RAM <Mram_arr> for signal <arr>.
+    Found 3-bit register for signal <tail>.
+    Found 1-bit register for signal <ring_empty>.
+    Found 1-bit register for signal <not_ring_full>.
+    Found 1-bit register for signal <hasodata>.
+    Found 8-bit register for signal <D_OUT>.
+    Found 3-bit register for signal <head>.
+    Found 3-bit adder for signal <incr_tail> created at line 99.
+    Found 3-bit adder for signal <incr_head> created at line 100.
+    Found 3-bit comparator equal for signal <next_head[2]_tail[2]_equal_10_o> created at line 168
+    Found 3-bit comparator not equal for signal <next_tail[2]_head[2]_equal_11_o> created at line 183
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  17 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <SizedFIFO_2> synthesized.
+
+Synthesizing Unit <FIFO2>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v".
+        width = 32'b00000000000000000000000000001000
+        guarded = 32'b00000000000000000000000000000001
+    Found 1-bit register for signal <full_reg>.
+    Found 8-bit register for signal <data0_reg>.
+    Found 8-bit register for signal <data1_reg>.
+    Found 1-bit register for signal <empty_reg>.
+    Summary:
+	inferred  18 D-type flip-flop(s).
+	inferred   3 Multiplexer(s).
+Unit <FIFO2> synthesized.
+
+Synthesizing Unit <BRAM1Load>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v".
+        FILENAME = "y.txt"
+        PIPELINED = 1'b0
+        ADDR_WIDTH = 32'b00000000000000000000000000001011
+        DATA_WIDTH = 32'b00000000000000000000000000010000
+        MEMSIZE = 12'b100000000000
+        BINARY = 1'b0
+    Found 2048x16-bit single-port RAM <Mram_RAM> for signal <RAM>.
+    Found 16-bit register for signal <DO_R>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+Unit <BRAM1Load> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 5
+ 2048x16-bit single-port RAM                           : 2
+ 2x16-bit dual-port RAM                                : 2
+ 7x8-bit dual-port RAM                                 : 1
+# Adders/Subtractors                                   : 22
+ 1-bit adder                                           : 4
+ 11-bit adder                                          : 3
+ 16-bit adder                                          : 2
+ 16-bit subtractor                                     : 2
+ 3-bit adder                                           : 8
+ 32-bit adder                                          : 1
+ 4-bit addsub                                          : 1
+ 7-bit adder                                           : 1
+# Registers                                            : 58
+ 1-bit register                                        : 28
+ 10-bit register                                       : 1
+ 11-bit register                                       : 3
+ 16-bit register                                       : 10
+ 2-bit register                                        : 2
+ 3-bit register                                        : 6
+ 32-bit register                                       : 1
+ 4-bit register                                        : 1
+ 7-bit register                                        : 1
+ 8-bit register                                        : 5
+# Comparators                                          : 13
+ 1-bit comparator equal                                : 2
+ 1-bit comparator not equal                            : 3
+ 16-bit comparator not equal                           : 2
+ 3-bit comparator equal                                : 1
+ 3-bit comparator greater                              : 2
+ 3-bit comparator not equal                            : 1
+ 32-bit comparator greater                             : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 31
+ 1-bit 2-to-1 multiplexer                              : 16
+ 10-bit 2-to-1 multiplexer                             : 1
+ 11-bit 2-to-1 multiplexer                             : 1
+ 16-bit 2-to-1 multiplexer                             : 9
+ 3-bit 2-to-1 multiplexer                              : 3
+ 8-bit 2-to-1 multiplexer                              : 1
+# FSMs                                                 : 3
+# Xors                                                 : 3
+ 1-bit xor2                                            : 1
+ 3-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+INFO:Xst:2261 - The FF/Latch <featureBRAM_serverAdapter_s1_0> in Unit <m> is equivalent to the following FF/Latch, which will be removed : <weightBRAM_serverAdapter_s1_1> 
+WARNING:Xst:1710 - FF/Latch <u_rx_r_parity_error> (without init value) has a constant value of 0 in block <uart>. This FF/Latch will be trimmed during the optimization process.
+
+Synthesizing (advanced) Unit <BRAM1>.
+INFO:Xst:3226 - The RAM <Mram_RAM> will be implemented as a BLOCK RAM, absorbing the following register(s): <DO_R>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2048-word x 16-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     enA            | connected to signal <EN>            | high     |
+    |     weA            | connected to signal <WE>            | high     |
+    |     addrA          | connected to signal <ADDR>          |          |
+    |     diA            | connected to signal <DI>            |          |
+    |     doA            | connected to signal <DO_R>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <BRAM1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <BRAM1Load>.
+INFO:Xst:3226 - The RAM <Mram_RAM> will be implemented as a BLOCK RAM, absorbing the following register(s): <DO_R>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2048-word x 16-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     enA            | connected to signal <EN>            | high     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <ADDR>          |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <DO_R>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <BRAM1Load> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SizedFIFO_1>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_arr>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2-word x 16-bit                     |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <tail>          |          |
+    |     diA            | connected to signal <D_IN>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 2-word x 16-bit                     |          |
+    |     addrB          | connected to signal <head>          |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <SizedFIFO_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SizedFIFO_2>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_arr>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 7-word x 8-bit                      |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <tail>          |          |
+    |     diA            | connected to signal <D_IN>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 7-word x 8-bit                      |          |
+    |     addrB          | connected to signal <head>          |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <SizedFIFO_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <mkBRAMUARTTest>.
+The following registers are absorbed into counter <fptr_r>: 1 register on signal <fptr_r>.
+The following registers are absorbed into counter <fptr_w>: 1 register on signal <fptr_w>.
+The following registers are absorbed into counter <wptr_r>: 1 register on signal <wptr_r>.
+The following registers are absorbed into counter <i>: 1 register on signal <i>.
+The following registers are absorbed into counter <feature2>: 1 register on signal <feature2>.
+The following registers are absorbed into counter <weight>: 1 register on signal <weight>.
+The following registers are absorbed into counter <jj_1_delay_count>: 1 register on signal <jj_1_delay_count>.
+The following registers are absorbed into accumulator <featureBRAM_serverAdapter_cnt>: 1 register on signal <featureBRAM_serverAdapter_cnt>.
+The following registers are absorbed into accumulator <weightBRAM_serverAdapter_cnt>: 1 register on signal <weightBRAM_serverAdapter_cnt>.
+Unit <mkBRAMUARTTest> synthesized (advanced).
+
+Synthesizing (advanced) Unit <mkUARTSpec>.
+The following registers are absorbed into counter <u_rx_rx_f_r_count>: 1 register on signal <u_rx_rx_f_r_count>.
+The following registers are absorbed into counter <u_tx_bit_count>: 1 register on signal <u_tx_bit_count>.
+The following registers are absorbed into counter <u_rx_bit_count>: 1 register on signal <u_rx_bit_count>.
+Unit <mkUARTSpec> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 5
+ 2048x16-bit single-port block RAM                     : 2
+ 2x16-bit dual-port distributed RAM                    : 2
+ 7x8-bit dual-port distributed RAM                     : 1
+# Adders/Subtractors                                   : 8
+ 1-bit adder                                           : 4
+ 16-bit subtractor                                     : 2
+ 3-bit adder                                           : 2
+# Counters                                             : 10
+ 11-bit up counter                                     : 3
+ 16-bit up counter                                     : 2
+ 3-bit up counter                                      : 2
+ 32-bit up counter                                     : 1
+ 4-bit updown counter                                  : 1
+ 7-bit up counter                                      : 1
+# Accumulators                                         : 2
+ 3-bit up accumulator cin                              : 2
+# Registers                                            : 184
+ Flip-Flops                                            : 184
+# Comparators                                          : 13
+ 1-bit comparator equal                                : 2
+ 1-bit comparator not equal                            : 3
+ 16-bit comparator not equal                           : 2
+ 3-bit comparator equal                                : 1
+ 3-bit comparator greater                              : 2
+ 3-bit comparator not equal                            : 1
+ 32-bit comparator greater                             : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 27
+ 1-bit 2-to-1 multiplexer                              : 15
+ 10-bit 2-to-1 multiplexer                             : 1
+ 11-bit 2-to-1 multiplexer                             : 1
+ 16-bit 2-to-1 multiplexer                             : 6
+ 3-bit 2-to-1 multiplexer                              : 3
+ 8-bit 2-to-1 multiplexer                              : 1
+# FSMs                                                 : 3
+# Xors                                                 : 3
+ 1-bit xor2                                            : 1
+ 3-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <u_rx_r_parity_error> (without init value) has a constant value of 0 in block <mkUARTSpec>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <featureBRAM_serverAdapter_s1_0> in Unit <mkBRAMUARTTest> is equivalent to the following FF/Latch, which will be removed : <weightBRAM_serverAdapter_s1_1> 
+INFO:Xst:2146 - In block <mkBRAMUARTTest>, Counter <fptr_r> <wptr_r> are equivalent, XST will keep only <fptr_r>.
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <m/FSM_0> on signal <state_mkFSMstate[1:18]> with one-hot encoding.
+-----------------------------
+ State | Encoding
+-----------------------------
+ 00000 | 000000000000000001
+ 00100 | 000000000000000010
+ 00101 | 000000000000000100
+ 00110 | 000000000000001000
+ 00111 | 000000000000010000
+ 01000 | 000000000000100000
+ 01001 | 000000000001000000
+ 01010 | 000000000010000000
+ 01011 | 000000000100000000
+ 01100 | 000000001000000000
+ 01101 | 000000010000000000
+ 01110 | 000000100000000000
+ 00001 | 000001000000000000
+ 00010 | 000010000000000000
+ 00011 | 000100000000000000
+ 01111 | 001000000000000000
+ 10000 | 010000000000000000
+ 10001 | 100000000000000000
+-----------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <m/uart/FSM_1> on signal <u_rx_state[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 00
+ 100   | 01
+ 001   | 11
+ 011   | unreached
+ 010   | 10
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <m/uart/FSM_2> on signal <u_tx_state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 11    | 11
+ 00    | 00
+ 10    | 10
+ 01    | 01
+-------------------
+
+Optimizing unit <mkML605Test> ...
+
+Optimizing unit <mkBRAMUARTTest> ...
+
+Optimizing unit <SizedFIFO_1> ...
+
+Optimizing unit <mkUARTSpec> ...
+
+Optimizing unit <FIFO2> ...
+
+Optimizing unit <SizedFIFO_2> ...
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_15> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_14> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_13> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_12> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_11> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_10> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_15> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_14> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_13> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_12> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_11> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_10> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_outDataCore/head_0> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_outDataCore/head_0> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_outDataCore/ring_empty> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_outDataCore/ring_empty> 
+INFO:Xst:2261 - The FF/Latch <m/running> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/weightBRAM_serverAdapter_s1_0> 
+INFO:Xst:2261 - The FF/Latch <m/state_mkFSMstate_FSM_FFd6> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/start_reg_1> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_outDataCore/not_ring_full> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_outDataCore/not_ring_full> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_cnt_0> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_cnt_0> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_cnt_1> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_cnt_1> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_cnt_2> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_cnt_2> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_outDataCore/tail_0> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_outDataCore/tail_0> 
+INFO:Xst:2261 - The FF/Latch <m/weightBRAM_serverAdapter_outDataCore/hasodata> in Unit <mkML605Test> is equivalent to the following FF/Latch, which will be removed : <m/featureBRAM_serverAdapter_outDataCore/hasodata> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block mkML605Test, actual ratio is 0.
+FlipFlop m/state_mkFSMstate_FSM_FFd10 has been replicated 1 time(s)
+FlipFlop m/state_mkFSMstate_FSM_FFd6 has been replicated 1 time(s)
+FlipFlop m/uart/u_tx_tx_f/full_reg has been replicated 1 time(s)
+FlipFlop m/weightBRAM_serverAdapter_cnt_0 has been replicated 1 time(s)
+FlipFlop m/weightBRAM_serverAdapter_cnt_1 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 296
+ Flip-Flops                                            : 296
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : mkML605Test.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 704
+#      GND                         : 1
+#      INV                         : 14
+#      LUT1                        : 51
+#      LUT2                        : 26
+#      LUT3                        : 37
+#      LUT4                        : 94
+#      LUT5                        : 110
+#      LUT6                        : 143
+#      MUXCY                       : 119
+#      MUXF7                       : 2
+#      VCC                         : 1
+#      XORCY                       : 106
+# FlipFlops/Latches                : 296
+#      FD                          : 88
+#      FDE                         : 24
+#      FDR                         : 62
+#      FDRE                        : 80
+#      FDS                         : 7
+#      FDSE                        : 35
+# RAMS                             : 17
+#      RAM32M                      : 5
+#      RAM32X1D                    : 10
+#      RAMB36E1                    : 2
+# Clock Buffers                    : 1
+#      BUFG                        : 1
+# IO Buffers                       : 13
+#      IBUF                        : 3
+#      IBUFG                       : 1
+#      OBUF                        : 9
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6vlx240tff1156-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             296  out of  301440     0%  
+ Number of Slice LUTs:                  515  out of  150720     0%  
+    Number used as Logic:               475  out of  150720     0%  
+    Number used as Memory:               40  out of  58400     0%  
+       Number used as RAM:               40
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    541
+   Number with an unused Flip Flop:     245  out of    541    45%  
+   Number with an unused LUT:            26  out of    541     4%  
+   Number of fully used LUT-FF pairs:   270  out of    541    49%  
+   Number of unique control sets:        18
+
+IO Utilization: 
+ Number of IOs:                          13
+ Number of bonded IOBs:                  13  out of    600     2%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                2  out of    416     0%  
+    Number using Block RAM only:          2
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | IBUFG+BUFG             | 313   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 3.385ns (Maximum Frequency: 295.421MHz)
+   Minimum input arrival time before clock: 1.905ns
+   Maximum output required time after clock: 1.623ns
+   Maximum combinational path delay: 0.419ns
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 3.385ns (frequency: 295.421MHz)
+  Total number of paths / destination ports: 14630 / 580
+-------------------------------------------------------------------------
+Delay:               3.385ns (Levels of Logic = 17)
+  Source:            m/featureBRAM_memory/Mram_RAM (RAM)
+  Destination:       m/feature2_15 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: m/featureBRAM_memory/Mram_RAM to m/feature2_15
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB36E1:CLKARDCLK->DOADO0    3   2.073   0.431  m/featureBRAM_memory/Mram_RAM (m/featureBRAM_memory$DO<0>)
+     LUT5:I4->O            1   0.068   0.000  m/Mcount_feature2_lut<0> (m/Mcount_feature2_lut<0>)
+     MUXCY:S->O            1   0.290   0.000  m/Mcount_feature2_cy<0> (m/Mcount_feature2_cy<0>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mcount_feature2_cy<1> (m/Mcount_feature2_cy<1>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mcount_feature2_cy<2> (m/Mcount_feature2_cy<2>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<3> (m/Mcount_feature2_cy<3>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<4> (m/Mcount_feature2_cy<4>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<5> (m/Mcount_feature2_cy<5>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<6> (m/Mcount_feature2_cy<6>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<7> (m/Mcount_feature2_cy<7>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<8> (m/Mcount_feature2_cy<8>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<9> (m/Mcount_feature2_cy<9>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<10> (m/Mcount_feature2_cy<10>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<11> (m/Mcount_feature2_cy<11>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<12> (m/Mcount_feature2_cy<12>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mcount_feature2_cy<13> (m/Mcount_feature2_cy<13>)
+     MUXCY:CI->O           0   0.019   0.000  m/Mcount_feature2_cy<14> (m/Mcount_feature2_cy<14>)
+     XORCY:CI->O           1   0.239   0.000  m/Mcount_feature2_xor<15> (m/Mcount_feature215)
+     FDSE:D                    0.011          m/feature2_15
+    ----------------------------------------
+    Total                      3.385ns (2.954ns logic, 0.431ns route)
+                                       (87.3% logic, 12.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 210 / 203
+-------------------------------------------------------------------------
+Offset:              1.905ns (Levels of Logic = 2)
+  Source:            RST_N (PAD)
+  Destination:       m/jj_1_delay_count_6 (FF)
+  Destination Clock: CLK rising
+
+  Data Path: RST_N to m/jj_1_delay_count_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O           183   0.003   0.961  RST_N_IBUF (RST_N_IBUF)
+     LUT5:I0->O            7   0.068   0.439  m/Mcount_jj_1_delay_count_val1 (m/Mcount_jj_1_delay_count_val)
+     FDRE:R                    0.434          m/jj_1_delay_count_0
+    ----------------------------------------
+    Total                      1.905ns (0.505ns logic, 1.400ns route)
+                                       (26.5% logic, 73.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 12 / 7
+-------------------------------------------------------------------------
+Offset:              1.623ns (Levels of Logic = 2)
+  Source:            m/uart/u_tx_state_FSM_FFd1 (FF)
+  Destination:       uart_txd (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: m/uart/u_tx_state_FSM_FFd1 to uart_txd
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q             23   0.375   0.778  m/uart/u_tx_state_FSM_FFd1 (m/uart/u_tx_state_FSM_FFd1)
+     LUT4:I0->O            1   0.068   0.399  m/uart/pins_txd1 (uart_txd_OBUF)
+     OBUF:I->O                 0.003          uart_txd_OBUF (uart_txd)
+    ----------------------------------------
+    Total                      1.623ns (0.446ns logic, 1.177ns route)
+                                       (27.5% logic, 72.5% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               0.419ns (Levels of Logic = 2)
+  Source:            uart_cts (PAD)
+  Destination:       leds<5> (PAD)
+
+  Data Path: uart_cts to leds<5>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.003   0.413  uart_cts_IBUF (leds_5_OBUF)
+     OBUF:I->O                 0.003          leds_5_OBUF (leds<5>)
+    ----------------------------------------
+    Total                      0.419ns (0.006ns logic, 0.413ns route)
+                                       (1.4% logic, 98.6% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    3.385|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 16.00 secs
+Total CPU time to Xst completion: 14.94 secs
+ 
+--> 
+
+
+Total memory usage is 516688 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  102 (   0 filtered)
+Number of infos    :   21 (   0 filtered)
+

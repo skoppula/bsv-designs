@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 94: Assignment to <arg fmt="%s" index="1">CAN_FIRE_uart_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 95: Assignment to <arg fmt="%s" index="1">WILL_FIRE_uart_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 101: Assignment to <arg fmt="%s" index="1">CAN_FIRE_uart_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 102: Assignment to <arg fmt="%s" index="1">WILL_FIRE_uart_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 400: Assignment to <arg fmt="%s" index="1">CAN_FIRE_uart_pins_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 401: Assignment to <arg fmt="%s" index="1">WILL_FIRE_uart_pins_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 407: Assignment to <arg fmt="%s" index="1">CAN_FIRE_uart_pins_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 408: Assignment to <arg fmt="%s" index="1">WILL_FIRE_uart_pins_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 284: Assignment to <arg fmt="%s" index="1">CAN_FIRE_pins_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 285: Assignment to <arg fmt="%s" index="1">WILL_FIRE_pins_rxd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 291: Assignment to <arg fmt="%s" index="1">CAN_FIRE_pins_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 292: Assignment to <arg fmt="%s" index="1">WILL_FIRE_pins_cts</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 301: Assignment to <arg fmt="%s" index="1">CAN_FIRE_rx</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 302: Assignment to <arg fmt="%s" index="1">WILL_FIRE_rx</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 306: Assignment to <arg fmt="%s" index="1">CAN_FIRE_tx</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 307: Assignment to <arg fmt="%s" index="1">WILL_FIRE_tx</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 311: Assignment to <arg fmt="%s" index="1">CAN_FIRE_clear</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 312: Assignment to <arg fmt="%s" index="1">WILL_FIRE_clear</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 358: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_u_rx_rxd_old</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 359: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_u_rx_rxd_old</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 382: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_u_rx_ticker_update_counter</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 383: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_u_rx_ticker_update_counter</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 399: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_u_rx_rx_f_upd_count</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 412: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_u_tx_ticker_update_counter</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 413: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_u_tx_ticker_update_counter</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 463: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 488: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 543: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 603: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1670" delta="old" >"/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" Line 72: Signal &lt;<arg fmt="%s" index="1">RAM</arg>&gt; in initial block is partially initialized.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 528: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_action_l92c33</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 575: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_34</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 576: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_34</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 579: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_35</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 580: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_35</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 583: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_36</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 584: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_36</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 587: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_37</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 588: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_37</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 591: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_38</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 592: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_38</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 595: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_39</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 596: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_39</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 599: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_40</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 600: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_40</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 632: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_auto_finish</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 662: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_featureBRAM_serverAdapter_overRun</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 666: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 668: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 679: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 680: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 702: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_weightBRAM_serverAdapter_overRun</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 706: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 708: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 730: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_25</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 731: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_25</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 734: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_26</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 735: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_26</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 738: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_27</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 739: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_27</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 742: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_28</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 743: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_28</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 746: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_29</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 747: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_29</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 750: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_30</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 751: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_30</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 754: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_31</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 755: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_31</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 758: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_33</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 759: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_33</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 762: Assignment to <arg fmt="%s" index="1">CAN_FIRE___me_check_32</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 763: Assignment to <arg fmt="%s" index="1">WILL_FIRE___me_check_32</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 794: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_featureBRAM_serverAdapter_cnt_finalAdd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 826: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_weightBRAM_serverAdapter_cnt_finalAdd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 830: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 831: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 834: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_start_reg__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 835: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_start_reg__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 838: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_state_handle_abort</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 839: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_state_handle_abort</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 842: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_state_every</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 843: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_state_every</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 846: Assignment to <arg fmt="%s" index="1">CAN_FIRE_RL_state_fired__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 847: Assignment to <arg fmt="%s" index="1">WILL_FIRE_RL_state_fired__dreg_update</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1006: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1311" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1115: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1182: Assignment to <arg fmt="%s" index="1">wptr_w</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v</arg>&quot; line <arg fmt="%s" index="2">445</arg>: Output port &lt;<arg fmt="%s" index="3">rx_first</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">uart</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v</arg>&quot; line <arg fmt="%s" index="2">445</arg>: Output port &lt;<arg fmt="%s" index="3">RDY_rx_first</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">uart</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v</arg>&quot; line <arg fmt="%s" index="2">445</arg>: Output port &lt;<arg fmt="%s" index="3">RDY_clear</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">uart</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">011</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">u_rx_state</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="3035" delta="old" >Index value(s) does not match array range for signal &lt;<arg fmt="%s" index="1">arr</arg>&gt;, simulation mismatch.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">featureBRAM_serverAdapter_s1_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">m</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;weightBRAM_serverAdapter_s1_1&gt; </arg>
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">u_rx_r_parity_error</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">uart</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="3226" delta="old" >The RAM &lt;<arg fmt="%s" index="1">Mram_RAM</arg>&gt; will be implemented as a BLOCK RAM, absorbing the following register(s):</msg>
+
+<msg type="info" file="Xst" num="3226" delta="old" >The RAM &lt;<arg fmt="%s" index="1">Mram_RAM</arg>&gt; will be implemented as a BLOCK RAM, absorbing the following register(s):</msg>
+
+<msg type="info" file="Xst" num="3216" delta="old" >HDL ADVISOR - LUT implementation is currently selected for the RAM &lt;<arg fmt="%s" index="1">Mram_arr</arg>&gt;. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+</msg>
+
+<msg type="info" file="Xst" num="3216" delta="old" >HDL ADVISOR - LUT implementation is currently selected for the RAM &lt;<arg fmt="%s" index="1">Mram_arr</arg>&gt;. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">u_rx_r_parity_error</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkUARTSpec</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">featureBRAM_serverAdapter_s1_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkBRAMUARTTest</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;weightBRAM_serverAdapter_s1_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2146" delta="old" >In block &lt;<arg fmt="%s" index="1">mkBRAMUARTTest</arg>&gt;, <arg fmt="%s" index="2">Counter</arg> &lt;<arg fmt="%s" index="3">fptr_r</arg>&gt; </msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_15</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_14</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_13</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_12</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_11</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_rx_ticker_counter_10</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_15</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_14</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_13</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_12</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_11</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">m/uart/u_tx_ticker_counter_10</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">mkML605Test</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_outDataCore/head_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_outDataCore/head_0&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_outDataCore/ring_empty</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_outDataCore/ring_empty&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/running</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/weightBRAM_serverAdapter_s1_0&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/state_mkFSMstate_FSM_FFd6</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/start_reg_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_outDataCore/not_ring_full</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_outDataCore/not_ring_full&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_cnt_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_cnt_0&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_cnt_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_cnt_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_cnt_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_cnt_2&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_outDataCore/tail_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_outDataCore/tail_0&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">m/weightBRAM_serverAdapter_outDataCore/hasodata</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mkML605Test</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;m/featureBRAM_serverAdapter_outDataCore/hasodata&gt; </arg>
+</msg>
+
+</messages>
+

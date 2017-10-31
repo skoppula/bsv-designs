@@ -1,0 +1,17 @@
+Release 14.6 - par P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Thu Jul 13 18:57:09 2017
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 5 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   m/featureBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O
+   m/featureBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O
+   m/uart/u_rx_rx_f_rx_f/Mram_arr1_RAMD_D1_O
+   m/weightBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O
+   m/weightBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O
+
+

@@ -1,0 +1,24 @@
+Release 14.6 Drc P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Thu Jul 13 18:57:46 2017
+
+drc -z mkML605Test.ncd mkML605Test.pcf
+
+WARNING:PhysDesignRules:367 - The signal
+   <m/featureBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/weightBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/weightBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/featureBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/uart/u_rx_rx_f_rx_f/Mram_arr1_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+DRC detected 0 errors and 5 warnings.  Please see the previously displayed
+individual error or warning messages for more details.
