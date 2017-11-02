@@ -34,6 +34,7 @@ module mkTbLayerEval();
 
     Reg#(FixedPoint#(2,6)) psum <- mkReg(0.0);
 
+    (* preempts = "test_one_load_weight, le1_feed_weights_recieve" *)
     rule test_one_load_weight (cycle1 == 0);
         le1.load_weights(weights);
         le1.load_aux_weights(pos_const, neg_const, bias);
@@ -84,8 +85,9 @@ module mkTbLayerEval();
         cycle1 <= cycle1 + 1;
     endrule
 
+    (* preempts = "test_one_nonlinearity, (le1_feed_inputs, le1_multiply_constants, le1_combine, le1_add_bias, le1_nonlinearity)"*) 
     rule test_one_nonlinearity (cycle1 == 5);
-        le1.start_layer(1);
+        le1.start_nonlinearity_test();
         cycle1 <= cycle1 + 1;
     endrule
 

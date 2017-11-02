@@ -4,6 +4,28 @@ import FixedPoint::*;
 import StmtFSM::*;
 import Vector::*;
 import PE::*;
+import BRAM::*;
+import UART::*;
+
+`define WEIGHT_ADDR_SZ     3     // bit size of address space
+`define WEIGHT_WORD_SZ     16   // bit size for each address slot
+`define FEAT_ADDR_SZ       8     // bit size of address space
+`define FEAT_WORD_SZ       8     // bit size for each address slot
+
+function BRAMRequest#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) makeWeightRequest(
+    Bool write, Bit#(`WEIGHT_ADDR_SZ) addr, Bit#(`WEIGHT_WORD_SZ) data);
+    return BRAMRequest{ write:write, responseOnWrite:False, address: addr, datain: data };
+endfunction
+
+function BRAMRequest#(Bit#(`FEAT_ADDR_SZ), Bit#(`FEAT_WORD_SZ)) makeFeatRequest(
+    Bool write, Bit#(`FEAT_ADDR_SZ) addr, Bit#(`FEAT_WORD_SZ) data);
+    return BRAMRequest{ write:write, responseOnWrite:False, address: addr, datain: data };
+endfunction
+
+function Action msg(String tag, dtype val) provisos (FShow#(dtype));
+    $display($time, "     %m.", tag, "\t", fshow(val));
+endfunction
+
 
 interface LayerEvalIfc#( numeric type n_pe, numeric type n_cols );
     method Action start_layer( UInt#(4) layer_idx );
@@ -24,44 +46,68 @@ interface LayerEvalIfc#( numeric type n_pe, numeric type n_cols );
     method ActionValue#( Tuple2#(Vector#(n_pe, FixedPoint#(2,6)), Vector#(n_pe, FixedPoint#(2,6))) ) get_partial_sums();
     method Action reset_evaluator();
     method Bool is_ready();
+    method Action start_nonlinearity_test();
 endinterface
 
 // Adder modules
-module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) );
+module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#(n_cols, Bit#(2)), `WEIGHT_WORD_SZ));
 
     Vector#(n_pe, PeIfc#(n_cols)) pe_vec <- replicateM(mkPE());
     Reg#(UInt#(8)) step <- mkReg(0);
+    Reg#(UInt#(`WEIGHT_ADDR_SZ)) weight_addr <- mkReg(0);
+    Reg#(Bool) waiting <- mkReg(False);
     Reg#(UInt#(4)) layer_idx <- mkReg(0);
     Reg#(FixedPoint#(2, 6)) pos_const <- mkReg(0);
     Reg#(FixedPoint#(2, 6)) neg_const <- mkReg(0);
     Reg#(FixedPoint#(2, 6)) bias <- mkReg(0);
 
-    rule feed_inputs (step == 1);
+    BRAM_Configure weightCfgRAM = defaultValue;
+    BRAM_Configure featCfgRAM = defaultValue;
+    weightCfgRAM.loadFormat = tagged Hex "weights.txt";
+    featCfgRAM.loadFormat = tagged Hex "features.txt";
+    BRAM1Port#(Bit#(`FEAT_ADDR_SZ), Bit#(`FEAT_WORD_SZ)) featureBRAM <- mkBRAM1Server(featCfgRAM);
+    BRAM1Port#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) weightBRAM <- mkBRAM1Server(weightCfgRAM);
+
+    rule feed_weights_request (step == 1 && !waiting);
+	weightBRAM.portA.request.put(makeWeightRequest(False, pack(weight_addr), 0));
+        weight_addr <= weight_addr + 1;
+        waiting <= True;
+    endrule
+
+    rule feed_weights_recieve (step == 1 && waiting);
+	Bit#(`WEIGHT_WORD_SZ) recv_bits <- weightBRAM.portA.response.get();
+        Vector#(n_cols, Bit#(2)) weights = unpack(recv_bits);
+        pe_vec[weight_addr].load_weights(weights);
+        step <= weight_addr == (1 << `WEIGHT_ADDR_SZ) ? step + 1 : step;
+    endrule
+
+    rule feed_inputs (step == 2);
+	// featureBRAM.portA.request.put(makeRequest(True, fptr_w, feature));
         step <= step + 1;
     endrule
 
-    rule multiply_constants (step == 2);
+    rule multiply_constants (step == 3);
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].multiply_constants(pos_const, neg_const);
         end
         step <= step + 1;
     endrule
 
-    rule combine (step == 3);
+    rule combine (step == 4);
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].combine();
         end
         step <= step + 1;
     endrule
 
-    rule add_bias (step == 4);
+    rule add_bias (step == 5);
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].add_constant(bias);
         end
         step <= step + 1;
     endrule
 
-    rule nonlinearity (step == 5);
+    rule nonlinearity (step == 6);
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].nonlinearity();
         end
@@ -91,6 +137,10 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) );
         layer_idx <= layer;
     endmethod
 
+    method Action start_nonlinearity_test();
+        step <= 3;
+    endmethod
+
     method Action reset_evaluator();
         step <= 0;
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
@@ -111,7 +161,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) );
     endmethod
 
     method Bool is_ready();
-        return step == 6;
+        return step == 7;
     endmethod
 endmodule
 
