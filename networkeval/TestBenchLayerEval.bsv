@@ -46,7 +46,7 @@ module mkTbLayerEval();
 
     Reg#(FixedPoint#(2,6)) psum <- mkReg(0.0);
 
-    (* preempts = "test_one_load_weight, le1_feed_weights_recieve" *)
+    (* preempts = "test_one_load_weight, (le1_feed_weights_recieve, le1_save_outputs_req, le1_clear_regs)" *)
     rule test_one_load_weight (cycle1 == 0);
         le1.load_weights(weights);
         le1.load_aux_weights(pos_const, neg_const, bias);
@@ -97,7 +97,7 @@ module mkTbLayerEval();
         cycle1 <= cycle1 + 1;
     endrule
 
-    (* preempts = "test_one_nonlinearity, (le1_feed_weights_recieve, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_add_bias, le1_nonlinearity)"*) 
+    (* preempts = "test_one_nonlinearity, (le1_feed_weights_recieve, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_add_bias, le1_nonlinearity, le1_clear_regs, `le1_save_outputs_req)"*) 
     rule test_one_nonlinearity (cycle1 == 5);
         le1.start_nonlinearity_test();
         cycle1 <= cycle1 + 1;
@@ -120,9 +120,9 @@ module mkTbLayerEval();
         cycle1 <= cycle1 + 1;
     endrule
 
-    (* preempts = "test_start_layer, (le2_feed_weights_recieve, le2_feed_inputs_recv, le2_multiply_constants, le2_combine, le2_add_bias, le2_nonlinearity)"*) 
+    (* preempts = "test_start_layer, (le2_feed_weights_recieve, le2_feed_inputs_recv, le2_multiply_constants, le2_combine, le2_add_bias, le2_nonlinearity, le2_clear_regs, le2_save_outputs_req)"*) 
     rule test_start_layer (cycle2 == 0);
-        le2.start_layer(1);
+        le2.start_layer(0);
         cycle2 <= cycle2 + 1;
     endrule
 
@@ -131,7 +131,7 @@ module mkTbLayerEval();
         Vector#(8, FixedPoint#(2,6)) pos_sum = tpl_1(a);
         Vector#(8, FixedPoint#(2,6)) neg_sum = tpl_2(a);
         if(!(pos_sum[0] == 0.21875 && neg_sum[0] == 0 && pos_sum[4] == 0 && neg_sum[4] == -0.125)) begin
-            $display("Failed! Current partial sum outputs:");
+            $display("Failed end-to-end! Current partial sum outputs:");
             for(Integer i = 0; i < valueOf(8); i=i+1) begin
                 fxptWrite(5, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
             end

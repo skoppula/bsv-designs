@@ -137,11 +137,26 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
             pe_vec[i].nonlinearity();
         end
         step <= step + 1;
+        feat_addr <= 0;
     endrule
 
-    // rule save_outputs_req (step == 7);
-    //     step <= step + 1;
-    // endrule
+    rule clear_regs (step == 7);
+        neg_const <= 0;
+        bias <= 0;
+        FixedPoint#(2,6) tmp <- pe_vec[feat_addr].get_pos_partial_sum();
+        pos_const <= tmp;
+        step <= step + 1;
+    endrule
+
+    rule save_outputs_req (step == 8);
+        FixedPoint#(2,6) tmp <- pe_vec[feat_addr].get_pos_partial_sum();
+        pos_const <= tmp;
+        featureBRAM.portA.request.put(makeFeatRequest(True, pack(feat_addr), pack(pos_const)));
+        if(feat_addr == `MAX_FEAT_IDX) begin
+            step <= step + 1;
+        end
+        feat_addr <= feat_addr + 1;
+    endrule
 
     method Action load_input( FixedPoint#(2,6) inp );
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
@@ -161,9 +176,9 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
         bias <= b;
     endmethod
 
-    method Action start_layer( UInt#(4) layer );
+    method Action start_layer( UInt#(`WEIGHT_ADDR_SZ) start_weight_addr );
         step <= 1;
-        layer_idx <= layer;
+        weight_addr <= start_weight_addr;
     endmethod
 
     method Action start_nonlinearity_test();
@@ -190,7 +205,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     endmethod
 
     method Bool is_ready();
-        return step == 7;
+        return step == 9;
     endmethod
 endmodule
 
