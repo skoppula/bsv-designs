@@ -7,10 +7,12 @@ import PE::*;
 import BRAM::*;
 import UART::*;
 
-`define WEIGHT_ADDR_SZ     3     // bit size of address space
+`define WEIGHT_ADDR_SZ     4     // bit size of address space
+`define MAX_WEIGHT_IDX     10     // bit size of address space
 `define WEIGHT_WORD_SZ     16   // bit size for each address slot
-`define FEAT_ADDR_SZ       8     // bit size of address space
+`define FEAT_ADDR_SZ       3     // bit size of address space
 `define FEAT_WORD_SZ       8     // bit size for each address slot
+`define MAX_FEAT_IDX       7     // bit size of address space
 
 function BRAMRequest#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) makeWeightRequest(
     Bool write, Bit#(`WEIGHT_ADDR_SZ) addr, Bit#(`WEIGHT_WORD_SZ) data);
@@ -55,6 +57,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     Vector#(n_pe, PeIfc#(n_cols)) pe_vec <- replicateM(mkPE());
     Reg#(UInt#(8)) step <- mkReg(0);
     Reg#(UInt#(`WEIGHT_ADDR_SZ)) weight_addr <- mkReg(0);
+    Reg#(UInt#(`FEAT_ADDR_SZ)) feat_addr <- mkReg(0);
     Reg#(Bool) waiting <- mkReg(False);
     Reg#(UInt#(4)) layer_idx <- mkReg(0);
     Reg#(FixedPoint#(2, 6)) pos_const <- mkReg(0);
@@ -63,27 +66,49 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
 
     BRAM_Configure weightCfgRAM = defaultValue;
     BRAM_Configure featCfgRAM = defaultValue;
-    weightCfgRAM.loadFormat = tagged Hex "weights.txt";
-    featCfgRAM.loadFormat = tagged Hex "features.txt";
+    weightCfgRAM.loadFormat = tagged Binary "weights.txt";
+    featCfgRAM.loadFormat = tagged Binary "features.txt";
     BRAM1Port#(Bit#(`FEAT_ADDR_SZ), Bit#(`FEAT_WORD_SZ)) featureBRAM <- mkBRAM1Server(featCfgRAM);
     BRAM1Port#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) weightBRAM <- mkBRAM1Server(weightCfgRAM);
 
     rule feed_weights_request (step == 1 && !waiting);
 	weightBRAM.portA.request.put(makeWeightRequest(False, pack(weight_addr), 0));
-        weight_addr <= weight_addr + 1;
         waiting <= True;
     endrule
 
     rule feed_weights_recieve (step == 1 && waiting);
 	Bit#(`WEIGHT_WORD_SZ) recv_bits <- weightBRAM.portA.response.get();
-        Vector#(n_cols, Bit#(2)) weights = unpack(recv_bits);
-        pe_vec[weight_addr].load_weights(weights);
-        step <= weight_addr == (1 << `WEIGHT_ADDR_SZ) ? step + 1 : step;
+        if(weight_addr < (`MAX_WEIGHT_IDX-2)) begin
+            Vector#(n_cols, Bit#(2)) weights = reverse(unpack(recv_bits));
+            pe_vec[weight_addr].load_weights(weights);
+        end else if(weight_addr == (`MAX_WEIGHT_IDX-2)) begin
+            pos_const <= unpack(recv_bits[7:0]);
+        end else if(weight_addr == (`MAX_WEIGHT_IDX-1)) begin
+            neg_const <= unpack(recv_bits[7:0]);
+        end else begin
+            bias <= unpack(recv_bits[7:0]);
+            step <= step + 1;
+        end
+        waiting <= False;
+        weight_addr <= weight_addr + 1;
     endrule
 
-    rule feed_inputs (step == 2);
-	// featureBRAM.portA.request.put(makeRequest(True, fptr_w, feature));
-        step <= step + 1;
+    rule feed_inputs_request (step == 2 && !waiting);
+	featureBRAM.portA.request.put(makeFeatRequest(False, pack(feat_addr), 0));
+        waiting <= True;
+    endrule
+
+    rule feed_inputs_recv (step == 2 && waiting);
+	Bit#(`FEAT_WORD_SZ) recv_bits <- featureBRAM.portA.response.get();
+        FixedPoint#(2, 6) inp = unpack(recv_bits);
+        for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
+            pe_vec[i].add_input(inp);
+        end
+        if(feat_addr == `MAX_FEAT_IDX) begin
+            step <= step + 1;
+        end
+        waiting <= False;
+        feat_addr <= feat_addr + 1;
     endrule
 
     rule multiply_constants (step == 3);
@@ -113,6 +138,10 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
         end
         step <= step + 1;
     endrule
+
+    // rule save_outputs_req (step == 7);
+    //     step <= step + 1;
+    // endrule
 
     method Action load_input( FixedPoint#(2,6) inp );
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
