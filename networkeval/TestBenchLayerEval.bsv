@@ -97,7 +97,7 @@ module mkTbLayerEval();
         cycle1 <= cycle1 + 1;
     endrule
 
-    (* preempts = "test_one_nonlinearity, (le1_feed_weights_recieve, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_add_bias, le1_nonlinearity, le1_clear_regs, `le1_save_outputs_req)"*) 
+    (* preempts = "test_one_nonlinearity, (le1_feed_weights_recieve, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_add_bias, le1_nonlinearity, le1_clear_regs, le1_save_outputs_req)" *) 
     rule test_one_nonlinearity (cycle1 == 5);
         le1.start_nonlinearity_test();
         cycle1 <= cycle1 + 1;
@@ -139,10 +139,24 @@ module mkTbLayerEval();
         end else begin
             $display("Passed end-to-end test on 8x8 weight matrix, size 8 input");
         end
+        le2.read_feat_bram_req(0);
         cycle2 <= cycle2 + 1;
     endrule
 
-    rule test_end (cycle1 > 6 && cycle2 > 1 );
+    (* preempts = "test_final_feats_in_bram, le2_feed_inputs_recv" *)
+    rule test_final_feats_in_bram (cycle2 == 2);
+        Bit#(8) b <- le2.read_feat_bram();
+        FixedPoint#(2,6) c = unpack(b);
+        if(c != 0.21875) begin
+            $write("Failed read-back BRAM test, found value ");
+            fxptWrite(5, c); $write(" instead of 0.21875\n");
+        end else begin
+            $display("Passed read back from BRAM test");
+        end
+        cycle2 <= cycle2 + 1;
+    endrule
+
+    rule test_end (cycle1 > 6 && cycle2 > 2 );
         $finish;
     endrule
 endmodule
