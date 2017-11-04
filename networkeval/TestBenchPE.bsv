@@ -10,9 +10,9 @@ module mkTbPE();
     Reg#(Bit#(32)) cycle1 <- mkReg(0);
     Reg#(Bit#(32)) cycle2 <- mkReg(0);
     Reg#(Bit#(32)) cycle3 <- mkReg(0);
-    PeIfc#(8) pe1 <- mkPE();
-    PeIfc#(8) pe2 <- mkPE();
-    PeIfc#(8) pe3 <- mkPE();
+    PeIfc#(8, 2, 6) pe1 <- mkPE();
+    PeIfc#(8, 2, 6) pe2 <- mkPE();
+    PeIfc#(8, 2, 6) pe3 <- mkPE();
 
     Vector#(8, Bit#(2)) weights = replicate( 0 );
     weights[0] = 1; weights[1] = 1;
