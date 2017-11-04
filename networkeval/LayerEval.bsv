@@ -6,25 +6,17 @@ import Vector::*;
 import PE::*;
 import BRAM::*;
 
-`define WEIGHT_ADDR_SZ     4     // bit size of address space
-`define MAX_WEIGHT_IDX     10     // bit size of address space
-`define WEIGHT_WORD_SZ     16   // bit size for each address slot
 `define FEAT_ADDR_SZ       3     // bit size of address space
 `define FEAT_WORD_SZ       8     // bit size for each address slot
 `define MAX_FEAT_IDX       7     // bit size of address space
 
-function BRAMRequest#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) makeWeightRequest(
-    Bool write, Bit#(`WEIGHT_ADDR_SZ) addr, Bit#(`WEIGHT_WORD_SZ) data);
-    return BRAMRequest{ write:write, responseOnWrite:False, address: addr, datain: data };
-endfunction
-
-function BRAMRequest#(Bit#(`FEAT_ADDR_SZ), Bit#(`FEAT_WORD_SZ)) makeFeatRequest(
-    Bool write, Bit#(`FEAT_ADDR_SZ) addr, Bit#(`FEAT_WORD_SZ) data);
+function BRAMRequest#(Bit#(addr_sz), Bit#(word_sz)) makeRequest(
+    Bool write, Bit#(addr_sz) addr, Bit#(word_sz) data);
     return BRAMRequest{ write:write, responseOnWrite:False, address: addr, datain: data };
 endfunction
 
 interface LayerEvalIfc#( numeric type n_pe, numeric type n_cols );
-    method Action start_layer( UInt#(`WEIGHT_ADDR_SZ) start_weight_addr );
+    method Action start_layer( UInt#(TLog#(TAdd#(n_pe,3))) start_weight_addr );
     // method will:
     //  a. read weights from BRAM (into registers?). 
     //  b. load weights into PEs
@@ -35,8 +27,8 @@ interface LayerEvalIfc#( numeric type n_pe, numeric type n_cols );
     //  5. save output to BRAM
     //  6. done
 
-    method Action load_input( FixedPoint#(2,6) inp );
-    method Action load_weights( Vector#(n_pe, Vector#(n_cols, Bit#(2))) weights );
+    method Action load_input_into_pes( FixedPoint#(2,6) inp );
+    method Action load_weights_into_pes( Vector#(n_pe, Vector#(n_cols, Bit#(2))) weights );
     method Action load_aux_weights( FixedPoint#(2, 6) pos, FixedPoint#(2, 6) neg, FixedPoint#(2, 6) b);
 
     method ActionValue#( Tuple2#(Vector#(n_pe, FixedPoint#(2,6)), Vector#(n_pe, FixedPoint#(2,6))) ) get_partial_sums();
@@ -48,11 +40,11 @@ interface LayerEvalIfc#( numeric type n_pe, numeric type n_cols );
     method ActionValue#(Bit#(`FEAT_WORD_SZ)) read_feat_bram();
 endinterface
 
-module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#(n_cols, Bit#(2)), `WEIGHT_WORD_SZ));
+module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) );
 
     Vector#(n_pe, PeIfc#(n_cols)) pe_vec <- replicateM(mkPE());
     Reg#(UInt#(8)) step <- mkReg(0);
-    Reg#(UInt#(`WEIGHT_ADDR_SZ)) weight_addr <- mkReg(0);
+    Reg#(UInt#(TLog#(TAdd#(n_pe,3)))) weight_addr <- mkReg(0);
     Reg#(UInt#(`FEAT_ADDR_SZ)) feat_addr <- mkReg(0);
     Reg#(Bool) waiting <- mkReg(False);
     Reg#(FixedPoint#(2, 6)) pos_const <- mkReg(0);
@@ -64,21 +56,21 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     weightCfgRAM.loadFormat = tagged Binary "weights.txt";
     featCfgRAM.loadFormat = tagged Binary "features.txt";
     BRAM1Port#(Bit#(`FEAT_ADDR_SZ), Bit#(`FEAT_WORD_SZ)) featureBRAM <- mkBRAM1Server(featCfgRAM);
-    BRAM1Port#(Bit#(`WEIGHT_ADDR_SZ), Bit#(`WEIGHT_WORD_SZ)) weightBRAM <- mkBRAM1Server(weightCfgRAM);
+    BRAM1Port#(Bit#(TLog#(TAdd#(n_pe,3))), Bit#(TMul#(n_cols,2))) weightBRAM <- mkBRAM1Server(weightCfgRAM);
 
     rule feed_weights_request (step == 1 && !waiting);
-	weightBRAM.portA.request.put(makeWeightRequest(False, pack(weight_addr), 0));
+	weightBRAM.portA.request.put(makeRequest(False, pack(weight_addr), 0));
         waiting <= True;
     endrule
 
     rule feed_weights_recieve (step == 1 && waiting);
-	Bit#(`WEIGHT_WORD_SZ) recv_bits <- weightBRAM.portA.response.get();
-        if(weight_addr < (`MAX_WEIGHT_IDX-2)) begin
+	Bit#(TMul#(n_cols,2)) recv_bits <- weightBRAM.portA.response.get();
+        if(weight_addr < fromInteger(valueOf(n_pe))) begin
             Vector#(n_cols, Bit#(2)) weights = reverse(unpack(recv_bits));
             pe_vec[weight_addr].load_weights(weights);
-        end else if(weight_addr == (`MAX_WEIGHT_IDX-2)) begin
+        end else if(weight_addr == fromInteger(valueOf(n_pe))) begin
             pos_const <= unpack(recv_bits[7:0]);
-        end else if(weight_addr == (`MAX_WEIGHT_IDX-1)) begin
+        end else if(weight_addr == fromInteger(valueOf(TAdd#(n_pe,1)))) begin
             neg_const <= unpack(recv_bits[7:0]);
         end else begin
             bias <= unpack(recv_bits[7:0]);
@@ -89,7 +81,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     endrule
 
     rule feed_inputs_request (step == 2 && !waiting);
-	featureBRAM.portA.request.put(makeFeatRequest(False, pack(feat_addr), 0));
+	featureBRAM.portA.request.put(makeRequest(False, pack(feat_addr), 0));
         waiting <= True;
     endrule
 
@@ -146,20 +138,20 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     rule save_outputs_req (step == 8);
         FixedPoint#(2,6) tmp <- pe_vec[feat_addr].get_pos_partial_sum();
         pos_const <= tmp;
-        featureBRAM.portA.request.put(makeFeatRequest(True, pack(feat_addr), pack(pos_const)));
+        featureBRAM.portA.request.put(makeRequest(True, pack(feat_addr), pack(pos_const)));
         if(feat_addr == `MAX_FEAT_IDX) begin
             step <= step + 1;
         end
         feat_addr <= feat_addr + 1;
     endrule
 
-    method Action load_input( FixedPoint#(2,6) inp );
+    method Action load_input_into_pes( FixedPoint#(2,6) inp );
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].add_input(inp);
         end
     endmethod
 
-    method Action load_weights( Vector#(n_pe, Vector#(n_cols, Bit#(2))) weights );
+    method Action load_weights_into_pes( Vector#(n_pe, Vector#(n_cols, Bit#(2))) weights );
         for(Integer i = 0; i < valueOf(n_pe); i=i+1) begin
             pe_vec[i].load_weights(weights[i]);
         end
@@ -171,7 +163,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
         bias <= b;
     endmethod
 
-    method Action start_layer( UInt#(`WEIGHT_ADDR_SZ) start_weight_addr );
+    method Action start_layer( UInt#(TLog#(TAdd#(n_pe,3))) start_weight_addr );
         step <= 1;
         weight_addr <= start_weight_addr;
     endmethod
@@ -210,7 +202,7 @@ module mkLayerEval( LayerEvalIfc#(n_pe, n_cols) ) provisos(Bits#(Vector::Vector#
     endmethod
 
     method Action read_feat_bram_req( UInt#(`FEAT_ADDR_SZ) f_addr );
-	featureBRAM.portA.request.put(makeFeatRequest(False, pack(f_addr), 0));
+	featureBRAM.portA.request.put(makeRequest(False, pack(f_addr), 0));
     endmethod
 
     method ActionValue#(Bit#(`FEAT_WORD_SZ)) read_feat_bram();

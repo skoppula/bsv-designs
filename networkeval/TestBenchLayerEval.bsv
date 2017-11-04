@@ -48,14 +48,14 @@ module mkTbLayerEval();
 
     (* preempts = "test_one_load_weight, (le1_feed_weights_recieve, le1_save_outputs_req, le1_clear_regs)" *)
     rule test_one_load_weight (cycle1 == 0);
-        le1.load_weights(weights);
+        le1.load_weights_into_pes(weights);
         le1.load_aux_weights(pos_const, neg_const, bias);
         cycle1 <= cycle1 + 1;
     endrule
 
     (* preempts = "test_one_feed_input, (le1_add_bias, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_nonlinearity)" *)
     rule test_one_feed_input (cycle1 == 1);
-        le1.load_input(inputs[0]);
+        le1.load_input_into_pes(inputs[0]);
         cycle1 <= cycle1 + 1;
     endrule
 
@@ -77,7 +77,7 @@ module mkTbLayerEval();
 
     (* preempts = "test_one_feed_input2, (le1_add_bias, le1_feed_inputs_recv, le1_multiply_constants, le1_combine, le1_nonlinearity)" *)
     rule test_one_feed_input2 (cycle1 == 3);
-        le1.load_input(inputs[1]);
+        le1.load_input_into_pes(inputs[1]);
         cycle1 <= cycle1 + 1;
     endrule
 
