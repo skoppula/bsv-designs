@@ -26,6 +26,7 @@ interface LayerEvalIfc#( numeric type n_pes, numeric type n_cols, numeric type p
     method Action load_input_into_pes( FixedPoint#(prec_int,prec_dec) inp );
     method Action load_weights_into_pes( Vector#(n_pes, Vector#(n_cols, Bit#(2))) weights );
     method Action load_aux_weights( FixedPoint#(prec_int,prec_dec) pos, FixedPoint#(prec_int,prec_dec) neg, FixedPoint#(prec_int,prec_dec) b);
+    method Action load_input_into_bram( FixedPoint#(prec_int,prec_dec) inp, UInt#(TLog#(n_cols)) f_addr);
 
     method ActionValue#( Tuple2#(Vector#(n_pes, FixedPoint#(prec_int,prec_dec)), Vector#(n_pes, FixedPoint#(prec_int,prec_dec))) ) get_partial_sums();
     method Action reset_evaluator();
@@ -136,8 +137,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
 
     rule save_outputs_req (step == 8);
         FixedPoint#(prec_int,prec_dec) tmp <- pe_vec[feat_addr].get_pos_partial_sum();
-        pos_const <= tmp;
-        featureBRAM.portA.request.put(makeRequest(True, pack(feat_addr), pack(pos_const)));
+        featureBRAM.portA.request.put(makeRequest(True, pack(feat_addr), pack(tmp)));
         if(feat_addr == fromInteger(valueof(TSub#(n_cols,1)))) begin
             step <= step + 1;
         end
@@ -148,6 +148,10 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
         for(Integer i = 0; i < valueOf(n_pes); i=i+1) begin
             pe_vec[i].add_input(inp);
         end
+    endmethod
+
+    method Action load_input_into_bram( FixedPoint#(prec_int,prec_dec) inp, UInt#(TLog#(n_cols)) f_addr);
+        featureBRAM.portA.request.put(makeRequest(True, pack(f_addr), pack(inp)));
     endmethod
 
     method Action load_weights_into_pes( Vector#(n_pes, Vector#(n_cols, Bit#(2))) weights );

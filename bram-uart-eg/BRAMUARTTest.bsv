@@ -123,7 +123,7 @@ endmodule
 
 module mkSimBRAMUARTTest();
 	Integer clk_freq = 66_000_000;
-    let cfg = Config {parity:NONE, divider:fromInteger((clk_freq+`BAUD_RATE/2)/`BAUD_RATE), two_stop_bits:False};   
+        let cfg = Config {parity:NONE, divider:fromInteger((clk_freq+`BAUD_RATE/2)/`BAUD_RATE), two_stop_bits:False};   
 
 	let dut <- mkBRAMUARTTest(cfg);
 	let uart <- mkUARTSpec(cfg);
