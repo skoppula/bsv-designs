@@ -21,10 +21,10 @@ def conv_fxpt(num, prec_int=2, prec_dec=6):
         inverse_bit_str = ''.join(['0' if c == '1' else '1' for c in int_bin_str])
         int_repr_twos_complement = int(inverse_bit_str, 2) + 1
         twos_comp_bin_str = bin(int_repr_twos_complement)[-total_prec:]
-        return bin_pad(twos_comp_bin_str, total_prec)
+        return float(scaled_num)/(2**prec_dec), bin_pad(twos_comp_bin_str, total_prec)
     else:
         int_bin_str = bin(scaled_num)[2:][-total_prec:]
-        return bin_pad(int_bin_str, total_prec)
+        return float(scaled_num)/(2**prec_dec), bin_pad(int_bin_str, total_prec)
 
 def run_tests():
     pos_tests = [
@@ -56,17 +56,33 @@ neg_consts = np.random.rand(rand_weights.shape[0])*2 - 1
 bias = np.random.rand(rand_weights.shape[0])*2 - 1
 
 n_bits_weight_row = rand_weights.shape[1]*2
-with open('weights.binarymem.txt', 'w') as f1:
-    with open('weights.ascii.txt', 'w') as f2:
-        for i, row in enumerate(transcribed_weights):
-            nums = ['{0:02b}'.format(int(num)) for num in list(row)]
-            f1.write(''.join(nums) + '\n')
-            f1.write(bin_pad(conv_fxpt(pos_consts[i]), n_bits_weight_row) + '\n')
-            f1.write(bin_pad(conv_fxpt(neg_consts[i]), n_bits_weight_row) + '\n')
-            f1.write(bin_pad(conv_fxpt(bias[i]), n_bits_weight_row) + '\n')
-            nums = [str(num) if len(str(num)) == 2 else ' ' + str(num) for num in list(rand_weights[i])]
-            f2.write(' '.join(nums) + '\n')
-            f2.write(str(pos_consts[i]) + '\n')
-            f2.write(str(neg_consts[i]) + '\n')
-            f2.write(str(bias[i]) + '\n')
+with open('memory/weights.binarymem.txt', 'w') as f1:
+    with open('memory/weights.ascii.txt', 'w') as f2:
+        with open('memory/weights.fxpt.txt', 'w') as f3:
+            for i, row in enumerate(transcribed_weights):
+                nums = ['{0:02b}'.format(int(num)) for num in list(row)]
+                f1.write(''.join(nums) + '\n')
+                f1.write(bin_pad(conv_fxpt(pos_consts[i])[1], n_bits_weight_row) + '\n')
+                f1.write(bin_pad(conv_fxpt(neg_consts[i])[1], n_bits_weight_row) + '\n')
+                f1.write(bin_pad(conv_fxpt(bias[i])[1], n_bits_weight_row) + '\n')
 
+                nums = [str(num) if len(str(num)) == 2 else ' ' + str(num) for num in list(rand_weights[i])]
+                f2.write(' '.join(nums) + '\n')
+                f2.write(str(pos_consts[i]) + '\n')
+                f2.write(str(neg_consts[i]) + '\n')
+                f2.write(str(bias[i]) + '\n')
+
+                f3.write(' '.join(nums) + '\n')
+                f3.write(str(conv_fxpt(pos_consts[i])[0]) + '\n')
+                f3.write(str(conv_fxpt(neg_consts[i])[0]) + '\n')
+                f3.write(str(conv_fxpt(bias[i])[0]) + '\n')
+
+feats = np.random.rand(rand_weights.shape[1])*2 - 1
+
+with open('memory/features.binarymem.txt', 'w') as f1:
+    with open('memory/features.ascii.txt', 'w') as f2:
+        with open('memory/features.fxpt.txt', 'w') as f3:
+            for i, feat in enumerate(feats):
+                f1.write(bin_pad(conv_fxpt(feat, 2, 6)[1], 8) + '\n')
+                f2.write(str(feat) + '\n')
+                f3.write(str(conv_fxpt(feat, 2, 6)[0]) + '\n')
