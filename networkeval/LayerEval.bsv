@@ -11,8 +11,8 @@ function BRAMRequest#(Bit#(addr_sz), Bit#(word_sz)) makeRequest(
     return BRAMRequest{ write:write, responseOnWrite:False, address: addr, datain: data };
 endfunction
 
-interface LayerEvalIfc#( numeric type n_pes, numeric type n_cols, numeric type prec_int, numeric type prec_dec);
-    method Action start_layer( UInt#(TLog#(TAdd#(n_pes,3))) start_weight_addr );
+interface LayerEvalIfc#( numeric type n_pes, numeric type n_cols, numeric type prec_int, numeric type prec_dec, numeric type accum_prec_int, numeric type accum_prec_dec);
+    method Action start_layer( UInt#(TLog#(TMul#(4, TAdd#(n_pes,3)))) start_weight_addr );
     // method will:
     //  a. read weights from BRAM (into registers?). 
     //  b. load weights into PEs
@@ -37,11 +37,12 @@ interface LayerEvalIfc#( numeric type n_pes, numeric type n_cols, numeric type p
     method ActionValue#(Bit#(TAdd#(prec_int, prec_dec))) read_feat_bram();
 endinterface
 
-module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
+module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec, accum_prec_int, accum_prec_dec) ) provisos(Add#(a__, prec_dec, accum_prec_dec), Add#(b__, prec_int, accum_prec_int));
 
-    Vector#(n_pes, PeIfc#(n_cols, prec_int, prec_dec)) pe_vec <- replicateM(mkPE());
+    Vector#(n_pes, PeIfc#(n_cols, prec_int, prec_dec, accum_prec_int, accum_prec_dec)) pe_vec <- replicateM(mkPE());
     Reg#(UInt#(8)) step <- mkReg(0);
-    Reg#(UInt#(TLog#(TAdd#(n_pes,3)))) weight_addr <- mkReg(0);
+    Reg#(UInt#(TLog#(TMul#(4, TAdd#(n_pes,3))))) weight_addr_offset <- mkReg(0);
+    Reg#(UInt#(TLog#(TMul#(4, TAdd#(n_pes,3))))) base_weight_addr <- mkReg(0);
     Reg#(UInt#(TLog#(n_cols))) feat_addr <- mkReg(0);
     Reg#(Bool) waiting <- mkReg(False);
     Reg#(FixedPoint#(prec_int,prec_dec)) pos_const <- mkReg(0);
@@ -53,22 +54,22 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
     weightCfgRAM.loadFormat = tagged Binary "weights.testing.txt";
     featCfgRAM.loadFormat = tagged Binary "features.testing.txt";
     BRAM1Port#(Bit#(TLog#(n_cols)), Bit#(TAdd#(prec_int, prec_dec))) featureBRAM <- mkBRAM1Server(featCfgRAM);
-    BRAM1Port#(Bit#(TLog#(TAdd#(n_pes,3))), Bit#(TMul#(n_cols,2))) weightBRAM <- mkBRAM1Server(weightCfgRAM);
+    BRAM1Port#(Bit#(TLog#(TMul#(4, TAdd#(n_pes,3)))), Bit#(TMul#(n_cols,2))) weightBRAM <- mkBRAM1Server(weightCfgRAM);
 
     rule feed_weights_request (step == 1 && !waiting);
-	    weightBRAM.portA.request.put(makeRequest(False, pack(weight_addr), 0));
+	    weightBRAM.portA.request.put(makeRequest(False, pack(base_weight_addr + weight_addr_offset), 0));
         waiting <= True;
     endrule
 
     rule feed_weights_recieve (step == 1 && waiting);
 	Bit#(TMul#(n_cols,2)) recv_bits <- weightBRAM.portA.response.get();
-        if(weight_addr < fromInteger(valueOf(n_pes))) begin
+        if(weight_addr_offset < fromInteger(valueOf(n_pes))) begin
             Vector#(n_cols, Bit#(2)) weights = reverse(unpack(recv_bits));
-            pe_vec[weight_addr].load_weights(weights);
-        end else if(weight_addr == fromInteger(valueOf(n_pes))) begin
+            pe_vec[weight_addr_offset].load_weights(weights);
+        end else if(weight_addr_offset == fromInteger(valueOf(n_pes))) begin
             Bit#(TAdd#(prec_int, prec_dec)) tmp = recv_bits[valueOf(TSub#(TAdd#(prec_int, prec_dec),1)):0];
             pos_const <= unpack(tmp);
-        end else if(weight_addr == fromInteger(valueOf(TAdd#(n_pes,1)))) begin
+        end else if(weight_addr_offset == fromInteger(valueOf(TAdd#(n_pes,1)))) begin
             Bit#(TAdd#(prec_int, prec_dec)) tmp = recv_bits[valueOf(TSub#(TAdd#(prec_int, prec_dec),1)):0];
             neg_const <= unpack(tmp);
         end else begin
@@ -77,7 +78,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
             step <= step + 1;
         end
         waiting <= False;
-        weight_addr <= weight_addr + 1;
+        weight_addr_offset <= weight_addr_offset + 1;
     endrule
 
     rule feed_inputs_request (step == 2 && !waiting);
@@ -166,9 +167,9 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
         bias <= b;
     endmethod
 
-    method Action start_layer( UInt#(TLog#(TAdd#(n_pes,3))) start_weight_addr );
+    method Action start_layer( UInt#(TLog#(TMul#(4, TAdd#(n_pes,3)))) start_weight_addr );
         step <= 1;
-        weight_addr <= start_weight_addr;
+        base_weight_addr <= start_weight_addr;
     endmethod
 
     method Action start_nonlinearity_test();
@@ -176,7 +177,8 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
     endmethod
 
     method Action reset_evaluator();
-        weight_addr <= 0;
+        base_weight_addr <= 0;
+        weight_addr_offset <= 0;
         feat_addr <= 0;
         waiting <= False;
         pos_const <= 0;
