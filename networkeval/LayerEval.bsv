@@ -51,8 +51,8 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec, accum_prec_
 
     BRAM_Configure weightCfgRAM = defaultValue;
     BRAM_Configure featCfgRAM = defaultValue;
-    weightCfgRAM.loadFormat = tagged Binary "weights.txt";
-    featCfgRAM.loadFormat = tagged Binary "features.txt";
+    weightCfgRAM.loadFormat = tagged Binary "weights.testing.txt";
+    featCfgRAM.loadFormat = tagged Binary "features.testing.txt";
     BRAM1Port#(Bit#(TLog#(n_cols)), Bit#(TAdd#(prec_int, prec_dec))) featureBRAM <- mkBRAM1Server(featCfgRAM);
     BRAM1Port#(Bit#(TLog#(TMul#(4, TAdd#(n_pes,3)))), Bit#(TMul#(n_cols,2))) weightBRAM <- mkBRAM1Server(weightCfgRAM);
 
