@@ -56,7 +56,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
     BRAM1Port#(Bit#(TLog#(TAdd#(n_pes,3))), Bit#(TMul#(n_cols,2))) weightBRAM <- mkBRAM1Server(weightCfgRAM);
 
     rule feed_weights_request (step == 1 && !waiting);
-	weightBRAM.portA.request.put(makeRequest(False, pack(weight_addr), 0));
+	    weightBRAM.portA.request.put(makeRequest(False, pack(weight_addr), 0));
         waiting <= True;
     endrule
 
@@ -81,7 +81,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec) );
     endrule
 
     rule feed_inputs_request (step == 2 && !waiting);
-	featureBRAM.portA.request.put(makeRequest(False, pack(feat_addr), 0));
+	    featureBRAM.portA.request.put(makeRequest(False, pack(feat_addr), 0));
         waiting <= True;
     endrule
 
