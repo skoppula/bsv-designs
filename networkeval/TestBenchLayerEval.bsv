@@ -9,8 +9,8 @@ import StmtFSM::*;
 module mkTbLayerEval();
     Reg#(Bit#(32)) cycle1 <- mkReg(0);
     Reg#(Bit#(32)) cycle2 <- mkReg(0);
-    LayerEvalIfc#(8, 8, 2, 6) le1 <- mkLayerEval();
-    LayerEvalIfc#(8, 8, 2, 6) le2 <- mkLayerEval();
+    LayerEvalIfc#(8, 8, 2, 6, 24, 24) le1 <- mkLayerEval();
+    LayerEvalIfc#(8, 8, 2, 6, 24, 24) le2 <- mkLayerEval();
 
     // 0.50000 00100000
     // -0.25000 11110000
