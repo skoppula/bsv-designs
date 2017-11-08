@@ -125,24 +125,38 @@ def create_feat_bram(feats):
 
 def eval_layer(inp, main_weight, pos_const, neg_const, bias):
     fxpt_inp = conv_arr_fxpt(inp)
-    fxpt_mweights = conv_arr_fxpt(main_weights)
-    fxpt_pos_consts = conv_arr_fxpt(pos_consts)
-    fxpt_neg_consts = conv_arr_fxpt(neg_consts)
+    fxpt_pos_const = conv_arr_fxpt(pos_const)
+    fxpt_neg_const = conv_arr_fxpt(neg_const)
     fxpt_bias = conv_arr_fxpt(bias)
-    fxpt_prod = conv_arr_fxpt(fxpt_mweights.dot(fxpt_inp))
-    prod = main_weights.dot(inp)
-    print(fxpt_prod)
-    print(prod)
-    return None
+    pos_mweights = np.where(main_weights == -1, np.zeros(main_weights.shape), main_weights)
+    neg_mweights = np.where(main_weights == 1, np.zeros(main_weights.shape), main_weights)
+    pos_fxpt_prod = conv_arr_fxpt(pos_mweights.dot(fxpt_inp))
+    neg_fxpt_prod = conv_arr_fxpt(neg_mweights.dot(fxpt_inp))
+    scaled_neg_fxpt_prod = conv_arr_fxpt(fxpt_neg_const*neg_fxpt_prod)
+    scaled_pos_fxpt_prod = conv_arr_fxpt(fxpt_pos_const*pos_fxpt_prod)
+    print('negative sum, after scaling', scaled_neg_fxpt_prod)
+    print('positive sum, after scaling', scaled_pos_fxpt_prod)
+    fxpt_sum = conv_arr_fxpt(scaled_neg_fxpt_prod + scaled_pos_fxpt_prod + fxpt_bias)
+    print('fxpt total sum', fxpt_sum)
+    fxpt_out = np.maximum(np.zeros(fxpt_sum.shape), fxpt_sum)
+    print('fxpt pos_relu', fxpt_out)
+    weights = np.where(main_weights < 0, main_weights*neg_const, main_weights)
+    weights = np.where(main_weights > 0, main_weights*pos_const, weights)
+    prod = weights.dot(inp) + bias
+    prod = np.maximum(np.zeros(prod.shape), prod)
+    print('true answer', prod)
+    print('diff:', np.abs(prod - fxpt_out))
+    return fxpt_out
 
-run_fxpt_tests()
+# run_fxpt_tests()
 main_weights, pos_consts, neg_consts, bias = load_weights()
+print('weights:', pos_consts, neg_consts, bias)
 # create_weight_bram(main_weights, pos_consts, neg_consts, bias)
 feats = load_feats(size=main_weights.shape[2])
 # create_feat_bram(feats)
 
 for i in range(1):
     feats = eval_layer(feats, main_weights[i], pos_consts[i], neg_consts[i], bias[i])
-    print(feats)
+    # print(feats)
 
 # print(main_weights, pos_consts, neg_consts, bias)
