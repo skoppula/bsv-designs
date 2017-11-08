@@ -64,7 +64,7 @@ module mkTbLayerEval();
         if(!(pos_sum[0] == 0.5 && neg_sum[0] == 0 && pos_sum[4] == 0 && neg_sum[4] == 0)) begin
             $display("Failed! Current partial sum outputs:");
             for(Integer i = 0; i < valueOf(8); i=i+1) begin
-                fxptWrite(5, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
+                fxptWrite(6, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
             end
             $finish;
         end else begin
@@ -86,7 +86,7 @@ module mkTbLayerEval();
         if(!(pos_sum[0] == 0.5 && neg_sum[0] == 0.25 && pos_sum[4] == -0.25 && neg_sum[4] == 0)) begin
             $display("Failed! Current partial sum outputs:");
             for(Integer i = 0; i < valueOf(8); i=i+1) begin
-                fxptWrite(5, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
+                fxptWrite(6, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
             end
             $finish;
         end else begin
@@ -109,7 +109,7 @@ module mkTbLayerEval();
         if(!(pos_sum[0] == 0.5625 && neg_sum[0] == 0.125 && pos_sum[4] == 0 && neg_sum[4] == 0)) begin
             $display("Failed! Current partial sum outputs:");
             for(Integer i = 0; i < valueOf(8); i=i+1) begin
-                fxptWrite(5, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
+                fxptWrite(6, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
             end
             $finish;
         end else begin
@@ -128,10 +128,10 @@ module mkTbLayerEval();
         Tuple2#(Vector#(8,FixedPoint#(2,6)), Vector#(8,FixedPoint#(2,6))) a <- le2.get_partial_sums();
         Vector#(8, FixedPoint#(2,6)) pos_sum = tpl_1(a);
         Vector#(8, FixedPoint#(2,6)) neg_sum = tpl_2(a);
-        if(!(pos_sum[0] == 0.21875 && neg_sum[0] == 0 && pos_sum[4] == 0 && neg_sum[4] == -0.125)) begin
+        if(!(pos_sum[0] == 1.984375 && neg_sum[0] == 1.59375 && pos_sum[4] == 0.578125 && neg_sum[4] == -0.28125)) begin
             $display("Failed end-to-end! Current partial sum outputs:");
             for(Integer i = 0; i < valueOf(8); i=i+1) begin
-                fxptWrite(5, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
+                fxptWrite(7, pos_sum[i]); $write(" "); fxptWrite(5, neg_sum[i]); $write("\n");
             end
             $finish;
         end else begin
@@ -145,9 +145,9 @@ module mkTbLayerEval();
     rule test_final_feats_in_bram (cycle2 == 2);
         Bit#(8) b <- le2.read_feat_bram();
         FixedPoint#(2,6) c = unpack(b);
-        if(c != 0.21875) begin
+        if(c != 1.984375) begin
             $write("Failed read-back BRAM test, found value ");
-            fxptWrite(5, c); $write(" instead of 0.21875\n");
+            fxptWrite(6, c); $write(" instead of 1.984375\n");
         end else begin
             $display("Passed read back from BRAM test");
         end

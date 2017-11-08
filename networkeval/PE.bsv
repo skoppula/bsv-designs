@@ -46,12 +46,12 @@ module mkPE( PeIfc#(n, prec_int, prec_dec, accum_prec_int, accum_prec_dec) ) pro
     endmethod
 
     method Action multiply_constants( FixedPoint#(prec_int,prec_dec) pos_constant, FixedPoint#(prec_int,prec_dec) neg_constant );
-        FixedPoint#(accum_prec_int, accum_prec_dec) tmp1 = fxptSignExtend(pos_constant);
-        let tmp2 = fxptMult(pos_partial_sum, tmp1);
-        pos_partial_sum <= fxptTruncateSat(Sat_Bound, tmp2);
-        FixedPoint#(accum_prec_int, accum_prec_dec) tmp3 = fxptSignExtend(neg_constant);
-        let tmp4 = fxptMult(neg_partial_sum, tmp3);
-        neg_partial_sum <= fxptTruncateSat(Sat_Bound, tmp4);
+        FixedPoint#(accum_prec_int, accum_prec_dec) tmp1a = fxptSignExtend(pos_constant);
+        let tmp2 = fxptMult(tmp1a, pos_partial_sum);
+        pos_partial_sum <= fxptTruncateRoundSat(Rnd_Plus_Inf, Sat_Bound, tmp2);
+        FixedPoint#(accum_prec_int, accum_prec_dec) tmp3a = fxptSignExtend(neg_constant);
+        let tmp4 = fxptMult(tmp3a, neg_partial_sum);
+        neg_partial_sum <= fxptTruncateRoundSat(Rnd_Plus_Inf, Sat_Bound, tmp4);
     endmethod
 
     method Action add_constant( FixedPoint#(prec_int,prec_dec) constant );
