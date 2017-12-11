@@ -1,0 +1,43 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2016 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 16.22-s033_1, built Wed Apr 05 2017
+Options: -files setup_design.tcl 
+Date:    Fri Dec 08 16:30:52 2017
+Host:    ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB) (32866740KB)
+OS:      Red Hat Enterprise Linux Server release 7.4 (Maipo)
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+Finished loading tool scripts (10 seconds elapsed).
+
+Sourcing setup_design.tcl...
+  Setting attribute of root '/': 'source_verbose_info' = false
+  Setting attribute of root '/': 'source_verbose' = true
+set design mkAdder128
+set design_folder adder
+set rtl_top_inst dut
+set libname tsmc65lp
+set do_power_opt true
+set do_clock_gating true
+set do_adv_opt false
+set save false
+set basename_prefix "100M_128"
+set backup_input false
+set project_base /homes/mrhamid/6888_prj/sim_syn
+set use_tcf false
+set use_vcd false
+set use_saif true
+set activity_filename $project_base/bsv/$design_folder/${design_folder}.saif
+set rtl_path [ list \
+    ${project_base}/bsv/$design_folder/vlog \
+    $::env(BLUESPECDIR)/Verilog \
+]
+can't read "::env(BLUESPECDIR)": no such variable
+Encountered problems processing file: setup_design.tcl
+WARNING: This version of the tool is 247 days old.
+genus@root:> exit
+Normal exit.

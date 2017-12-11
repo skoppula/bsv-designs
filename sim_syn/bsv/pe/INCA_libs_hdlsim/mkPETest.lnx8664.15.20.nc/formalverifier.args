@@ -1,0 +1,10 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+-64bit
+-NOCOPYRIGHT
++TOP_INTERNAL+worklib.mkPETest
+-INPUT
+/homes/skoppula/bsv/bsv-standard/bin/dump.tcl
+-MESSAGES

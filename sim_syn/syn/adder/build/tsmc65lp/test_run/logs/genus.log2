@@ -1,0 +1,1281 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2016 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 16.22-s033_1, built Wed Apr 05 2017
+Options: -files setup_design.tcl 
+Date:    Fri Dec 08 19:11:30 2017
+Host:    ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB) (32866740KB)
+OS:      Red Hat Enterprise Linux Server release 7.4 (Maipo)
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+Sourcing setup_design.tcl...
+  Setting attribute of root '/': 'source_verbose_info' = false
+  Setting attribute of root '/': 'source_verbose' = true
+set design mkAdder32
+set design_folder adder
+set rtl_top_inst dut
+set libname tsmc65lp
+set do_power_opt true
+set do_clock_gating true
+set do_adv_opt false
+set save false
+set basename_prefix "100M_32"
+set backup_input false
+set project_base /homes/mrhamid/6888_prj/6888_Project/sim_syn
+set use_tcf false
+set use_vcd false
+set use_saif true
+set activity_filename $project_base/bsv/$design_folder/${design_folder}.saif
+set rtl_path [ list \
+    ${project_base}/bsv/$design_folder/vlog \
+    $::env(BLUESPECDIR)/Verilog \
+]
+set rtl_files [ list \
+    mkAdder32.v \
+    FIFOL1.v \
+]
+set sdc_file constraints_${libname}.sdc
+set_db script_search_path [ concat . ${project_base}/syn/common ]
+  Setting attribute of root '/': 'script_search_path' = . /homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common
+include run_rc.tcl
+Sourcing '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common/run_rc.tcl' (Fri Dec 08 19:11:38 -0500 2017)...
+set DATE [clock format [clock seconds] -format "%b%d_%H%M"]
+if {!$save} {
+  set BASE_PATH build/${libname}/test_run
+  file delete -force $BASE_PATH
+} else {
+  if {$basename_prefix != ""} {
+    set BASE_PATH build/${libname}/${basename_prefix}_${DATE}
+  } else {
+    set BASE_PATH build/${libname}/${DATE}
+  }
+}
+if {$backup_input} {
+  set INPUTS_PATH ${BASE_PATH}/in
+  file mkdir ${INPUTS_PATH}
+}
+set OUTPUTS_PATH ${BASE_PATH}/out
+set REPORTS_PATH ${BASE_PATH}/rpt
+set LOG_PATH ${BASE_PATH}/logs
+set VERIFICATION_PATH ${BASE_PATH}/fv
+file mkdir ${OUTPUTS_PATH}
+file mkdir ${REPORTS_PATH}
+file mkdir ${LOG_PATH}
+file mkdir ${VERIFICATION_PATH}
+file delete current
+file link -symbolic current $BASE_PATH
+set_db hdl_error_on_blackbox true
+  Setting attribute of root '/': 'hdl_error_on_blackbox' = true
+set_db information_level 9
+  Setting attribute of root '/': 'information_level' = 9
+set_db syn_generic_effort high
+  Setting attribute of root '/': 'syn_generic_effort' = high
+set_db syn_map_effort high
+  Setting attribute of root '/': 'syn_map_effort' = high
+if {$do_power_opt} {
+  if {$do_clock_gating} {
+    set_db lp_insert_clock_gating true
+  }
+  # set_db lp_insert_operand_isolation true
+  set_db lp_power_analysis_effort high
+  # set_db hdl_track_filename_row_col true
+}
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+Info    : Resetting power analysis results. [PA-7]
+        : Power analysis effort level changed from 'medium' to 'high'.
+        : All computed switching activities are removed.
+  Setting attribute of root '/': 'lp_power_analysis_effort' = high
+set_db init_hdl_search_path [ concat $rtl_path ]
+  Setting attribute of root '/': 'init_hdl_search_path' = /homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/adder/vlog /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+read_hdl -sv $rtl_files
+            Reading Verilog file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/adder/vlog/mkAdder32.v'
+            Reading Verilog file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'
+include technology.tcl
+Sourcing '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common/technology.tcl' (Fri Dec 08 19:11:38 -0500 2017)...
+if {$libname == "tsmc40lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN40LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn40lpbwp tcbn40lpbwphvt ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc45gs"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CLN45GS/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn45gsbwp12t tcbn45gsbwp12thvt ]
+    set stdcell_ver 120c
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc65lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn65lp ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+}
+  Setting attribute of root '/': 'lib_search_path' = /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a
+            Reading file '/u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib'
+    Loading library tcbn65lpwc.lib
+Info    : An unsupported construct was detected in this library. [LBR-40]
+        : Unknown Liberty attribute 'library_features' encountered. Ignoring (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 69)
+        : Check to see if this construct is really needed for synthesis. Many liberty constructs are not actually required.
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Missing a function attribute in the output pin definition. [LBR-518]
+        : Functionality is missing at pin 'Z' for the cell 'BHD'. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 272424)
+
+  Message Summary for Library tcbn65lpwc.lib:
+  *******************************************
+  Could not find an attribute in the library. [LBR-436]: 989
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  An unsupported construct was detected in this library. [LBR-40]: 1
+  *******************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.080000, 125.000000) in library 'tcbn65lpwc.lib'.
+        : The nominal operating condition represents either the nominal PVT values if specified in the library source, or the default PVT values (1.0, 1.0, 1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Otherwise, the library cell will be marked as unusable and as timing model.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Info    : An output library pin lacks a function attribute. [LBR-41]
+        : Output pin 'BHD/Z' has no function.
+        : If the remainder of this library cell's semantic checks are successful, it will be considered as a timing-model (because one of its outputs does not have a valid function.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD20'
+        : To use the cell in clock gating, Set cell attribute 'dont_use' false in the library.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD24'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD20'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD24'
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+  Setting attribute of root '/': 'library' = tcbn65lpwc.lib
+elaborate $design
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD1'.
+        : Setting the 'timing_sense' to non_unate.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D0'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'A2' and 'Z' in libcell 'CKXOR2D0'.
+  Library has 441 usable logic and 280 usable sequential lib-cells.
+Info    : Found unusable library cells. [LBR-415]
+        : Library: 'tcbn65lpwc.lib', Total cells: 816, Unusable cells: 77.
+	List of unusable cells: 'ANTENNA BHD BUFFD20 BUFFD24 BUFTD20 BUFTD24 CKBD20 CKBD24 CKLHQD20 CKLHQD24 CKLNQD20 CKLNQD24 CKND20 CKND24 DCAP DCAP16 DCAP32 DCAP4 DCAP64 DCAP8 GAN2D1 GAN2D2 GAOI21D1 GAOI21D2 GAOI22D1 GBUFFD1 GBUFFD2 GBUFFD3 GBUFFD4 GBUFFD8 GDCAP GDCAP10 GDCAP2 GDCAP3 GDCAP4 GDFCNQD1 GDFQD1 GFILL GFILL10 GFILL2 GFILL3 GFILL4 GINVD1 GINVD2 GINVD3 GINVD4 GINVD8 GMUX2D1 GMUX2D2 GMUX2ND1 GMUX2ND2 GND2D1 GND2D2 GND2D3 GND2D4 GND3D1 GND3D2 GNR2D1 GNR2D2 GNR3D1 GNR3D2 GOAI21D1 GOAI21D2 GOR2D1 GOR2D2 GSDFCNQD1 GTIEH GTIEL GXNR2D1 GXNR2D2 GXOR2D1 GXOR2D2 INVD20 INVD24 OD25DCAP16 OD25DCAP32 OD25DCAP64 .'
+        : For more information, refer to 'Cells Identified as Unusable' in the 'User Guide'. The reason why a cell is considered unusable is stored in the 'unusable_reason' libcell attribute.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mkAdder32' from file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/adder/vlog/mkAdder32.v'.
+Info    : Elaborating Subdesign. [ELAB-2]
+        : Elaborating block 'FIFOL1_width32h00000020' from file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/equal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 99 in the file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 99 in the file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v' will be considered in the following order: {'hdl_implementation:GB/equal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 144 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/adder/vlog/mkAdder32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 144 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/adder/vlog/mkAdder32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mkAdder32'.
+Info: Checking for source rtl...
+Info: Check completed for source rtl...
+        Applying wireload models.
+        Computing net loads.
+UM:  flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            12             13                                      elaborate
+check_design -unresolved
+  Checking the design.
+
+ 	 Check Design Report
+	 -------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'mkAdder32'
+
+No empty modules in design 'mkAdder32'
+
+  Done Checking the design.
+set_db current_design .verification_directory $VERIFICATION_PATH
+  Setting attribute of design 'mkAdder32': 'verification_directory' = build/tsmc65lp/test_run/fv
+if {$do_adv_opt} {
+  set_db current_design .retime true
+}
+if {[info exists wireload_model]} {
+    set_db current_design .force_wireload $wireload_model
+}
+if {$do_power_opt && $do_clock_gating} {
+  set_db current_design .lp_clock_gating_extract_common_enable true
+}
+  Setting attribute of design 'mkAdder32': 'lp_clock_gating_extract_common_enable' = true
+read_sdc $sdc_file
+            Reading file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/adder/constraints_tsmc65lp.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      3 , failed      0 (runtime  0.00)
+ "all_outputs"              - successful      2 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.00)
+ "current_design"           - successful      1 , failed      0 (runtime  0.00)
+ "get_clocks"               - successful      3 , failed      0 (runtime  0.00)
+ "get_ports"                - successful      1 , failed      0 (runtime  0.00)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_latency"        - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful      2 , failed      0 (runtime  0.00)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.00)
+ "set_load_unit"            - successful      1 , failed      0 (runtime  0.00)
+ "set_max_fanout"           - successful      2 , failed      0 (runtime  0.00)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful      2 , failed      0 (runtime  0.00)
+ "set_time_unit"            - successful      1 , failed      0 (runtime  0.00)
+Total runtime 0
+report timing -lint
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 16.22-s033_1
+  Generated on:           Dec 08 2017  07:11:43 pm
+  Module:                 mkAdder32
+  Technology library:     tcbn65lpwc 200
+  Operating conditions:   WCCOM (balanced_tree)
+  Wireload mode:          segmented
+  Area mode:              timing library
+============================================================
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+if {$do_power_opt} {
+  #set_db max_leakage_power 0.0 "/designs/$design"
+  #set_db lp_power_optimization_weight <value from 0 to 1> "/designs/$DESIGN"
+
+  set_db current_design .max_dynamic_power 0.0
+
+  if {$use_tcf} {
+    read_tcf -tcf_instance $rtl_top_inst $activity_filename
+  }
+
+  if {$use_vcd} {
+    read_vcd -static -vcd_scope $rtl_top_inst $activity_filename
+  }
+
+  if {$use_saif} {
+    read_saif -instance $rtl_top_inst $activity_filename
+  }
+}
+  Setting attribute of design 'mkAdder32': 'max_dynamic_power' = 0.0
+10.0 % done 
+20.0 % done 
+30.0 % done 
+40.0 % done 
+50.0 % done 
+60.0 % done 
+70.0 % done 
+80.0 % done 
+90.0 % done 
+100.0 % done 
+100.0 % done
+Nets/ports asserted in SAIF file : 420
+Total Nets/ports in SAIF file    : 956
+-------------------------------------------------------
+Asserted Primary inputs in design              : 68 (100.00%)
+Total connected primary inputs in design       : 68 (100.00%)
+-------------------------------------------------------
+Asserted sequential outputs                    : 99 (100.00%)
+Total connected sequential outputs             : 99 (100.00%)
+-------------------------------------------------------
+Total nets in design                 : 1169 (100.00%)
+Nets asserted                        : 510 (43.63%)
+Clock nets                           : 0 (0.00%)
+Constant nets                        : 201 (17.19%)
+Nets with no assertions              : 659 (56.37%)
+-------------------------------------------------------
+Time taken to read_saif: 0.00 cpu seconds
+syn_generic
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'mkAdder32' to generic gates using 'high' effort.
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Info    : Optimizing RTL. [RTLOPT-1]
+        : Optimizing RTL in 'mkAdder32' using 'high' effort.
+Info    : Done optimizing RTL. [RTLOPT-2]
+        : Done optimizing RTL in 'mkAdder32'.
+      Removing temporary intermediate hierarchies under mkAdder32
+              Optimizing muxes in design 'FIFOL1_width32h00000020'.
+Info    : Gating clocks. [SYNTH-13]
+        : Gating clocks in 'mkAdder32'.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Gating clocks in mkAdder32
+        Preparing the circuit
+          Pruning unused logic
+Inserting clock-gating logic .....
+        
+        New clock gate fanout statistics
+        =================================================
+        Fanout Size           Num CGs     Total FFs 
+        -------------------------------------------------
+        16 to 63                  3       96
+        =================================================
+
+Info    : Could not find any user created clock-gating module. [POPT-12]
+        : Looking for Integrated clock-gating cell in library.
+Clock Gating Status
+===================
+Category                                Number    Percentage
+------------------------------------------------------------------
+Gated flip-flops                        96		 97%
+Ungated flip-flops
+  Cannot map to requested logic         0		  0%
+  Enable signal is constant             0		  0%
+  Excluded from clock-gating            0		  0%
+  User preserved                        0		  0%
+  Libcell unusable                      0		  0%
+  Timing exception in enable logic      0		  0%
+  Register bank width too small         3		  3%
+Total flip-flops                        99		100%
+Total CG Modules                        3
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+        : This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false.
+    Automatically cost grouped 3 clock gate paths.
+  Setting attribute of root '/': 'pbs_stage_start_elapsed_time' = 14
+  Setting attribute of root '/': 'pbs_stage_start_st_time' = 12
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'mkAdder32' to generic gates.
+        Applying wireload models.
+        Computing net loads.
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:             0              1                                      syn_generic
+syn_map
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'mkAdder32' using 'high' effort.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed mapping optimization to kick in.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Mapping 'mkAdder32'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'm_b' in module 'mkAdder32' would be automatically ungrouped.
+        : Hierarchical instances can be automatically ungrouped to allow for better area or timing optimization. You can control auto ungrouping using the root-level attribute 'auto_ungroup'. You can skip individual instances or modules using the attribute 'ungroup_ok'.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'm_c' in module 'mkAdder32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'm_a' in module 'mkAdder32' would be automatically ungrouped.
+Info    : Equivalent sequential instances have been merged. [GLO-42]
+        : Instances 'm_a_empty_reg_reg' and 'm_b_empty_reg_reg' in 'mkAdder32' have been merged.
+        : To prevent merging of sequential instances, set the 'optimize_merge_flops' and 'optimize_merge_latches' root attributes to 'false' or the 'optimize_merge_seq' instance attribute to 'false'.
+Info    : Deleting sequential instances not driving any primary outputs. [GLO-32]
+        : Deleting 1 sequential instance. 
+Following instance is deleted as they do not drive any primary output:
+'m_b_empty_reg_reg'.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so an instance does not drive any primary outputs anymore. To see the list of deleted sequential, set the 'information_level' attribute to 2 or above. If message is truncated set message attribute 'truncate' to false to see the complete list.
+          Analyzing hierarchical boundaries
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) mkAdder32...
+          Done structuring (delay-based) mkAdder32
+Multi-threaded Virtual Mapping    (8 threads per ST process, 8 of 16 CPUs usable)
+          Structuring (delay-based) logic partition in mkAdder32...
+          Done structuring (delay-based) logic partition in mkAdder32
+        Mapping logic partition in mkAdder32...
+          Structuring (delay-based) logic partition in mkAdder32...
+          Done structuring (delay-based) logic partition in mkAdder32
+        Mapping logic partition in mkAdder32...
+          Structuring (delay-based) logic partition in mkAdder32...
+            Starting partial collapsing  cb_oseq
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkAdder32
+        Mapping logic partition in mkAdder32...
+          Structuring (delay-based) logic partition in mkAdder32...
+            Starting partial collapsing  cb_seq
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkAdder32
+        Mapping logic partition in mkAdder32...
+          Structuring (delay-based) add_unsigned...
+          Done structuring (delay-based) add_unsigned
+        Mapping component add_unsigned...
+          Structuring (delay-based) logic partition in mkAdder32...
+          Done structuring (delay-based) logic partition in mkAdder32
+        Mapping logic partition in mkAdder32...
+ 
+Global mapping target info
+==========================
+Cost Group 'clk' target slack:    45 ps
+Target path end-point (Pin: m_c_D_OUT_reg[18]/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+                             latency                                  
+mux_ctl_2xi
+  m_b_D_OUT_reg[0]/clk                                                
+  m_b_D_OUT_reg[0]/q    (u)  unmapped_d_flop         3  6.9           
+mux_ctl_2xi/add_144_31_B[0] 
+add_144_31/B[0] 
+  g2/in_1                                                             
+  g2/z                  (u)  unmapped_nand2          3  6.9           
+  g842/in_0                                                           
+  g842/z                (u)  unmapped_complex2       1  2.3           
+  g70/in_1                                                            
+  g70/z                 (u)  unmapped_nand2          4  9.2           
+  g756/in_1                                                           
+  g756/z                (u)  unmapped_complex2       1  2.3           
+  g743/in_1                                                           
+  g743/z                (u)  unmapped_complex2       6 13.8           
+  g537/in_0                                                           
+  g537/z                (u)  unmapped_complex2       1  2.3           
+  g711/in_1                                                           
+  g711/z                (u)  unmapped_complex2      10 23.0           
+  g693/in_1                                                           
+  g693/z                (u)  unmapped_complex2       1  2.3           
+  g669/in_1                                                           
+  g669/z                (u)  unmapped_complex2      17 39.1           
+  g635/in_1                                                           
+  g635/z                (u)  unmapped_complex2       1  2.3           
+  g620/in_1                                                           
+  g620/z                (u)  unmapped_complex2       2  4.6           
+  g586/in_0                                                           
+  g586/z                (u)  unmapped_or2            1  2.3           
+  g587/in_1                                                           
+  g587/z                (u)  unmapped_nand2          1  2.3           
+add_144_31/Z[18] 
+mux_ctl_3xi/add_144_31_Z[18] 
+  m_c_D_OUT_reg[18]/d   <<<  unmapped_d_flop                          
+  m_c_D_OUT_reg[18]/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                           1600 R 
+                             latency                                  
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : mux_ctl_2xi/m_b_D_OUT_reg[0]/clk
+End-point    : mux_ctl_3xi/m_c_D_OUT_reg[18]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 741ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:    38 ps
+Target path end-point (Pin: m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E (CKLNQD1/E))
+
+         Pin                          Type          Fanout Load Arrival   
+                                                           (fF)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)               <<<    launch                               0 R 
+                                 latency                                  
+cb_seqi
+  m_c_empty_reg_reg/clk                                                   
+  m_c_empty_reg_reg/q     (u)    unmapped_d_flop         2  7.3           
+cb_seqi/RDY_response_get 
+cb_oseqi/cb_seqi_RDY_response_get 
+  g185/in_1                                                               
+  g185/z                  (u)    unmapped_complex2       1  2.3           
+  g188/in_0                                                               
+  g188/z                  (u)    unmapped_nand2          2  4.6           
+  g189/in_0                                                               
+  g189/z                  (u)    unmapped_not            4  7.8           
+cb_oseqi/m_c_RC_CG_HIER_INST2_enable 
+m_c_RC_CG_HIER_INST2/enable 
+  RC_CGIC_INST/E        <<< (P)  CKLNQD1                                  
+  RC_CGIC_INST/CP                setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                           1600 R 
+                                 latency                                  
+                                 uncertainty                              
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_seqi/m_c_empty_reg_reg/clk
+End-point    : m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 868ps.
+ 
+Multi-threaded Technology Mapping (8 threads per ST process, 8 of 16 CPUs usable)
+          Restructuring (delay-based) logic partition in mkAdder32...
+          Done restructuring (delay-based) logic partition in mkAdder32
+        Optimizing logic partition in mkAdder32...
+          Restructuring (delay-based) logic partition in mkAdder32...
+          Done restructuring (delay-based) logic partition in mkAdder32
+        Optimizing logic partition in mkAdder32...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+        Early Area Reclamation for add_unsigned 'very_fast' (slack=394, area=530)...
+                  			o_slack=92,  bc_slack=696
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) logic partition in mkAdder32...
+          Done restructuring (delay-based) logic partition in mkAdder32
+        Optimizing logic partition in mkAdder32...
+          Restructuring (delay-based) logic partition in mkAdder32...
+          Done restructuring (delay-based) logic partition in mkAdder32
+        Optimizing logic partition in mkAdder32...
+          Restructuring (delay-based) logic partition in mkAdder32...
+          Done restructuring (delay-based) logic partition in mkAdder32
+        Optimizing logic partition in mkAdder32...
+ 
+Global mapping timing result
+============================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+         Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                    (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                     launch                                    0 R 
+                                latency                        +200     200 R 
+cb_seqi
+  m_c_empty_reg_reg/CP                                    100           200 R 
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4   48  +278     478 F 
+cb_seqi/RDY_response_get 
+cb_oseqi/cb_seqi_RDY_response_get 
+  g219/B1                                                        +0     478   
+  g219/ZN                       IND2D0            2  1.6   66   +56     533 R 
+  g217/A1                                                        +0     533   
+  g217/Z                        CKAN2D0           4  2.9   94  +142     675 R 
+cb_oseqi/m_c_RC_CG_HIER_INST2_enable 
+m_c_RC_CG_HIER_INST2/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                          +0     675   
+  RC_CGIC_INST/CP               setup                     100  +149     824 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                     capture                                1600 R 
+                                latency                        +200    1800 R 
+                                uncertainty                    -100    1700 R 
+------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :     876ps 
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                  Type       Fanout Load Slew Delay Arrival   
+                                                (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)                 launch                                    0 R 
+                            latency                        +200     200 R 
+mux_ctl_1xi
+  m_a_D_OUT_reg[1]/CP                                 100           200 R 
+  m_a_D_OUT_reg[1]/Q        DFQD4             2  3.6   39  +237     437 F 
+mux_ctl_1xi/add_144_31_A[1] 
+add_144_31/A[1] 
+  g2187/A2                                                   +0     437   
+  g2187/ZN                  NR2XD1            2  2.7   53   +57     494 R 
+  g2133/A1                                                   +0     494   
+  g2133/ZN                  OAI21D2           3  2.8   54   +49     543 F 
+  g2126/A1                                                   +0     543   
+  g2126/ZN                  CKND2D2           1  1.8   35   +39     582 R 
+  g2121/A1                                                   +0     582   
+  g2121/ZN                  ND2D2             3  2.8   41   +38     620 F 
+  g2119/A1                                                   +0     620   
+  g2119/ZN                  CKND2D2           1  1.8   35   +34     654 R 
+  g2118/A1                                                   +0     654   
+  g2118/ZN                  ND2D2             3  3.3   45   +40     694 F 
+  g2115/A1                                                   +0     694   
+  g2115/ZN                  CKND2D2           2  2.6   42   +40     734 R 
+  g2111/A1                                                   +0     734   
+  g2111/ZN                  OAI21D2           2  2.3   50   +43     777 F 
+  g2109/A1                                                   +0     777   
+  g2109/ZN                  CKND2D2           1  1.8   39   +38     815 R 
+  g2103/A1                                                   +0     815   
+  g2103/ZN                  ND2D2             3  2.8   41   +39     854 F 
+  g2100/A1                                                   +0     854   
+  g2100/ZN                  CKND2D2           3  4.5   58   +47     900 R 
+  g2095/A1                                                   +0     900   
+  g2095/ZN                  OAI21D4           4  3.6   46   +43     944 F 
+  g2091/A1                                                   +0     944   
+  g2091/ZN                  CKND2D2           1  1.8   39   +36     980 R 
+  g2086/A1                                                   +0     980   
+  g2086/ZN                  ND2D2             4  3.6   47   +43    1023 F 
+  g2079/A1                                                   +0    1023   
+  g2079/ZN                  CKND2D2           1  1.8   39   +36    1059 R 
+  g2076/A1                                                   +0    1059   
+  g2076/ZN                  ND2D2             3  2.8   41   +39    1098 F 
+  g2069/A1                                                   +0    1098   
+  g2069/ZN                  CKND2D2           2  4.3   56   +46    1144 R 
+  g2065/A1                                                   +0    1144   
+  g2065/ZN                  OAI21D4           3  3.3   46   +42    1186 F 
+  g2061/A1                                                   +0    1186   
+  g2061/ZN                  CKND2D2           2  2.9   45   +41    1228 R 
+  g2056/A1                                                   +0    1228   
+  g2056/ZN                  OAI21D2           1  1.8   47   +42    1269 F 
+  g2054/CI                                                   +0    1269   
+  g2054/CO                  FA1D2             1  1.9   63  +112    1382 F 
+  g2053/CI                                                   +0    1382   
+  g2053/CO                  FA1D1             1  1.8   50  +114    1495 F 
+  g2052/CI                                                   +0    1495   
+  g2052/CO                  FA1D2             2  1.9   63  +114    1609 F 
+  g2051/A1                                                   +0    1609   
+  g2051/ZN                  MOAI22D1          1  0.9   63   +62    1670 R 
+add_144_31/Z[31] 
+mux_ctl_3xi/add_144_31_Z[31] 
+  m_c_D_OUT_reg[31]/D  <<<  DFQD1                            +0    1670   
+  m_c_D_OUT_reg[31]/CP      setup                     100   +21    1692 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                1600 R 
+                            latency                        +200    1800 R 
+                            uncertainty                    -100    1700 R 
+--------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :       8ps 
+Start-point  : mux_ctl_1xi/m_a_D_OUT_reg[1]/CP
+End-point    : mux_ctl_3xi/m_c_D_OUT_reg[31]/D
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_map                 1173        0 
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+    cg_enable_group_clk                38      876              1600 
+                    clk                45        8              1600 
+
+ 
+Global incremental target info
+==============================
+Cost Group 'clk' target slack:     8 ps
+Target path end-point (Pin: m_c_D_OUT_reg[31]/D (DFQD1/D))
+
+         Pin                  Type       Fanout Load Arrival   
+                                                (fF)   (ps)    
+---------------------------------------------------------------
+(clock clk)            <<<  launch                         0 R 
+                            latency                            
+mux_ctl_1xi
+  m_a_D_OUT_reg[1]/CP                                          
+  m_a_D_OUT_reg[1]/Q        DFQD4             2  3.6           
+mux_ctl_1xi/add_144_31_A[1] 
+add_144_31/A[1] 
+  g2187/A2                                                     
+  g2187/ZN                  NR2XD1            2  2.7           
+  g2133/A1                                                     
+  g2133/ZN                  OAI21D2           3  2.8           
+  g2126/A1                                                     
+  g2126/ZN                  CKND2D2           1  1.8           
+  g2121/A1                                                     
+  g2121/ZN                  ND2D2             3  2.8           
+  g2119/A1                                                     
+  g2119/ZN                  CKND2D2           1  1.8           
+  g2118/A1                                                     
+  g2118/ZN                  ND2D2             3  3.3           
+  g2115/A1                                                     
+  g2115/ZN                  CKND2D2           2  2.6           
+  g2111/A1                                                     
+  g2111/ZN                  OAI21D2           2  2.3           
+  g2109/A1                                                     
+  g2109/ZN                  CKND2D2           1  1.8           
+  g2103/A1                                                     
+  g2103/ZN                  ND2D2             3  2.8           
+  g2100/A1                                                     
+  g2100/ZN                  CKND2D2           3  4.5           
+  g2095/A1                                                     
+  g2095/ZN                  OAI21D4           4  3.6           
+  g2091/A1                                                     
+  g2091/ZN                  CKND2D2           1  1.8           
+  g2086/A1                                                     
+  g2086/ZN                  ND2D2             4  3.6           
+  g2079/A1                                                     
+  g2079/ZN                  CKND2D2           1  1.8           
+  g2076/A1                                                     
+  g2076/ZN                  ND2D2             3  2.8           
+  g2069/A1                                                     
+  g2069/ZN                  CKND2D2           2  4.3           
+  g2065/A1                                                     
+  g2065/ZN                  OAI21D4           3  3.3           
+  g2061/A1                                                     
+  g2061/ZN                  CKND2D2           2  2.9           
+  g2056/A1                                                     
+  g2056/ZN                  OAI21D2           1  1.8           
+  g2054/CI                                                     
+  g2054/CO                  FA1D2             1  1.9           
+  g2053/CI                                                     
+  g2053/CO                  FA1D1             1  1.8           
+  g2052/CI                                                     
+  g2052/CO                  FA1D2             2  1.9           
+  g2051/A1                                                     
+  g2051/ZN                  MOAI22D1          1  0.9           
+add_144_31/Z[31] 
+mux_ctl_3xi/add_144_31_Z[31] 
+  m_c_D_OUT_reg[31]/D  <<<  DFQD1                              
+  m_c_D_OUT_reg[31]/CP      setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                     1600 R 
+                            latency                            
+                            uncertainty                        
+---------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : mux_ctl_1xi/m_a_D_OUT_reg[1]/CP
+End-point    : mux_ctl_3xi/m_c_D_OUT_reg[31]/D
+
+The global mapper estimates a slack for this path of 6ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:    24 ps
+Target path end-point (Pin: m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E (CKLNQD1/E))
+
+         Pin                      Type       Fanout Load Arrival   
+                                                    (fF)   (ps)    
+-------------------------------------------------------------------
+(clock clk)              <<<    launch                         0 R 
+                                latency                            
+cb_seqi
+  m_c_empty_reg_reg/CP                                             
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4           
+cb_seqi/RDY_response_get 
+cb_oseqi/cb_seqi_RDY_response_get 
+  g219/B1                                                          
+  g219/ZN                       IND2D0            2  1.6           
+  g217/A1                                                          
+  g217/Z                        CKAN2D0           4  2.9           
+cb_oseqi/m_c_RC_CG_HIER_INST2_enable 
+m_c_RC_CG_HIER_INST2/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                            
+  RC_CGIC_INST/CP               setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                     1600 R 
+                                latency                            
+                                uncertainty                        
+-------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 623ps.
+ 
+ 
+Global incremental timing result
+================================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+         Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                    (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                     launch                                    0 R 
+                                latency                        +200     200 R 
+cb_seqi
+  m_c_empty_reg_reg/CP                                    100           200 R 
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4   48  +278     478 F 
+cb_seqi/RDY_response_get 
+cb_oseqi/cb_seqi_RDY_response_get 
+  g219/B1                                                        +0     478   
+  g219/ZN                       IND2D0            2  1.6   66   +56     533 R 
+  g217/A1                                                        +0     533   
+  g217/Z                        CKAN2D0           4  2.9   94  +142     675 R 
+cb_oseqi/m_c_RC_CG_HIER_INST2_enable 
+m_c_RC_CG_HIER_INST2/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                          +0     675   
+  RC_CGIC_INST/CP               setup                     100  +149     824 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                     capture                                1600 R 
+                                latency                        +200    1800 R 
+                                uncertainty                    -100    1700 R 
+------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :     876ps 
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST2/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                  Type       Fanout Load Slew Delay Arrival   
+                                                (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)                 launch                                    0 R 
+                            latency                        +200     200 R 
+mux_ctl_2xi
+  m_b_D_OUT_reg[0]/CP                                 100           200 R 
+  m_b_D_OUT_reg[0]/Q        DFQD1             2  2.2   38  +262     462 F 
+mux_ctl_2xi/add_144_31_B[0] 
+add_144_31/B[0] 
+  g2236/A1                                                   +0     462   
+  g2236/ZN                  ND2D2             3  3.4   38   +35     497 R 
+  g2133/A2                                                   +0     497   
+  g2133/ZN                  OAI21D2           3  2.8   54   +48     545 F 
+  g2126/A1                                                   +0     545   
+  g2126/ZN                  CKND2D2           1  1.8   35   +39     584 R 
+  g2121/A1                                                   +0     584   
+  g2121/ZN                  ND2D2             3  2.8   41   +38     622 F 
+  g2119/A1                                                   +0     622   
+  g2119/ZN                  CKND2D2           1  1.8   35   +34     657 R 
+  g2118/A1                                                   +0     657   
+  g2118/ZN                  ND2D2             3  3.3   45   +40     697 F 
+  g2115/A1                                                   +0     697   
+  g2115/ZN                  CKND2D2           2  2.6   42   +40     736 R 
+  g2111/A1                                                   +0     736   
+  g2111/ZN                  OAI21D2           2  2.3   50   +43     780 F 
+  g2109/A1                                                   +0     780   
+  g2109/ZN                  CKND2D2           1  1.8   39   +38     817 R 
+  g2103/A1                                                   +0     817   
+  g2103/ZN                  ND2D2             3  3.7   48   +43     860 F 
+  g2100/A1                                                   +0     860   
+  g2100/ZN                  CKND2D3           3  4.5   46   +43     904 R 
+  g2095/A1                                                   +0     904   
+  g2095/ZN                  OAI21D4           4  3.6   46   +40     943 F 
+  g2091/A1                                                   +0     943   
+  g2091/ZN                  CKND2D2           1  1.8   39   +36     980 R 
+  g2086/A1                                                   +0     980   
+  g2086/ZN                  ND2D2             4  3.6   47   +43    1022 F 
+  g2079/A1                                                   +0    1022   
+  g2079/ZN                  CKND2D2           1  2.5   44   +40    1062 R 
+  g2076/A1                                                   +0    1062   
+  g2076/ZN                  CKND2D3           3  3.7   37   +38    1100 F 
+  g2069/A1                                                   +0    1100   
+  g2069/ZN                  CKND2D3           2  4.3   46   +39    1139 R 
+  g2065/A1                                                   +0    1139   
+  g2065/ZN                  OAI21D4           3  3.3   46   +39    1179 F 
+  g2061/A1                                                   +0    1179   
+  g2061/ZN                  CKND2D2           2  2.9   45   +41    1220 R 
+  g2056/A1                                                   +0    1220   
+  g2056/ZN                  OAI21D2           1  1.8   47   +42    1262 F 
+  g2054/CI                                                   +0    1262   
+  g2054/CO                  FA1D2             1  1.9   63  +112    1374 F 
+  g2053/CI                                                   +0    1374   
+  g2053/CO                  FA1D1             1  1.8   50  +114    1488 F 
+  g2052/CI                                                   +0    1488   
+  g2052/CO                  FA1D2             2  1.9   63  +114    1601 F 
+  g2051/A1                                                   +0    1601   
+  g2051/ZN                  MOAI22D1          1  0.9   63   +62    1663 R 
+add_144_31/Z[31] 
+mux_ctl_3xi/add_144_31_Z[31] 
+  m_c_D_OUT_reg[31]/D  <<<  DFQD1                            +0    1663   
+  m_c_D_OUT_reg[31]/CP      setup                     100   +21    1684 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                1600 R 
+                            latency                        +200    1800 R 
+                            uncertainty                    -100    1700 R 
+--------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :      16ps 
+Start-point  : mux_ctl_2xi/m_b_D_OUT_reg[0]/CP
+End-point    : mux_ctl_3xi/m_c_D_OUT_reg[31]/D
+
+ 
+ 
+Global incremental optimization status
+======================================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_incr                1163        0 
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+    cg_enable_group_clk                24      876              1600 
+                    clk                 8       16              1600 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+          Performing post-mapping optimization ...
+
+        Applying wireload models.
+        Computing net loads.
+ Doing ConstProp on design:mkAdder32 ... 
+
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 3 clock gate paths.
+  Decloning clock-gating logic from design:mkAdder32
+Info    : Clock-gating instances are decloned. [POPT-56]
+        : New decloned instance is RC_CG_DECLONE_HIER_INST 
+            Old instances were:
+           m_a_RC_CG_HIER_INST0
+           m_b_RC_CG_HIER_INST1
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 3
+Total number of clock-gating instances after : 2
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay                 1156        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+
+ 
+Local TNS optimization status
+=============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_tns                   1156        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+       crit_upsz         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       crit_dnsz         0  (        0 /        0 )  0.00
+             dup         0  (        0 /        0 )  0.00
+        setup_dn         0  (        0 /        0 )  0.00
+
+##>======== Cadence Confidential (Mapping-Logical) ========
+##>Main Thread Summary:
+##>--------------------------------------------------------
+##>STEP               Elapsed     Insts      Area    Memory
+##>--------------------------------------------------------
+##>M:Initial                0       558      2417       396
+##>M:Launch ST              0         -         -         -
+##>M:Distributed            0         -         -         -
+##>M:Cleanup                0       303      1156       460
+##>M:MBCI                   0       303      1156       460
+##>M:Misc                   7
+##>--------------------------------------------------------
+##>Total Elapsed            7
+##>========================================================
+  Setting attribute of root '/': 'pbs_stage_start_elapsed_time' = 21
+  Setting attribute of root '/': 'pbs_stage_start_st_time' = 19
+Info    : Done mapping. [SYNTH-5]
+        : Done mapping 'mkAdder32'.
+        Applying wireload models.
+        Computing net loads.
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            14              7           -0.0 ps           15.9 ps  syn_map
+report area > $REPORTS_PATH/area.rpt
+report timing > $REPORTS_PATH/timing.rpt
+report power > $REPORTS_PATH/power.rpt
+Info    : Time taken to report power. [RPT-7]
+        : 0.00 cpu seconds
+report clock_gating > $REPORTS_PATH/clockgating.rpt
+report gates > $REPORTS_PATH/gates.rpt
+report gates -power > $REPORTS_PATH/gates_power.rpt
+report datapath > $REPORTS_PATH/datapath.rpt
+Beginning report datapath command
+Warning : The filename, column and line number information will not be available in the report. [RPT_DP-100]
+        : The attribute for getting HDL filename and line number is not set.
+        : You must set the 'hdl_track_filename_row_col' attribute to 'true' (before elaborate) to enable filename, column, and line number tracking in the datapath report.
+report messages > $REPORTS_PATH/messages.rpt
+report qor > $REPORTS_PATH/qor.rpt
+write_design -basename ${OUTPUTS_PATH}/${design}_syn
+Exporting design data for 'mkAdder32' to build/tsmc65lp/test_run/out/mkAdder32_syn...
+Info    : Generating design database. [PHYS-90]
+        : Writing netlist: build/tsmc65lp/test_run/out/mkAdder32_syn.v
+        : The database contains all the files required to restore the design in the specified application.
+Info    : Generating design database. [PHYS-90]
+        : Writing Metrics file: build/tsmc65lp/test_run/out/mkAdder32_syn.metrics.json
+Info    : Generating design database. [PHYS-90]
+        : Writing write_script: build/tsmc65lp/test_run/out/mkAdder32_syn.g
+Info    : Generating design database. [PHYS-90]
+        : Writing TCF: build/tsmc65lp/test_run/out/mkAdder32_syn.tcf
+Info    : Generating design database. [PHYS-90]
+        : Writing multi-mode multi-corner file: build/tsmc65lp/test_run/out/mkAdder32_syn.mmmc.tcl
+Finished SDC export (command execution time mm:ss (real) = 00:00).
+Info: file build/tsmc65lp/test_run/out//mkAdder32_syn.default_emulate_constraint_mode.sdc has been written
+File build/tsmc65lp/test_run/out//mkAdder32_syn.mmmc.tcl has been written.
+Info    : Design has no library or power domains. [INVS_MSV-301]
+        : No power domains will be created for Innovus.
+Info    : Generating design database. [PHYS-90]
+        : Writing INIT setup file for Genus: build/tsmc65lp/test_run/out/mkAdder32_syn.genus_init.tcl
+Info    : Generating design database. [PHYS-90]
+        : Writing Genus(TM) Synthesis Solution setup file: build/tsmc65lp/test_run/out/mkAdder32_syn.genus_setup.tcl
+** To load the database source build/tsmc65lp/test_run/out/mkAdder32_syn.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'mkAdder32' (command execution time mm:ss cpu = 00:00, real = 00:01).
+.
+write_hdl  > ${OUTPUTS_PATH}/${design}_syn.v
+write_sdc > ${OUTPUTS_PATH}/${design}_syn.sdc
+Finished SDC export (command execution time mm:ss (real) = 00:00).
+write_sdf -edges check_edge > ${OUTPUTS_PATH}/${design}_syn.sdf
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -setuphold has changed from split to merge_always. Specify '-setuphold split' to preserve the behavior of the previous release.
+        : Specify the option explicitly.
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -recrem has changed from split to merge_always. Specify '-recrem split' to preserve the behavior of the previous release.
+write_db ${design} -to_file ${OUTPUTS_PATH}/${design}_syn.db
+Finished exporting design database to file 'build/tsmc65lp/test_run/out/mkAdder32_syn.db' for 'mkAdder32' (command execution time mm:ss cpu = 00:00, real = 00:00).
+file copy [get_db stdout_log] ${LOG_PATH}/

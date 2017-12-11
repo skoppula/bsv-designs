@@ -1,0 +1,32 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
++name+mkCompareTest
++nclibdirname+INCA_libs_hdlsim
+"+define+BSV_ASSIGNMENT_DELAY=#1"
++define+BSV_NO_INITIAL_BLOCKS
++libext+.v
++access+rw
+-NOCOPYRIGHT
+-INPUT
+/homes/mrhamid/6888_prj/6888_Project/bsv-standard/bin/dump.tcl
+-MESSAGES
++EMGRLOG
+hdlsim.log
+-XLSTIME
+1512857910
+-XLKEEP
+-XLMODE
+./INCA_libs_hdlsim/mkCompareTest.lnx8664.15.20.nc
+-RUNMODE
+-CDSLIB
+./INCA_libs_hdlsim/mkCompareTest.lnx8664.15.20.nc/cds.lib
+-HDLVAR
+./INCA_libs_hdlsim/mkCompareTest.lnx8664.15.20.nc/hdl.var
+-XLNAME
+irun
+-XLVERSION
+"TOOL:	irun(64)	15.20-s028"
+-XLNAME
+./INCA_libs_hdlsim/mkCompareTest.lnx8664.15.20.nc/ellora_24241

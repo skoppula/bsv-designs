@@ -1,0 +1,2412 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2016 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 16.22-s033_1, built Wed Apr 05 2017
+Options: -files setup_design.tcl 
+Date:    Sun Dec 10 11:46:06 2017
+Host:    ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB) (32866740KB)
+OS:      Red Hat Enterprise Linux Server release 7.4 (Maipo)
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+Sourcing setup_design.tcl...
+  Setting attribute of root '/': 'source_verbose_info' = false
+  Setting attribute of root '/': 'source_verbose' = true
+set design mkReLURNS
+set design_folder relu
+set rtl_top_inst dut
+set libname tsmc65lp
+set do_power_opt true
+set do_clock_gating true
+set do_adv_opt false
+set save true
+set basename_prefix "156M_32"
+set backup_input false
+set project_base /homes/mrhamid/6888_prj/6888_Project/sim_syn
+set use_tcf false
+set use_vcd false
+set use_saif true
+set activity_filename $project_base/bsv/$design_folder/${design_folder}.saif
+set rtl_path [ list \
+    ${project_base}/bsv/$design_folder/vlog \
+    $::env(BLUESPECDIR)/Verilog \
+]
+set rtl_files [ list \
+    mkReLURNS.v \
+    FIFOL1.v \
+]
+set sdc_file constraints_${libname}.sdc
+set_db script_search_path [ concat . ${project_base}/syn/common ]
+  Setting attribute of root '/': 'script_search_path' = . /homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common
+include run_rc.tcl
+Sourcing '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common/run_rc.tcl' (Sun Dec 10 11:46:14 -0500 2017)...
+set DATE [clock format [clock seconds] -format "%b%d_%H%M"]
+if {!$save} {
+  set BASE_PATH build/${libname}/test_run
+  file delete -force $BASE_PATH
+} else {
+  if {$basename_prefix != ""} {
+    set BASE_PATH build/${libname}/${basename_prefix}_${DATE}
+  } else {
+    set BASE_PATH build/${libname}/${DATE}
+  }
+}
+if {$backup_input} {
+  set INPUTS_PATH ${BASE_PATH}/in
+  file mkdir ${INPUTS_PATH}
+}
+set OUTPUTS_PATH ${BASE_PATH}/out
+set REPORTS_PATH ${BASE_PATH}/rpt
+set LOG_PATH ${BASE_PATH}/logs
+set VERIFICATION_PATH ${BASE_PATH}/fv
+file mkdir ${OUTPUTS_PATH}
+file mkdir ${REPORTS_PATH}
+file mkdir ${LOG_PATH}
+file mkdir ${VERIFICATION_PATH}
+file delete current
+file link -symbolic current $BASE_PATH
+set_db hdl_error_on_blackbox true
+  Setting attribute of root '/': 'hdl_error_on_blackbox' = true
+set_db information_level 9
+  Setting attribute of root '/': 'information_level' = 9
+set_db syn_generic_effort high
+  Setting attribute of root '/': 'syn_generic_effort' = high
+set_db syn_map_effort high
+  Setting attribute of root '/': 'syn_map_effort' = high
+if {$do_power_opt} {
+  if {$do_clock_gating} {
+    set_db lp_insert_clock_gating true
+  }
+  # set_db lp_insert_operand_isolation true
+  set_db lp_power_analysis_effort high
+  # set_db hdl_track_filename_row_col true
+}
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+Info    : Resetting power analysis results. [PA-7]
+        : Power analysis effort level changed from 'medium' to 'high'.
+        : All computed switching activities are removed.
+  Setting attribute of root '/': 'lp_power_analysis_effort' = high
+set_db init_hdl_search_path [ concat $rtl_path ]
+  Setting attribute of root '/': 'init_hdl_search_path' = /homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+read_hdl -sv $rtl_files
+            Reading Verilog file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'
+            Reading Verilog file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'
+include technology.tcl
+Sourcing '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/common/technology.tcl' (Sun Dec 10 11:46:14 -0500 2017)...
+if {$libname == "tsmc40lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN40LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn40lpbwp tcbn40lpbwphvt ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc45gs"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CLN45GS/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn45gsbwp12t tcbn45gsbwp12thvt ]
+    set stdcell_ver 120c
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc65lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn65lp ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+}
+  Setting attribute of root '/': 'lib_search_path' = /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a
+            Reading file '/u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib'
+    Loading library tcbn65lpwc.lib
+Info    : An unsupported construct was detected in this library. [LBR-40]
+        : Unknown Liberty attribute 'library_features' encountered. Ignoring (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 69)
+        : Check to see if this construct is really needed for synthesis. Many liberty constructs are not actually required.
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Missing a function attribute in the output pin definition. [LBR-518]
+        : Functionality is missing at pin 'Z' for the cell 'BHD'. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 272424)
+
+  Message Summary for Library tcbn65lpwc.lib:
+  *******************************************
+  Could not find an attribute in the library. [LBR-436]: 989
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  An unsupported construct was detected in this library. [LBR-40]: 1
+  *******************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.080000, 125.000000) in library 'tcbn65lpwc.lib'.
+        : The nominal operating condition represents either the nominal PVT values if specified in the library source, or the default PVT values (1.0, 1.0, 1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Otherwise, the library cell will be marked as unusable and as timing model.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Info    : An output library pin lacks a function attribute. [LBR-41]
+        : Output pin 'BHD/Z' has no function.
+        : If the remainder of this library cell's semantic checks are successful, it will be considered as a timing-model (because one of its outputs does not have a valid function.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD20'
+        : To use the cell in clock gating, Set cell attribute 'dont_use' false in the library.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD24'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD20'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD24'
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+  Setting attribute of root '/': 'library' = tcbn65lpwc.lib
+elaborate $design
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD1'.
+        : Setting the 'timing_sense' to non_unate.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D0'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'A2' and 'Z' in libcell 'CKXOR2D0'.
+  Library has 441 usable logic and 280 usable sequential lib-cells.
+Info    : Found unusable library cells. [LBR-415]
+        : Library: 'tcbn65lpwc.lib', Total cells: 816, Unusable cells: 77.
+	List of unusable cells: 'ANTENNA BHD BUFFD20 BUFFD24 BUFTD20 BUFTD24 CKBD20 CKBD24 CKLHQD20 CKLHQD24 CKLNQD20 CKLNQD24 CKND20 CKND24 DCAP DCAP16 DCAP32 DCAP4 DCAP64 DCAP8 GAN2D1 GAN2D2 GAOI21D1 GAOI21D2 GAOI22D1 GBUFFD1 GBUFFD2 GBUFFD3 GBUFFD4 GBUFFD8 GDCAP GDCAP10 GDCAP2 GDCAP3 GDCAP4 GDFCNQD1 GDFQD1 GFILL GFILL10 GFILL2 GFILL3 GFILL4 GINVD1 GINVD2 GINVD3 GINVD4 GINVD8 GMUX2D1 GMUX2D2 GMUX2ND1 GMUX2ND2 GND2D1 GND2D2 GND2D3 GND2D4 GND3D1 GND3D2 GNR2D1 GNR2D2 GNR3D1 GNR3D2 GOAI21D1 GOAI21D2 GOR2D1 GOR2D2 GSDFCNQD1 GTIEH GTIEL GXNR2D1 GXNR2D2 GXOR2D1 GXOR2D2 INVD20 INVD24 OD25DCAP16 OD25DCAP32 OD25DCAP64 .'
+        : For more information, refer to 'Cells Identified as Unusable' in the 'User Guide'. The reason why a cell is considered unusable is stored in the 'unusable_reason' libcell attribute.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mkReLURNS' from file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Elaborating Subdesign. [ELAB-2]
+        : Elaborating block 'FIFOL1_width32h00000020' from file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/equal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 99 in the file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 99 in the file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v' will be considered in the following order: {'hdl_implementation:GB/equal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 187 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 187 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 190 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 190 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 194 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 194 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 202 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 202 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 205 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=17 B=17 REMAINDER=17) at line 205 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 209 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 209 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 212 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 212 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 216 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 216 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 218 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=9 B=9 REMAINDER=9) at line 218 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 220 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 220 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 222 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=8 B=8 REMAINDER=8) at line 222 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/remainder_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=10 B=10 REMAINDER=10) at line 224 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'REM_UNS_IEEE_OP' (pin widths: A=10 B=10 REMAINDER=10) at line 224 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/remainder_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/remainder_unsigned/medium' (priority 1), 'hdl_implementation:GB/remainder_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=8 Z=14) at line 276 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=8 Z=14) at line 276 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=14 Z=15) at line 205 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=14 Z=15) at line 205 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=7 B=8 Z=8) at line 273 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=7 B=8 Z=8) at line 273 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=16 B=9 Z=16) at line 214 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=16 B=9 Z=16) at line 214 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=9 Z=9) at line 274 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=9 Z=9) at line 274 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=8 Z=14) at line 275 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=8 Z=14) at line 275 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=14 Z=15) at line 190 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=14 B=14 Z=15) at line 190 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=7 B=8 Z=8) at line 268 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=7 B=8 Z=8) at line 268 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=16 B=9 Z=16) at line 197 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=16 B=9 Z=16) at line 197 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=9 Z=9) at line 271 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=9 Z=9) at line 271 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 220 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 220 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=17 B=17 Z=17) at line 200 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=17 B=17 Z=17) at line 200 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 212 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 212 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 208 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 208 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=7 Z=9) at line 218 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=7 Z=9) at line 218 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=17 B=17 Z=17) at line 185 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=17 B=17 Z=17) at line 185 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 193 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 193 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=10 B=8 Z=10) at line 224 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=10 B=8 Z=10) at line 224 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 222 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=8 B=7 Z=8) at line 222 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 216 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=9 B=8 Z=9) at line 216 in the file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/bsv/relu/vlog/mkReLURNS.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mkReLURNS'.
+Info: Checking for source rtl...
+Info: Check completed for source rtl...
+        Applying wireload models.
+        Computing net loads.
+UM:  flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            13             15                                      elaborate
+check_design -unresolved
+  Checking the design.
+
+ 	 Check Design Report
+	 -------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'mkReLURNS'
+
+No empty modules in design 'mkReLURNS'
+
+  Done Checking the design.
+set_db current_design .verification_directory $VERIFICATION_PATH
+  Setting attribute of design 'mkReLURNS': 'verification_directory' = build/tsmc65lp/156M_32_Dec10_1146/fv
+if {$do_adv_opt} {
+  set_db current_design .retime true
+}
+if {[info exists wireload_model]} {
+    set_db current_design .force_wireload $wireload_model
+}
+if {$do_power_opt && $do_clock_gating} {
+  set_db current_design .lp_clock_gating_extract_common_enable true
+}
+  Setting attribute of design 'mkReLURNS': 'lp_clock_gating_extract_common_enable' = true
+read_sdc $sdc_file
+            Reading file '/homes/mrhamid/6888_prj/6888_Project/sim_syn/syn/relu/constraints_tsmc65lp.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      3 , failed      0 (runtime  0.00)
+ "all_outputs"              - successful      2 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.00)
+ "current_design"           - successful      1 , failed      0 (runtime  0.00)
+ "get_clocks"               - successful      3 , failed      0 (runtime  0.00)
+ "get_ports"                - successful      1 , failed      0 (runtime  0.00)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_latency"        - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful      2 , failed      0 (runtime  0.00)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.00)
+ "set_load_unit"            - successful      1 , failed      0 (runtime  0.00)
+ "set_max_fanout"           - successful      2 , failed      0 (runtime  0.00)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful      2 , failed      0 (runtime  0.00)
+ "set_time_unit"            - successful      1 , failed      0 (runtime  0.00)
+Total runtime 0
+report timing -lint
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 16.22-s033_1
+  Generated on:           Dec 10 2017  11:46:21 am
+  Module:                 mkReLURNS
+  Technology library:     tcbn65lpwc 200
+  Operating conditions:   WCCOM (balanced_tree)
+  Wireload mode:          segmented
+  Area mode:              timing library
+============================================================
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+if {$do_power_opt} {
+  #set_db max_leakage_power 0.0 "/designs/$design"
+  #set_db lp_power_optimization_weight <value from 0 to 1> "/designs/$DESIGN"
+
+  set_db current_design .max_dynamic_power 0.0
+
+  if {$use_tcf} {
+    read_tcf -tcf_instance $rtl_top_inst $activity_filename
+  }
+
+  if {$use_vcd} {
+    read_vcd -static -vcd_scope $rtl_top_inst $activity_filename
+  }
+
+  if {$use_saif} {
+    read_saif -instance $rtl_top_inst $activity_filename
+  }
+}
+  Setting attribute of design 'mkReLURNS': 'max_dynamic_power' = 0.0
+10.0 % done 
+20.0 % done 
+30.0 % done 
+40.0 % done 
+50.0 % done 
+60.0 % done 
+70.0 % done 
+80.0 % done 
+90.0 % done 
+100.0 % done 
+100.0 % done
+Nets/ports asserted in SAIF file : 527
+Total Nets/ports in SAIF file    : 1243
+-------------------------------------------------------
+Asserted Primary inputs in design              : 36 (100.00%)
+Total connected primary inputs in design       : 36 (100.00%)
+-------------------------------------------------------
+Asserted sequential outputs                    : 66 (100.00%)
+Total connected sequential outputs             : 66 (100.00%)
+-------------------------------------------------------
+Total nets in design                 : 21221 (100.00%)
+Nets asserted                        : 1041 (4.91%)
+Clock nets                           : 0 (0.00%)
+Constant nets                        : 374 (1.76%)
+Nets with no assertions              : 20180 (95.09%)
+-------------------------------------------------------
+Time taken to read_saif: 1.00 cpu seconds
+syn_generic
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'mkReLURNS' to generic gates using 'high' effort.
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Info    : Optimizing RTL. [RTLOPT-1]
+        : Optimizing RTL in 'mkReLURNS' using 'high' effort.
+Info    : Grouping carry-save logic. [RTLOPT-19]
+        : Grouping carry-save logic in 'mkReLURNS_csa_cluster_63' using 'medium' effort and 'generic' timing models.
+Info    : Accepted carry-save configuration. [RTLOPT-20]
+        : Accepted configuration 1 of 1 in module 'mkReLURNS_csa_cluster_63'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done grouping carry-save logic. [RTLOPT-23]
+        : Used configuration 1, resulting in 0 carry-save groups in module 'mkReLURNS_csa_cluster_63'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Grouping carry-save logic. [RTLOPT-19]
+        : Grouping carry-save logic in 'mkReLURNS_csa_cluster' using 'medium' effort and 'generic' timing models.
+Info    : Accepted carry-save configuration. [RTLOPT-20]
+        : Accepted configuration 1 of 1 in module 'mkReLURNS_csa_cluster'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done grouping carry-save logic. [RTLOPT-23]
+        : Used configuration 1, resulting in 0 carry-save groups in module 'mkReLURNS_csa_cluster'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done optimizing RTL. [RTLOPT-2]
+        : Done optimizing RTL in 'mkReLURNS'.
+      Removing temporary intermediate hierarchies under mkReLURNS
+              Optimizing muxes in design 'FIFOL1_width32h00000020'.
+              Optimizing muxes in design 'mkReLURNS'.
+Info    : Gating clocks. [SYNTH-13]
+        : Gating clocks in 'mkReLURNS'.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Gating clocks in mkReLURNS
+        Preparing the circuit
+          Pruning unused logic
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_218_35' of datapath component 'add_unsigned_690'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_224_33' of datapath component 'add_unsigned_696'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_200_70' of datapath component 'add_unsigned_8'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_185_71' of datapath component 'add_unsigned_8'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_214_15' of datapath component 'add_unsigned_668'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_197_16' of datapath component 'add_unsigned_668'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_273_30' of datapath component 'add_unsigned_666'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_268_16' of datapath component 'add_unsigned_666'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_274_31' of datapath component 'add_unsigned_670'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_271_16' of datapath component 'add_unsigned_670'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_276_29' of datapath component 'add_unsigned'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_275_31' of datapath component 'add_unsigned'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_222_44' of datapath component 'remainder_unsigned_458'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_220_62' of datapath component 'remainder_unsigned_458'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_209_34' of datapath component 'remainder_unsigned_458'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_212_34' of datapath component 'add_unsigned_686'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_193_68' of datapath component 'add_unsigned_686'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_220_35' of datapath component 'add_unsigned_682'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_208_68' of datapath component 'add_unsigned_682'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_216_44' of datapath component 'remainder_unsigned_231'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_212_61' of datapath component 'remainder_unsigned_231'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_194_34' of datapath component 'remainder_unsigned_231'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_216_34' of datapath component 'add_unsigned_686_91'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'add_222_35' of datapath component 'add_unsigned_682_93'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'rem_218_44' of datapath component 'remainder_unsigned_231_83'.
+Inserting clock-gating logic .....
+        
+        New clock gate fanout statistics
+        =================================================
+        Fanout Size           Num CGs     Total FFs 
+        -------------------------------------------------
+        16 to 63                  2       64
+        =================================================
+
+Info    : Could not find any user created clock-gating module. [POPT-12]
+        : Looking for Integrated clock-gating cell in library.
+Clock Gating Status
+===================
+Category                                Number    Percentage
+------------------------------------------------------------------
+Gated flip-flops                        64		 97%
+Ungated flip-flops
+  Cannot map to requested logic         0		  0%
+  Enable signal is constant             0		  0%
+  Excluded from clock-gating            0		  0%
+  User preserved                        0		  0%
+  Libcell unusable                      0		  0%
+  Timing exception in enable logic      0		  0%
+  Register bank width too small         2		  3%
+Total flip-flops                        66		100%
+Total CG Modules                        2
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+        : This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false.
+    Automatically cost grouped 2 clock gate paths.
+  Setting attribute of root '/': 'pbs_stage_start_elapsed_time' = 19
+  Setting attribute of root '/': 'pbs_stage_start_st_time' = 17
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'mkReLURNS' to generic gates.
+        Applying wireload models.
+        Computing net loads.
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:             4              4                                      syn_generic
+syn_map
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'mkReLURNS' using 'high' effort.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed mapping optimization to kick in.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Mapping 'mkReLURNS'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'm_c' in module 'mkReLURNS' would be automatically ungrouped.
+        : Hierarchical instances can be automatically ungrouped to allow for better area or timing optimization. You can control auto ungrouping using the root-level attribute 'auto_ungroup'. You can skip individual instances or modules using the attribute 'ungroup_ok'.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'm_a' in module 'mkReLURNS' would be automatically ungrouped.
+          Analyzing hierarchical boundaries
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) mkReLURNS...
+          Done structuring (delay-based) mkReLURNS
+Multi-threaded Virtual Mapping    (8 threads per ST process, 8 of 16 CPUs usable)
+          Structuring (delay-based) logic partition in mkReLURNS...
+            Starting partial collapsing (xors only) cb_part_103
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_103
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkReLURNS
+        Mapping logic partition in mkReLURNS...
+          Structuring (delay-based) remainder_unsigned_662...
+            Starting partial collapsing (xors only) remainder_unsigned_662
+            Finished partial collapsing.
+            Starting partial collapsing  remainder_unsigned_662
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) remainder_unsigned_662
+        Mapping component remainder_unsigned_662...
+          Structuring (delay-based) cb_part_113...
+            Starting partial collapsing (xors only) cb_part_113
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_113
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_part_113
+        Mapping component cb_part_113...
+          Structuring (delay-based) cb_part_107...
+            Starting partial collapsing (xors only) cb_part_107
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_107
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_part_107
+        Mapping component cb_part_107...
+          Structuring (delay-based) cb_part_111...
+            Starting partial collapsing (xors only) cb_part_111
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_111
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_part_111
+        Mapping component cb_part_111...
+          Structuring (delay-based) remainder_unsigned_81...
+            Starting partial collapsing (xors only) remainder_unsigned_81
+            Finished partial collapsing.
+            Starting partial collapsing  remainder_unsigned_81
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) remainder_unsigned_81
+        Mapping component remainder_unsigned_81...
+          Structuring (delay-based) remainder_unsigned...
+            Starting partial collapsing (xors only) remainder_unsigned
+            Finished partial collapsing.
+            Starting partial collapsing  remainder_unsigned
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) remainder_unsigned
+        Mapping component remainder_unsigned...
+          Structuring (delay-based) logic partition in mkReLURNS...
+          Done structuring (delay-based) logic partition in mkReLURNS
+        Mapping logic partition in mkReLURNS...
+          Structuring (delay-based) add_unsigned_664...
+            Starting partial collapsing (xors only) add_unsigned_664
+            Finished partial collapsing.
+            Starting partial collapsing  add_unsigned_664
+            Finished partial collapsing.
+          Done structuring (delay-based) add_unsigned_664
+        Mapping component add_unsigned_664...
+          Structuring (delay-based) remainder_unsigned_82...
+            Starting partial collapsing  remainder_unsigned_82
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) remainder_unsigned_82
+        Mapping component remainder_unsigned_82...
+          Structuring (delay-based) logic partition in mkReLURNS...
+          Done structuring (delay-based) logic partition in mkReLURNS
+        Mapping logic partition in mkReLURNS...
+          Structuring (delay-based) cb_part_114...
+            Starting partial collapsing (xors only) cb_part_114
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_114
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_part_114
+        Mapping component cb_part_114...
+          Structuring (delay-based) logic partition in mkReLURNS...
+            Starting partial collapsing  cb_seq
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkReLURNS
+        Mapping logic partition in mkReLURNS...
+          Structuring (delay-based) add_unsigned_664_88...
+            Starting partial collapsing (xors only) add_unsigned_664_88
+            Finished partial collapsing.
+            Starting partial collapsing  add_unsigned_664_88
+            Finished partial collapsing.
+          Done structuring (delay-based) add_unsigned_664_88
+        Mapping component add_unsigned_664_88...
+          Structuring (delay-based) remainder_unsigned_80...
+            Starting partial collapsing  remainder_unsigned_80
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) remainder_unsigned_80
+        Mapping component remainder_unsigned_80...
+          Structuring (delay-based) logic partition in mkReLURNS...
+            Starting partial collapsing (xors only) cb_part_109
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_109
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkReLURNS
+        Mapping logic partition in mkReLURNS...
+ 
+Global mapping target info
+==========================
+Cost Group 'clk' target slack:   189 ps
+Target path end-point (Pin: m_c_D_OUT_reg[31]/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+                             latency                                  
+cb_parti2122
+  m_a_D_OUT_reg[0]/clk                                                
+  m_a_D_OUT_reg[0]/q    (u)  unmapped_d_flop         9 20.7           
+  g25/in_0                                                            
+  g25/z                 (u)  unmapped_nand2          4  9.2           
+  g2209/in_1                                                          
+  g2209/z               (u)  unmapped_or2            4  9.2           
+  g2139/in_1                                                          
+  g2139/z               (u)  unmapped_complex2       3  6.9           
+  g2193/in_1                                                          
+  g2193/z               (u)  unmapped_or2            1  2.3           
+  g2194/in_1                                                          
+  g2194/z               (u)  unmapped_nand2          2  4.6           
+cb_parti2122/rem_224_44_A[5] 
+rem_224_44/A[5] 
+  g7/in_1                                                             
+  g7/z                  (u)  unmapped_or2            2  4.6           
+  g8/in_1                                                             
+  g8/z                  (u)  unmapped_or2            2  4.6           
+  g9/in_1                                                             
+  g9/z                  (u)  unmapped_or2            4  9.2           
+  g1794/in_0                                                          
+  g1794/z               (u)  unmapped_or2            1  2.3           
+  g1798/in_0                                                          
+  g1798/z               (u)  unmapped_complex2       5 11.5           
+  g1788/in_1                                                          
+  g1788/z               (u)  unmapped_complex2       5 11.5           
+  g1779/in_1                                                          
+  g1779/z               (u)  unmapped_complex2       1  2.3           
+  g1777/in_1                                                          
+  g1777/z               (u)  unmapped_nand2          1  2.3           
+  g1766/in_0                                                          
+  g1766/z               (u)  unmapped_nand2          1  2.3           
+  g1749/in_1                                                          
+  g1749/z               (u)  unmapped_nand2          3  6.9           
+rem_224_44/REMAINDER[8] 
+cb_parti2129/rem_224_44_REMAINDER[8] 
+  g3499/in_1                                                          
+  g3499/z               (u)  unmapped_or2            3  6.9           
+  g3483/in_1                                                          
+  g3483/z               (u)  unmapped_complex2       3  6.9           
+  g3454/in_0                                                          
+  g3454/z               (u)  unmapped_complex2       1  2.3           
+  g3446/in_0                                                          
+  g3446/z               (u)  unmapped_nand2          3  6.9           
+  g3442/in_1                                                          
+  g3442/z               (u)  unmapped_nand2          1  2.3           
+  g3441/in_1                                                          
+  g3441/z               (u)  unmapped_nand2          3  6.9           
+  g3437/in_1                                                          
+  g3437/z               (u)  unmapped_nand2          1  2.3           
+  g3436/in_0                                                          
+  g3436/z               (u)  unmapped_nand2          3  6.9           
+  g3432/in_1                                                          
+  g3432/z               (u)  unmapped_nand2          2  4.6           
+  g3431/in_1                                                          
+  g3431/z               (u)  unmapped_nand2          3  6.9           
+  g3426/in_0                                                          
+  g3426/z               (u)  unmapped_complex2       1  2.3           
+  g3424/in_0                                                          
+  g3424/z               (u)  unmapped_nand2          3  6.9           
+  g3423/in_1                                                          
+  g3423/z               (u)  unmapped_nand2          2  4.6           
+  g3419/in_1                                                          
+  g3419/z               (u)  unmapped_nand2          3  6.9           
+  g3416/in_0                                                          
+  g3416/z               (u)  unmapped_or2            1  2.3           
+  g3417/in_1                                                          
+  g3417/z               (u)  unmapped_nand2          3  6.9           
+  g3411/in_0                                                          
+  g3411/z               (u)  unmapped_complex2       1  2.3           
+  g3410/in_0                                                          
+  g3410/z               (u)  unmapped_complex2       9 20.7           
+  g3014/in_1                                                          
+  g3014/z               (u)  unmapped_nand2          2  4.6           
+  g3399/in_0                                                          
+  g3399/z               (u)  unmapped_or2            1  2.3           
+  g3400/in_1                                                          
+  g3400/z               (u)  unmapped_nand2          5 11.5           
+  g579/in_0                                                           
+  g579/z                (u)  unmapped_nand2          3  6.9           
+  g3363/in_0                                                          
+  g3363/z               (u)  unmapped_complex2       1  2.3           
+  g3358/in_0                                                          
+  g3358/z               (u)  unmapped_nand2          3  6.9           
+  g3353/in_1                                                          
+  g3353/z               (u)  unmapped_nand2          1  2.3           
+  g3352/in_1                                                          
+  g3352/z               (u)  unmapped_nand2          3  6.9           
+  g3348/in_1                                                          
+  g3348/z               (u)  unmapped_nand2          1  2.3           
+  g3347/in_0                                                          
+  g3347/z               (u)  unmapped_nand2          4  9.2           
+  g3342/in_0                                                          
+  g3342/z               (u)  unmapped_complex2       1  2.3           
+  g3341/in_1                                                          
+  g3341/z               (u)  unmapped_complex2       3  6.9           
+  g3336/in_1                                                          
+  g3336/z               (u)  unmapped_nand2          1  2.3           
+  g3332/in_1                                                          
+  g3332/z               (u)  unmapped_nand2          3  6.9           
+  g3328/in_0                                                          
+  g3328/z               (u)  unmapped_nand2          1  2.3           
+  g3327/in_0                                                          
+  g3327/z               (u)  unmapped_nand2          2  4.6           
+  g3325/in_0                                                          
+  g3325/z               (u)  unmapped_complex2       1  2.3           
+  g3326/in_1                                                          
+  g3326/z               (u)  unmapped_nand2          2  4.6           
+  g383/in_1                                                           
+  g383/z                (u)  unmapped_nand2          4  9.2           
+  g3321/in_0                                                          
+  g3321/z               (u)  unmapped_complex2       3  6.9           
+  g3314/in_0                                                          
+  g3314/z               (u)  unmapped_complex2       3  6.9           
+  g3310/in_1                                                          
+  g3310/z               (u)  unmapped_complex2       4  9.2           
+  g3305/in_1                                                          
+  g3305/z               (u)  unmapped_complex2       3  6.9           
+  g3298/in_0                                                          
+  g3298/z               (u)  unmapped_complex2       2  4.6           
+  g3292/in_0                                                          
+  g3292/z               (u)  unmapped_or2            1  2.3           
+  g3293/in_1                                                          
+  g3293/z               (u)  unmapped_nand2          3  6.9           
+  g279/in_0                                                           
+  g279/z                (u)  unmapped_nand2          3  6.9           
+  g3287/in_0                                                          
+  g3287/z               (u)  unmapped_complex2       1  2.3           
+  g3283/in_0                                                          
+  g3283/z               (u)  unmapped_nand2          3  6.9           
+  g3060/in_1                                                          
+  g3060/z               (u)  unmapped_nand2          3  6.9           
+  g3279/in_1                                                          
+  g3279/z               (u)  unmapped_complex2       3  6.9           
+  g3275/in_1                                                          
+  g3275/z               (u)  unmapped_complex2       3  6.9           
+  g3240/in_1                                                          
+  g3240/z               (u)  unmapped_complex2       3  6.9           
+  g3038/in_1                                                          
+  g3038/z               (u)  unmapped_complex2       3  6.9           
+  g3241/in_1                                                          
+  g3241/z               (u)  unmapped_complex2       3  6.9           
+  g2101/in_1                                                          
+  g2101/z               (u)  unmapped_or2            3  6.9           
+  g2364/in_1                                                          
+  g2364/z               (u)  unmapped_complex2       3  6.9           
+  g3024/in_1                                                          
+  g3024/z               (u)  unmapped_complex2       3  6.9           
+  g3242/in_0                                                          
+  g3242/z               (u)  unmapped_complex2       3  6.9           
+  g2365/in_1                                                          
+  g2365/z               (u)  unmapped_complex2       3  6.9           
+  g3244/in_1                                                          
+  g3244/z               (u)  unmapped_or2            1  2.3           
+  g3245/in_1                                                          
+  g3245/z               (u)  unmapped_nand2          4  9.2           
+cb_parti2129/rem_187_71_A[13] 
+rem_187_71/A[13] 
+  g4796/in_1                                                          
+  g4796/z               (u)  unmapped_complex2       1  2.3           
+  g4794/in_1                                                          
+  g4794/z               (u)  unmapped_or2            1  2.3           
+  g4792/in_0                                                          
+  g4792/z               (u)  unmapped_complex2       4  9.2           
+  g4790/in_0                                                          
+  g4790/z               (u)  unmapped_nand2          7 16.1           
+  g4784/in_0                                                          
+  g4784/z               (u)  unmapped_or2            2  4.6           
+  g4768/in_1                                                          
+  g4768/z               (u)  unmapped_nand2          3  6.9           
+  g4764/in_0                                                          
+  g4764/z               (u)  unmapped_nand2          1  2.3           
+  g4755/in_1                                                          
+  g4755/z               (u)  unmapped_nand2          1  2.3           
+rem_187_71/REMAINDER[1] 
+cb_parti/rem_187_71_REMAINDER[1] 
+  g150/in_0                                                           
+  g150/z                (u)  unmapped_not            3  6.9           
+cb_parti/add_190_28_B[1] 
+add_190_28/B[1] 
+  g387/in_1                                                           
+  g387/z                (u)  unmapped_or2            1  2.3           
+  g553/in_1                                                           
+  g553/z                (u)  unmapped_complex2       1  2.3           
+  g542/in_0                                                           
+  g542/z                (u)  unmapped_nand2          3  6.9           
+  g537/in_1                                                           
+  g537/z                (u)  unmapped_nand2          1  2.3           
+  g536/in_1                                                           
+  g536/z                (u)  unmapped_nand2          3  6.9           
+  g532/in_1                                                           
+  g532/z                (u)  unmapped_nand2          1  2.3           
+  g531/in_0                                                           
+  g531/z                (u)  unmapped_nand2          3  6.9           
+  g530/in_1                                                           
+  g530/z                (u)  unmapped_nand2          2  4.6           
+  g525/in_1                                                           
+  g525/z                (u)  unmapped_complex2       1  2.3           
+  g521/in_1                                                           
+  g521/z                (u)  unmapped_complex2       3  6.9           
+  g517/in_1                                                           
+  g517/z                (u)  unmapped_nand2          1  2.3           
+  g516/in_1                                                           
+  g516/z                (u)  unmapped_nand2          3  6.9           
+  g515/in_0                                                           
+  g515/z                (u)  unmapped_nand2          1  2.3           
+  g511/in_0                                                           
+  g511/z                (u)  unmapped_nand2          3  6.9           
+  g510/in_1                                                           
+  g510/z                (u)  unmapped_nand2          2  4.6           
+  g506/in_1                                                           
+  g506/z                (u)  unmapped_complex2       1  2.3           
+  g504/in_1                                                           
+  g504/z                (u)  unmapped_complex2       3  6.9           
+  g497/in_1                                                           
+  g497/z                (u)  unmapped_nand2          1  2.3           
+  g496/in_1                                                           
+  g496/z                (u)  unmapped_nand2          3  6.9           
+  g495/in_0                                                           
+  g495/z                (u)  unmapped_nand2          1  2.3           
+  g491/in_1                                                           
+  g491/z                (u)  unmapped_nand2          3  6.9           
+  g487/in_1                                                           
+  g487/z                (u)  unmapped_nand2          1  2.3           
+  g486/in_1                                                           
+  g486/z                (u)  unmapped_nand2          3  6.9           
+  g484/in_0                                                           
+  g484/z                (u)  unmapped_or2            1  2.3           
+  g485/in_1                                                           
+  g485/z                (u)  unmapped_nand2          2  4.6           
+add_190_28/Z[13] 
+rem_190_55/A[13] 
+  g4509/in_1                                                          
+  g4509/z               (u)  unmapped_complex2       1  2.3           
+  g4507/in_1                                                          
+  g4507/z               (u)  unmapped_complex2       1  2.3           
+  g4459/in_1                                                          
+  g4459/z               (u)  unmapped_nand2          2  4.6           
+  g4505/in_0                                                          
+  g4505/z               (u)  unmapped_or2            1  2.3           
+  g4506/in_1                                                          
+  g4506/z               (u)  unmapped_nand2          2  4.6           
+rem_190_55/REMAINDER[0] 
+cb_parti2131/rem_190_55_REMAINDER 
+  g2753/in_0                                                          
+  g2753/z               (u)  unmapped_complex2       1  2.3           
+  g2754/in_1                                                          
+  g2754/z               (u)  unmapped_nand2          2  4.6           
+cb_parti2131/cb_parti_g15_z 
+cb_parti2127/g15_z 
+  g2177/in_0                                                          
+  g2177/z               (u)  unmapped_complex2       1  2.3           
+  g2178/in_1                                                          
+  g2178/z               (u)  unmapped_nand2         32 13.8           
+  g2198/in_0                                                          
+  g2198/z               (u)  unmapped_complex2       1  2.3           
+  m_c_D_OUT_reg[31]/d   <<<  unmapped_d_flop                          
+  m_c_D_OUT_reg[31]/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                           6400 R 
+                             latency                                  
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : cb_parti2122/m_a_D_OUT_reg[0]/clk
+End-point    : cb_parti2127/m_c_D_OUT_reg[31]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 1116ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   182 ps
+Target path end-point (Pin: m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E (CKLNQD1/E))
+
+         Pin                          Type          Fanout Load Arrival   
+                                                           (fF)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)               <<<    launch                               0 R 
+                                 latency                                  
+cb_seqi
+  m_c_empty_reg_reg/clk                                                   
+  m_c_empty_reg_reg/q     (u)    unmapped_d_flop         2  7.3           
+cb_seqi/RDY_response_get 
+cb_parti2131/cb_seqi_RDY_response_get 
+  g2484/in_1                                                              
+  g2484/z                 (u)    unmapped_complex2       1  2.3           
+  g2740/in_0                                                              
+  g2740/z                 (u)    unmapped_nand2          2  4.6           
+  g2741/in_0                                                              
+  g2741/z                 (u)    unmapped_not            4  7.8           
+cb_parti2131/m_c_RC_CG_HIER_INST1_enable 
+m_c_RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E        <<< (P)  CKLNQD1                                  
+  RC_CGIC_INST/CP                setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                           6400 R 
+                                 latency                                  
+                                 uncertainty                              
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_seqi/m_c_empty_reg_reg/clk
+End-point    : m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 5474ps.
+ 
+Multi-threaded Technology Mapping (8 threads per ST process, 8 of 16 CPUs usable)
+          Restructuring (delay-based) logic partition in mkReLURNS...
+          Done restructuring (delay-based) logic partition in mkReLURNS
+        Optimizing logic partition in mkReLURNS...
+          Restructuring (delay-based) remainder_unsigned_80...
+          Done restructuring (delay-based) remainder_unsigned_80
+        Optimizing component remainder_unsigned_80...
+        Early Area Reclamation for remainder_unsigned_80 'very_fast' (slack=1328, area=21)...
+                  			o_slack=1164,  bc_slack=1493
+          Restructuring (delay-based) remainder_unsigned_268...
+          Done restructuring (delay-based) remainder_unsigned_268
+        Optimizing component remainder_unsigned_268...
+          Restructuring (delay-based) remainder_unsigned_268...
+          Done restructuring (delay-based) remainder_unsigned_268
+        Optimizing component remainder_unsigned_268...
+          Restructuring (delay-based) remainder_unsigned_446...
+          Done restructuring (delay-based) remainder_unsigned_446
+        Optimizing component remainder_unsigned_446...
+          Restructuring (delay-based) remainder_unsigned_446...
+          Done restructuring (delay-based) remainder_unsigned_446
+        Optimizing component remainder_unsigned_446...
+          Restructuring (delay-based) logic partition in mkReLURNS...
+          Done restructuring (delay-based) logic partition in mkReLURNS
+        Optimizing logic partition in mkReLURNS...
+          Restructuring (delay-based) add_unsigned_664_88...
+          Done restructuring (delay-based) add_unsigned_664_88
+        Optimizing component add_unsigned_664_88...
+        Early Area Reclamation for add_unsigned_664_88 'very_fast' (slack=886, area=148)...
+                  			o_slack=656,  bc_slack=1116
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) logic partition in mkReLURNS...
+          Done restructuring (delay-based) logic partition in mkReLURNS
+        Optimizing logic partition in mkReLURNS...
+          Restructuring (delay-based) cb_part_114...
+          Done restructuring (delay-based) cb_part_114
+        Optimizing component cb_part_114...
+          Restructuring (delay-based) remainder_unsigned_82...
+          Done restructuring (delay-based) remainder_unsigned_82
+        Optimizing component remainder_unsigned_82...
+        Early Area Reclamation for remainder_unsigned_82 'very_fast' (slack=900, area=48)...
+                  			o_slack=897,  bc_slack=902
+          Restructuring (delay-based) remainder_unsigned_600...
+          Done restructuring (delay-based) remainder_unsigned_600
+        Optimizing component remainder_unsigned_600...
+          Restructuring (delay-based) remainder_unsigned_600...
+          Done restructuring (delay-based) remainder_unsigned_600
+        Optimizing component remainder_unsigned_600...
+          Restructuring (delay-based) add_unsigned_664...
+          Done restructuring (delay-based) add_unsigned_664
+        Optimizing component add_unsigned_664...
+        Early Area Reclamation for add_unsigned_664 'very_fast' (slack=630, area=171)...
+                  			o_slack=446,  bc_slack=814
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) logic partition in mkReLURNS...
+          Done restructuring (delay-based) logic partition in mkReLURNS
+        Optimizing logic partition in mkReLURNS...
+          Restructuring (delay-based) remainder_unsigned...
+          Done restructuring (delay-based) remainder_unsigned
+        Optimizing component remainder_unsigned...
+        Early Area Reclamation for remainder_unsigned 'very_fast' (slack=432, area=180)...
+                  			o_slack=423,  bc_slack=442
+          Restructuring (delay-based) remainder_unsigned_754...
+          Done restructuring (delay-based) remainder_unsigned_754
+        Optimizing component remainder_unsigned_754...
+          Restructuring (delay-based) remainder_unsigned_754...
+          Done restructuring (delay-based) remainder_unsigned_754
+        Optimizing component remainder_unsigned_754...
+          Restructuring (delay-based) remainder_unsigned_932...
+          Done restructuring (delay-based) remainder_unsigned_932
+        Optimizing component remainder_unsigned_932...
+          Restructuring (delay-based) remainder_unsigned_932...
+          Done restructuring (delay-based) remainder_unsigned_932
+        Optimizing component remainder_unsigned_932...
+          Restructuring (delay-based) remainder_unsigned_81...
+          Done restructuring (delay-based) remainder_unsigned_81
+        Optimizing component remainder_unsigned_81...
+        Early Area Reclamation for remainder_unsigned_81 'very_fast' (slack=585, area=138)...
+                  			o_slack=507,  bc_slack=664
+          Restructuring (delay-based) remainder_unsigned_1086...
+          Done restructuring (delay-based) remainder_unsigned_1086
+        Optimizing component remainder_unsigned_1086...
+          Restructuring (delay-based) remainder_unsigned_1086...
+          Done restructuring (delay-based) remainder_unsigned_1086
+        Optimizing component remainder_unsigned_1086...
+          Restructuring (delay-based) remainder_unsigned_1264...
+          Done restructuring (delay-based) remainder_unsigned_1264
+        Optimizing component remainder_unsigned_1264...
+          Restructuring (delay-based) remainder_unsigned_1264...
+          Done restructuring (delay-based) remainder_unsigned_1264
+        Optimizing component remainder_unsigned_1264...
+          Restructuring (delay-based) cb_part_111...
+          Done restructuring (delay-based) cb_part_111
+        Optimizing component cb_part_111...
+          Restructuring (delay-based) remainder_unsigned_662...
+          Done restructuring (delay-based) remainder_unsigned_662
+        Optimizing component remainder_unsigned_662...
+          Restructuring (delay-based) cb_part_113...
+          Done restructuring (delay-based) cb_part_113
+        Optimizing component cb_part_113...
+          Restructuring (delay-based) cb_part_107...
+          Done restructuring (delay-based) cb_part_107
+        Optimizing component cb_part_107...
+          Restructuring (delay-based) logic partition in mkReLURNS...
+          Done restructuring (delay-based) logic partition in mkReLURNS
+        Optimizing logic partition in mkReLURNS...
+ 
+Global mapping timing result
+============================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+         Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                    (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                     launch                                    0 R 
+                                latency                        +200     200 R 
+cb_seqi
+  m_c_empty_reg_reg/CP                                    100           200 R 
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4   48  +278     478 F 
+cb_seqi/RDY_response_get 
+cb_parti2131/cb_seqi_RDY_response_get 
+  g3366/B1                                                       +0     478   
+  g3366/ZN                      IND2D0            2  1.6   66   +56     533 R 
+  g3358/A1                                                       +0     533   
+  g3358/Z                       CKAN2D0           4  2.9   94  +142     675 R 
+cb_parti2131/m_c_RC_CG_HIER_INST1_enable 
+m_c_RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                          +0     675   
+  RC_CGIC_INST/CP               setup                     100  +149     824 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                     capture                                6400 R 
+                                latency                        +200    6600 R 
+                                uncertainty                    -100    6500 R 
+------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    5676ps 
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                  Type       Fanout Load Slew Delay Arrival   
+                                                (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)                 launch                                    0 R 
+                            latency                        +200     200 R 
+cb_parti2122
+  m_a_D_OUT_reg[1]/CP                                 100           200 R 
+  m_a_D_OUT_reg[1]/Q        DFQD4             8 10.2   52  +250     450 F 
+  g2348/A2                                                   +0     450   
+  g2348/ZN                  CKND2D3           4  4.8   47   +50     500 R 
+  g2345/A1                                                   +0     500   
+  g2345/ZN                  NR2XD1            3  3.1   48   +43     543 F 
+  g2339/A1                                                   +0     543   
+  g2339/ZN                  CKND2D1           2  2.3   63   +54     596 R 
+  g2335/A1                                                   +0     596   
+  g2335/ZN                  NR2XD0            1  1.0   40   +45     641 F 
+  g2334/A1                                                   +0     641   
+  g2334/ZN                  IND2D2            2  1.9   40   +78     719 F 
+cb_parti2122/rem_224_44_A[7] 
+rem_224_44/A[7] 
+  g2101/I                                                    +0     719   
+  g2101/ZN                  CKND1             1  1.9   37   +38     757 R 
+  g2091/A2                                                   +0     757   
+  g2091/ZN                  CKND2D2           1  2.6   37   +41     798 F 
+  g2089/A1                                                   +0     798   
+  g2089/ZN                  NR2XD2            4  4.4   47   +42     840 R 
+  g2082/B1                                                   +0     840   
+  g2082/ZN                  IND2D1            1  1.6   51   +46     887 F 
+  g2078/A1                                                   +0     887   
+  g2078/ZN                  ND2D2             3  3.7   41   +41     927 R 
+  g2074/A2                                                   +0     927   
+  g2074/ZN                  CKND2D2           4  4.7   58   +52     980 F 
+  g2073/I                                                    +0     980   
+  g2073/ZN                  CKND2             1  1.8   24   +33    1013 R 
+  g2067/A1                                                   +0    1013   
+  g2067/ZN                  ND2D2             2  3.3   45   +37    1050 F 
+  g2056/A1                                                   +0    1050   
+  g2056/ZN                  CKND2D2           1  1.4   32   +34    1084 R 
+  g2049/A1                                                   +0    1084   
+  g2049/ZN                  NR2XD1            2  2.5   43   +35    1119 F 
+  g2048/I                                                    +0    1119   
+  g2048/ZN                  CKND2             1  1.5   20   +27    1146 R 
+  g2044/A1                                                   +0    1146   
+  g2044/ZN                  CKND2D2           2  2.3   34   +30    1176 F 
+  g2037/A1                                                   +0    1176   
+  g2037/Z                   AO21D1            3  3.5   56  +106    1282 F 
+rem_224_44/REMAINDER[3] 
+cb_parti2129/rem_224_44_REMAINDER[3] 
+  g4485/A1                                                   +0    1282   
+  g4485/ZN                  CKND2D1           2  2.9   73   +62    1344 R 
+  g4480/A1                                                   +0    1344   
+  g4480/ZN                  INR2XD0           2  2.5   91  +118    1462 R 
+  g4448/A2                                                   +0    1462   
+  g4448/ZN                  CKND2D1           1  2.2   58   +68    1531 F 
+  g4442/B1                                                   +0    1531   
+  g4442/ZN                  IND2D2            2  3.8   43   +48    1578 R 
+  g4437/A1                                                   +0    1578   
+  g4437/ZN                  CKND2D1           1  1.4   44   +43    1621 F 
+  g4430/A2                                                   +0    1621   
+  g4430/ZN                  NR2XD1            2  2.8   54   +60    1681 R 
+  g4421/A2                                                   +0    1681   
+  g4421/ZN                  CKND2D2           1  1.4   28   +40    1721 F 
+  g4417/A2                                                   +0    1721   
+  g4417/ZN                  NR2XD1            2  3.1   58   +56    1777 R 
+  g4413/A2                                                   +0    1777   
+  g4413/ZN                  ND2D2             1  2.6   50   +49    1826 F 
+  g4412/A1                                                   +0    1826   
+  g4412/ZN                  ND2D3             6  8.6   54   +48    1874 R 
+  g4411/I                                                    +0    1874   
+  g4411/ZN                  INVD2             1  1.3   19   +26    1900 F 
+  g4407/A1                                                   +0    1900   
+  g4407/ZN                  NR2XD1            1  3.1   58   +44    1944 R 
+  g4391/B                                                    +0    1944   
+  g4391/S                   HA1D1             2  2.9   60  +143    2087 R 
+  g4366/B                                                    +0    2087   
+  g4366/CO                  FA1D1             1  1.9   53  +219    2306 R 
+  g4364/CI                                                   +0    2306   
+  g4364/CO                  FA1D1             1  1.9   53  +102    2408 R 
+  g4362/CI                                                   +0    2408   
+  g4362/CO                  FA1D1             1  1.9   53  +102    2509 R 
+  g4360/CI                                                   +0    2509   
+  g4360/CO                  FA1D1             1  1.9   53  +102    2611 R 
+  g4358/CI                                                   +0    2611   
+  g4358/CO                  FA1D1             1  1.9   53  +102    2712 R 
+  g4356/CI                                                   +0    2712   
+  g4356/CO                  FA1D1             2  3.9   76  +118    2830 R 
+  g4355/I                                                    +0    2830   
+  g4355/ZN                  INVD2             1  1.6   25   +32    2862 F 
+  g4354/A1                                                   +0    2862   
+  g4354/ZN                  AOI22D2           2  3.7  101   +69    2931 R 
+  g4352/A1                                                   +0    2931   
+  g4352/ZN                  NR2XD2            3  4.1   40   +53    2984 F 
+  g4348/A1                                                   +0    2984   
+  g4348/ZN                  CKND2D2           2  2.4   40   +37    3021 R 
+  g4344/A1                                                   +0    3021   
+  g4344/ZN                  NR2XD1            2  2.0   38   +35    3056 F 
+  g4341/A1                                                   +0    3056   
+  g4341/ZN                  CKND2D2           2  2.4   40   +36    3093 R 
+  g4337/A1                                                   +0    3093   
+  g4337/ZN                  NR2XD1            3  3.7   53   +43    3136 F 
+  g4333/A1                                                   +0    3136   
+  g4333/ZN                  CKND2D2           2  3.6   50   +47    3183 R 
+  g4326/I                                                    +0    3183   
+  g4326/ZN                  CKND2             1  1.4   19   +27    3211 F 
+  g4323/A1                                                   +0    3211   
+  g4323/ZN                  CKND2D2           1  1.8   37   +28    3238 R 
+  g4320/A1                                                   +0    3238   
+  g4320/ZN                  ND2D2             2  2.9   41   +39    3277 F 
+  g4319/A1                                                   +0    3277   
+  g4319/ZN                  CKND2D2           3  3.3   49   +42    3319 R 
+  g4316/A1                                                   +0    3319   
+  g4316/ZN                  NR2XD1            1  2.6   44   +41    3360 F 
+  g4313/A1                                                   +0    3360   
+  g4313/ZN                  NR2XD2            3  5.6   54   +49    3408 R 
+  g4311/A1                                                   +0    3408   
+  g4311/ZN                  NR2XD2            3  3.7   36   +38    3446 F 
+  g4306/A1                                                   +0    3446   
+  g4306/ZN                  CKND2D2           3  3.3   48   +40    3487 R 
+  g4301/A1                                                   +0    3487   
+  g4301/ZN                  NR2XD1            3  3.7   53   +46    3533 F 
+  g4296/A1                                                   +0    3533   
+  g4296/ZN                  CKND2D2           2  2.4   42   +42    3574 R 
+  g4291/A1                                                   +0    3574   
+  g4291/ZN                  NR2XD1            2  2.4   42   +38    3612 F 
+  g4286/A1                                                   +0    3612   
+  g4286/ZN                  CKND2D2           3  4.6   59   +48    3660 R 
+  g4282/A1                                                   +0    3660   
+  g4282/ZN                  NR2XD1            3  3.6   53   +49    3709 F 
+  g4278/A1                                                   +0    3709   
+  g4278/ZN                  CKND2D2           3  4.3   56   +50    3759 R 
+  g4273/A1                                                   +0    3759   
+  g4273/ZN                  NR2XD1            3  3.2   51   +46    3805 F 
+  g4270/A1                                                   +0    3805   
+  g4270/ZN                  NR2D1             1  1.0   56   +54    3859 R 
+  g4268/A1                                                   +0    3859   
+  g4268/ZN                  IND2D2            3  2.5   35   +70    3929 R 
+cb_parti2129/rem_187_71_A[11] 
+rem_187_71/A[11] 
+  g5157/I                                                    +0    3929   
+  g5157/ZN                  INVD1             1  1.3   22   +26    3955 F 
+  g5136/A1                                                   +0    3955   
+  g5136/ZN                  NR2XD1            2  2.5   51   +40    3995 R 
+  g5130/A1                                                   +0    3995   
+  g5130/ZN                  CKND2D2           4  4.3   51   +48    4043 F 
+  g5127/A1                                                   +0    4043   
+  g5127/ZN                  NR2XD1            1  1.5   39   +41    4084 R 
+  g5124/A1                                                   +0    4084   
+  g5124/ZN                  CKND2D2           1  2.6   38   +36    4120 F 
+  g5122/A1                                                   +0    4120   
+  g5122/ZN                  ND2D3             4  7.3   48   +42    4162 R 
+  g5120/A1                                                   +0    4162   
+  g5120/ZN                  CKND2D4           8 10.7   59   +52    4214 F 
+  g5102/A1                                                   +0    4214   
+  g5102/ZN                  OAI21D2           3  3.5   84   +73    4286 R 
+  g5091/A1                                                   +0    4286   
+  g5091/ZN                  CKND2D2           1  1.6   37   +43    4329 F 
+  g5082/A1                                                   +0    4329   
+  g5082/ZN                  ND2D2             1  2.0   29   +30    4359 R 
+rem_187_71/REMAINDER[1] 
+cb_parti/rem_187_71_REMAINDER[1] 
+  g2131/I                                                    +0    4359   
+  g2131/ZN                  INVD2             2  4.4   27   +28    4387 F 
+cb_parti/add_190_28_B[1] 
+add_190_28/B[1] 
+  g635/B                                                     +0    4387   
+  g635/CO                   HA1D1             1  1.4   29   +65    4452 F 
+  g633/A2                                                    +0    4452   
+  g633/ZN                   NR2XD1            3  3.1   58   +56    4509 R 
+  g631/A1                                                    +0    4509   
+  g631/Z                    OA21D2            3  3.0   45   +98    4607 R 
+  g629/A1                                                    +0    4607   
+  g629/ZN                   MOAI22D1          1  1.9   65   +50    4658 F 
+  g627/CI                                                    +0    4658   
+  g627/CO                   FA1D1             1  1.9   51  +115    4772 F 
+  g626/CI                                                    +0    4772   
+  g626/CO                   FA1D1             1  1.9   51  +110    4883 F 
+  g625/CI                                                    +0    4883   
+  g625/CO                   FA1D1             1  1.9   51  +110    4993 F 
+  g624/CI                                                    +0    4993   
+  g624/CO                   FA1D1             1  1.9   51  +110    5103 F 
+  g623/CI                                                    +0    5103   
+  g623/CO                   FA1D1             1  1.9   51  +110    5214 F 
+  g622/CI                                                    +0    5214   
+  g622/CO                   FA1D1             1  1.9   51  +110    5324 F 
+  g621/CI                                                    +0    5324   
+  g621/CO                   FA1D1             1  1.9   51  +110    5434 F 
+  g620/CI                                                    +0    5434   
+  g620/CO                   FA1D1             1  1.9   51  +110    5544 F 
+  g619/CI                                                    +0    5544   
+  g619/CO                   FA1D1             1  1.9   51  +110    5655 F 
+  g618/CI                                                    +0    5655   
+  g618/S                    FA1D1             1  1.8   54  +155    5809 R 
+add_190_28/Z[13] 
+rem_190_55/A[13] 
+  g1836/A1                                                   +0    5809   
+  g1836/ZN                  ND2D2             2  3.2   45   +45    5854 F 
+  g1835/A1                                                   +0    5854   
+  g1835/ZN                  ND2D2             1  1.9   32   +32    5886 R 
+  g1834/B                                                    +0    5886   
+  g1834/ZN                  OAI21D2           2  3.5   60   +60    5946 F 
+  g1833/I                                                    +0    5946   
+  g1833/ZN                  INVD2             1  1.5   25   +34    5980 R 
+  g1831/A1                                                   +0    5980   
+  g1831/ZN                  CKND2D2           1  2.6   40   +32    6012 F 
+  g1830/A1                                                   +0    6012   
+  g1830/ZN                  ND2D3             2  3.8   34   +34    6046 R 
+rem_190_55/REMAINDER[0] 
+cb_parti2131/rem_190_55_REMAINDER 
+  g3375/I                                                    +0    6046   
+  g3375/ZN                  INVD2             1  1.4   15   +21    6068 F 
+  g3365/A1                                                   +0    6068   
+  g3365/ZN                  CKND2D2           1  1.5   37   +25    6092 R 
+  g3357/A1                                                   +0    6092   
+  g3357/ZN                  CKND2D2           2  3.5   44   +40    6132 F 
+cb_parti2131/cb_parti_g15_z 
+cb_parti2127/g15_z 
+  g2332/I                                                    +0    6132   
+  g2332/ZN                  INVD2             1  1.8   23   +30    6163 R 
+  g2328/A1                                                   +0    6163   
+  g2328/ZN                  ND2D2             1  3.4   45   +37    6200 F 
+  g2327/A1                                                   +0    6200   
+  g2327/ZN                  ND2D4            18 19.3   78   +61    6261 R 
+  g2326/I                                                    +0    6261   
+  g2326/ZN                  INVD6            15 13.5   34   +42    6302 F 
+  g2308/B1                                                   +0    6302   
+  g2308/ZN                  IND2D1            1  0.9   35   +30    6333 R 
+  m_c_D_OUT_reg[10]/D  <<<  DFQD1                            +0    6333   
+  m_c_D_OUT_reg[10]/CP      setup                     100   +13    6346 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                6400 R 
+                            latency                        +200    6600 R 
+                            uncertainty                    -100    6500 R 
+--------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :     154ps 
+Start-point  : cb_parti2122/m_a_D_OUT_reg[1]/CP
+End-point    : cb_parti2127/m_c_D_OUT_reg[10]/D
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_map                 3213        0 
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+    cg_enable_group_clk               182     5676              6400 
+                    clk               189      154              6400 
+
+ 
+Global incremental target info
+==============================
+Cost Group 'clk' target slack:   130 ps
+Target path end-point (Pin: m_c_D_OUT_reg[26]/D (DFQD1/D))
+
+         Pin                  Type       Fanout Load Arrival   
+                                                (fF)   (ps)    
+---------------------------------------------------------------
+(clock clk)            <<<  launch                         0 R 
+                            latency                            
+cb_parti2122
+  m_a_D_OUT_reg[1]/CP                                          
+  m_a_D_OUT_reg[1]/Q        DFQD4             8 10.2           
+  g2348/A2                                                     
+  g2348/ZN                  CKND2D3           4  4.8           
+  g2345/A1                                                     
+  g2345/ZN                  NR2XD1            3  3.1           
+  g2339/A1                                                     
+  g2339/ZN                  CKND2D1           2  2.3           
+  g2335/A1                                                     
+  g2335/ZN                  NR2XD0            1  1.0           
+  g2334/A1                                                     
+  g2334/ZN                  IND2D2            2  1.9           
+cb_parti2122/rem_224_44_A[7] 
+rem_224_44/A[7] 
+  g2101/I                                                      
+  g2101/ZN                  CKND1             1  1.9           
+  g2091/A2                                                     
+  g2091/ZN                  CKND2D2           1  2.6           
+  g2089/A1                                                     
+  g2089/ZN                  NR2XD2            4  4.4           
+  g2082/B1                                                     
+  g2082/ZN                  IND2D1            1  1.6           
+  g2078/A1                                                     
+  g2078/ZN                  ND2D2             3  3.7           
+  g2074/A2                                                     
+  g2074/ZN                  CKND2D2           4  4.7           
+  g2073/I                                                      
+  g2073/ZN                  CKND2             1  1.8           
+  g2067/A1                                                     
+  g2067/ZN                  ND2D2             2  3.3           
+  g2056/A1                                                     
+  g2056/ZN                  CKND2D2           1  1.4           
+  g2049/A1                                                     
+  g2049/ZN                  NR2XD1            2  2.5           
+  g2048/I                                                      
+  g2048/ZN                  CKND2             1  1.5           
+  g2044/A1                                                     
+  g2044/ZN                  CKND2D2           2  2.3           
+  g2037/A1                                                     
+  g2037/Z                   AO21D1            3  3.5           
+rem_224_44/REMAINDER[3] 
+cb_parti2129/rem_224_44_REMAINDER[3] 
+  g4485/A1                                                     
+  g4485/ZN                  CKND2D1           2  2.9           
+  g4480/A1                                                     
+  g4480/ZN                  INR2XD0           2  2.5           
+  g4448/A2                                                     
+  g4448/ZN                  CKND2D1           1  2.2           
+  g4442/B1                                                     
+  g4442/ZN                  IND2D2            2  3.8           
+  g4437/A1                                                     
+  g4437/ZN                  CKND2D1           1  1.4           
+  g4430/A2                                                     
+  g4430/ZN                  NR2XD1            2  2.8           
+  g4421/A2                                                     
+  g4421/ZN                  CKND2D2           1  1.4           
+  g4417/A2                                                     
+  g4417/ZN                  NR2XD1            2  3.1           
+  g4413/A2                                                     
+  g4413/ZN                  ND2D2             1  2.6           
+  g4412/A1                                                     
+  g4412/ZN                  ND2D3             6  8.6           
+  g4411/I                                                      
+  g4411/ZN                  INVD2             1  1.3           
+  g4407/A1                                                     
+  g4407/ZN                  NR2XD1            1  3.1           
+  g4391/B                                                      
+  g4391/S                   HA1D1             2  2.9           
+  g4366/B                                                      
+  g4366/CO                  FA1D1             1  1.9           
+  g4364/CI                                                     
+  g4364/CO                  FA1D1             1  1.9           
+  g4362/CI                                                     
+  g4362/CO                  FA1D1             1  1.9           
+  g4360/CI                                                     
+  g4360/CO                  FA1D1             1  1.9           
+  g4358/CI                                                     
+  g4358/CO                  FA1D1             1  1.9           
+  g4356/CI                                                     
+  g4356/CO                  FA1D1             2  3.9           
+  g4355/I                                                      
+  g4355/ZN                  INVD2             1  1.6           
+  g4354/A1                                                     
+  g4354/ZN                  AOI22D2           2  3.7           
+  g4352/A1                                                     
+  g4352/ZN                  NR2XD2            3  4.1           
+  g4348/A1                                                     
+  g4348/ZN                  CKND2D2           2  2.4           
+  g4344/A1                                                     
+  g4344/ZN                  NR2XD1            2  2.0           
+  g4341/A1                                                     
+  g4341/ZN                  CKND2D2           2  2.4           
+  g4337/A1                                                     
+  g4337/ZN                  NR2XD1            3  3.7           
+  g4333/A1                                                     
+  g4333/ZN                  CKND2D2           2  3.6           
+  g4326/I                                                      
+  g4326/ZN                  CKND2             1  1.4           
+  g4323/A1                                                     
+  g4323/ZN                  CKND2D2           1  1.8           
+  g4320/A1                                                     
+  g4320/ZN                  ND2D2             2  2.9           
+  g4319/A1                                                     
+  g4319/ZN                  CKND2D2           3  3.3           
+  g4316/A1                                                     
+  g4316/ZN                  NR2XD1            1  2.6           
+  g4313/A1                                                     
+  g4313/ZN                  NR2XD2            3  5.6           
+  g4311/A1                                                     
+  g4311/ZN                  NR2XD2            3  3.7           
+  g4306/A1                                                     
+  g4306/ZN                  CKND2D2           3  3.3           
+  g4301/A1                                                     
+  g4301/ZN                  NR2XD1            3  3.7           
+  g4296/A1                                                     
+  g4296/ZN                  CKND2D2           2  2.4           
+  g4291/A1                                                     
+  g4291/ZN                  NR2XD1            2  2.4           
+  g4286/A1                                                     
+  g4286/ZN                  CKND2D2           3  4.6           
+  g4282/A1                                                     
+  g4282/ZN                  NR2XD1            3  3.6           
+  g4278/A1                                                     
+  g4278/ZN                  CKND2D2           3  4.3           
+  g4273/A1                                                     
+  g4273/ZN                  NR2XD1            3  3.2           
+  g4270/A1                                                     
+  g4270/ZN                  NR2D1             1  1.0           
+  g4268/A1                                                     
+  g4268/ZN                  IND2D2            3  2.5           
+cb_parti2129/rem_187_71_A[11] 
+rem_187_71/A[11] 
+  g5157/I                                                      
+  g5157/ZN                  INVD1             1  1.3           
+  g5136/A1                                                     
+  g5136/ZN                  NR2XD1            2  2.5           
+  g5130/A1                                                     
+  g5130/ZN                  CKND2D2           4  4.3           
+  g5127/A1                                                     
+  g5127/ZN                  NR2XD1            1  1.5           
+  g5124/A1                                                     
+  g5124/ZN                  CKND2D2           1  2.6           
+  g5122/A1                                                     
+  g5122/ZN                  ND2D3             4  7.3           
+  g5120/A1                                                     
+  g5120/ZN                  CKND2D4           8 10.7           
+  g5102/A1                                                     
+  g5102/ZN                  OAI21D2           3  3.5           
+  g5091/A1                                                     
+  g5091/ZN                  CKND2D2           1  1.6           
+  g5082/A1                                                     
+  g5082/ZN                  ND2D2             1  2.0           
+rem_187_71/REMAINDER[1] 
+cb_parti/rem_187_71_REMAINDER[1] 
+  g2131/I                                                      
+  g2131/ZN                  INVD2             2  4.4           
+cb_parti/add_190_28_B[1] 
+add_190_28/B[1] 
+  g635/B                                                       
+  g635/CO                   HA1D1             1  1.4           
+  g633/A2                                                      
+  g633/ZN                   NR2XD1            3  3.1           
+  g631/A1                                                      
+  g631/Z                    OA21D2            3  3.0           
+  g629/A1                                                      
+  g629/ZN                   MOAI22D1          1  1.9           
+  g627/CI                                                      
+  g627/CO                   FA1D1             1  1.9           
+  g626/CI                                                      
+  g626/CO                   FA1D1             1  1.9           
+  g625/CI                                                      
+  g625/CO                   FA1D1             1  1.9           
+  g624/CI                                                      
+  g624/CO                   FA1D1             1  1.9           
+  g623/CI                                                      
+  g623/CO                   FA1D1             1  1.9           
+  g622/CI                                                      
+  g622/CO                   FA1D1             1  1.9           
+  g621/CI                                                      
+  g621/CO                   FA1D1             1  1.9           
+  g620/CI                                                      
+  g620/CO                   FA1D1             1  1.9           
+  g619/CI                                                      
+  g619/CO                   FA1D1             1  1.9           
+  g618/CI                                                      
+  g618/S                    FA1D1             1  1.8           
+add_190_28/Z[13] 
+rem_190_55/A[13] 
+  g1836/A1                                                     
+  g1836/ZN                  ND2D2             2  3.2           
+  g1835/A1                                                     
+  g1835/ZN                  ND2D2             1  1.9           
+  g1834/B                                                      
+  g1834/ZN                  OAI21D2           2  3.5           
+  g1833/I                                                      
+  g1833/ZN                  INVD2             1  1.5           
+  g1831/A1                                                     
+  g1831/ZN                  CKND2D2           1  2.6           
+  g1830/A1                                                     
+  g1830/ZN                  ND2D3             2  3.8           
+rem_190_55/REMAINDER[0] 
+cb_parti2131/rem_190_55_REMAINDER 
+  g3375/I                                                      
+  g3375/ZN                  INVD2             1  1.4           
+  g3365/A1                                                     
+  g3365/ZN                  CKND2D2           1  1.5           
+  g3357/A1                                                     
+  g3357/ZN                  CKND2D2           2  3.5           
+cb_parti2131/cb_parti_g15_z 
+cb_parti2127/g15_z 
+  g2332/I                                                      
+  g2332/ZN                  INVD2             1  1.8           
+  g2328/A1                                                     
+  g2328/ZN                  ND2D2             1  3.4           
+  g2327/A1                                                     
+  g2327/ZN                  ND2D4            18 19.3           
+  g2326/I                                                      
+  g2326/ZN                  INVD6            15 13.5           
+  g2319/B1                                                     
+  g2319/ZN                  IND2D1            1  0.9           
+  m_c_D_OUT_reg[26]/D  <<<  DFQD1                              
+  m_c_D_OUT_reg[26]/CP      setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                     6400 R 
+                            latency                            
+                            uncertainty                        
+---------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : cb_parti2122/m_a_D_OUT_reg[1]/CP
+End-point    : cb_parti2127/m_c_D_OUT_reg[26]/D
+
+The global mapper estimates a slack for this path of 132ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   120 ps
+Target path end-point (Pin: m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E (CKLNQD1/E))
+
+         Pin                      Type       Fanout Load Arrival   
+                                                    (fF)   (ps)    
+-------------------------------------------------------------------
+(clock clk)              <<<    launch                         0 R 
+                                latency                            
+cb_seqi
+  m_c_empty_reg_reg/CP                                             
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4           
+cb_seqi/RDY_response_get 
+cb_parti2131/cb_seqi_RDY_response_get 
+  g3366/B1                                                         
+  g3366/ZN                      IND2D0            2  1.6           
+  g3358/A1                                                         
+  g3358/Z                       CKAN2D0           4  2.9           
+cb_parti2131/m_c_RC_CG_HIER_INST1_enable 
+m_c_RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                            
+  RC_CGIC_INST/CP               setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                     6400 R 
+                                latency                            
+                                uncertainty                        
+-------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 5291ps.
+ 
+ 
+Global incremental timing result
+================================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+         Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                    (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                     launch                                    0 R 
+                                latency                        +200     200 R 
+cb_seqi
+  m_c_empty_reg_reg/CP                                    100           200 R 
+  m_c_empty_reg_reg/Q           DFQD2             3  6.4   48  +278     478 F 
+cb_seqi/RDY_response_get 
+cb_parti2131/cb_seqi_RDY_response_get 
+  g3366/B1                                                       +0     478   
+  g3366/ZN                      IND2D0            2  1.6   66   +56     533 R 
+  g3358/A1                                                       +0     533   
+  g3358/Z                       CKAN2D0           4  2.9   94  +142     675 R 
+cb_parti2131/m_c_RC_CG_HIER_INST1_enable 
+m_c_RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E       <<< (P)  CKLNQD1                          +0     675   
+  RC_CGIC_INST/CP               setup                     100  +149     824 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                     capture                                6400 R 
+                                latency                        +200    6600 R 
+                                uncertainty                    -100    6500 R 
+------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    5676ps 
+Start-point  : cb_seqi/m_c_empty_reg_reg/CP
+End-point    : m_c_RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                  Type       Fanout Load Slew Delay Arrival   
+                                                (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)                 launch                                    0 R 
+                            latency                        +200     200 R 
+cb_parti2122
+  m_a_D_OUT_reg[1]/CP                                 100           200 R 
+  m_a_D_OUT_reg[1]/Q        DFQD4             7 10.2   57  +230     430 R 
+  g2348/A2                                                   +0     430   
+  g2348/ZN                  ND2D2             4  4.2   53   +56     486 F 
+  g2345/A1                                                   +0     486   
+  g2345/ZN                  NR2XD1            4  4.3   74   +62     548 R 
+  g2341/A1                                                   +0     548   
+  g2341/ZN                  CKND2D2           2  1.5   34   +40     588 F 
+  g2333/I                                                    +0     588   
+  g2333/ZN                  CKND1             2  2.5   44   +40     628 R 
+  g2377/B1                                                   +0     628   
+  g2377/ZN                  IND2D1            1  0.9   40   +39     666 F 
+  g2327/B                                                    +0     666   
+  g2327/ZN                  IOA21D1           2  2.6   63   +44     711 R 
+cb_parti2122/rem_224_44_A[5] 
+rem_224_44/A[5] 
+  g2095/A2                                                   +0     711   
+  g2095/ZN                  NR2XD1            1  1.9   38   +49     760 F 
+  g2091/A2                                                   +0     760   
+  g2091/ZN                  CKND2D2           1  2.7   43   +43     803 R 
+  g2089/A1                                                   +0     803   
+  g2089/ZN                  NR2XD2            4  4.2   38   +36     838 F 
+  g2083/A1                                                   +0     838   
+  g2083/ZN                  CKND2D1           1  1.8   54   +46     884 R 
+  g2079/A1                                                   +0     884   
+  g2079/ZN                  ND2D2             1  2.3   38   +41     925 F 
+  g2076/A1                                                   +0     925   
+  g2076/ZN                  CKND2D3           3  4.8   47   +41     966 R 
+  g2075/I                                                    +0     966   
+  g2075/ZN                  INVD1             2  1.8   26   +33     998 F 
+  g2068/A1                                                   +0     998   
+  g2068/ZN                  ND2D1             1  1.9   45   +36    1035 R 
+  g2061/B                                                    +0    1035   
+  g2061/ZN                  IOA21D2           1  1.3   33   +34    1068 F 
+  g2053/A1                                                   +0    1068   
+  g2053/ZN                  NR2XD1            1  1.8   42   +38    1106 R 
+  g2046/A1                                                   +0    1106   
+  g2046/ZN                  ND2D2             5  5.3   61   +51    1158 F 
+rem_224_44/REMAINDER[1] 
+cb_parti2129/rem_224_44_REMAINDER[1] 
+  g4476/A1                                                   +0    1158   
+  g4476/ZN                  CKND2D2           2  1.7   36   +41    1198 R 
+  g4470/A1                                                   +0    1198   
+  g4470/ZN                  INR2D1            2  1.7   75  +101    1299 R 
+  g4462/A1                                                   +0    1299   
+  g4462/ZN                  CKND2D1           1  1.0   42   +48    1347 F 
+  g4456/A1                                                   +0    1347   
+  g4456/ZN                  INR2D2            3  2.7   32   +77    1424 F 
+  g4453/B1                                                   +0    1424   
+  g4453/ZN                  INR2D1            2  1.9   80   +62    1486 R 
+  g4446/A2                                                   +0    1486   
+  g4446/ZN                  CKND2D1           2  2.1   56   +64    1550 F 
+  g4550/A1                                                   +0    1550   
+  g4550/ZN                  IND2D1            1  1.4   48   +99    1650 F 
+  g4430/A2                                                   +0    1650   
+  g4430/ZN                  NR2XD1            2  1.9   43   +54    1704 R 
+  g4421/A2                                                   +0    1704   
+  g4421/ZN                  ND2D1             1  1.4   46   +49    1753 F 
+  g4417/A2                                                   +0    1753   
+  g4417/ZN                  NR2XD1            2  2.6   52   +59    1811 R 
+  g4413/A2                                                   +0    1811   
+  g4413/ZN                  CKND2D2           1  2.6   45   +46    1857 F 
+  g4412/A1                                                   +0    1857   
+  g4412/ZN                  ND2D3             6  6.1   44   +41    1898 R 
+  g4408/A1                                                   +0    1898   
+  g4408/ZN                  ND2D1             2  1.8   54   +49    1947 F 
+  g4393/B1                                                   +0    1947   
+  g4393/ZN                  IND2D1            1  1.9   47   +45    1992 R 
+  g4387/A2                                                   +0    1992   
+  g4387/ZN                  CKND2D2           2  2.5   36   +44    2035 F 
+  g4378/A1                                                   +0    2035   
+  g4378/ZN                  ND2D2             3  2.4   33   +31    2066 R 
+  g4555/A1                                                   +0    2066   
+  g4555/ZN                  IND2D1            1  1.0   36   +69    2135 R 
+  g4367/A2                                                   +0    2135   
+  g4367/ZN                  ND2D1             1  1.9   55   +52    2187 F 
+  g4366/CI                                                   +0    2187   
+  g4366/CO                  FA1D1             1  1.9   51  +111    2298 F 
+  g4364/CI                                                   +0    2298   
+  g4364/CO                  FA1D1             1  1.9   51  +110    2409 F 
+  g4362/CI                                                   +0    2409   
+  g4362/CO                  FA1D1             1  1.9   51  +110    2519 F 
+  g4360/CI                                                   +0    2519   
+  g4360/CO                  FA1D1             1  1.9   51  +110    2629 F 
+  g4358/CI                                                   +0    2629   
+  g4358/CO                  FA1D1             1  1.9   51  +110    2740 F 
+  g4356/CI                                                   +0    2740   
+  g4356/CO                  FA1D1             2  2.6   57  +115    2855 F 
+  g4355/I                                                    +0    2855   
+  g4355/ZN                  CKND1             1  1.7   36   +42    2896 R 
+  g4354/A1                                                   +0    2896   
+  g4354/ZN                  AOI22D2           2  2.7   66   +42    2938 F 
+  g4352/A1                                                   +0    2938   
+  g4352/ZN                  NR2D2             3  4.3   80   +71    3009 R 
+  g4348/A1                                                   +0    3009   
+  g4348/ZN                  CKND2D2           2  2.2   40   +45    3054 F 
+  g4344/A1                                                   +0    3054   
+  g4344/ZN                  NR2XD1            2  2.2   47   +43    3097 R 
+  g4341/A1                                                   +0    3097   
+  g4341/ZN                  CKND2D2           2  2.2   34   +37    3133 F 
+  g4337/A1                                                   +0    3133   
+  g4337/ZN                  NR2XD1            3  3.2   60   +49    3182 R 
+  g4333/A1                                                   +0    3182   
+  g4333/ZN                  CKND2D2           2  1.8   33   +38    3220 F 
+  g4326/I                                                    +0    3220   
+  g4326/ZN                  CKND1             1  1.0   25   +29    3248 R 
+  g4323/A1                                                   +0    3248   
+  g4323/ZN                  ND2D1             1  1.6   50   +42    3291 F 
+  g4320/A1                                                   +0    3291   
+  g4320/ZN                  ND2D2             2  3.0   37   +38    3329 R 
+  g4319/A1                                                   +0    3329   
+  g4319/ZN                  CKND2D2           3  3.0   42   +38    3366 F 
+  g4316/A1                                                   +0    3366   
+  g4316/ZN                  NR2XD1            1  2.5   51   +46    3412 R 
+  g4313/A1                                                   +0    3412   
+  g4313/ZN                  NR2D3             3  4.6   30   +32    3444 F 
+  g4311/A1                                                   +0    3444   
+  g4311/ZN                  NR2D3             3  3.2   54   +46    3490 R 
+  g4306/A1                                                   +0    3490   
+  g4306/ZN                  CKND2D2           3  2.8   40   +41    3531 F 
+  g4301/A1                                                   +0    3531   
+  g4301/ZN                  NR2XD1            3  3.2   60   +50    3582 R 
+  g4296/A1                                                   +0    3582   
+  g4296/ZN                  CKND2D2           3  3.3   44   +45    3627 F 
+  g4541/B1                                                   +0    3627   
+  g4541/ZN                  INR2XD1           2  2.5   54   +48    3675 R 
+  g4286/A1                                                   +0    3675   
+  g4286/ZN                  CKND2D2           3  3.2   43   +43    3718 F 
+  g4282/A1                                                   +0    3718   
+  g4282/ZN                  NR2XD1            3  3.2   60   +51    3769 R 
+  g4277/A1                                                   +0    3769   
+  g4277/ZN                  NR2D0             1  0.7   32   +38    3808 F 
+  g4275/A1                                                   +0    3808   
+  g4275/ZN                  IND2D1            3  2.8   70  +105    3913 F 
+cb_parti2129/rem_187_71_A[9] 
+rem_187_71/A[9] 
+  g5151/A1                                                   +0    3913   
+  g5151/ZN                  CKND2D2           3  2.4   41   +47    3960 R 
+  g5150/I                                                    +0    3960   
+  g5150/ZN                  CKND1             1  1.4   27   +32    3992 F 
+  g5142/A1                                                   +0    3992   
+  g5142/ZN                  CKND2D2           3  3.0   46   +36    4028 R 
+  g5136/A2                                                   +0    4028   
+  g5136/ZN                  NR2XD1            2  2.3   41   +45    4073 F 
+  g5130/A1                                                   +0    4073   
+  g5130/ZN                  CKND2D2           4  3.8   53   +44    4117 R 
+  g5125/A2                                                   +0    4117   
+  g5125/ZN                  NR2D1             1  0.9   24   +32    4149 F 
+  g5123/A1                                                   +0    4149   
+  g5123/ZN                  ND2D1             1  4.3   76   +53    4202 R 
+  g5120/A2                                                   +0    4202   
+  g5120/ZN                  ND2D4             8  9.9   59   +64    4266 F 
+  g5102/A1                                                   +0    4266   
+  g5102/ZN                  OAI21D2           3  3.5   84   +73    4339 R 
+  g5091/A1                                                   +0    4339   
+  g5091/ZN                  CKND2D2           1  0.9   33   +38    4377 F 
+  g5082/A1                                                   +0    4377   
+  g5082/ZN                  ND2D1             1  2.0   46   +39    4416 R 
+rem_187_71/REMAINDER[1] 
+cb_parti/rem_187_71_REMAINDER[1] 
+  g2131/I                                                    +0    4416   
+  g2131/ZN                  INVD2             2  4.1   27   +32    4449 F 
+cb_parti/add_190_28_B[1] 
+add_190_28/B[1] 
+  g642/A1                                                    +0    4449   
+  g642/ZN                   NR2D1             1  0.9   54   +46    4495 R 
+  g634/A1                                                    +0    4495   
+  g634/ZN                   NR2D1             1  1.3   28   +33    4528 F 
+  g633/A1                                                    +0    4528   
+  g633/ZN                   NR2XD1            3  3.1   58   +46    4574 R 
+  g631/A1                                                    +0    4574   
+  g631/Z                    OA21D1            3  3.0   59   +98    4672 R 
+  g629/A1                                                    +0    4672   
+  g629/ZN                   MOAI22D1          1  1.9   65   +54    4727 F 
+  g627/CI                                                    +0    4727   
+  g627/CO                   FA1D1             1  1.9   51  +115    4841 F 
+  g626/CI                                                    +0    4841   
+  g626/CO                   FA1D1             1  1.9   51  +110    4952 F 
+  g625/CI                                                    +0    4952   
+  g625/CO                   FA1D1             1  1.9   51  +110    5062 F 
+  g624/CI                                                    +0    5062   
+  g624/CO                   FA1D1             1  1.9   51  +110    5172 F 
+  g623/CI                                                    +0    5172   
+  g623/CO                   FA1D1             1  1.9   51  +110    5282 F 
+  g622/CI                                                    +0    5282   
+  g622/CO                   FA1D1             1  1.9   51  +110    5393 F 
+  g621/CI                                                    +0    5393   
+  g621/CO                   FA1D1             1  1.9   51  +110    5503 F 
+  g620/CI                                                    +0    5503   
+  g620/CO                   FA1D1             1  1.9   51  +110    5613 F 
+  g619/CI                                                    +0    5613   
+  g619/CO                   FA1D1             1  1.9   51  +110    5724 F 
+  g618/CI                                                    +0    5724   
+  g618/S                    FA1D1             1  2.5   62  +160    5884 R 
+add_190_28/Z[13] 
+rem_190_55/A[13] 
+  g1836/A1                                                   +0    5884   
+  g1836/ZN                  CKND2D3           2  5.7   49   +49    5933 F 
+  g1835/A1                                                   +0    5933   
+  g1835/ZN                  ND2D3             1  3.6   35   +36    5970 R 
+  g1834/B                                                    +0    5970   
+  g1834/ZN                  OAI21D4           2  4.1   48   +53    6022 F 
+  g1833/I                                                    +0    6022   
+  g1833/ZN                  CKND3             1  3.4   25   +33    6055 R 
+  g1831/A1                                                   +0    6055   
+  g1831/ZN                  CKND2D4           1  2.6   28   +27    6082 F 
+  g1830/A1                                                   +0    6082   
+  g1830/ZN                  ND2D3             2  3.8   34   +30    6112 R 
+rem_190_55/REMAINDER[0] 
+cb_parti2131/rem_190_55_REMAINDER 
+  g3364/A1                                                   +0    6112   
+  g3364/ZN                  ND2D2             1  1.9   34   +33    6145 F 
+  g3357/A2                                                   +0    6145   
+  g3357/ZN                  CKND2D2           2  3.8   52   +47    6192 R 
+cb_parti2131/cb_parti_g15_z 
+cb_parti2127/g15_z 
+  g2329/A1                                                   +0    6192   
+  g2329/ZN                  ND2D2             1  7.7   80   +65    6258 F 
+  g2327/A2                                                   +0    6258   
+  g2327/ZN                  ND2D8            18 19.3   49   +58    6316 R 
+  g2326/I                                                    +0    6316   
+  g2326/ZN                  INVD6            15 13.5   28   +33    6349 F 
+  g2308/B1                                                   +0    6349   
+  g2308/ZN                  IND2D1            1  0.9   35   +29    6377 R 
+  m_c_D_OUT_reg[10]/D  <<<  DFQD1                            +0    6377   
+  m_c_D_OUT_reg[10]/CP      setup                     100   +13    6390 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                6400 R 
+                            latency                        +200    6600 R 
+                            uncertainty                    -100    6500 R 
+--------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :     110ps 
+Start-point  : cb_parti2122/m_a_D_OUT_reg[1]/CP
+End-point    : cb_parti2127/m_c_D_OUT_reg[10]/D
+
+ 
+ 
+Global incremental optimization status
+======================================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_incr                3065        0 
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+    cg_enable_group_clk               120     5676              6400 
+                    clk               130      110              6400 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+          Performing post-mapping optimization ...
+
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'add_205_27' in module 'mkReLURNS' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'add_190_28' in module 'mkReLURNS' would be automatically ungrouped.
+          There are 2 hierarchical instances automatically ungrouped.
+        Applying wireload models.
+        Computing net loads.
+ Doing ConstProp on design:mkReLURNS ... 
+
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+  Decloning clock-gating logic from design:mkReLURNS
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 2
+Total number of clock-gating instances after : 2
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay                 3065        0         0         3        0        2
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+
+ 
+Local TNS optimization status
+=============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_tns                   3065        0         0         3        0        2
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+       crit_upsz         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       crit_dnsz         0  (        0 /        0 )  0.00
+             dup         0  (        0 /        0 )  0.00
+        setup_dn         0  (        0 /        0 )  0.00
+
+##>======== Cadence Confidential (Mapping-Logical) ========
+##>Main Thread Summary:
+##>--------------------------------------------------------
+##>STEP               Elapsed     Insts      Area    Memory
+##>--------------------------------------------------------
+##>M:Initial                0      2372      7798       416
+##>M:Launch ST              0         -         -         -
+##>M:Distributed            0         -         -         -
+##>M:Cleanup                0      1087      3065       455
+##>M:MBCI                   0      1087      3065       455
+##>M:Misc                  15
+##>--------------------------------------------------------
+##>Total Elapsed           15
+##>========================================================
+  Setting attribute of root '/': 'pbs_stage_start_elapsed_time' = 34
+  Setting attribute of root '/': 'pbs_stage_start_st_time' = 31
+Info    : Done mapping. [SYNTH-5]
+        : Done mapping 'mkReLURNS'.
+        Applying wireload models.
+        Computing net loads.
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            23             16           -0.0 ps          109.5 ps  syn_map
+report area > $REPORTS_PATH/area.rpt
+report timing > $REPORTS_PATH/timing.rpt
+report power > $REPORTS_PATH/power.rpt
+Info    : Time taken to report power. [RPT-7]
+        : 0.00 cpu seconds
+report clock_gating > $REPORTS_PATH/clockgating.rpt
+report gates > $REPORTS_PATH/gates.rpt
+report gates -power > $REPORTS_PATH/gates_power.rpt
+report datapath > $REPORTS_PATH/datapath.rpt
+Beginning report datapath command
+Warning : The filename, column and line number information will not be available in the report. [RPT_DP-100]
+        : The attribute for getting HDL filename and line number is not set.
+        : You must set the 'hdl_track_filename_row_col' attribute to 'true' (before elaborate) to enable filename, column, and line number tracking in the datapath report.
+report messages > $REPORTS_PATH/messages.rpt
+report qor > $REPORTS_PATH/qor.rpt
+write_design -basename ${OUTPUTS_PATH}/${design}_syn
+Exporting design data for 'mkReLURNS' to build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn...
+Info    : Generating design database. [PHYS-90]
+        : Writing netlist: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.v
+        : The database contains all the files required to restore the design in the specified application.
+Info    : Generating design database. [PHYS-90]
+        : Writing Metrics file: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.metrics.json
+Info    : Generating design database. [PHYS-90]
+        : Writing write_script: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.g
+Info    : Generating design database. [PHYS-90]
+        : Writing TCF: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.tcf
+Info    : Generating design database. [PHYS-90]
+        : Writing multi-mode multi-corner file: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.mmmc.tcl
+Finished SDC export (command execution time mm:ss (real) = 00:00).
+Info: file build/tsmc65lp/156M_32_Dec10_1146/out//mkReLURNS_syn.default_emulate_constraint_mode.sdc has been written
+File build/tsmc65lp/156M_32_Dec10_1146/out//mkReLURNS_syn.mmmc.tcl has been written.
+Info    : Design has no library or power domains. [INVS_MSV-301]
+        : No power domains will be created for Innovus.
+Info    : Generating design database. [PHYS-90]
+        : Writing INIT setup file for Genus: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.genus_init.tcl
+Info    : Generating design database. [PHYS-90]
+        : Writing Genus(TM) Synthesis Solution setup file: build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.genus_setup.tcl
+** To load the database source build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'mkReLURNS' (command execution time mm:ss cpu = 00:00, real = 00:01).
+.
+write_hdl  > ${OUTPUTS_PATH}/${design}_syn.v
+write_sdc > ${OUTPUTS_PATH}/${design}_syn.sdc
+Finished SDC export (command execution time mm:ss (real) = 00:00).
+write_sdf -edges check_edge > ${OUTPUTS_PATH}/${design}_syn.sdf
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -setuphold has changed from split to merge_always. Specify '-setuphold split' to preserve the behavior of the previous release.
+        : Specify the option explicitly.
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -recrem has changed from split to merge_always. Specify '-recrem split' to preserve the behavior of the previous release.
+write_db ${design} -to_file ${OUTPUTS_PATH}/${design}_syn.db
+Finished exporting design database to file 'build/tsmc65lp/156M_32_Dec10_1146/out/mkReLURNS_syn.db' for 'mkReLURNS' (command execution time mm:ss cpu = 00:00, real = 00:00).
+file copy [get_db stdout_log] ${LOG_PATH}/

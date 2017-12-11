@@ -1,0 +1,28 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
++name+mkPETest
++nclibdirname+INCA_libs_hdlsim
+"+define+BSV_ASSIGNMENT_DELAY=#1"
++define+BSV_NO_INITIAL_BLOCKS
++libext+.v
++access+rw
+-NOCOPYRIGHT
+-ACCESS
++rw
+-timescale
+1ps/1ps
+-MESSAGES
+worklib.mkPETest
+-XLMODE
+./INCA_libs_hdlsim/mkPETest.lnx8664.15.20.nc
+-RUNMODE
+-CDSLIB
+./INCA_libs_hdlsim/mkPETest.lnx8664.15.20.nc/cds.lib
+-HDLVAR
+./INCA_libs_hdlsim/mkPETest.lnx8664.15.20.nc/hdl.var
+-WORK
+worklib
+-IRUNHASTOP
+-HASXLMODE

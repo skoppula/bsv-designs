@@ -72,12 +72,13 @@ module mkTbPE();
 
         end else if (cycle3 < 9) begin
             pe3.add_input(inputs[cycle3-1]);
+            FixedPoint#(2,6) rcvd_ans <- pe3.get_pos_partial_sum();
 
         end else if (cycle3 == 9) begin
-            pe3.nonlinearity();
+            pe3.combine();
 
         end else if (cycle3 == 10) begin
-            pe3.combine();
+            pe3.nonlinearity();
 
         end else begin
             FixedPoint#(2,6) rcvd_ans <- pe3.get_pos_partial_sum();

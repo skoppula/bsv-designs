@@ -37,6 +37,13 @@ interface LayerEvalIfc#( numeric type n_pes, numeric type n_cols, numeric type p
     method ActionValue#(Bit#(TAdd#(prec_int, prec_dec))) read_feat_bram();
 endinterface
 
+(* synthesize *)
+module mkLayerEvalTestDims(LayerEvalIfc#(8, 8, 2, 6, 24, 24));
+  (* hide *)
+  let m <- mkLayerEval;
+  return m;
+endmodule
+
 module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec, accum_prec_int, accum_prec_dec) ) provisos(Add#(a__, prec_dec, accum_prec_dec), Add#(b__, prec_int, accum_prec_int));
 
     Vector#(n_pes, PeIfc#(n_cols, prec_int, prec_dec, accum_prec_int, accum_prec_dec)) pe_vec <- replicateM(mkPE());

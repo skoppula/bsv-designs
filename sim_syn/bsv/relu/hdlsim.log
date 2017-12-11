@@ -1,0 +1,68 @@
+TOOL:	irun(64)	15.20-s028: Started on Dec 10, 2017 at 11:44:59 EST
+irun
+	-64bit
+	-nocopyright
+	+name+mkReLUTest
+	+nclibdirname+INCA_libs_hdlsim
+	-log hdlsim.log
+	+define+BSV_ASSIGNMENT_DELAY=#1
+	+define+BSV_NO_INITIAL_BLOCKS
+	+libext+.v
+	+access+rw
+	-timescale 1ps/1ps
+	/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
+	-top worklib.mkReLUTest
+	vlog/*.v
+	-y /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+	-input /homes/mrhamid/6888_prj/6888_Project/bsv-standard/bin/dump.tcl
+Recompiling... reason: file './vlog/mkReLUTest.v' is newer than expected.
+	expected: Sun Dec 10 11:43:26 2017
+	actual:   Sun Dec 10 11:44:57 2017
+file: vlog/mkReLUTest.v
+	module worklib.mkReLUTest:v
+		errors: 0, warnings: 0
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+		Caching library 'Verilog' ....... Done
+	Top level design units:
+		mkReLUTest
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.mkReLUTest:v <0x764f3127>
+			streams:  13, words:  5797
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 9       7
+		Registers:              37      23
+		Scalar wires:           60       -
+		Vectored wires:         68       -
+		Always blocks:          18      11
+		Initial blocks:          6       5
+		Cont. assignments:      65     114
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.mkReLUTest:v
+Loading snapshot worklib.mkReLUTest:v .................... Done
+ncsim> source /opt/cadence/INCISIVE/15.20.028/tools/inca/files/ncsimrc
+ncsim> if {![info exists ::env(DUMP)]} {set ::env(DUMP) ncsim.shm}
+ncsim> set ext [string trimleft [file ext $::env(DUMP)] "."]
+saif
+ncsim> 
+ncsim> if {$ext == "saif"} {
+>     dumpsaif -hierarchy -internal -scope -output $::env(DUMP)
+> } elseif {$ext == "tcf"} {
+>     dumptcf -scope main.dut -output $::env(DUMP)
+> } elseif {$ext == "vcd" || $ext == "shm"} {
+>     database -open -$ext -default $::env(DUMP)
+>     probe $::env(TOP_MODULE) -all -depth all -$ext
+> }
+ncsim> 
+ncsim> run
+Simulation complete via $finish(1) at time 6409600 PS + 2
+./vlog/mkReLUTest.v:285       if (fin_fcount == 32'd1000) $finish(32'd1);
+ncsim> 
+ncsim> if {$ext == "saif" || $ext == "tcf"} {dump$ext -end}
+ncsim> 
+ncsim> if {![info exists ::env(NOEXIT)]} exit
+TOOL:	irun(64)	15.20-s028: Exiting on Dec 10, 2017 at 11:44:59 EST  (total: 00:00:00)

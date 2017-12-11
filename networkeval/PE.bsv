@@ -19,6 +19,7 @@ interface PeIfc#( numeric type n, numeric type prec_int, numeric type prec_dec, 
     method Action reset_pe();
 endinterface
 
+// prec_int/prec_dec is precision of the inputs
 module mkPE( PeIfc#(n, prec_int, prec_dec, accum_prec_int, accum_prec_dec) ) provisos(Add#(a__, prec_dec, accum_prec_dec), Add#(b__, prec_int, accum_prec_int));
 
     // 01 is positive weight matrix (W[0]), 10 is negative weight matrix (W[1])

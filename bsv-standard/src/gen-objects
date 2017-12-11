@@ -1,0 +1,8 @@
+#!/bin/sh
+
+../bsim.py Test.bsv -m test compile
+cp .bscdir/*.bo ..
+rm ../Test.bo
+chmod g+r ../*.bo
+cp lambda.bsv ../
+chmod g+r lambda.bsv
