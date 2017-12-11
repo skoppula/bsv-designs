@@ -1,0 +1,193 @@
+# Cadence Genus(TM) Synthesis Solution, Version 16.22-s033_1, built Apr  5 2017
+
+# Date: Mon Dec 11 16:24:00 2017
+# Host: ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB)
+# OS:   Red Hat Enterprise Linux Server release 7.4 (Maipo)
+
+source setup_design.tcl
+# set design mkPE32
+# set design_folder pe32
+# set rtl_top_inst dut
+# set libname tsmc65lp
+# set do_power_opt true
+# set do_clock_gating true
+# set do_adv_opt false
+# set save false
+# set basename_prefix "100M_32"
+# set backup_input false
+# set project_base /homes/mrhamid/bsv-designs/sim_syn
+# set use_tcf false
+# set use_vcd false
+# set use_saif true
+# set activity_filename $project_base/bsv/$design_folder/${design_folder}.saif
+# set rtl_path [ list \
+#    ${project_base}/bsv/$design_folder/vlog \
+#    $::env(BLUESPECDIR)/Verilog \
+#]
+# set rtl_files [ list \
+#    mkPE32.v \
+#    FIFOL1.v \
+#]
+# set sdc_file constraints_${libname}.sdc
+# set_db script_search_path [ concat . ${project_base}/syn/common ]
+# include run_rc.tcl
+# set DATE [clock format [clock seconds] -format "%b%d_%H%M"]
+# if {!$save} {
+#  set BASE_PATH build/${libname}/test_run
+#  file delete -force $BASE_PATH
+#} else {
+#  if {$basename_prefix != ""} {
+#    set BASE_PATH build/${libname}/${basename_prefix}_${DATE}
+#  } else {
+#    set BASE_PATH build/${libname}/${DATE}
+#  }
+#}
+# if {$backup_input} {
+#  set INPUTS_PATH ${BASE_PATH}/in
+#  file mkdir ${INPUTS_PATH}
+#}
+# set OUTPUTS_PATH ${BASE_PATH}/out
+# set REPORTS_PATH ${BASE_PATH}/rpt
+# set LOG_PATH ${BASE_PATH}/logs
+# set VERIFICATION_PATH ${BASE_PATH}/fv
+# file mkdir ${OUTPUTS_PATH}
+# file mkdir ${REPORTS_PATH}
+# file mkdir ${LOG_PATH}
+# file mkdir ${VERIFICATION_PATH}
+# file delete current
+# file link -symbolic current $BASE_PATH
+# set_db hdl_error_on_blackbox true
+# set_db information_level 9
+# set_db syn_generic_effort high
+# set_db syn_map_effort high
+# if {$do_power_opt} {
+#  if {$do_clock_gating} {
+#    set_db lp_insert_clock_gating true
+#  }
+#  # set_db lp_insert_operand_isolation true
+#  set_db lp_power_analysis_effort high
+#  # set_db hdl_track_filename_row_col true
+#}
+# set_db init_hdl_search_path [ concat $rtl_path ]
+# read_hdl -sv $rtl_files
+# include technology.tcl
+# if {$libname == "tsmc40lp"} {
+#    #######################################################
+#    ## Standard Cells
+#    #######################################################
+#
+#    set lib_base /u/tsmc/CRN40LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+#    set stdcell_list [ list tcbn40lpbwp tcbn40lpbwphvt ]
+#    set stdcell_ver 200a
+#    set stdcell_path ""
+#    foreach lib $stdcell_list {
+#        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+#    }
+#
+#    set fast_corner bc
+#    set leak_corner mlg
+#    set slow_corner wc
+#    set typical_corner tc
+#
+#    if {[info exists corner]} {
+#        set pvt [set ${corner}_corner]
+#    } else {
+#        set pvt $slow_corner
+#    }
+#
+#    #build list of .lib file names
+#    set target_library  ""
+#    foreach lib $stdcell_list {
+#        set target_library [concat $target_library ${lib}${pvt}.lib]
+#    }
+#
+#    #######################################################
+#    ## SRAM
+#    #######################################################
+#
+#    set_db lib_search_path $stdcell_path
+#    set_db library $target_library
+#} elseif {$libname == "tsmc45gs"} {
+#    #######################################################
+#    ## Standard Cells
+#    #######################################################
+#
+#    set lib_base /u/tsmc/CLN45GS/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+#    set stdcell_list [ list tcbn45gsbwp12t tcbn45gsbwp12thvt ]
+#    set stdcell_ver 120c
+#    set stdcell_path ""
+#    foreach lib $stdcell_list {
+#        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+#    }
+#
+#    set fast_corner bc
+#    set leak_corner mlg
+#    set slow_corner wc
+#    set typical_corner tc
+#
+#    if {[info exists corner]} {
+#        set pvt [set ${corner}_corner]
+#    } else {
+#        set pvt $slow_corner
+#    }
+#
+#    #build list of .lib file names
+#    set target_library  ""
+#    foreach lib $stdcell_list {
+#        set target_library [concat $target_library ${lib}${pvt}.lib]
+#    }
+#
+#    #######################################################
+#    ## SRAM
+#    #######################################################
+#
+#    set_db lib_search_path $stdcell_path
+#    set_db library $target_library
+#} elseif {$libname == "tsmc65lp"} {
+#    #######################################################
+#    ## Standard Cells
+#    #######################################################
+#
+#    set lib_base /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+#    set stdcell_list [ list tcbn65lp ]
+#    set stdcell_ver 200a
+#    set stdcell_path ""
+#    foreach lib $stdcell_list {
+#        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+#    }
+#
+#    set fast_corner bc
+#    set leak_corner mlg
+#    set slow_corner wc
+#    set typical_corner tc
+#
+#    if {[info exists corner]} {
+#        set pvt [set ${corner}_corner]
+#    } else {
+#        set pvt $slow_corner
+#    }
+#
+#    #build list of .lib file names
+#    set target_library  ""
+#    foreach lib $stdcell_list {
+#        set target_library [concat $target_library ${lib}${pvt}.lib]
+#    }
+#
+#    #######################################################
+#    ## SRAM
+#    #######################################################
+#
+#    set_db lib_search_path $stdcell_path
+#    set_db library $target_library
+#}
+# elaborate $design
+ls 
+ls
+cd ..
+ls
+cd ..
+ls
+cd bsv
+ls
+ls pe32
+exit

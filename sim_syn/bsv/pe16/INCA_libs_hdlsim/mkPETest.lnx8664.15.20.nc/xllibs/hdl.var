@@ -1,3 +1,6 @@
 define LIB_MAP ( $LIB_MAP \
-, ../../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog => Verilog \
+, ../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog => Verilog \
+)
+define LIB_MAP ( $LIB_MAP \
+, ../../../../../../../../../u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog => Verilog \
 )

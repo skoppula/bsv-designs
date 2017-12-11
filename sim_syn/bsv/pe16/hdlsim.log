@@ -1,4 +1,4 @@
-TOOL:	irun(64)	15.20-s028: Started on Dec 11, 2017 at 16:02:54 EST
+TOOL:	irun(64)	15.20-s028: Started on Dec 11, 2017 at 16:39:42 EST
 irun
 	-64bit
 	-nocopyright
@@ -14,21 +14,12 @@ irun
 	-top worklib.mkPETest
 	vlog/*.v
 	-y /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
-	-input /homes/skoppula/bsv/bsv-standard/bin/dump.tcl
-file: /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
-	module worklib.ClockGen:v
-		errors: 0, warnings: 0
-file: vlog/mkPE16.v
-	module worklib.mkPE16:v
-		errors: 0, warnings: 0
-file: vlog/mkPE8.v
-	module worklib.mkPE8:v
-		errors: 0, warnings: 0
+	-input /homes/mrhamid/6888_prj/6888_Project/bsv-standard/bin/dump.tcl
+Recompiling... reason: file './vlog/mkPETest.v' is newer than expected.
+	expected: Mon Dec 11 16:33:13 2017
+	actual:   Mon Dec 11 16:39:24 2017
 file: vlog/mkPETest.v
 	module worklib.mkPETest:v
-		errors: 0, warnings: 0
-file: /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/InitialReset.v
-	module Verilog.InitialReset:v
 		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
@@ -37,12 +28,8 @@ file: /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/In
 		mkPETest
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		Verilog.InitialReset:v <0x00ed2601>
-			streams:   4, words:  1273
-		worklib.ClockGen:v <0x0ca927da>
+		worklib.ClockGen:v <0x6f558fa6>
 			streams:   2, words:  1169
-		worklib.mkPE16:v <0x60dda188>
-			streams:  58, words: 23325
 		worklib.mkPETest:v <0x3e390928>
 			streams: 137, words: 70486
 	Building instance specific data structures.
@@ -78,10 +65,10 @@ Passed all r/w weight tests.
 Passed all dot product tests.
 Passed all dot product tests.
 Passed all non-linearity tests.
-Simulation complete via $finish(1) at time 21600 PS + 2
+Simulation complete via $finish(1) at time 51300 PS + 2
 ./vlog/mkPETest.v:1120       if (WILL_FIRE_RL_test_end) $finish(32'd1);
 ncsim> 
 ncsim> if {$ext == "saif" || $ext == "tcf"} {dump$ext -end}
 ncsim> 
 ncsim> if {![info exists ::env(NOEXIT)]} exit
-TOOL:	irun(64)	15.20-s028: Exiting on Dec 11, 2017 at 16:02:57 EST  (total: 00:00:03)
+TOOL:	irun(64)	15.20-s028: Exiting on Dec 11, 2017 at 16:39:44 EST  (total: 00:00:02)

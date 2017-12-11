@@ -3,6 +3,7 @@
 // Do not modify this file
 //
 /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
-/homes/skoppula/bsv/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE16.v
-/homes/skoppula/bsv/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE8.v
-/homes/skoppula/bsv/bsv-designs/sim_syn/bsv/pe32/vlog/mkPETest.v
+/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE16.v
+/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v
+/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE8.v
+/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPETest.v

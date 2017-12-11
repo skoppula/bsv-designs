@@ -1,0 +1,2195 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2016 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 16.22-s033_1, built Wed Apr 05 2017
+Options: -files setup_design.tcl 
+Date:    Mon Dec 11 16:26:25 2017
+Host:    ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB) (32866740KB)
+OS:      Red Hat Enterprise Linux Server release 7.4 (Maipo)
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+Sourcing setup_design.tcl...
+  Setting attribute of root '/': 'source_verbose_info' = false
+  Setting attribute of root '/': 'source_verbose' = true
+set design mkPE32
+set design_folder pe32
+set rtl_top_inst dut
+set libname tsmc65lp
+set do_power_opt true
+set do_clock_gating true
+set do_adv_opt false
+set save false
+set basename_prefix "100M_32"
+set backup_input false
+set project_base /homes/mrhamid/bsv-designs/sim_syn
+set use_tcf false
+set use_vcd false
+set use_saif true
+set activity_filename $project_base/bsv/$design_folder/${design_folder}.saif
+set rtl_path [ list \
+    ${project_base}/bsv/$design_folder/vlog \
+    $::env(BLUESPECDIR)/Verilog \
+]
+set rtl_files [ list \
+    mkPE32.v \
+    FIFOL1.v \
+]
+set sdc_file constraints_${libname}.sdc
+set_db script_search_path [ concat . ${project_base}/syn/common ]
+  Setting attribute of root '/': 'script_search_path' = . /homes/mrhamid/bsv-designs/sim_syn/syn/common
+include run_rc.tcl
+Sourcing '/homes/mrhamid/bsv-designs/sim_syn/syn/common/run_rc.tcl' (Mon Dec 11 16:26:33 -0500 2017)...
+set DATE [clock format [clock seconds] -format "%b%d_%H%M"]
+if {!$save} {
+  set BASE_PATH build/${libname}/test_run
+  file delete -force $BASE_PATH
+} else {
+  if {$basename_prefix != ""} {
+    set BASE_PATH build/${libname}/${basename_prefix}_${DATE}
+  } else {
+    set BASE_PATH build/${libname}/${DATE}
+  }
+}
+if {$backup_input} {
+  set INPUTS_PATH ${BASE_PATH}/in
+  file mkdir ${INPUTS_PATH}
+}
+set OUTPUTS_PATH ${BASE_PATH}/out
+set REPORTS_PATH ${BASE_PATH}/rpt
+set LOG_PATH ${BASE_PATH}/logs
+set VERIFICATION_PATH ${BASE_PATH}/fv
+file mkdir ${OUTPUTS_PATH}
+file mkdir ${REPORTS_PATH}
+file mkdir ${LOG_PATH}
+file mkdir ${VERIFICATION_PATH}
+file delete current
+file link -symbolic current $BASE_PATH
+set_db hdl_error_on_blackbox true
+  Setting attribute of root '/': 'hdl_error_on_blackbox' = true
+set_db information_level 9
+  Setting attribute of root '/': 'information_level' = 9
+set_db syn_generic_effort high
+  Setting attribute of root '/': 'syn_generic_effort' = high
+set_db syn_map_effort high
+  Setting attribute of root '/': 'syn_map_effort' = high
+if {$do_power_opt} {
+  if {$do_clock_gating} {
+    set_db lp_insert_clock_gating true
+  }
+  # set_db lp_insert_operand_isolation true
+  set_db lp_power_analysis_effort high
+  # set_db hdl_track_filename_row_col true
+}
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+Info    : Resetting power analysis results. [PA-7]
+        : Power analysis effort level changed from 'medium' to 'high'.
+        : All computed switching activities are removed.
+  Setting attribute of root '/': 'lp_power_analysis_effort' = high
+set_db init_hdl_search_path [ concat $rtl_path ]
+  Setting attribute of root '/': 'init_hdl_search_path' = /homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+read_hdl -sv $rtl_files
+            Reading Verilog file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'
+            Reading Verilog file '/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFOL1.v'
+include technology.tcl
+Sourcing '/homes/mrhamid/bsv-designs/sim_syn/syn/common/technology.tcl' (Mon Dec 11 16:26:33 -0500 2017)...
+if {$libname == "tsmc40lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN40LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn40lpbwp tcbn40lpbwphvt ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc45gs"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CLN45GS/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn45gsbwp12t tcbn45gsbwp12thvt ]
+    set stdcell_ver 120c
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+} elseif {$libname == "tsmc65lp"} {
+    #######################################################
+    ## Standard Cells
+    #######################################################
+
+    set lib_base /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM
+    set stdcell_list [ list tcbn65lp ]
+    set stdcell_ver 200a
+    set stdcell_path ""
+    foreach lib $stdcell_list {
+        set stdcell_path [concat $stdcell_path $lib_base/${lib}_${stdcell_ver}]
+    }
+
+    set fast_corner bc
+    set leak_corner mlg
+    set slow_corner wc
+    set typical_corner tc
+
+    if {[info exists corner]} {
+        set pvt [set ${corner}_corner]
+    } else {
+        set pvt $slow_corner
+    }
+
+    #build list of .lib file names
+    set target_library  ""
+    foreach lib $stdcell_list {
+        set target_library [concat $target_library ${lib}${pvt}.lib]
+    }
+
+    #######################################################
+    ## SRAM
+    #######################################################
+
+    set_db lib_search_path $stdcell_path
+    set_db library $target_library
+}
+  Setting attribute of root '/': 'lib_search_path' = /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a
+            Reading file '/u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib'
+    Loading library tcbn65lpwc.lib
+Info    : An unsupported construct was detected in this library. [LBR-40]
+        : Unknown Liberty attribute 'library_features' encountered. Ignoring (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 69)
+        : Check to see if this construct is really needed for synthesis. Many liberty constructs are not actually required.
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN2XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN3XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D2' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D4' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4D8' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AN4XD1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D0' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Could not find an attribute in the library. [LBR-436]
+        : Attribute 'max_fanout' on 'output/inout' pin 'Z' of cell 'AO211D1' is not defined in the library. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib)
+Info    : Missing a function attribute in the output pin definition. [LBR-518]
+        : Functionality is missing at pin 'Z' for the cell 'BHD'. (File /u/tsmc/CRN65LP/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a/tcbn65lpwc.lib, Line 272424)
+
+  Message Summary for Library tcbn65lpwc.lib:
+  *******************************************
+  Could not find an attribute in the library. [LBR-436]: 989
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  An unsupported construct was detected in this library. [LBR-40]: 1
+  *******************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.080000, 125.000000) in library 'tcbn65lpwc.lib'.
+        : The nominal operating condition represents either the nominal PVT values if specified in the library source, or the default PVT values (1.0, 1.0, 1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Otherwise, the library cell will be marked as unusable and as timing model.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Info    : An output library pin lacks a function attribute. [LBR-41]
+        : Output pin 'BHD/Z' has no function.
+        : If the remainder of this library cell's semantic checks are successful, it will be considered as a timing-model (because one of its outputs does not have a valid function.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD20'
+        : To use the cell in clock gating, Set cell attribute 'dont_use' false in the library.
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLHQD24'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD20'
+Warning : Unusable clock gating integrated cell. [LBR-101]
+        : Clock gating integrated cell name: 'CKLNQD24'
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP16' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP32' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP64' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DCAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'GDCAP2' must have an output pin.
+  Setting attribute of root '/': 'library' = tcbn65lpwc.lib
+elaborate $design
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD1'.
+        : Setting the 'timing_sense' to non_unate.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'X2' in libcell 'BENCD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'X2' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M1' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'M0' and 'PP' in libcell 'BMLD4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D0'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D1'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D2'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'S' and 'Z' in libcell 'CKMUX2D4'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'A2' and 'Z' in libcell 'CKXOR2D0'.
+  Library has 441 usable logic and 280 usable sequential lib-cells.
+Info    : Found unusable library cells. [LBR-415]
+        : Library: 'tcbn65lpwc.lib', Total cells: 816, Unusable cells: 77.
+	List of unusable cells: 'ANTENNA BHD BUFFD20 BUFFD24 BUFTD20 BUFTD24 CKBD20 CKBD24 CKLHQD20 CKLHQD24 CKLNQD20 CKLNQD24 CKND20 CKND24 DCAP DCAP16 DCAP32 DCAP4 DCAP64 DCAP8 GAN2D1 GAN2D2 GAOI21D1 GAOI21D2 GAOI22D1 GBUFFD1 GBUFFD2 GBUFFD3 GBUFFD4 GBUFFD8 GDCAP GDCAP10 GDCAP2 GDCAP3 GDCAP4 GDFCNQD1 GDFQD1 GFILL GFILL10 GFILL2 GFILL3 GFILL4 GINVD1 GINVD2 GINVD3 GINVD4 GINVD8 GMUX2D1 GMUX2D2 GMUX2ND1 GMUX2ND2 GND2D1 GND2D2 GND2D3 GND2D4 GND3D1 GND3D2 GNR2D1 GNR2D2 GNR3D1 GNR3D2 GOAI21D1 GOAI21D2 GOR2D1 GOR2D2 GSDFCNQD1 GTIEH GTIEL GXNR2D1 GXNR2D2 GXOR2D1 GXOR2D2 INVD20 INVD24 OD25DCAP16 OD25DCAP32 OD25DCAP64 .'
+        : For more information, refer to 'Cells Identified as Unusable' in the 'User Guide'. The reason why a cell is considered unusable is stored in the 'unusable_reason' libcell attribute.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mkPE32' from file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'IF_SEXT_multiply_constants_neg_constant_BITS_7_ETC___d118' [64] doesn't match the width of right hand side [32] in assignment in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 533.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'IF_SEXT_multiply_constants_pos_constant_BITS_7_ETC___d74' [64] doesn't match the width of right hand side [32] in assignment in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 537.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'EN_get_pos_partial_sum' is not used in module 'mkPE32' in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 137.
+        : The value of the input port is not used within the design.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'EN_get_neg_partial_sum' is not used in module 'mkPE32' in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 142.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'EN_read_weights' is not used in module 'mkPE32' in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 147.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'EN_is_ready' is not used in module 'mkPE32' in file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' on line 152.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/equal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 643 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=1 B=1 Z=1) at line 643 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/equal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 556 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 556 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/mult_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=32 Z=64) at line 533 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=32 Z=64) at line 533 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/mult_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/mult_unsigned/medium' (priority 1), 'hdl_implementation:GB/mult_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=64 Z=64) at line 585 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=64 Z=64) at line 585 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=16 Z=48) at line 535 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=16 Z=48) at line 535 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 400 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 400 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 405 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 405 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 559 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 559 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/mult_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=32 Z=64) at line 537 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=32 Z=64) at line 537 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/mult_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/mult_unsigned/medium' (priority 1), 'hdl_implementation:GB/mult_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=64 Z=64) at line 576 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=64 Z=64) at line 576 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=16 Z=48) at line 539 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=16 Z=48) at line 539 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 422 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 422 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 427 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=16 B=1 Z=1) at line 427 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 434 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 434 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 436 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) at line 436 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=4 B=1 Z=4) at line 437 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=4 B=1 Z=4) at line 437 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 336 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 336 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 340 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 340 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 350 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 350 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/nequal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 354 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'NE_UNS_OP' (pin widths: A=14 B=1 Z=1) at line 354 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/nequal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/equal_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=4 B=4 Z=1) at line 376 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'EQ_UNS_OP' (pin widths: A=4 B=4 Z=1) at line 376 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/equal_unsigned/very_fast' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 587 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 587 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 590 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 590 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 578 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 578 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 581 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v'.
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=1 B=32 Z=32) at line 581 in the file '/homes/mrhamid/bsv-designs/sim_syn/bsv/pe32/vlog/mkPE32.v' will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mkPE32'.
+Info: Checking for source rtl...
+Info: Check completed for source rtl...
+        Applying wireload models.
+        Computing net loads.
+UM:  flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            13             14                                      elaborate
+check_design -unresolved
+  Checking the design.
+
+ 	 Check Design Report
+	 -------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'mkPE32'
+
+No empty modules in design 'mkPE32'
+
+  Done Checking the design.
+set_db current_design .verification_directory $VERIFICATION_PATH
+  Setting attribute of design 'mkPE32': 'verification_directory' = build/tsmc65lp/test_run/fv
+if {$do_adv_opt} {
+  set_db current_design .retime true
+}
+if {[info exists wireload_model]} {
+    set_db current_design .force_wireload $wireload_model
+}
+if {$do_power_opt && $do_clock_gating} {
+  set_db current_design .lp_clock_gating_extract_common_enable true
+}
+  Setting attribute of design 'mkPE32': 'lp_clock_gating_extract_common_enable' = true
+read_sdc $sdc_file
+            Reading file '/homes/mrhamid/bsv-designs/sim_syn/syn/pe32/constraints_tsmc65lp.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      3 , failed      0 (runtime  0.00)
+ "all_outputs"              - successful      2 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.00)
+ "current_design"           - successful      1 , failed      0 (runtime  0.00)
+ "get_clocks"               - successful      3 , failed      0 (runtime  0.00)
+ "get_ports"                - successful      1 , failed      0 (runtime  0.00)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_latency"        - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful      2 , failed      0 (runtime  0.00)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.00)
+ "set_load_unit"            - successful      1 , failed      0 (runtime  0.00)
+ "set_max_fanout"           - successful      2 , failed      0 (runtime  0.00)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful      2 , failed      0 (runtime  0.00)
+ "set_time_unit"            - successful      1 , failed      0 (runtime  0.00)
+Total runtime 0
+report timing -lint
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 16.22-s033_1
+  Generated on:           Dec 11 2017  04:26:39 pm
+  Module:                 mkPE32
+  Technology library:     tcbn65lpwc 200
+  Operating conditions:   WCCOM (balanced_tree)
+  Wireload mode:          segmented
+  Area mode:              timing library
+============================================================
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+if {$do_power_opt} {
+  #set_db max_leakage_power 0.0 "/designs/$design"
+  #set_db lp_power_optimization_weight <value from 0 to 1> "/designs/$DESIGN"
+
+  set_db current_design .max_dynamic_power 0.0
+
+  if {$use_tcf} {
+    read_tcf -tcf_instance $rtl_top_inst $activity_filename
+  }
+
+  if {$use_vcd} {
+    read_vcd -static -vcd_scope $rtl_top_inst $activity_filename
+  }
+
+  if {$use_saif} {
+    read_saif -instance $rtl_top_inst $activity_filename
+  }
+}
+  Setting attribute of design 'mkPE32': 'max_dynamic_power' = 0.0
+10.0 % done 
+20.0 % done 
+30.0 % done 
+40.0 % done 
+50.0 % done 
+60.0 % done 
+70.0 % done 
+80.0 % done 
+90.0 % done 
+100.0 % done 
+100.0 % done
+Nets/ports asserted in SAIF file : 3793
+Total Nets/ports in SAIF file    : 10819
+-------------------------------------------------------
+Asserted Primary inputs in design              : 57 (100.00%)
+Total connected primary inputs in design       : 57 (100.00%)
+-------------------------------------------------------
+Asserted sequential outputs                    : 84 (100.00%)
+Total connected sequential outputs             : 84 (100.00%)
+-------------------------------------------------------
+Total nets in design                 : 22579 (100.00%)
+Nets asserted                        : 3893 (17.24%)
+Clock nets                           : 0 (0.00%)
+Constant nets                        : 238 (1.05%)
+Nets with no assertions              : 18686 (82.76%)
+-------------------------------------------------------
+Time taken to read_saif: 3.00 cpu seconds
+syn_generic
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 11 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'mux_m_neg_partial_sum_643_15', 'mux_m_pos_partial_sum_643_15', 
+'mux_m_step_643_15', 'mux_m_weight_regs_0_643_15', 
+'mux_m_weight_regs_1_643_15', 'mux_m_weight_regs_2_643_15', 
+'mux_m_weight_regs_3_643_15', 'mux_m_weight_regs_4_643_15', 
+'mux_m_weight_regs_5_643_15', 'mux_m_weight_regs_6_643_15', 
+'mux_m_weight_regs_7_643_15'.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so a hierarchical instance does not drive any primary outputs anymore. To see the list of deleted hierarchical instances, set the 'information_level' attribute to 2 or above. If message is truncated set message attribute 'truncate' to false to see the complete list. To prevent this optimization, set the 'delete_unloaded_insts' root/subdesign attribute to 'false' or 'preserve' instance attribute to 'true'.
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'mkPE32' to generic gates using 'high' effort.
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Info    : Optimizing RTL. [RTLOPT-1]
+        : Optimizing RTL in 'mkPE32' using 'high' effort.
+Info    : Grouping carry-save logic. [RTLOPT-19]
+        : Grouping carry-save logic in 'mkPE32_csa_cluster_791' using 'medium' effort and 'generic' timing models.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/increment_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=4 CI=1 Z=4).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=4 CI=1 Z=4) will be considered in the following order: {'hdl_implementation:GB/increment_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/increment_unsigned/medium' (priority 1), 'hdl_implementation:GB/increment_unsigned/slow' (priority 1)}
+Info    : Accepted carry-save configuration. [RTLOPT-20]
+        : Accepted configuration 1 of 1 in module 'mkPE32_csa_cluster_791'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done grouping carry-save logic. [RTLOPT-23]
+        : Used configuration 1, resulting in 1 carry-save group in module 'mkPE32_csa_cluster_791'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Grouping carry-save logic. [RTLOPT-19]
+        : Grouping carry-save logic in 'mkPE32_csa_cluster_792' using 'medium' effort and 'generic' timing models.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/increment_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=48 CI=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=48 CI=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/increment_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/increment_unsigned/medium' (priority 1), 'hdl_implementation:GB/increment_unsigned/slow' (priority 1)}
+      Timing increment_unsigned_3281_3282...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+      Timing csa_tree_3798_3862...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+      Timing add_unsigned_carry_3864...
+Info    : Accepted carry-save configuration. [RTLOPT-20]
+        : Accepted configuration 1 of 2 in module 'mkPE32_csa_cluster_792'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=68 B=68 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=68 B=68 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=64 B=64 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=64 B=64 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=48 B=48 CI=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=48 B=48 CI=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=48 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=48 Z=48) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : Rejected carry-save configuration. [RTLOPT-21]
+        : Rejected configuration 2 of 2 in module 'mkPE32_csa_cluster_792'.
+                  Configuration number:      2
+                  Effort level:              medium
+                  Allow CSA over Muxes:      Yes
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done grouping carry-save logic. [RTLOPT-23]
+        : Used configuration 1, resulting in 3 carry-save groups in module 'mkPE32_csa_cluster_792'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Grouping carry-save logic. [RTLOPT-19]
+        : Grouping carry-save logic in 'mkPE32_csa_cluster_793' using 'medium' effort and 'generic' timing models.
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/increment_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=48 CI=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'INCREMENT_UNS_CI_OP' (pin widths: A=48 CI=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/increment_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/increment_unsigned/medium' (priority 1), 'hdl_implementation:GB/increment_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : Accepted carry-save configuration. [RTLOPT-20]
+        : Accepted configuration 1 of 2 in module 'mkPE32_csa_cluster_793'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=66 B=66 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=68 B=68 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=68 B=68 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=64 B=64 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=64 B=64 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=48 B=48 CI=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=48 B=48 CI=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=48 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=48 B=48 Z=48) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : Rejected carry-save configuration. [RTLOPT-21]
+        : Rejected configuration 2 of 2 in module 'mkPE32_csa_cluster_793'.
+                  Configuration number:      2
+                  Effort level:              medium
+                  Allow CSA over Muxes:      Yes
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : Done grouping carry-save logic. [RTLOPT-23]
+        : Used configuration 1, resulting in 3 carry-save groups in module 'mkPE32_csa_cluster_793'.
+                  Configuration number:      1
+                  Effort level:              medium
+                  Allow CSA over Muxes:      No
+                  Allow CSA over Inverter:   No
+                  Allow Complex CSA:         No
+                  Allow CSA over Truncation: No
+                  Bridge size threshold:     6
+                  Connection size threshold: 4
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+      Timing add_unsigned_carry_5933...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/addsub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=48 B=32 AS=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=48 B=32 AS=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/addsub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/addsub_unsigned/medium' (priority 1), 'hdl_implementation:GB/addsub_unsigned/slow' (priority 1)}
+      Timing addsub_unsigned_6058...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/addsub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=48 B=32 AS=1 Z=48).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=48 B=32 AS=1 Z=48) will be considered in the following order: {'hdl_implementation:GB/addsub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/addsub_unsigned/medium' (priority 1), 'hdl_implementation:GB/addsub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/sub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'SUB_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/sub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/sub_unsigned/medium' (priority 1), 'hdl_implementation:GB/sub_unsigned/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/addsub_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=66 B=66 AS=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADDSUB_UNS_OP' (pin widths: A=66 B=66 AS=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/addsub_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/addsub_unsigned/medium' (priority 1), 'hdl_implementation:GB/addsub_unsigned/slow' (priority 1)}
+      Timing addsub_unsigned_6194...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/addsub_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADDSUB_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 AS=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADDSUB_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 AS=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/addsub_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/addsub_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/addsub_unsigned_carry/slow' (priority 1)}
+      Timing addsub_unsigned_carry_6323...
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/addsub_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADDSUB_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 AS=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADDSUB_UNS_CI_OP' (pin widths: A=64 B=64 CI=1 AS=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/addsub_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/addsub_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/addsub_unsigned_carry/slow' (priority 1)}
+      Timing addsub_unsigned_carry_6451...
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged the following sets of instances in design 'mkPE32':
+	  (final_adder_mul_533_16, final_adder_minus_585_9)
+
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned_carry/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_CI_OP' (pin widths: A=66 B=66 CI=1 Z=64) will be considered in the following order: {'hdl_implementation:GB/add_unsigned_carry/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/medium' (priority 1), 'hdl_implementation:GB/add_unsigned_carry/slow' (priority 1)}
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged the following sets of instances in design 'mkPE32':
+	  (add_434_25, add_436_25)
+
+Info    : An implementation was inferred. [CWD-19]
+        : The implementation 'hdl_implementation:GB/add_unsigned/very_fast' was inferred through the binding 'b1' for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32).
+Info    : Sorted the set of valid implementations for synthetic operator. [CWD-36]
+        : The implementations for the call to synthetic operator 'ADD_UNS_OP' (pin widths: A=32 B=32 Z=32) will be considered in the following order: {'hdl_implementation:GB/add_unsigned/very_fast' (priority 1), 'hdl_implementation:GB/add_unsigned/medium' (priority 1), 'hdl_implementation:GB/add_unsigned/slow' (priority 1)}
+      Timing increment_unsigned_6491...
+Info    : Done optimizing RTL. [RTLOPT-2]
+        : Done optimizing RTL in 'mkPE32'.
+      Removing temporary intermediate hierarchies under mkPE32
+              Optimizing muxes in design 'mkPE32'.
+Info    : Gating clocks. [SYNTH-13]
+        : Gating clocks in 'mkPE32'.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Gating clocks in mkPE32
+        Preparing the circuit
+          Pruning unused logic
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'inc_add_437_45_1' of datapath component 'increment_unsigned_1'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'minus_587_42' of datapath component 'sub_unsigned_1502'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'minus_578_42' of datapath component 'sub_unsigned_1502'.
+Inserting clock-gating logic .....
+        
+        New clock gate fanout statistics
+        =================================================
+        Fanout Size           Num CGs     Total FFs 
+        -------------------------------------------------
+        4 to 15                   2       14
+        16 to 63                  3       70
+        =================================================
+
+Info    : Could not find any user created clock-gating module. [POPT-12]
+        : Looking for Integrated clock-gating cell in library.
+Clock Gating Status
+===================
+Category                                Number    Percentage
+------------------------------------------------------------------
+Gated flip-flops                        84		100%
+Ungated flip-flops
+  Cannot map to requested logic         0		  0%
+  Enable signal is constant             0		  0%
+  Excluded from clock-gating            0		  0%
+  User preserved                        0		  0%
+  Libcell unusable                      0		  0%
+  Timing exception in enable logic      0		  0%
+  Register bank width too small         0		  0%
+Total flip-flops                        84		100%
+Total CG Modules                        5
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+        : This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false.
+    Automatically cost grouped 5 clock gate paths.
+  Setting attribute of root '/': 'pbs_stage_start_elapsed_time' = 29
+  Setting attribute of root '/': 'pbs_stage_start_st_time' = 27
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'mkPE32' to generic gates.
+        Applying wireload models.
+        Computing net loads.
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            14             15                                      syn_generic
+syn_map
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'mkPE32' using 'high' effort.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+        Applying wireload models.
+        Computing net loads.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed mapping optimization to kick in.
+Mapper: Libraries have:
+	domain _default_: 441 combo usable cells and 280 sequential usable cells
+      Mapping 'mkPE32'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'final_adder_mul_537_16' in module 'mkPE32' would be automatically ungrouped.
+        : Hierarchical instances can be automatically ungrouped to allow for better area or timing optimization. You can control auto ungrouping using the root-level attribute 'auto_ungroup'. You can skip individual instances or modules using the attribute 'ungroup_ok'.
+          There are 1 hierarchical instances automatically ungrouped.
+        Rebuilding component 'csa_tree_minus_576_9_group_866' based on context...
+          Analyzing hierarchical boundaries
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) mkPE32...
+          Done structuring (delay-based) mkPE32
+Multi-threaded Virtual Mapping    (8 threads per ST process, 8 of 16 CPUs usable)
+          Structuring (delay-based) logic partition in mkPE32...
+            Starting partial collapsing  cb_part_888
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkPE32
+        Mapping logic partition in mkPE32...
+          Structuring (delay-based) sub_unsigned...
+          Done structuring (delay-based) sub_unsigned
+        Mapping component sub_unsigned...
+          Structuring (delay-based) sub_unsigned_1502_833...
+          Done structuring (delay-based) sub_unsigned_1502_833
+        Mapping component sub_unsigned_1502_833...
+          Structuring (delay-based) logic partition in mkPE32...
+            Starting partial collapsing (xors only) cb_part
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mkPE32
+        Mapping logic partition in mkPE32...
+          Structuring (delay-based) csa_tree_960_830...
+            Starting partial collapsing (xors only) csa_tree_960_830
+            Finished partial collapsing.
+            Starting partial collapsing  csa_tree_960_830
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) csa_tree_960_830
+        Mapping component csa_tree_960_830...
+          Structuring (delay-based) csa_tree_124...
+            Starting partial collapsing (xors only) csa_tree_124
+            Finished partial collapsing.
+            Starting partial collapsing  csa_tree_124
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) csa_tree_124
+        Mapping component csa_tree_124...
+        Rebalancing component 'final_adder_minus_576_9'...
+          Structuring (delay-based) add_unsigned_carry_187...
+          Done structuring (delay-based) add_unsigned_carry_187
+        Mapping component add_unsigned_carry_187...
+          Structuring (delay-based) cb_part_889...
+            Starting partial collapsing (xors only) cb_part_889
+            Finished partial collapsing.
+            Starting partial collapsing  cb_part_889
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_part_889
+        Mapping component cb_part_889...
+          Structuring (delay-based) csa_tree_960...
+            Starting partial collapsing (xors only) csa_tree_960
+            Finished partial collapsing.
+            Starting partial collapsing  csa_tree_960
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) csa_tree_960
+        Mapping component csa_tree_960...
+          Structuring (delay-based) add_unsigned_965_832...
+          Done structuring (delay-based) add_unsigned_965_832
+        Mapping component add_unsigned_965_832...
+          Structuring (delay-based) add_unsigned_965...
+          Done structuring (delay-based) add_unsigned_965
+        Mapping component add_unsigned_965...
+          Structuring (delay-based) bmux_856_2...
+          Done structuring (delay-based) bmux_856_2
+        Mapping component bmux_856_2...
+          Structuring (delay-based) csa_tree_3798_3862...
+            Starting partial collapsing (xors only) csa_tree_3798_3862
+            Finished partial collapsing.
+            Starting partial collapsing  csa_tree_3798_3862
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) csa_tree_3798_3862
+        Mapping component csa_tree_3798_3862...
+          Structuring (delay-based) bmux_862_1...
+            Starting partial collapsing  bmux_862_1
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) bmux_862_1
+        Mapping component bmux_862_1...
+          Structuring (delay-based) bmux_862...
+            Starting partial collapsing  bmux_862
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) bmux_862
+        Mapping component bmux_862...
+          Structuring (delay-based) add_unsigned_carry_5933...
+          Done structuring (delay-based) add_unsigned_carry_5933
+        Mapping component add_unsigned_carry_5933...
+          Structuring (delay-based) increment_unsigned_3281_3282...
+          Done structuring (delay-based) increment_unsigned_3281_3282
+        Mapping component increment_unsigned_3281_3282...
+          Structuring (delay-based) increment_unsigned_3281_3282_829...
+          Done structuring (delay-based) increment_unsigned_3281_3282_829
+        Mapping component increment_unsigned_3281_3282_829...
+          Structuring (delay-based) cb_seq...
+            Starting partial collapsing  cb_seq
+            Finished partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_seq
+        Mapping component cb_seq...
+ 
+Global mapping target info
+==========================
+Cost Group 'clk' target slack: -1649 ps
+Target path end-point (Pin: m_pos_partial_sum_reg[30]/d)
+
+             Pin                          Type          Fanout Load Arrival   
+                                                               (fF)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                     <<<  launch                               0 R 
+                                     latency                                  
+cb_seqi
+  m_pos_partial_sum_reg[0]/clk                                                
+  m_pos_partial_sum_reg[0]/q    (u)  unmapped_d_flop        18 41.4           
+cb_seqi/add_434_25_Y_add_436_25_B[0] 
+minus_581_31/B[0] 
+  g590/in_1                                                                   
+  g590/z                        (u)  unmapped_or2            4  9.2           
+  g1744/in_1                                                                  
+  g1744/z                       (u)  unmapped_or2            6 13.8           
+  g537/in_1                                                                   
+  g537/z                        (u)  unmapped_or2            9 20.7           
+  g1706/in_1                                                                  
+  g1706/z                       (u)  unmapped_or2            2  4.6           
+  g1673/in_0                                                                  
+  g1673/z                       (u)  unmapped_complex2       1  2.3           
+  g1674/in_1                                                                  
+  g1674/z                       (u)  unmapped_nand2          1  2.3           
+minus_581_31/Z[13] 
+cb_parti/minus_581_31_Z[12] 
+  g4521/in_0                                                                  
+  g4521/z                       (u)  unmapped_nand2          1  2.3           
+  g4513/in_1                                                                  
+  g4513/z                       (u)  unmapped_nand2         24 11.5           
+cb_parti/csa_tree_mul_537_16_in_1[12] 
+csa_tree_mul_537_16/in_1[13] 
+  g16269/in_1                                                                 
+  g16269/z                      (u)  unmapped_complex2       1  2.3           
+  g16270/in_1                                                                 
+  g16270/z                      (u)  unmapped_nand2         10 23.0           
+  g16757/in_1                                                                 
+  g16757/z                      (u)  unmapped_complex2       9 20.7           
+  g15480/in_1                                                                 
+  g15480/z                      (u)  unmapped_complex2       1  2.3           
+  g15221/in_1                                                                 
+  g15221/z                      (u)  unmapped_nand2          4  9.2           
+  g16916/in_0                                                                 
+  g16916/z                      (u)  unmapped_complex2       1  2.3           
+  g13907/in_0                                                                 
+  g13907/z                      (u)  unmapped_nand2          1  2.3           
+  g13833/in_0                                                                 
+  g13833/z                      (u)  unmapped_nand2          3  6.9           
+  g13402/in_1                                                                 
+  g13402/z                      (u)  unmapped_nand2          1  2.3           
+  g13403/in_1                                                                 
+  g13403/z                      (u)  unmapped_nand2          2  4.6           
+  g12912/in_0                                                                 
+  g12912/z                      (u)  unmapped_complex2       1  2.3           
+  g12913/in_1                                                                 
+  g12913/z                      (u)  unmapped_nand2          4  9.2           
+  g12863/in_0                                                                 
+  g12863/z                      (u)  unmapped_complex2       1  2.3           
+  g12864/in_1                                                                 
+  g12864/z                      (u)  unmapped_nand2          2  4.6           
+  g12608/in_0                                                                 
+  g12608/z                      (u)  unmapped_complex2       1  2.3           
+  g12609/in_1                                                                 
+  g12609/z                      (u)  unmapped_nand2          4  9.2           
+  g8950/in_0                                                                  
+  g8950/z                       (u)  unmapped_or2            1  2.3           
+  g12215/in_0                                                                 
+  g12215/z                      (u)  unmapped_nand2          1  2.3           
+  g11998/in_0                                                                 
+  g11998/z                      (u)  unmapped_nand2          3  6.9           
+  g17478/in_0                                                                 
+  g17478/z                      (u)  unmapped_complex2       1  2.3           
+  g11882/in_1                                                                 
+  g11882/z                      (u)  unmapped_nand2          2  4.6           
+  g11772/in_0                                                                 
+  g11772/z                      (u)  unmapped_complex2       1  2.3           
+  g11773/in_1                                                                 
+  g11773/z                      (u)  unmapped_nand2          5 11.5           
+csa_tree_mul_537_16/out_1[29] 
+csa_tree_minus_576_9_groupi/in_1[29] 
+  csa_tree_minus_576_9/in_1[29] 
+    g602/in_1                                                                 
+    g602/z                      (u)  unmapped_complex2       1  2.3           
+    g603/in_1                                                                 
+    g603/z                      (u)  unmapped_nand2          2  4.6           
+  csa_tree_minus_576_9/out_1[29] 
+  final_adder_minus_576_9/B[29] 
+    g15929/in_1                                                               
+    g15929/z                    (u)  unmapped_or2            3  6.9           
+    g15872/in_1                                                               
+    g15872/z                    (u)  unmapped_complex2       1  2.3           
+    g15753/in_1                                                               
+    g15753/z                    (u)  unmapped_nand2          2  4.6           
+    g15717/in_1                                                               
+    g15717/z                    (u)  unmapped_nand2          2  4.6           
+    g15656/in_0                                                               
+    g15656/z                    (u)  unmapped_complex2       1  2.3           
+    g15598/in_0                                                               
+    g15598/z                    (u)  unmapped_nand2          1  2.3           
+    g15592/in_1                                                               
+    g15592/z                    (u)  unmapped_nand2          1  2.3           
+    g15533/in_0                                                               
+    g15533/z                    (u)  unmapped_complex2       1  2.3           
+    g15441/in_0                                                               
+    g15441/z                    (u)  unmapped_complex2      32 13.8           
+    g15363/in_1                                                               
+    g15363/z                    (u)  unmapped_complex2       1  2.3           
+    g15348/in_1                                                               
+    g15348/z                    (u)  unmapped_or2            1  2.3           
+    g14417/in_1                                                               
+    g14417/z                    (u)  unmapped_or2            1  2.3           
+    g15252/in_0                                                               
+    g15252/z                    (u)  unmapped_complex2       1  2.3           
+    g15247/in_0                                                               
+    g15247/z                    (u)  unmapped_complex2       2  4.6           
+    g15245/in_1                                                               
+    g15245/z                    (u)  unmapped_or2            1  2.3           
+    g15246/in_1                                                               
+    g15246/z                    (u)  unmapped_nand2          1  2.3           
+  final_adder_minus_576_9/Z[50] 
+csa_tree_minus_576_9_groupi/out_0[50] 
+cb_parti4248/csa_tree_minus_576_9_groupi_out_0[35] 
+  g13136/in_1                                                                 
+  g13136/z                      (u)  unmapped_nand2          1  2.3           
+  g12593/in_1                                                                 
+  g12593/z                      (u)  unmapped_nand2          5 11.5           
+cb_parti4248/inc_add_539_23_3_A[34] 
+inc_add_539_23_3/A[34] 
+  g20/in_0                                                                    
+  g20/z                         (u)  unmapped_nand2          2  4.6           
+  g2063/in_1                                                                  
+  g2063/z                       (u)  unmapped_or2            5 11.5           
+  g2028/in_0                                                                  
+  g2028/z                       (u)  unmapped_or2            6 13.8           
+  g2023/in_1                                                                  
+  g2023/z                       (u)  unmapped_or2            1  2.3           
+  g1869/in_0                                                                  
+  g1869/z                       (u)  unmapped_or2            2  4.6           
+  g1860/in_0                                                                  
+  g1860/z                       (u)  unmapped_or2            1  2.3           
+  g1861/in_1                                                                  
+  g1861/z                       (u)  unmapped_nand2          2  4.6           
+inc_add_539_23_3/Z[44] 
+cb_seqi/inc_add_539_23_3_Z[44] 
+  g5501/in_1                                                                  
+  g5501/z                       (u)  unmapped_or2            1  2.3           
+  g5507/in_1                                                                  
+  g5507/z                       (u)  unmapped_or2            1  2.3           
+  g5509/in_0                                                                  
+  g5509/z                       (u)  unmapped_or2            1  2.3           
+  g5510/in_0                                                                  
+  g5510/z                       (u)  unmapped_or2            1  2.3           
+  g7323/in_0                                                                  
+  g7323/z                       (u)  unmapped_complex2       2  4.6           
+  g7322/in_0                                                                  
+  g7322/z                       (u)  unmapped_complex2      16 36.8           
+  g7240/in_0                                                                  
+  g7240/z                       (u)  unmapped_or2            1  2.3           
+  g7146/in_1                                                                  
+  g7146/z                       (u)  unmapped_complex2       1  2.3           
+  g7536/data1                                                                 
+  g7536/z                       (u)  unmapped_bmux3          1  2.3           
+  g7537/data0                                                                 
+  g7537/z                       (u)  unmapped_bmux3          1  2.3           
+  m_pos_partial_sum_reg[30]/d   <<<  unmapped_d_flop                          
+  m_pos_partial_sum_reg[30]/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                          capture                           1600 R 
+                                     latency                                  
+                                     uncertainty                              
+------------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : cb_seqi/m_pos_partial_sum_reg[0]/clk
+End-point    : cb_seqi/m_pos_partial_sum_reg[30]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of -1649ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:    38 ps
+Target path end-point (Pin: RC_CG_HIER_INST1/RC_CGIC_INST/E (CKLNQD1/E))
+
+            Pin                            Type          Fanout Load Arrival   
+                                                                (fF)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                    <<<    launch                               0 R 
+                                      latency                                  
+cb_parti4247
+  m_weight_regs_7_reg[1]/clk                                                   
+  m_weight_regs_7_reg[1]/q     (u)    unmapped_d_flop         2  7.3           
+  g4369/in_0                                                                   
+  g4369/z                      (u)    unmapped_nand2          1  2.3           
+  g4360/in_1                                                                   
+  g4360/z                      (u)    unmapped_nand2          1  2.3           
+  g4356/in_0                                                                   
+  g4356/z                      (u)    unmapped_nand2          1  2.3           
+  g4352/in_1                                                                   
+  g4352/z                      (u)    unmapped_nand2          1  2.3           
+  g4350/in_0                                                                   
+  g4350/z                      (u)    unmapped_nand2          1  2.3           
+  g4349/in_1                                                                   
+  g4349/z                      (u)    unmapped_nand2          1  2.3           
+  g4332/in_0                                                                   
+  g4332/z                      (u)    unmapped_or2            8 18.4           
+  g4370/in_0                                                                   
+  g4370/z                      (u)    unmapped_and2           2  4.6           
+cb_parti4247/sub_556_25_B[3] 
+sub_556_25/B[13] 
+  g507/in_1                                                                    
+  g507/z                       (u)    unmapped_complex2       3  6.9           
+  g9628/in_1                                                                   
+  g9628/z                      (u)    unmapped_nand2          1  2.3           
+  g9688/in_1                                                                   
+  g9688/z                      (u)    unmapped_complex2       1  2.3           
+  g9580/in_1                                                                   
+  g9580/z                      (u)    unmapped_complex2       1  2.3           
+  g9553/in_1                                                                   
+  g9553/z                      (u)    unmapped_nand2          1  2.3           
+  g9546/in_0                                                                   
+  g9546/z                      (u)    unmapped_nand2         17 39.1           
+  g9536/in_0                                                                   
+  g9536/z                      (u)    unmapped_complex2       1  2.3           
+  g9520/in_0                                                                   
+  g9520/z                      (u)    unmapped_complex2       1  2.3           
+  g9723/in_0                                                                   
+  g9723/z                      (u)    unmapped_complex2       2  4.6           
+  g9458/in_1                                                                   
+  g9458/z                      (u)    unmapped_or2            1  2.3           
+  g9459/in_1                                                                   
+  g9459/z                      (u)    unmapped_nand2          5 11.5           
+sub_556_25/Z[31] 
+cb_parti4248/sub_556_25_Z 
+  g13446/in_0                                                                  
+  g13446/z                     (u)    unmapped_nand2          1  2.3           
+  g13231/in_1                                                                  
+  g13231/z                     (u)    unmapped_nand2          1  2.3           
+  g13076/in_1                                                                  
+  g13076/z                     (u)    unmapped_complex2       1  2.3           
+  g13047/in_0                                                                  
+  g13047/z                     (u)    unmapped_complex2       2  4.6           
+  g13005/in_0                                                                  
+  g13005/z                     (u)    unmapped_complex2       1  0.9           
+cb_parti4248/RC_CG_HIER_INST1_enable 
+RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E             <<< (P)  CKLNQD1                                  
+  RC_CGIC_INST/CP                     setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                           capture                           1600 R 
+                                      latency                                  
+                                      uncertainty                              
+-------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_parti4247/m_weight_regs_7_reg[1]/clk
+End-point    : RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 224ps.
+ 
+Multi-threaded Technology Mapping (8 threads per ST process, 8 of 16 CPUs usable)
+          Restructuring (delay-based) cb_seq...
+          Done restructuring (delay-based) cb_seq
+        Optimizing component cb_seq...
+          Restructuring (delay-based) increment_unsigned...
+          Done restructuring (delay-based) increment_unsigned
+        Optimizing component increment_unsigned...
+          Restructuring (delay-based) increment_unsigned...
+          Done restructuring (delay-based) increment_unsigned
+        Optimizing component increment_unsigned...
+          Restructuring (delay-based) increment_unsigned...
+          Done restructuring (delay-based) increment_unsigned
+        Optimizing component increment_unsigned...
+          Restructuring (delay-based) increment_unsigned...
+          Done restructuring (delay-based) increment_unsigned
+        Optimizing component increment_unsigned...
+          Restructuring (delay-based) add_unsigned_carry_5933...
+          Done restructuring (delay-based) add_unsigned_carry_5933
+        Optimizing component add_unsigned_carry_5933...
+          Restructuring (delay-based) bmux_862...
+          Done restructuring (delay-based) bmux_862
+        Optimizing component bmux_862...
+          Restructuring (delay-based) bmux_862_1...
+          Done restructuring (delay-based) bmux_862_1
+        Optimizing component bmux_862_1...
+          Restructuring (delay-based) bmux_856_2...
+          Done restructuring (delay-based) bmux_856_2
+        Optimizing component bmux_856_2...
+          Restructuring (delay-based) csa_tree_3798_3862...
+          Done restructuring (delay-based) csa_tree_3798_3862
+        Optimizing component csa_tree_3798_3862...
+          Restructuring (delay-based) csa_tree_960...
+          Done restructuring (delay-based) csa_tree_960
+        Optimizing component csa_tree_960...
+          Restructuring (delay-based) add_unsigned_965_832...
+          Done restructuring (delay-based) add_unsigned_965_832
+        Optimizing component add_unsigned_965_832...
+        Early Area Reclamation for add_unsigned_965_832 'very_fast' (slack=1555, area=522)...
+                  			o_slack=1275,  bc_slack=1835
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned_965...
+          Done restructuring (delay-based) add_unsigned_965
+        Optimizing component add_unsigned_965...
+        Early Area Reclamation for add_unsigned_965 'very_fast' (slack=1359, area=387)...
+                  			o_slack=1172,  bc_slack=1546
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) cb_part_889...
+          Done restructuring (delay-based) cb_part_889
+        Optimizing component cb_part_889...
+          Restructuring (delay-based) add_unsigned_carry_187...
+          Done restructuring (delay-based) add_unsigned_carry_187
+        Optimizing component add_unsigned_carry_187...
+          Restructuring (delay-based) csa_tree_124...
+          Done restructuring (delay-based) csa_tree_124
+        Optimizing component csa_tree_124...
+          Restructuring (delay-based) csa_tree_960_830...
+          Done restructuring (delay-based) csa_tree_960_830
+        Optimizing component csa_tree_960_830...
+          Restructuring (delay-based) cb_part...
+          Done restructuring (delay-based) cb_part
+        Optimizing component cb_part...
+          Restructuring (delay-based) sub_unsigned...
+          Done restructuring (delay-based) sub_unsigned
+        Optimizing component sub_unsigned...
+          Restructuring (delay-based) sub_unsigned_1502_835...
+          Done restructuring (delay-based) sub_unsigned_1502_835
+        Optimizing component sub_unsigned_1502_835...
+          Restructuring (delay-based) sub_unsigned_1502_833...
+          Done restructuring (delay-based) sub_unsigned_1502_833
+        Optimizing component sub_unsigned_1502_833...
+          Restructuring (delay-based) logic partition in mkPE32...
+          Done restructuring (delay-based) logic partition in mkPE32
+        Optimizing logic partition in mkPE32...
+ 
+Global mapping timing result
+============================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+       Pin                    Type       Fanout Load Slew Delay Arrival   
+                                                (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)                 launch                                    0 R 
+                            latency                        +200     200 R 
+cb_seqi
+  m_step_reg[2]/CP                                    100           200 R 
+  m_step_reg[2]/Q           DFKCNQD4         11 17.2   71  +258     458 R 
+cb_seqi/g3867_in_2 
+cb_parti4247/cb_seqi_g3867_in_2 
+  g4538/I                                                    +0     458   
+  g4538/ZN                  INVD4             3  5.5   27   +35     493 F 
+  g4526/B1                                                   +0     493   
+  g4526/ZN                  INR2D2            1  1.9   51   +42     535 R 
+  g4516/A1                                                   +0     535   
+  g4516/ZN                  OAI21D2           1  1.8   46   +43     578 F 
+  g4511/A2                                                   +0     578   
+  g4511/ZN                  AOI21D2           1  1.4   64   +58     637 R 
+  g4509/A1                                                   +0     637   
+  g4509/ZN                  NR2XD1            1  2.6   44   +46     682 F 
+  g4508/A1                                                   +0     682   
+  g4508/ZN                  ND2D3             5  6.9   47   +42     725 R 
+  g4507/I                                                    +0     725   
+  g4507/ZN                  INVD2             4  3.8   26   +32     756 F 
+  g4503/B1                                                   +0     756   
+  g4503/ZN                  INR2XD0           2  1.9   76   +57     814 R 
+cb_parti4247/sub_556_25_B[1] 
+sub_556_25/B[11] 
+  g9944/A1                                                   +0     814   
+  g9944/ZN                  CKND2D1           2  2.5   64   +63     877 F 
+  g9847/A2                                                   +0     877   
+  g9847/ZN                  CKND2D2           4  3.5   50   +56     932 R 
+  g9838/A1                                                   +0     932   
+  g9838/ZN                  CKND2D1           3  2.3   60   +54     986 F 
+  g9831/A1                                                   +0     986   
+  g9831/ZN                  ND2D1             1  3.9   70   +62    1047 R 
+  g9824/A2                                                   +0    1047   
+  g9824/ZN                  CKND2D4          13 10.9   61   +64    1111 F 
+  g9806/A2                                                   +0    1111   
+  g9806/ZN                  AOI21D1           1  0.9   69   +65    1176 R 
+  g9793/A1                                                   +0    1176   
+  g9793/ZN                  CKND2D1           1  1.4   46   +50    1226 F 
+  g9778/A1                                                   +0    1226   
+  g9778/Z                   CKXOR2D1          3  2.9   69  +135    1361 R 
+sub_556_25/Z[31] 
+cb_parti4248/sub_556_25_Z 
+  g17612/A1                                                  +0    1361   
+  g17612/ZN                 ND3D1             2  1.6   86   +75    1436 F 
+  g17486/A1                                                  +0    1436   
+  g17486/ZN                 CKND2D1           1  0.9   40   +53    1488 R 
+  g17395/A1                                                  +0    1488   
+  g17395/ZN                 NR2D1             3  2.6   42   +35    1524 F 
+  g17357/A1                                                  +0    1524   
+  g17357/ZN                 ND2D1             1  0.9   34   +34    1558 R 
+cb_parti4248/RC_CG_HIER_INST1_enable 
+RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E   <<< (P)  CKLNQD1                          +0    1558   
+  RC_CGIC_INST/CP           setup                     100  +131    1689 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                1600 R 
+                            latency                        +200    1800 R 
+                            uncertainty                    -100    1700 R 
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :      11ps 
+Start-point  : cb_seqi/m_step_reg[2]/CP
+End-point    : RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+            Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                       (fF) (ps)  (ps)   (ps)    
+---------------------------------------------------------------------------------
+(clock clk)                        launch                                    0 R 
+                                   latency                        +200     200 R 
+cb_seqi
+  m_pos_partial_sum_reg[7]/CP                                100           200 R 
+  m_pos_partial_sum_reg[7]/Q       DFQD4             6  6.4   45  +243     443 F 
+cb_seqi/add_434_25_Y_add_436_25_B[7] 
+minus_581_31/B[7] 
+  g2218/A2                                                          +0     443   
+  g2218/ZN                         NR2XD1            1  2.5   51   +58     501 R 
+  g2184/A2                                                          +0     501   
+  g2184/ZN                         CKND2D3           1  2.7   32   +41     542 F 
+  g2165/A2                                                          +0     542   
+  g2165/ZN                         NR2XD2            1  3.9   44   +49     591 R 
+  g2148/A2                                                          +0     591   
+  g2148/ZN                         CKND2D4           7  9.2   53   +52     643 F 
+  g2116/A1                                                          +0     643   
+  g2116/ZN                         NR2XD1            2  2.4   50   +48     691 R 
+  g2085/A1                                                          +0     691   
+  g2085/ZN                         NR2D1             1  1.0   23   +30     722 F 
+  g2045/A1                                                          +0     722   
+  g2045/ZN                         IND2D2            1  1.4   36   +70     792 F 
+minus_581_31/Z[22] 
+cb_parti/minus_581_31_Z[21] 
+  g5020/A1                                                          +0     792   
+  g5020/ZN                         CKND2D2           1  3.4   48   +41     832 R 
+  g4982/A1                                                          +0     832   
+  g4982/ZN                         CKND2D4           5  7.9   48   +46     878 F 
+cb_parti/csa_tree_mul_537_16_in_1[21] 
+csa_tree_mul_537_16/in_1[22] 
+  g35639/I                                                          +0     878   
+  g35639/ZN                        CKND2             1  1.8   22   +30     908 R 
+  g35463/A1                                                         +0     908   
+  g35463/ZN                        ND2D2             1  2.5   38   +33     941 F 
+  g35173/A2                                                         +0     941   
+  g35173/ZN                        CKND2D3           3  4.7   47   +45     986 R 
+  g34343/A1                                                         +0     986   
+  g34343/ZN                        NR2XD1            2  2.4   42   +39    1025 F 
+  g34265/I                                                          +0    1025   
+  g34265/ZN                        INVD1             2  3.0   51   +46    1072 R 
+  g34264/I                                                          +0    1072   
+  g34264/ZN                        INVD2             1  1.4   18   +26    1098 F 
+  g33922/A1                                                         +0    1098   
+  g33922/ZN                        CKND2D2           1  1.8   35   +27    1125 R 
+  g33551/A1                                                         +0    1125   
+  g33551/ZN                        ND2D2             2  3.1   43   +39    1164 F 
+  g33428/I                                                          +0    1164   
+  g33428/ZN                        CKND2             2  2.5   25   +31    1195 R 
+  g32676/A1                                                         +0    1195   
+  g32676/ZN                        CKND2D2           1  1.4   27   +27    1222 F 
+  g32330/A1                                                         +0    1222   
+  g32330/ZN                        CKND2D2           3  4.5   58   +43    1264 R 
+  g32236/I                                                          +0    1264   
+  g32236/ZN                        INVD2             1  1.4   20   +27    1292 F 
+  g31981/A1                                                         +0    1292   
+  g31981/ZN                        CKND2D2           1  2.5   41   +31    1323 R 
+  g31764/A1                                                         +0    1323   
+  g31764/ZN                        CKND2D3           2  3.6   36   +37    1360 F 
+  g31495/I                                                          +0    1360   
+  g31495/ZN                        CKND2             1  1.9   21   +27    1386 R 
+  g31340/A2                                                         +0    1386   
+  g31340/ZN                        CKND2D2           1  1.9   36   +33    1420 F 
+  g31223/A2                                                         +0    1420   
+  g31223/ZN                        CKND2D2           1  1.9   36   +39    1458 R 
+  g30088/B                                                          +0    1458   
+  g30088/S                         FA1D1             1  1.8   47  +235    1693 F 
+  g29615/B                                                          +0    1693   
+  g29615/S                         FA1D1             1  2.6   53  +244    1936 F 
+  g29568/B                                                          +0    1936   
+  g29568/S                         FA1D4             4  6.8   67  +256    2193 R 
+csa_tree_mul_537_16/out_1[33] 
+cb_parti4248/csa_tree_mul_537_16_out_1[32] 
+  g17873/A1                                                         +0    2193   
+  g17873/ZN                        CKND2D2           2  2.4   39   +43    2236 F 
+  g17551/A1                                                         +0    2236   
+  g17551/ZN                        CKND2D2           1  1.8   35   +34    2269 R 
+  g17510/A1                                                         +0    2269   
+  g17510/ZN                        ND2D2             2  2.4   37   +36    2305 F 
+  g17386/A1                                                         +0    2305   
+  g17386/ZN                        CKND2D2           1  1.7   34   +33    2338 R 
+  g17342/A2                                                         +0    2338   
+  g17342/ZN                        AOI21D2           2  3.7   56   +51    2389 F 
+  g17310/A1                                                         +0    2389   
+  g17310/ZN                        OAI21D2           2  2.9   76   +68    2457 R 
+  g17308/I                                                          +0    2457   
+  g17308/ZN                        INVD1             1  2.6   38   +46    2503 F 
+  g17182/A1                                                         +0    2503   
+  g17182/ZN                        ND2D3             3  4.7   37   +35    2538 R 
+  g17159/A1                                                         +0    2538   
+  g17159/ZN                        AOI21D2           3  2.8   48   +44    2583 F 
+  g17108/A1                                                         +0    2583   
+  g17108/ZN                        OAI21D1           2  1.9   86   +70    2653 R 
+  g17056/B1                                                         +0    2653   
+  g17056/ZN                        MAOI22D1          1  1.4   82  +120    2773 R 
+  g17036/A1                                                         +0    2773   
+  g17036/ZN                        NR2XD1            1  2.0   51   +48    2821 F 
+  g17023/A1                                                         +0    2821   
+  g17023/ZN                        IND2D4            3  4.8   41   +90    2911 F 
+cb_parti4248/inc_add_539_23_3_A[31] 
+inc_add_539_23_3/A[31] 
+  g9042/I                                                           +0    2911   
+  g9042/ZN                         INVD2             1  1.6   21   +29    2939 R 
+  g9029/A2                                                          +0    2939   
+  g9029/ZN                         NR2XD1            1  1.4   33   +33    2972 F 
+  g8963/A1                                                          +0    2972   
+  g8963/ZN                         CKND2D2           1  1.4   32   +30    3002 R 
+  g8899/A1                                                          +0    3002   
+  g8899/ZN                         NR2XD1            1  2.3   41   +34    3036 F 
+  g8898/A1                                                          +0    3036   
+  g8898/ZN                         CKND2D3           2  4.5   46   +41    3077 R 
+  g8893/I                                                           +0    3077   
+  g8893/ZN                         CKND2             2  3.3   26   +32    3109 F 
+  g8892/I                                                           +0    3109   
+  g8892/ZN                         INVD2             3  5.0   42   +36    3145 R 
+  g8877/A1                                                          +0    3145   
+  g8877/ZN                         NR2XD1            1  1.0   31   +30    3176 F 
+  g8859/A1                                                          +0    3176   
+  g8859/ZN                         IND2D2            2  2.8   47   +80    3256 F 
+inc_add_539_23_3/Z[32] 
+cb_seqi/inc_add_539_23_3_Z[32] 
+  g12057/I                                                          +0    3256   
+  g12057/ZN                        CKND1             1  1.5   32   +37    3292 R 
+  g12010/A1                                                         +0    3292   
+  g12010/ZN                        CKND2D2           1  1.3   26   +28    3321 F 
+  g11975/A1                                                         +0    3321   
+  g11975/ZN                        NR2XD1            1  1.9   43   +37    3358 R 
+  g11907/A2                                                         +0    3358   
+  g11907/ZN                        CKND2D2           1  1.4   28   +37    3395 F 
+  g11886/A2                                                         +0    3395   
+  g11886/ZN                        NR2XD1            1  1.7   40   +46    3441 R 
+  g11843/A2                                                         +0    3441   
+  g11843/ZN                        AOI21D2           2  2.3   44   +46    3488 F 
+  g11829/A1                                                         +0    3488   
+  g11829/ZN                        NR2XD1            2  2.1   46   +43    3531 R 
+  g11695/A2                                                         +0    3531   
+  g11695/ZN                        ND3D1             1  0.6   61   +62    3593 F 
+  m_pos_partial_sum_reg[0]/D  <<<  EDFKCND4                         +0    3593   
+  m_pos_partial_sum_reg[0]/CP      setup                     100  +240    3833 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                        capture                                1600 R 
+                                   latency                        +200    1800 R 
+                                   uncertainty                    -100    1700 R 
+---------------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :   -2133ps (TIMING VIOLATION)
+Start-point  : cb_seqi/m_pos_partial_sum_reg[7]/CP
+End-point    : cb_seqi/m_pos_partial_sum_reg[0]/D
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_map                46467    -2132 
+            Worst cost_group: clk, WNS: -2132.8
+            Path: m_pos_partial_sum_reg[7]/CP --> m_pos_partial_sum_reg[0]/D
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+                    clk             -1649    -2133     -15%     1600 
+    cg_enable_group_clk                38       11              1600 
+
+ 
+Global incremental target info
+==============================
+Cost Group 'clk' target slack: -2133 ps
+Target path end-point (Pin: m_pos_partial_sum_reg[0]/D (EDFKCND4/D))
+
+            Pin                      Type       Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)                   <<<  launch                         0 R 
+                                   latency                            
+cb_seqi
+  m_pos_partial_sum_reg[7]/CP                                         
+  m_pos_partial_sum_reg[7]/Q       DFQD4             6  6.4           
+cb_seqi/add_434_25_Y_add_436_25_B[7] 
+minus_581_31/B[7] 
+  g2218/A2                                                            
+  g2218/ZN                         NR2XD1            1  2.5           
+  g2184/A2                                                            
+  g2184/ZN                         CKND2D3           1  2.7           
+  g2165/A2                                                            
+  g2165/ZN                         NR2XD2            1  3.9           
+  g2148/A2                                                            
+  g2148/ZN                         CKND2D4           7  9.2           
+  g2116/A1                                                            
+  g2116/ZN                         NR2XD1            2  2.4           
+  g2085/A1                                                            
+  g2085/ZN                         NR2D1             1  1.0           
+  g2045/A1                                                            
+  g2045/ZN                         IND2D2            1  1.4           
+minus_581_31/Z[22] 
+cb_parti/minus_581_31_Z[21] 
+  g5020/A1                                                            
+  g5020/ZN                         CKND2D2           1  3.4           
+  g4982/A1                                                            
+  g4982/ZN                         CKND2D4           5  7.9           
+cb_parti/csa_tree_mul_537_16_in_1[21] 
+csa_tree_mul_537_16/in_1[22] 
+  g35639/I                                                            
+  g35639/ZN                        CKND2             1  1.8           
+  g35463/A1                                                           
+  g35463/ZN                        ND2D2             1  2.5           
+  g35173/A2                                                           
+  g35173/ZN                        CKND2D3           3  4.7           
+  g34343/A1                                                           
+  g34343/ZN                        NR2XD1            2  2.4           
+  g34265/I                                                            
+  g34265/ZN                        INVD1             2  3.0           
+  g34264/I                                                            
+  g34264/ZN                        INVD2             1  1.4           
+  g33922/A1                                                           
+  g33922/ZN                        CKND2D2           1  1.8           
+  g33551/A1                                                           
+  g33551/ZN                        ND2D2             2  3.1           
+  g33428/I                                                            
+  g33428/ZN                        CKND2             2  2.5           
+  g32676/A1                                                           
+  g32676/ZN                        CKND2D2           1  1.4           
+  g32330/A1                                                           
+  g32330/ZN                        CKND2D2           3  4.5           
+  g32236/I                                                            
+  g32236/ZN                        INVD2             1  1.4           
+  g31981/A1                                                           
+  g31981/ZN                        CKND2D2           1  2.5           
+  g31764/A1                                                           
+  g31764/ZN                        CKND2D3           2  3.6           
+  g31495/I                                                            
+  g31495/ZN                        CKND2             1  1.9           
+  g31340/A2                                                           
+  g31340/ZN                        CKND2D2           1  1.9           
+  g31223/A2                                                           
+  g31223/ZN                        CKND2D2           1  1.9           
+  g30088/B                                                            
+  g30088/S                         FA1D1             1  1.8           
+  g29615/B                                                            
+  g29615/S                         FA1D1             1  2.6           
+  g29568/B                                                            
+  g29568/S                         FA1D4             4  6.8           
+csa_tree_mul_537_16/out_1[33] 
+cb_parti4248/csa_tree_mul_537_16_out_1[32] 
+  g17873/A1                                                           
+  g17873/ZN                        CKND2D2           2  2.4           
+  g17551/A1                                                           
+  g17551/ZN                        CKND2D2           1  1.8           
+  g17510/A1                                                           
+  g17510/ZN                        ND2D2             2  2.4           
+  g17386/A1                                                           
+  g17386/ZN                        CKND2D2           1  1.7           
+  g17342/A2                                                           
+  g17342/ZN                        AOI21D2           2  3.7           
+  g17310/A1                                                           
+  g17310/ZN                        OAI21D2           2  2.9           
+  g17308/I                                                            
+  g17308/ZN                        INVD1             1  2.6           
+  g17182/A1                                                           
+  g17182/ZN                        ND2D3             3  4.7           
+  g17159/A1                                                           
+  g17159/ZN                        AOI21D2           3  2.8           
+  g17108/A1                                                           
+  g17108/ZN                        OAI21D1           2  1.9           
+  g17056/B1                                                           
+  g17056/ZN                        MAOI22D1          1  1.4           
+  g17036/A1                                                           
+  g17036/ZN                        NR2XD1            1  2.0           
+  g17023/A1                                                           
+  g17023/ZN                        IND2D4            3  4.8           
+cb_parti4248/inc_add_539_23_3_A[31] 
+inc_add_539_23_3/A[31] 
+  g9042/I                                                             
+  g9042/ZN                         INVD2             1  1.6           
+  g9029/A2                                                            
+  g9029/ZN                         NR2XD1            1  1.4           
+  g8963/A1                                                            
+  g8963/ZN                         CKND2D2           1  1.4           
+  g8899/A1                                                            
+  g8899/ZN                         NR2XD1            1  2.3           
+  g8898/A1                                                            
+  g8898/ZN                         CKND2D3           2  4.5           
+  g8893/I                                                             
+  g8893/ZN                         CKND2             2  3.3           
+  g8892/I                                                             
+  g8892/ZN                         INVD2             3  5.0           
+  g8877/A1                                                            
+  g8877/ZN                         NR2XD1            1  1.0           
+  g8859/A1                                                            
+  g8859/ZN                         IND2D2            2  2.8           
+inc_add_539_23_3/Z[32] 
+cb_seqi/inc_add_539_23_3_Z[32] 
+  g12057/I                                                            
+  g12057/ZN                        CKND1             1  1.5           
+  g12010/A1                                                           
+  g12010/ZN                        CKND2D2           1  1.3           
+  g11975/A1                                                           
+  g11975/ZN                        NR2XD1            1  1.9           
+  g11907/A2                                                           
+  g11907/ZN                        CKND2D2           1  1.4           
+  g11886/A2                                                           
+  g11886/ZN                        NR2XD1            1  1.7           
+  g11843/A2                                                           
+  g11843/ZN                        AOI21D2           2  2.3           
+  g11829/A1                                                           
+  g11829/ZN                        NR2XD1            2  2.1           
+  g11695/A2                                                           
+  g11695/ZN                        ND3D1             1  0.6           
+  m_pos_partial_sum_reg[0]/D  <<<  EDFKCND4                           
+  m_pos_partial_sum_reg[0]/CP      setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                        capture                     1600 R 
+                                   latency                            
+                                   uncertainty                        
+----------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : cb_seqi/m_pos_partial_sum_reg[7]/CP
+End-point    : cb_seqi/m_pos_partial_sum_reg[0]/D
+
+The global mapper estimates a slack for this path of -2141ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:    11 ps
+Target path end-point (Pin: RC_CG_HIER_INST1/RC_CGIC_INST/E (CKLNQD1/E))
+
+       Pin                    Type       Fanout Load Arrival   
+                                                (fF)   (ps)    
+---------------------------------------------------------------
+(clock clk)          <<<    launch                         0 R 
+                            latency                            
+cb_seqi
+  m_step_reg[2]/CP                                             
+  m_step_reg[2]/Q           DFKCNQD4         11 17.2           
+cb_seqi/g3867_in_2 
+cb_parti4247/cb_seqi_g3867_in_2 
+  g4538/I                                                      
+  g4538/ZN                  INVD4             3  5.5           
+  g4526/B1                                                     
+  g4526/ZN                  INR2D2            1  1.9           
+  g4516/A1                                                     
+  g4516/ZN                  OAI21D2           1  1.8           
+  g4511/A2                                                     
+  g4511/ZN                  AOI21D2           1  1.4           
+  g4509/A1                                                     
+  g4509/ZN                  NR2XD1            1  2.6           
+  g4508/A1                                                     
+  g4508/ZN                  ND2D3             5  6.9           
+  g4507/I                                                      
+  g4507/ZN                  INVD2             4  3.8           
+  g4503/B1                                                     
+  g4503/ZN                  INR2XD0           2  1.9           
+cb_parti4247/sub_556_25_B[1] 
+sub_556_25/B[11] 
+  g9944/A1                                                     
+  g9944/ZN                  CKND2D1           2  2.5           
+  g9847/A2                                                     
+  g9847/ZN                  CKND2D2           4  3.5           
+  g9838/A1                                                     
+  g9838/ZN                  CKND2D1           3  2.3           
+  g9831/A1                                                     
+  g9831/ZN                  ND2D1             1  3.9           
+  g9824/A2                                                     
+  g9824/ZN                  CKND2D4          13 10.9           
+  g9806/A2                                                     
+  g9806/ZN                  AOI21D1           1  0.9           
+  g9793/A1                                                     
+  g9793/ZN                  CKND2D1           1  1.4           
+  g9778/A1                                                     
+  g9778/Z                   CKXOR2D1          3  2.9           
+sub_556_25/Z[31] 
+cb_parti4248/sub_556_25_Z 
+  g17612/A1                                                    
+  g17612/ZN                 ND3D1             2  1.6           
+  g17486/A1                                                    
+  g17486/ZN                 CKND2D1           1  0.9           
+  g17395/A1                                                    
+  g17395/ZN                 NR2D1             3  2.6           
+  g17357/A1                                                    
+  g17357/ZN                 ND2D1             1  0.9           
+cb_parti4248/RC_CG_HIER_INST1_enable 
+RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E   <<< (P)  CKLNQD1                            
+  RC_CGIC_INST/CP           setup                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                     1600 R 
+                            latency                            
+                            uncertainty                        
+---------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : cb_seqi/m_step_reg[2]/CP
+End-point    : RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 4ps.
+ 
+ 
+Global incremental timing result
+================================
+        Tracing clock networks.
+        Levelizing the circuit.
+        Applying wireload models.
+        Computing net loads.
+        Computing delays.
+        Computing arrivals and requireds.
+           Pin                         Type       Fanout Load Slew Delay Arrival   
+                                                         (fF) (ps)  (ps)   (ps)    
+-----------------------------------------------------------------------------------
+(clock clk)                          launch                                    0 R 
+                                     latency                        +200     200 R 
+cb_parti4247
+  m_weight_regs_1_reg[1]/CP                                    100           200 R 
+  m_weight_regs_1_reg[1]/Q           DFKCNQD4          2  5.7   40  +236     436 R 
+  g4540/A1                                                            +0     436   
+  g4540/ZN                           INR2D1            1  1.9   80  +105     541 R 
+  g4516/A2                                                            +0     541   
+  g4516/ZN                           OAI21D2           1  0.9   41   +51     592 F 
+  g4511/A2                                                            +0     592   
+  g4511/ZN                           AOI21D1           1  1.6   87   +70     662 R 
+  g4509/A1                                                            +0     662   
+  g4509/ZN                           NR2D2             1  2.6   32   +40     702 F 
+  g4508/A1                                                            +0     702   
+  g4508/ZN                           ND2D3             5  5.9   42   +36     738 R 
+  g4501/A1                                                            +0     738   
+  g4501/Z                            AN2D4            17 18.6   76  +110     848 R 
+cb_parti4247/sub_556_25_B[7] 
+sub_556_25/B[17] 
+  g10042/A1                                                           +0     848   
+  g10042/ZN                          INR2D1            2  2.5   95  +125     973 R 
+  g9879/A2                                                            +0     973   
+  g9879/ZN                           NR2XD1            2  1.8   39   +59    1032 F 
+  g9853/A2                                                            +0    1032   
+  g9853/ZN                           CKND2D1           2  2.7   69   +58    1090 R 
+  g9822/A1                                                            +0    1090   
+  g9822/ZN                           OAI21D2           5  3.7   62   +57    1147 F 
+  g9810/A2                                                            +0    1147   
+  g9810/ZN                           CKND2D1           1  1.9   56   +58    1205 R 
+  g9793/A2                                                            +0    1205   
+  g9793/ZN                           CKND2D2           1  1.4   29   +41    1246 F 
+  g9778/A1                                                            +0    1246   
+  g9778/Z                            CKXOR2D1          3  3.4   69  +143    1389 F 
+sub_556_25/Z[31] 
+cb_parti4248/sub_556_25_Z 
+  g17613/A1                                                           +0    1389   
+  g17613/ZN                          NR3D0             1  1.0   93   +77    1467 R 
+  g17395/A2                                                           +0    1467   
+  g17395/ZN                          NR2D1             3  2.6   42   +55    1521 F 
+  g17357/A1                                                           +0    1521   
+  g17357/ZN                          ND2D1             1  0.9   33   +34    1556 R 
+cb_parti4248/RC_CG_HIER_INST1_enable 
+RC_CG_HIER_INST1/enable 
+  RC_CGIC_INST/E            <<< (P)  CKLNQD1                          +0    1556   
+  RC_CGIC_INST/CP                    setup                     100  +130    1686 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                          capture                                1600 R 
+                                     latency                        +200    1800 R 
+                                     uncertainty                    -100    1700 R 
+-----------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :      14ps 
+Start-point  : cb_parti4247/m_weight_regs_1_reg[1]/CP
+End-point    : RC_CG_HIER_INST1/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+            Pin                      Type       Fanout Load Slew Delay Arrival   
+                                                       (fF) (ps)  (ps)   (ps)    
+---------------------------------------------------------------------------------
+(clock clk)                        launch                                    0 R 
+                                   latency                        +200     200 R 
+cb_seqi
+  m_pos_partial_sum_reg[3]/CP                                100           200 R 
+  m_pos_partial_sum_reg[3]/Q       DFQD4             5  4.7   42  +240     440 F 
+cb_seqi/add_434_25_Y_add_436_25_B[3] 
+minus_581_31/B[3] 
+  g2244/I                                                           +0     440   
+  g2244/Z                          CKBD1             2  3.5   53   +77     517 F 
+  g2219/A1                                                          +0     517   
+  g2219/ZN                         NR2XD2            1  3.9   45   +45     562 R 
+  g2147/A2                                                          +0     562   
+  g2147/ZN                         CKND2D4           7 11.3   62   +57     619 F 
+  g2089/A2                                                          +0     619   
+  g2089/ZN                         NR3D0             1  0.7   81   +82     702 R 
+  g2061/A1                                                          +0     702   
+  g2061/ZN                         IND2D1            1  1.8   46   +91     792 R 
+minus_581_31/Z[7] 
+cb_parti/minus_581_31_Z[6] 
+  g5034/A1                                                          +0     792   
+  g5034/ZN                         ND2D2             1  3.1   43   +42     835 F 
+  g5001/A1                                                          +0     835   
+  g5001/ZN                         CKND2D4           6 14.3   79   +60     895 R 
+cb_parti/csa_tree_mul_537_16_in_1[6] 
+csa_tree_mul_537_16/in_1[7] 
+  g35861/I                                                          +0     895   
+  g35861/ZN                        CKND6             3  7.4   30   +39     934 F 
+  g35860/I                                                          +0     934   
+  g35860/ZN                        INVD4             3  4.4   24   +27     961 R 
+  g34953/A2                                                         +0     961   
+  g34953/ZN                        CKND2D3           4  8.1   61   +50    1011 F 
+  g34556/I                                                          +0    1011   
+  g34556/Z                         BUFFD2            3  4.6   37   +82    1094 F 
+  g34555/I                                                          +0    1094   
+  g34555/ZN                        CKND2             3  4.6   38   +36    1130 R 
+  g34162/A2                                                         +0    1130   
+  g34162/ZN                        CKND2D1           1  1.9   52   +50    1180 F 
+  g33768/A2                                                         +0    1180   
+  g33768/ZN                        CKND2D2           3  4.0   54   +54    1234 R 
+  g32673/A1                                                         +0    1234   
+  g32673/ZN                        IND2D1            1  1.0   36   +76    1309 R 
+  g32342/A1                                                         +0    1309   
+  g32342/ZN                        INR2XD1           3  3.8   70   +95    1404 R 
+  g32244/I                                                          +0    1404   
+  g32244/ZN                        CKND2             2  2.3   27   +36    1440 F 
+  g31977/A1                                                         +0    1440   
+  g31977/ZN                        CKND2D2           1  2.2   38   +32    1472 R 
+  g31750/A2                                                         +0    1472   
+  g31750/ZN                        ND2D2             2  1.8   32   +39    1511 F 
+  g31510/I                                                          +0    1511   
+  g31510/ZN                        CKND1             1  1.0   25   +28    1540 R 
+  g31367/A1                                                         +0    1540   
+  g31367/ZN                        ND2D1             1  1.6   50   +42    1582 F 
+  g31217/A1                                                         +0    1582   
+  g31217/ZN                        ND2D2             3  3.0   37   +38    1620 R 
+  g31012/I                                                          +0    1620   
+  g31012/ZN                        CKND1             2  4.7   64   +52    1672 F 
+  g30447/A2                                                         +0    1672   
+  g30447/ZN                        NR2D3             1  6.3   80   +78    1749 R 
+  g30394/B1                                                         +0    1749   
+  g30394/ZN                        INR2XD4           3  3.3   33   +47    1796 F 
+  g29836/A2                                                         +0    1796   
+  g29836/ZN                        NR2XD1            1  1.0   40   +43    1839 R 
+  g29771/A1                                                         +0    1839   
+  g29771/ZN                        IND2D2            2  2.1   34   +63    1902 R 
+  g29758/I                                                          +0    1902   
+  g29758/ZN                        INVD1             1  1.4   22   +26    1928 F 
+  g29717/A1                                                         +0    1928   
+  g29717/ZN                        CKND2D2           1  1.8   35   +28    1956 R 
+  g29683/A1                                                         +0    1956   
+  g29683/ZN                        ND2D2             4  6.9   74   +57    2014 F 
+csa_tree_mul_537_16/out_1[25] 
+csa_tree_minus_576_9_groupi/in_1[25] 
+  csa_tree_minus_576_9/in_1[25] 
+    g1590/I                                                         +0    2014   
+    g1590/ZN                       INVD2             2  2.5   32   +42    2056 R 
+    g1589/I                                                         +0    2056   
+    g1589/ZN                       CKND1             1  1.4   27   +29    2085 F 
+    g1461/A2                                                        +0    2085   
+    g1461/ZN                       NR2XD1            2  5.1   84   +70    2156 R 
+  csa_tree_minus_576_9/out_0[26] 
+  final_adder_minus_576_9/A[26] 
+    g20055/A2                                                       +0    2156   
+    g20055/ZN                      NR2XD2            2  3.6   38   +54    2210 F 
+    g19886/A2                                                       +0    2210   
+    g19886/ZN                      NR2XD2            3  6.5   60   +60    2270 R 
+    g19796/A2                                                       +0    2270   
+    g19796/ZN                      CKND2D3           5  5.7   50   +53    2323 F 
+    g19734/A1                                                       +0    2323   
+    g19734/ZN                      NR2XD1            2  1.9   43   +44    2366 R 
+    g19530/A1                                                       +0    2366   
+    g19530/ZN                      ND2D1             1  0.9   38   +40    2406 F 
+    g19511/A1                                                       +0    2406   
+    g19511/ZN                      ND2D1             1  2.7   55   +46    2452 R 
+    g19497/A1                                                       +0    2452   
+    g19497/ZN                      NR2XD2            2  2.7   32   +36    2488 F 
+    g19484/A1                                                       +0    2488   
+    g19484/ZN                      NR2XD1            1  1.0   32   +32    2520 R 
+    g19455/A1                                                       +0    2520   
+    g19455/ZN                      IND2D2            1  0.9   25   +56    2575 R 
+  final_adder_minus_576_9/Z[30] 
+csa_tree_minus_576_9_groupi/out_0[30] 
+cb_parti4248/csa_tree_minus_576_9_groupi_out_0[15] 
+  g17448/A1                                                         +0    2575   
+  g17448/ZN                        CKND2D1           1  1.0   41   +34    2609 F 
+  g18203/A2                                                         +0    2609   
+  g18203/ZN                        ND2D1             2  2.0   46   +44    2654 R 
+cb_parti4248/inc_add_539_23_3_A[14] 
+inc_add_539_23_3/A[14] 
+  g9034/A2                                                          +0    2654   
+  g9034/ZN                         ND2D1             1  1.4   46   +50    2703 F 
+  g8999/A2                                                          +0    2703   
+  g8999/ZN                         NR2XD1            1  1.9   43   +54    2757 R 
+  g8925/A2                                                          +0    2757   
+  g8925/ZN                         CKND2D2           3  2.8   38   +44    2801 F 
+  g8923/A2                                                          +0    2801   
+  g8923/ZN                         NR2XD1            2  2.2   47   +53    2854 R 
+  g8917/A1                                                          +0    2854   
+  g8917/ZN                         CKND2D2           4  3.5   45   +43    2897 F 
+  g8909/A2                                                          +0    2897   
+  g8909/ZN                         NR2XD1            1  1.8   42   +52    2949 R 
+  g8905/A1                                                          +0    2949   
+  g8905/ZN                         ND2D2             3  4.7   56   +49    2998 F 
+  g8902/A1                                                          +0    2998   
+  g8902/ZN                         NR2XD2            5  6.9   63   +57    3055 R 
+  g8901/I                                                           +0    3055   
+  g8901/ZN                         CKND2             2  2.6   27   +35    3090 F 
+  g8895/A1                                                          +0    3090   
+  g8895/ZN                         NR2XD1            1  1.5   38   +34    3124 R 
+  g8871/A1                                                          +0    3124   
+  g8871/ZN                         CKND2D2           2  3.6   46   +41    3165 F 
+  g8851/A2                                                          +0    3165   
+  g8851/ZN                         NR2XD2            2  3.3   40   +51    3216 R 
+  g8841/I                                                           +0    3216   
+  g8841/ZN                         CKND2             1  1.4   17   +24    3241 F 
+  g8828/A1                                                          +0    3241   
+  g8828/ZN                         CKND2D2           1  1.8   36   +27    3268 R 
+  g8809/A1                                                          +0    3268   
+  g8809/ZN                         ND2D2             2  2.8   40   +38    3306 F 
+inc_add_539_23_3/Z[45] 
+cb_seqi/inc_add_539_23_3_Z[45] 
+  g12166/A1                                                         +0    3306   
+  g12166/ZN                        INR2D2            1  1.4   27   +72    3378 F 
+  g11950/A1                                                         +0    3378   
+  g11950/ZN                        CKND2D2           1  1.6   35   +29    3407 R 
+  g11845/A2                                                         +0    3407   
+  g11845/ZN                        NR2XD1            1  1.9   38   +40    3446 F 
+  g11839/A2                                                         +0    3446   
+  g11839/ZN                        CKND2D2           2  2.5   41   +42    3488 R 
+  g11815/A1                                                         +0    3488   
+  g11815/ZN                        CKND2D2           2  2.6   37   +37    3525 F 
+  g11716/A1                                                         +0    3525   
+  g11716/ZN                        ND2D1             1  1.0   33   +33    3558 R 
+  g11695/A2                                                         +0    3558   
+  g11695/ZN                        ND3D1             1  0.6   61   +59    3618 F 
+  m_pos_partial_sum_reg[0]/D  <<<  EDFKCNQD4                        +0    3618   
+  m_pos_partial_sum_reg[0]/CP      setup                     100  +237    3854 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                        capture                                1600 R 
+                                   latency                        +200    1800 R 
+                                   uncertainty                    -100    1700 R 
+---------------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :   -2154ps (TIMING VIOLATION)
+Start-point  : cb_seqi/m_pos_partial_sum_reg[3]/CP
+End-point    : cb_seqi/m_pos_partial_sum_reg[0]/D
+
+ 
+ 
+Global incremental optimization status
+======================================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_incr               32507    -2154 
+            Worst cost_group: clk, WNS: -2154.2
+            Path: m_pos_partial_sum_reg[3]/CP --> m_pos_partial_sum_reg[0]/D
+
+             Cost Group            Target    Slack    Diff.    Clock
+--------------------------------------------------------------------
+                    clk             -2133    -2154      -1%     1600 
+    cg_enable_group_clk                11       14              1600 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+          Performing post-mapping optimization ...
+
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'final_adder_mul_533_16_Y_final_adder_minus_585_9' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'inc_add_535_23_2' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'inc_add_539_23_3' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'minus_590_31' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'minus_581_31' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'sub_556_25' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'add_434_25_Y_add_436_25' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'add_559_25' in module 'mkPE32' would be automatically ungrouped.
+Info    : Hierarchical instance automatically ungrouped. [GLO-51]
+        : Instance 'sharing_mux563' in module 'mkPE32' would be automatically ungrouped.
+          There are 9 hierarchical instances automatically ungrouped.
+
+Another Ctrl-C within 1 second will terminate the tool.
+
+Another Ctrl-C within 1 second will terminate the tool.
+Abnormal exit.
+Encountered a problem while exiting.

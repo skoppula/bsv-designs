@@ -27,6 +27,7 @@ module mkPE16(PeIfc#(8, 2, 6, 8, 8));
   return m;
 endmodule
 
+(* synthesize *)
 module mkPE32(PeIfc#(8, 2, 6, 16, 16));
   (* hide *)
   let m <- mkPE;

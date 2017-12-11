@@ -16,6 +16,7 @@ BSV_NO_INITIAL_BLOCKS
 .v
 /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
 vlog/mkPE16.v
+vlog/mkPE32.v
 vlog/mkPE8.v
 vlog/mkPETest.v
 -YDIR
