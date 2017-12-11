@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr22/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr21/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr33/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr32/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr34/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr31/SPO</arg> has no load.
+</msg>
+
+<msg type="info" file="MapLib" num="562" delta="new" >No environment variables are currently set.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM1&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;0&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">0000001D</arg> to <arg fmt="%s" index="3">1D1D1D1D</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM2&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;1&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">0000003A</arg> to <arg fmt="%s" index="3">3A3A3A3A</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM3&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;2&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">00000092</arg> to <arg fmt="%s" index="3">92929292</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM4&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;3&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">000000E6</arg> to <arg fmt="%s" index="3">E6E6E6E6</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM5&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;4&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">00000093</arg> to <arg fmt="%s" index="3">93939393</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM6&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;5&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">000000BB</arg> to <arg fmt="%s" index="3">BBBBBBBB</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM7&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;6&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">0000002C</arg> to <arg fmt="%s" index="3">2C2C2C2C</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="MapLib" num="825" delta="new" ><arg fmt="%s" index="1">RAM32X1S symbol &quot;m/le2_featureBRAM_memory/Mram_RAM8&quot; (output signal=m/le2_featureBRAM_memory/_n0014&lt;7&gt;)</arg> INITSTATE has been changed from <arg fmt="%s" index="2">0000002C</arg> to <arg fmt="%s" index="3">2C2C2C2C</arg> because <arg fmt="%s" index="4">pins A3 and A4 are</arg> driven by GND. <arg fmt="%s" index="5">These pins have</arg> been connected to VCC instead, in order to relieve routing congestion.
+</msg>
+
+<msg type="info" file="LIT" num="244" delta="new" >All of the single ended outputs in this design are using slew rate limited output drivers. The delay on speed critical single ended outputs can be dramatically reduced by designating them as fast outputs.
+</msg>
+
+<msg type="info" file="Pack" num="1716" delta="new" >Initializing temperature to <arg fmt="%0.3f" index="1">85.000</arg> Celsius. (default - Range: <arg fmt="%0.3f" index="2">0.000</arg> to <arg fmt="%0.3f" index="3">85.000</arg> Celsius)
+</msg>
+
+<msg type="info" file="Pack" num="1720" delta="new" >Initializing voltage to <arg fmt="%0.3f" index="1">0.950</arg> Volts. (default - Range: <arg fmt="%0.3f" index="2">0.950</arg> to <arg fmt="%0.3f" index="3">1.050</arg> Volts)
+</msg>
+
+<msg type="info" file="Map" num="215" delta="new" >The Interim Design Summary has been generated in the MAP Report (.mrp).
+</msg>
+
+<msg type="info" file="Pack" num="1650" delta="new" >Map created a placed design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="new" >The signal &lt;<arg fmt="%s" index="1">m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="new" >The signal &lt;<arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="new" >The signal &lt;<arg fmt="%s" index="1">m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+</messages>
+

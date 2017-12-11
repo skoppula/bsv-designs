@@ -5,14 +5,14 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Map" timeStamp="Thu Jul 13 18:55:54 2017">
+  <application stringID="Map" timeStamp="Mon Nov 27 13:32:57 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
         <column stringID="value"/>
         <row stringID="row" value="0">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/gtkwave/3.3.64/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/sublime/3083:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:."/>
+          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/opt/Xilinx/SDK/2016.3/tps/lnx64/cmake-3.3.2/bin:/opt/Xilinx/SDK/2016.3/gnu/armr5/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-none/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-linux/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xilinx/SDK/2016.3/gnu/arm/lin/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/lin/bin:/opt/Xilinx/SDK/2016.3/bin:/opt/Xilinx/DocNav:/opt/Xilinx/Vivado_HLS/2016.3/bin:/opt/Xilinx/Vivado/2016.3/bin:/u/anantha/workspace3/share/programs/ise:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/u/anantha/workspace3/share/programs/pandoc/1.19.2/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/anaconda/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:/homes/skoppula/bin:."/>
         </row>
         <row stringID="row" value="1">
           <item stringID="variable" value="LD_LIBRARY_PATH"/>
@@ -27,41 +27,45 @@
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE/"/>
         </row>
         <row stringID="row" value="4">
-          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
-          <item stringID="value" value="@mtl-licsrv1"/>
-        </row>
-        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_DSP"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE"/>
         </row>
-        <row stringID="row" value="6">
+        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_EDK"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/EDK"/>
         </row>
-        <row stringID="row" value="7">
+        <row stringID="row" value="6">
           <item stringID="variable" value="XILINX_PLANAHEAD"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead"/>
         </row>
+        <row stringID="row" value="7">
+          <item stringID="variable" value="XILINXDIR"/>
+          <item stringID="value" value="/opt/Xilinx/14.6"/>
+        </row>
         <row stringID="row" value="8">
+          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
+          <item stringID="value" value="@mtl-licsrv1"/>
+        </row>
+        <row stringID="row" value="9">
           <item stringID="variable" value="XILINX_VIVADO"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2"/>
+          <item stringID="value" value="/opt/Xilinx/Vivado/2016.3"/>
         </row>
       </table>
       <item stringID="User_EnvOs" value="OS Information">
         <item stringID="User_EnvOsname" value="RedHatEnterpriseServer"/>
-        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.3 (Maipo)"/>
+        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.4 (Maipo)"/>
       </item>
-      <item stringID="User_EnvHost" value="mindtrap"/>
+      <item stringID="User_EnvHost" value="jalapeno"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
         <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
       </table>
     </section>
@@ -82,16 +86,16 @@
       <item DEFAULT="None" label="-p" stringID="MAP_PARTNAME" value="xc6vlx240t-ff1156-1"/>
     </section>
     <task stringID="MAP_PACK_REPORT">
-      <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="296">
-        <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="296"/>
+      <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="297">
+        <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="297"/>
         <item dataType="int" stringID="MAP_NUM_SLICE_LATCH" value="0"/>
         <item dataType="int" stringID="MAP_NUM_SLICE_LATCHTHRU" value="0"/>
         <item dataType="int" stringID="MAP_NUM_SLICE_LATCHLOGIC" value="0"/>
       </item>
-      <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="450">
+      <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="448">
         <item dataType="int" label="Number using O5 output only" stringID="MAP_NUM_LOGIC_O5ONLY" value="48"/>
-        <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="257"/>
-        <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="110"/>
+        <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="252"/>
+        <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="113"/>
         <item dataType="int" stringID="MAP_NUM_ROM_O5ONLY" value="0"/>
         <item dataType="int" stringID="MAP_NUM_ROM_O6ONLY" value="0"/>
         <item dataType="int" stringID="MAP_NUM_ROM_O5ANDO6" value="0"/>
@@ -134,21 +138,21 @@
         <item dataType="int" stringID="MAP_NUM_ERRORS" value="0"/>
         <item dataType="int" stringID="MAP_FILTERED_WARNINGS" value="0"/>
         <item dataType="int" stringID="MAP_NUM_WARNINGS" value="5"/>
-        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="1314504"/>
-        <item stringID="MAP_TOTAL_REAL_TIME" value="1 mins 18 secs "/>
-        <item stringID="MAP_TOTAL_CPU_TIME" value="1 mins 18 secs "/>
+        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="1319152"/>
+        <item stringID="MAP_TOTAL_REAL_TIME" value="1 mins 7 secs "/>
+        <item stringID="MAP_TOTAL_CPU_TIME" value="1 mins 5 secs "/>
       </section>
       <section stringID="MAP_SLICE_REPORTING">
-        <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="296">
-          <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="296"/>
+        <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="297">
+          <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="297"/>
           <item dataType="int" stringID="MAP_NUM_SLICE_LATCH" value="0"/>
           <item dataType="int" stringID="MAP_NUM_SLICE_LATCHTHRU" value="0"/>
           <item dataType="int" stringID="MAP_NUM_SLICE_LATCHLOGIC" value="0"/>
         </item>
-        <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="454">
+        <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="448">
           <item dataType="int" label="Number using O5 output only" stringID="MAP_NUM_LOGIC_O5ONLY" value="48"/>
-          <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="257"/>
-          <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="110"/>
+          <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="252"/>
+          <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="113"/>
           <item dataType="int" stringID="MAP_NUM_ROM_O5ONLY" value="0"/>
           <item dataType="int" stringID="MAP_NUM_ROM_O6ONLY" value="0"/>
           <item dataType="int" stringID="MAP_NUM_ROM_O5ANDO6" value="0"/>
@@ -162,20 +166,20 @@
           <item dataType="int" stringID="MAP_NUM_SRL_O6ONLY" value="0"/>
           <item dataType="int" stringID="MAP_NUM_SRL_O5ANDO6" value="0"/>
           <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO6" value="3"/>
-          <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO5" value="4"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO5" value="0"/>
           <item dataType="int" stringID="MAP_NUM_LUT_RT_O5ANDO6" value="0"/>
-          <item dataType="int" stringID="MAP_NUM_LUT_RT_DRIVES_FLOP" value="4"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_DRIVES_FLOP" value="0"/>
           <item dataType="int" stringID="MAP_NUM_LUT_RT_DRIVES_CARRY4" value="3"/>
           <item dataType="int" stringID="MAP_NUM_LUT_RT_DRIVES_OTHERS" value="0"/>
         </item>
-        <item AVAILABLE="37680" dataType="int" label="Number of occupied Slices" stringID="MAP_OCCUPIED_SLICES" value="144">
-          <item AVAILABLE="23080" dataType="int" stringID="MAP_NUM_SLICEL" value="136"/>
+        <item AVAILABLE="37680" dataType="int" label="Number of occupied Slices" stringID="MAP_OCCUPIED_SLICES" value="152">
+          <item AVAILABLE="23080" dataType="int" stringID="MAP_NUM_SLICEL" value="144"/>
           <item AVAILABLE="14600" dataType="int" stringID="MAP_NUM_SLICEM" value="8"/>
         </item>
-        <item dataType="int" label="Number of LUT Flip Flop pairs used" stringID="MAP_OCCUPIED_LUT_AND_FF" value="456">
+        <item dataType="int" label="Number of LUT Flip Flop pairs used" stringID="MAP_OCCUPIED_LUT_AND_FF" value="461">
           <item dataType="int" stringID="MAP_OCCUPIED_LUT_ONLY" value="192"/>
-          <item dataType="int" label="Number with an unused LUT" stringID="MAP_OCCUPIED_FF_ONLY" value="2"/>
-          <item dataType="int" label="Number of fully used LUT-FF pairs" stringID="MAP_OCCUPIED_FF_AND_LUT" value="262"/>
+          <item dataType="int" label="Number with an unused LUT" stringID="MAP_OCCUPIED_FF_ONLY" value="13"/>
+          <item dataType="int" label="Number of fully used LUT-FF pairs" stringID="MAP_OCCUPIED_FF_AND_LUT" value="256"/>
         </item>
       </section>
       <section stringID="MAP_IOB_REPORTING">
@@ -366,24 +370,20 @@
           <property label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT"/>
           <property label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT"/>
           <node stringID="MAP_CLOCK_SIGNAL" value="clk$O">
-            <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="105"/>
-            <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="356"/>
+            <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="108"/>
+            <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="357"/>
             <node stringID="MAP_RESET_SIGNAL" value="RST_N_IBUF">
-              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="54"/>
-              <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="171"/>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/CAN_FIRE_RL_action_l88c33">
+              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="56"/>
+              <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="172"/>
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/WILL_FIRE_RL_action_l88c33">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="11"/>
               </node>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/CAN_FIRE_RL_action_l98c33">
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/WILL_FIRE_RL_action_l98c33">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="16"/>
               </node>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/CAN_FIRE_RL_featureBRAM_serverAdapter_cnt_finalAdd">
-                <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
-                <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="5"/>
-              </node>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/CAN_FIRE_RL_weightBRAM_serverAdapter_stageReadResponseAlways">
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/WILL_FIRE_RL_weightBRAM_serverAdapter_stageReadResponseAlways">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="11"/>
               </node>
@@ -391,25 +391,29 @@
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="4"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="16"/>
               </node>
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/featureBRAM_serverAdapter_cnt$EN">
+                <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
+                <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="6"/>
+              </node>
               <node stringID="MAP_ENABLE_SIGNAL" value="m/jj_delay_count$EN">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="10"/>
-              </node>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/state_mkFSMstate$EN2">
-                <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="4"/>
-                <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="16"/>
               </node>
               <node stringID="MAP_ENABLE_SIGNAL" value="m/uart$EN_rx">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="16"/>
               </node>
-              <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/CAN_FIRE_RL_u_rx_rx_f_upd_count">
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/u_rx_rx_f_r_count$EN">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="4"/>
               </node>
               <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/u_tx_tx_f/_n0063_inv">
                 <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="1"/>
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="2"/>
+              </node>
+              <node stringID="MAP_ENABLE_SIGNAL" value="m/weight$EN">
+                <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="4"/>
+                <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="16"/>
               </node>
             </node>
             <node stringID="MAP_RESET_SIGNAL" value="m/Mcount_jj_1_delay_count_val">
@@ -420,10 +424,6 @@
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="7"/>
               </node>
             </node>
-            <node stringID="MAP_RESET_SIGNAL" value="m/uart/CAN_FIRE_RL_u_rx_wait_for_start_0">
-              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
-              <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="5"/>
-            </node>
             <node stringID="MAP_RESET_SIGNAL" value="m/uart/Reset_OR_DriverANDClockEnable1">
               <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="1"/>
               <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="1"/>
@@ -432,12 +432,16 @@
                 <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="1"/>
               </node>
             </node>
+            <node stringID="MAP_RESET_SIGNAL" value="m/uart/u_rx_ticker_do_center$whas_0">
+              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
+              <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="5"/>
+            </node>
             <node stringID="MAP_ENABLE_SIGNAL" value="m/featureBRAM_serverAdapter_outDataCore/CLR_DEQ_AND_17_o">
               <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="3"/>
               <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="24"/>
             </node>
-            <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/CAN_FIRE_RL_u_rx_data">
-              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="1"/>
+            <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/WILL_FIRE_RL_u_rx_data">
+              <item dataType="int" label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT" value="2"/>
               <item dataType="int" label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT" value="8"/>
             </node>
             <node stringID="MAP_ENABLE_SIGNAL" value="m/uart/u_rx_rx_f_rx_f/CLR_GND_8_o_select_20_OUT&lt;0>1">
@@ -474,9 +478,9 @@
           <property label="MMCM_ADV" stringID="MAP_MMCM_ADV"/>
           <node label="Module Name" stringID="MAP_MODULE" value="mkML605Test">
             <item label="Partition" stringID="MAP_PARTITION" value=""/>
-            <item ACCUMULATED="144" dataType="int" label="Slices" stringID="MAP_SLICES" value="0"/>
-            <item ACCUMULATED="296" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="0"/>
-            <item ACCUMULATED="454" dataType="int" label="LUTs" stringID="MAP_LUTS" value="0"/>
+            <item ACCUMULATED="152" dataType="int" label="Slices" stringID="MAP_SLICES" value="0"/>
+            <item ACCUMULATED="297" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="0"/>
+            <item ACCUMULATED="448" dataType="int" label="LUTs" stringID="MAP_LUTS" value="0"/>
             <item ACCUMULATED="32" dataType="int" label="LUTRAM" stringID="MAP_LUTRAM" value="0"/>
             <item ACCUMULATED="2" dataType="int" label="BRAM/FIFO" stringID="MAP_BRAM_FIFO" value="0"/>
             <item ACCUMULATED="0" dataType="int" label="DSP48E1" stringID="MAP_DSP48E1" value="0"/>
@@ -486,9 +490,9 @@
             <item ACCUMULATED="0" dataType="int" label="MMCM_ADV" stringID="MAP_MMCM_ADV" value="0"/>
             <node label="Module Name" stringID="MAP_MODULE" value="m">
               <item label="Partition" stringID="MAP_PARTITION" value=""/>
-              <item ACCUMULATED="144" dataType="int" label="Slices" stringID="MAP_SLICES" value="89"/>
-              <item ACCUMULATED="296" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="167"/>
-              <item ACCUMULATED="454" dataType="int" label="LUTs" stringID="MAP_LUTS" value="277"/>
+              <item ACCUMULATED="152" dataType="int" label="Slices" stringID="MAP_SLICES" value="93"/>
+              <item ACCUMULATED="297" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="168"/>
+              <item ACCUMULATED="448" dataType="int" label="LUTs" stringID="MAP_LUTS" value="275"/>
               <item ACCUMULATED="32" dataType="int" label="LUTRAM" stringID="MAP_LUTRAM" value="0"/>
               <item ACCUMULATED="2" dataType="int" label="BRAM/FIFO" stringID="MAP_BRAM_FIFO" value="0"/>
               <item ACCUMULATED="0" dataType="int" label="DSP48E1" stringID="MAP_DSP48E1" value="0"/>
@@ -524,9 +528,9 @@
               </node>
               <node label="Module Name" stringID="MAP_MODULE" value="uart">
                 <item label="Partition" stringID="MAP_PARTITION" value=""/>
-                <item ACCUMULATED="39" dataType="int" label="Slices" stringID="MAP_SLICES" value="26"/>
+                <item ACCUMULATED="43" dataType="int" label="Slices" stringID="MAP_SLICES" value="27"/>
                 <item ACCUMULATED="92" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="56"/>
-                <item ACCUMULATED="112" dataType="int" label="LUTs" stringID="MAP_LUTS" value="70"/>
+                <item ACCUMULATED="108" dataType="int" label="LUTs" stringID="MAP_LUTS" value="66"/>
                 <item ACCUMULATED="8" dataType="int" label="LUTRAM" stringID="MAP_LUTRAM" value="0"/>
                 <item ACCUMULATED="0" dataType="int" label="BRAM/FIFO" stringID="MAP_BRAM_FIFO" value="0"/>
                 <item ACCUMULATED="0" dataType="int" label="DSP48E1" stringID="MAP_DSP48E1" value="0"/>
@@ -536,7 +540,7 @@
                 <item ACCUMULATED="0" dataType="int" label="MMCM_ADV" stringID="MAP_MMCM_ADV" value="0"/>
                 <node label="Module Name" stringID="MAP_MODULE" value="u_rx_rx_f_rx_f">
                   <item label="Partition" stringID="MAP_PARTITION" value=""/>
-                  <item ACCUMULATED="8" dataType="int" label="Slices" stringID="MAP_SLICES" value="8"/>
+                  <item ACCUMULATED="10" dataType="int" label="Slices" stringID="MAP_SLICES" value="10"/>
                   <item ACCUMULATED="17" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="17"/>
                   <item ACCUMULATED="28" dataType="int" label="LUTs" stringID="MAP_LUTS" value="28"/>
                   <item ACCUMULATED="8" dataType="int" label="LUTRAM" stringID="MAP_LUTRAM" value="8"/>
@@ -549,7 +553,7 @@
                 </node>
                 <node label="Module Name" stringID="MAP_MODULE" value="u_tx_tx_f">
                   <item label="Partition" stringID="MAP_PARTITION" value=""/>
-                  <item ACCUMULATED="5" dataType="int" label="Slices" stringID="MAP_SLICES" value="5"/>
+                  <item ACCUMULATED="6" dataType="int" label="Slices" stringID="MAP_SLICES" value="6"/>
                   <item ACCUMULATED="19" dataType="int" label="Slice Reg" stringID="MAP_SLICE_REG" value="19"/>
                   <item ACCUMULATED="14" dataType="int" label="LUTs" stringID="MAP_LUTS" value="14"/>
                   <item ACCUMULATED="0" dataType="int" label="LUTRAM" stringID="MAP_LUTRAM" value="0"/>

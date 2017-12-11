@@ -1,0 +1,37 @@
+Vivado Simulator 2016.3
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2016.3/bin/unwrapped/lnx64.o/xelab -v 0 -debug typical -s bin/verML605Test.xsim -prj /tmp/xsim.prj.zvdBNP -sourcelibdir bin -sourcelibdir /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Libraries -sourcelibdir /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog -sourcelibext .v -d TOP=mkML605Test -L unisims_ver -t work_mkML605Test.glbl -t work_mkML605Test.main 
+Multi-threading is on. Using 14 slave threads.
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v" into library work_mkML605Test
+INFO: [VRFC 10-311] analyzing module main
+INFO: [VRFC 10-2263] Analyzing Verilog file "bin/mkML605Test.v" into library library 2
+INFO: [VRFC 10-311] analyzing module mkML605Test
+INFO: [VRFC 10-1]       Resolving module mkML605Test
+INFO: [VRFC 10-2263] Analyzing Verilog file "bin/mkBRAMUARTTest.v" into library library 2
+INFO: [VRFC 10-311] analyzing module mkBRAMUARTTest
+INFO: [VRFC 10-1]       Resolving module mkBRAMUARTTest
+INFO: [VRFC 10-2263] Analyzing Verilog file "bin/mkUARTSpec.v" into library library 2
+INFO: [VRFC 10-311] analyzing module mkUARTSpec
+INFO: [VRFC 10-1]       Resolving module mkUARTSpec
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v" into library library 2
+INFO: [VRFC 10-311] analyzing module ResetInverter
+INFO: [VRFC 10-1]       Resolving module ResetInverter
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v" into library library 2
+INFO: [VRFC 10-311] analyzing module BRAM1
+INFO: [VRFC 10-1]       Resolving module BRAM1
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/SizedFIFO.v" into library library 2
+INFO: [VRFC 10-311] analyzing module SizedFIFO
+INFO: [VRFC 10-1]       Resolving module SizedFIFO
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" into library library 2
+INFO: [VRFC 10-311] analyzing module BRAM1Load
+INFO: [VRFC 10-1]       Resolving module BRAM1Load
+INFO: [VRFC 10-2263] Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v" into library library 2
+INFO: [VRFC 10-311] analyzing module FIFO2
+INFO: [VRFC 10-1]       Resolving module FIFO2
+INFO: [VRFC 10-2263] Analyzing Verilog file "/fs/cad3/xilinx/14.6/ISE_DS/ISE/verilog/src/glbl.v" into library work_mkML605Test
+INFO: [VRFC 10-311] analyzing module glbl
+Starting static elaboration
+WARNING: [VRFC 10-1770] port uart_txd remains unconnected for this instance [/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v:61]
+Completed static elaboration
+Starting simulation data flow analysis
+ERROR: [XSIM 43-4099] "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v" Line 50. Module main doesn't have a timescale but at least one module in design has a timescale.

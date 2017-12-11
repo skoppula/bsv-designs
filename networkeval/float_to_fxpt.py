@@ -128,25 +128,33 @@ def eval_layer(inp, main_weight, pos_const, neg_const, bias):
     fxpt_pos_const = conv_arr_fxpt(pos_const)
     fxpt_neg_const = conv_arr_fxpt(neg_const)
     fxpt_bias = conv_arr_fxpt(bias)
-    pos_mweights = np.where(main_weights == -1, np.zeros(main_weights.shape), main_weights)
-    neg_mweights = np.where(main_weights == 1, np.zeros(main_weights.shape), main_weights)
-    pos_fxpt_prod = conv_arr_fxpt(pos_mweights.dot(fxpt_inp))
-    neg_fxpt_prod = conv_arr_fxpt(neg_mweights.dot(fxpt_inp))
+    pos_mweights = np.where(main_weight == -1, np.zeros(main_weight.shape), main_weight)
+    neg_mweights = np.where(main_weight == 1, np.zeros(main_weight.shape), main_weight)
+    pos_fxpt_prod = pos_mweights.dot(fxpt_inp)
+    neg_fxpt_prod = neg_mweights.dot(fxpt_inp)
+    # print('positive/neg sum, after mac')
+    # print(np.vstack((pos_fxpt_prod,neg_fxpt_prod)).T)
     scaled_neg_fxpt_prod = conv_arr_fxpt(fxpt_neg_const*neg_fxpt_prod)
     scaled_pos_fxpt_prod = conv_arr_fxpt(fxpt_pos_const*pos_fxpt_prod)
-    print('negative sum, after scaling', scaled_neg_fxpt_prod)
-    print('positive sum, after scaling', scaled_pos_fxpt_prod)
-    fxpt_sum = conv_arr_fxpt(scaled_neg_fxpt_prod + scaled_pos_fxpt_prod + fxpt_bias)
-    print('fxpt total sum', fxpt_sum)
+    # print('pos/neg constant', fxpt_pos_const, fxpt_neg_const)
+    # print('positive/neg sum, after scaling')
+    # print(np.vstack((scaled_pos_fxpt_prod,scaled_neg_fxpt_prod)).T)
+    fxpt_sum = conv_arr_fxpt(scaled_neg_fxpt_prod + scaled_pos_fxpt_prod)
+    # print('fxpt total sum pre-bias')
+    # print(np.vstack((fxpt_sum, scaled_neg_fxpt_prod)).T)
+    fxpt_sum = conv_arr_fxpt(fxpt_sum + fxpt_bias)
+    # print('fxpt total sum post-bias')
+    # print(np.vstack((fxpt_sum, scaled_neg_fxpt_prod)).T)
     fxpt_out = np.maximum(np.zeros(fxpt_sum.shape), fxpt_sum)
-    print('fxpt pos_relu', fxpt_out)
-    weights = np.where(main_weights < 0, main_weights*neg_const, main_weights)
-    weights = np.where(main_weights > 0, main_weights*pos_const, weights)
+    # print('fxpt pos_relu')
+    # print(np.vstack((fxpt_out, scaled_neg_fxpt_prod)).T)
+    weights = np.where(main_weight < 0, main_weight*neg_const, main_weight)
+    weights = np.where(main_weight > 0, main_weight*pos_const, weights)
     prod = weights.dot(inp) + bias
     prod = np.maximum(np.zeros(prod.shape), prod)
-    print('true answer', prod)
-    print('diff:', np.abs(prod - fxpt_out))
-    return fxpt_out
+    # print('true answer', prod)
+    # print('diff:', np.abs(prod - fxpt_out))
+    return fxpt_out, scaled_neg_fxpt_prod
 
 # run_fxpt_tests()
 main_weights, pos_consts, neg_consts, bias = load_weights()
@@ -155,8 +163,20 @@ print('weights:', pos_consts, neg_consts, bias)
 feats = load_feats(size=main_weights.shape[2])
 # create_feat_bram(feats)
 
+golden = '''1.98437 1.59375
+0.87500 0.00000
+1.51562 0.62500
+1.10937 0.25000
+0.57812 -0.28125
+1.71875 0.50000
+1.65625 0.79687
+1.53125 0.81250
+'''
+
 for i in range(1):
-    feats = eval_layer(feats, main_weights[i], pos_consts[i], neg_consts[i], bias[i])
-    # print(feats)
+    feats, neg_pe_sum = eval_layer(feats, main_weights[i], pos_consts[i], neg_consts[i], bias[i])
+    print(np.vstack((feats, neg_pe_sum)).T)
+    print("should be:")
+    print(golden)
 
 # print(main_weights, pos_consts, neg_consts, bias)

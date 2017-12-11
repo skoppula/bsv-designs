@@ -23,7 +23,7 @@ project set "Generate Detailed MAP Report" "true" -process "Map"
 project save
 
 # Uncomment to generate bitfile in script
-#process run "Implement Design"
+process run "Implement Design"
 #process run "Generate Programming File"
-#project save
+project save
 project close

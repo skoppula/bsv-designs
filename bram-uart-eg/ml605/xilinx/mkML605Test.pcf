@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.68d on Thu Jul 13 18:55:52 2017
+// Written by: Map P.68d on Mon Nov 27 13:32:55 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -162,10 +162,11 @@ TIMEGRP CLK = BEL "clk" BEL "m/weightBRAM_serverAdapter_cnt_2" BEL
         "m/uart/u_tx_bit_count_2" BEL "m/uart/u_tx_bit_count_1" BEL
         "m/uart/u_tx_bit_count_0" BEL "m/uart/u_rx_bit_count_2" BEL
         "m/uart/u_rx_bit_count_0" BEL "m/uart/u_rx_bit_count_1" BEL
-        "m/state_mkFSMstate_FSM_FFd10_1" BEL
         "m/weightBRAM_serverAdapter_cnt_1_1" BEL
-        "m/weightBRAM_serverAdapter_cnt_0_1" BEL "m/uart/u_tx_tx_f/full_reg_1"
-        BEL "m/state_mkFSMstate_FSM_FFd6_1" PIN
+        "m/weightBRAM_serverAdapter_cnt_2_1" BEL
+        "m/weightBRAM_serverAdapter_cnt_0_1" BEL
+        "m/state_mkFSMstate_FSM_FFd10_1" BEL "m/uart/u_tx_tx_f/full_reg_1" BEL
+        "m/state_mkFSMstate_FSM_FFd6_1" PIN
         "m/featureBRAM_memory/Mram_RAM_pins<63>" PIN
         "m/featureBRAM_memory/Mram_RAM_pins<62>" PIN
         "m/weightBRAM_memory/Mram_RAM_pins<63>" PIN

@@ -1,0 +1,261 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/homes/miaorong/Documents/KWS/hardware-design/kws/basic_blocks/mult/uart-mult/ml605/sim
+vBRAM1
+Z0 V`JN@9S9cnhjKRR_L]QIcM3
+r1
+!s85 0
+31
+!i10b 1
+!s100 mMQbP6M>Q^h5kh`4jaJZ^2
+IZLKT>YMJgTDbQ8Nc_2Eg_0
+Z1 d/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim
+Z2 w1468007111
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v
+Z3 L0 30
+Z4 OL;L;10.3b;59
+Z5 !s108 1499979003.920915
+Z6 !s107 ../vlog/mkSimML605Test.v|/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v|
+Z7 !s90 -quiet|-work|work_mkSimML605Test|+libext+.v|-y|../vlog|-y|/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Libraries|-y|/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog|+define+TOP=mkSimML605Test|/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v|../vlog/mkSimML605Test.v|
+!i113 0
+Z8 o-quiet -work work_mkSimML605Test +libext+.v -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 !s92 -quiet -work work_mkSimML605Test +libext+.v -y ../vlog -y /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Libraries -y /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog +define+TOP=mkSimML605Test -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+n@b@r@a@m1
+vBRAM1Load
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 cL`j1hiGzUQj@]F9[Y9R`0
+Io0?AT4YF<hBd[;iO9W73B2
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v
+R3
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@b@r@a@m1@load
+vClockGen
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 XHVMY1m12:F[39ARlzJbH3
+IY3<U=kDJLOkUB;XfP<n_C2
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
+L0 32
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@clock@gen
+vFIFO2
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 ?6FLdk^3mW;Y5_A412Vzd3
+IkLT:3`eN2n^R^iGALCP_Y0
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v
+L0 51
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@f@i@f@o2
+vInitialReset
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 @oI4oG6O`8h<A121G_6OM0
+IR_4<=X@1SP55I[g15zT2E1
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/InitialReset.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/InitialReset.v
+Z10 L0 45
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@initial@reset
+vmain
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 Em=B??hM^kcAAn5Po6H<B1
+Ikk:ma?lnWFR;NWjBKlVUF2
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/main.v
+L0 50
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vmkBRAMUARTTest
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^Bn5:6oDf8c:c2PCM]e`n2
+IILQKT@K@Zz;4UeY2>hXV;2
+R1
+w1499978999
+8../vlog/mkBRAMUARTTest.v
+F../vlog/mkBRAMUARTTest.v
+L0 37
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+nmk@b@r@a@m@u@a@r@t@test
+vmkML605Test
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^GBPiTYfFFZ88`8aJNn4C1
+IDQEn^I`>TEI@A652ja=hU3
+R1
+w1499979001
+8../vlog/mkML605Test.v
+F../vlog/mkML605Test.v
+L0 35
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+nmk@m@l605@test
+vmkSimML605Test
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 Sno_6?e[d3edRMBj6FO;M3
+IRh5fUIaDonmZ`z8]z<6eg1
+R1
+w1499979003
+8../vlog/mkSimML605Test.v
+F../vlog/mkSimML605Test.v
+L0 27
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+nmk@sim@m@l605@test
+vmkUARTSpec
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 4m5LRChHUGS`IElmX]T3M2
+IGJ[]dL]VVacVkU_f5S;>=1
+R1
+w1499978993
+8../vlog/mkUARTSpec.v
+F../vlog/mkUARTSpec.v
+R10
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+nmk@u@a@r@t@spec
+vResetInverter
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 f1b]`lW:IoVDZ7RE]87T82
+Ij^XmMXIzBJ5H4C^Jn>00L0
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v
+R3
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@reset@inverter
+vSizedFIFO
+R0
+r1
+!s85 0
+31
+!i10b 1
+!s100 We=d`[CWd17LQ<5k`ZcB]1
+IFo<WbXB]ThUGm_49ocZBc0
+R1
+R2
+8/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/SizedFIFO.v
+F/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/SizedFIFO.v
+L0 58
+R4
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@sized@f@i@f@o

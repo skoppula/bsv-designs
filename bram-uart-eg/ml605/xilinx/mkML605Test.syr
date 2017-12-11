@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> 
 Reading design: mkML605Test.prj
@@ -116,13 +116,13 @@ Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.be
 Parsing module <BRAM1Load>.
 Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1.v" into library work
 Parsing module <BRAM1>.
-Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" into library work
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v" into library work
 Parsing module <mkUARTSpec>.
 Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v" into library work
 Parsing module <ResetInverter>.
-Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" into library work
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" into library work
 Parsing module <mkBRAMUARTTest>.
-Analyzing Verilog file "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" into library work
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkML605Test.v" into library work
 Parsing module <mkML605Test>.
 
 =========================================================================
@@ -130,119 +130,40 @@ Parsing module <mkML605Test>.
 =========================================================================
 
 Elaborating module <mkML605Test>.
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 94: Assignment to CAN_FIRE_uart_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 95: Assignment to WILL_FIRE_uart_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 101: Assignment to CAN_FIRE_uart_cts ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v" Line 102: Assignment to WILL_FIRE_uart_cts ignored, since the identifier is never used
 
 Elaborating module <BUFG>.
 
 Elaborating module <ResetInverter>.
 
 Elaborating module <mkBRAMUARTTest>.
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 400: Assignment to CAN_FIRE_uart_pins_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 401: Assignment to WILL_FIRE_uart_pins_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 407: Assignment to CAN_FIRE_uart_pins_cts ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 408: Assignment to WILL_FIRE_uart_pins_cts ignored, since the identifier is never used
 
 Elaborating module <BRAM1(PIPELINED=1'b0,ADDR_WIDTH=32'b01011,DATA_WIDTH=32'b010000,MEMSIZE=12'b100000000000)>.
 
 Elaborating module <SizedFIFO(p1width=32'b010000,p2depth=32'b011,p3cntr_width=32'b01,guarded=32'b01)>.
 
 Elaborating module <mkUARTSpec>.
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 284: Assignment to CAN_FIRE_pins_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 285: Assignment to WILL_FIRE_pins_rxd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 291: Assignment to CAN_FIRE_pins_cts ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 292: Assignment to WILL_FIRE_pins_cts ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 301: Assignment to CAN_FIRE_rx ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 302: Assignment to WILL_FIRE_rx ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 306: Assignment to CAN_FIRE_tx ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 307: Assignment to WILL_FIRE_tx ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 311: Assignment to CAN_FIRE_clear ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 312: Assignment to WILL_FIRE_clear ignored, since the identifier is never used
 
 Elaborating module <SizedFIFO(p1width=32'b01000,p2depth=32'b01000,p3cntr_width=32'b011,guarded=32'b01)>.
 
 Elaborating module <FIFO2(width=32'b01000,guarded=32'b01)>.
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 358: Assignment to CAN_FIRE_RL_u_rx_rxd_old ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 359: Assignment to WILL_FIRE_RL_u_rx_rxd_old ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 382: Assignment to CAN_FIRE_RL_u_rx_ticker_update_counter ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 383: Assignment to WILL_FIRE_RL_u_rx_ticker_update_counter ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 399: Assignment to WILL_FIRE_RL_u_rx_rx_f_upd_count ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 412: Assignment to CAN_FIRE_RL_u_tx_ticker_update_counter ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 413: Assignment to WILL_FIRE_RL_u_tx_ticker_update_counter ignored, since the identifier is never used
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 463: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 488: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 543: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v" Line 603: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v" Line 394: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v" Line 419: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v" Line 475: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v" Line 535: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
 
 Elaborating module <BRAM1Load(FILENAME="y.txt",PIPELINED=1'b0,ADDR_WIDTH=32'b01011,DATA_WIDTH=32'b010000,MEMSIZE=12'b100000000000,BINARY=1'b0)>.
 Reading initialization file \"y.txt\".
 WARNING:HDLCompiler:1670 - "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" Line 72: Signal <RAM> in initial block is partially initialized.
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 528: Assignment to CAN_FIRE_RL_action_l92c33 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 575: Assignment to CAN_FIRE___me_check_34 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 576: Assignment to WILL_FIRE___me_check_34 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 579: Assignment to CAN_FIRE___me_check_35 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 580: Assignment to WILL_FIRE___me_check_35 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 583: Assignment to CAN_FIRE___me_check_36 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 584: Assignment to WILL_FIRE___me_check_36 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 587: Assignment to CAN_FIRE___me_check_37 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 588: Assignment to WILL_FIRE___me_check_37 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 591: Assignment to CAN_FIRE___me_check_38 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 592: Assignment to WILL_FIRE___me_check_38 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 595: Assignment to CAN_FIRE___me_check_39 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 596: Assignment to WILL_FIRE___me_check_39 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 599: Assignment to CAN_FIRE___me_check_40 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 600: Assignment to WILL_FIRE___me_check_40 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 632: Assignment to WILL_FIRE_RL_auto_finish ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 662: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_overRun ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 666: Assignment to CAN_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 668: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 679: Assignment to CAN_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 680: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 702: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_overRun ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 706: Assignment to CAN_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 708: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_outData_setFirstCore ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 730: Assignment to CAN_FIRE___me_check_25 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 731: Assignment to WILL_FIRE___me_check_25 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 734: Assignment to CAN_FIRE___me_check_26 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 735: Assignment to WILL_FIRE___me_check_26 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 738: Assignment to CAN_FIRE___me_check_27 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 739: Assignment to WILL_FIRE___me_check_27 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 742: Assignment to CAN_FIRE___me_check_28 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 743: Assignment to WILL_FIRE___me_check_28 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 746: Assignment to CAN_FIRE___me_check_29 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 747: Assignment to WILL_FIRE___me_check_29 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 750: Assignment to CAN_FIRE___me_check_30 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 751: Assignment to WILL_FIRE___me_check_30 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 754: Assignment to CAN_FIRE___me_check_31 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 755: Assignment to WILL_FIRE___me_check_31 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 758: Assignment to CAN_FIRE___me_check_33 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 759: Assignment to WILL_FIRE___me_check_33 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 762: Assignment to CAN_FIRE___me_check_32 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 763: Assignment to WILL_FIRE___me_check_32 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 794: Assignment to WILL_FIRE_RL_featureBRAM_serverAdapter_cnt_finalAdd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 826: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_cnt_finalAdd ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 830: Assignment to CAN_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 831: Assignment to WILL_FIRE_RL_weightBRAM_serverAdapter_s1__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 834: Assignment to CAN_FIRE_RL_start_reg__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 835: Assignment to WILL_FIRE_RL_start_reg__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 838: Assignment to CAN_FIRE_RL_state_handle_abort ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 839: Assignment to WILL_FIRE_RL_state_handle_abort ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 842: Assignment to CAN_FIRE_RL_state_every ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 843: Assignment to WILL_FIRE_RL_state_every ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 846: Assignment to CAN_FIRE_RL_state_fired__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 847: Assignment to WILL_FIRE_RL_state_fired__dreg_update ignored, since the identifier is never used
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1006: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
-WARNING:HDLCompiler:1311 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1115: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
-WARNING:HDLCompiler:1127 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" Line 1182: Assignment to wptr_w ignored, since the identifier is never used
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" Line 657: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" Line 777: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" Line 851: Assignment to wptr_w ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <mkML605Test>.
-    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkML605Test.v".
+    Related source file is "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkML605Test.v".
     Summary:
 	no macro.
 Unit <mkML605Test> synthesized.
@@ -254,10 +175,10 @@ Synthesizing Unit <ResetInverter>.
 Unit <ResetInverter> synthesized.
 
 Synthesizing Unit <mkBRAMUARTTest>.
-    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v".
-INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <rx_first> of the instance <uart> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <RDY_rx_first> of the instance <uart> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkBRAMUARTTest.v" line 445: Output port <RDY_clear> of the instance <uart> is unconnected or connected to loadless signal.
+    Related source file is "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v".
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" line 328: Output port <rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" line 328: Output port <RDY_rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkBRAMUARTTest.v" line 328: Output port <RDY_clear> of the instance <uart> is unconnected or connected to loadless signal.
     Found 16-bit register for signal <feature2>.
     Found 3-bit register for signal <featureBRAM_serverAdapter_cnt>.
     Found 2-bit register for signal <featureBRAM_serverAdapter_s1>.
@@ -286,28 +207,28 @@ INFO:Xst:3210 - "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRA
     | Inputs             | 18                                             |
     | Outputs            | 18                                             |
     | Clock              | CLK (rising_edge)                              |
-    | Reset              | RST_N_GND_4_o_equal_105_o (positive)           |
+    | Reset              | RST_N_GND_4_o_equal_112_o (positive)           |
     | Reset type         | synchronous                                    |
     | Reset State        | 00000                                          |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit adder for signal <MUX_feature2$write_1__VAL_2> created at line 853.
-    Found 32-bit adder for signal <MUX_i$write_1__VAL_1> created at line 854.
-    Found 7-bit adder for signal <MUX_jj_1_delay_count$write_1__VAL_1> created at line 855.
-    Found 16-bit adder for signal <MUX_weight$write_1__VAL_2> created at line 857.
-    Found 11-bit adder for signal <fptr_r$D_IN> created at line 934.
-    Found 11-bit adder for signal <fptr_w$D_IN> created at line 939.
-    Found 11-bit adder for signal <wptr_r$D_IN> created at line 1079.
-    Found 3-bit adder for signal <n0457> created at line 1158.
-    Found 3-bit adder for signal <featureBRAM_serverAdapter_cnt_6_PLUS_IF_featur_ETC___d32> created at line 1158.
-    Found 3-bit adder for signal <n0463> created at line 1174.
-    Found 3-bit adder for signal <weightBRAM_serverAdapter_cnt_5_PLUS_IF_weightB_ETC___d91> created at line 1174.
-    Found 3-bit comparator greater for signal <weightBRAM_serverAdapter_cnt[2]_PWR_4_o_LessThan_29_o> created at line 685
-    Found 16-bit comparator not equal for signal <n0251> created at line 1149
-    Found 16-bit comparator not equal for signal <n0253> created at line 1150
-    Found 3-bit comparator greater for signal <featureBRAM_serverAdapter_cnt_6_SLT_3___d194> created at line 1162
-    Found 32-bit comparator greater for signal <i_54_ULT_8___d155> created at line 1164
+    Found 16-bit adder for signal <MUX_feature2$write_1__VAL_2> created at line 489.
+    Found 32-bit adder for signal <MUX_i$write_1__VAL_1> created at line 490.
+    Found 7-bit adder for signal <MUX_jj_1_delay_count$write_1__VAL_1> created at line 491.
+    Found 16-bit adder for signal <MUX_weight$write_1__VAL_2> created at line 493.
+    Found 11-bit adder for signal <fptr_r$D_IN> created at line 582.
+    Found 11-bit adder for signal <fptr_w$D_IN> created at line 587.
+    Found 11-bit adder for signal <wptr_r$D_IN> created at line 732.
+    Found 3-bit adder for signal <n0427> created at line 827.
+    Found 3-bit adder for signal <featureBRAM_serverAdapter_cnt_6_PLUS_IF_featur_ETC___d32> created at line 827.
+    Found 3-bit adder for signal <n0433> created at line 843.
+    Found 3-bit adder for signal <weightBRAM_serverAdapter_cnt_5_PLUS_IF_weightB_ETC___d91> created at line 843.
+    Found 3-bit comparator greater for signal <weightBRAM_serverAdapter_cnt[2]_PWR_4_o_LessThan_27_o> created at line 454
+    Found 16-bit comparator not equal for signal <n0221> created at line 815
+    Found 16-bit comparator not equal for signal <n0223> created at line 816
+    Found 3-bit comparator greater for signal <featureBRAM_serverAdapter_cnt_6_SLT_3___d194> created at line 831
+    Found 32-bit comparator greater for signal <i_54_ULT_8___d155> created at line 833
     Summary:
 	inferred  11 Adder/Subtractor(s).
 	inferred 162 D-type flip-flop(s).
@@ -357,7 +278,7 @@ Synthesizing Unit <SizedFIFO_1>.
 Unit <SizedFIFO_1> synthesized.
 
 Synthesizing Unit <mkUARTSpec>.
-    Related source file is "/homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/vlog/mkUARTSpec.v".
+    Related source file is "/homes/skoppula/bsv/bsv-designs/bram-uart-eg/ml605/vlog/mkUARTSpec.v".
     Found 1-bit register for signal <u_rx_curr_rx_valid>.
     Found 1-bit register for signal <u_rx_last_stop>.
     Found 1-bit register for signal <u_rx_parity_bit>.
@@ -402,14 +323,14 @@ INFO:Xst:1799 - State 011 is never reached in FSM <u_rx_state>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit subtractor for signal <u_rx_rx_f_r_count[3]_GND_7_o_sub_63_OUT> created at line 531.
-    Found 16-bit subtractor for signal <u_rx_ticker_counter[15]_GND_7_o_sub_77_OUT> created at line 566.
-    Found 16-bit subtractor for signal <u_tx_ticker_counter$D_IN> created at line 621.
-    Found 3-bit adder for signal <u_rx_bit_count[2]_GND_7_o_add_43_OUT> created at line 451.
-    Found 4-bit adder for signal <u_rx_rx_f_r_count[3]_GND_7_o_add_61_OUT> created at line 530.
-    Found 3-bit adder for signal <u_tx_bit_count[2]_GND_7_o_add_79_OUT> created at line 574.
-    Found 4-bit comparator lessequal for signal <n0007> created at line 288
-    Found 1-bit comparator not equal for signal <n0040> created at line 398
+    Found 4-bit subtractor for signal <u_rx_rx_f_r_count[3]_GND_7_o_sub_62_OUT> created at line 462.
+    Found 16-bit subtractor for signal <u_rx_ticker_counter[15]_GND_7_o_sub_77_OUT> created at line 498.
+    Found 16-bit subtractor for signal <u_tx_ticker_counter$D_IN> created at line 553.
+    Found 3-bit adder for signal <u_rx_bit_count[2]_GND_7_o_add_42_OUT> created at line 382.
+    Found 4-bit adder for signal <u_rx_rx_f_r_count[3]_GND_7_o_add_60_OUT> created at line 461.
+    Found 3-bit adder for signal <u_tx_bit_count[2]_GND_7_o_add_79_OUT> created at line 506.
+    Found 4-bit comparator lessequal for signal <n0007> created at line 256
+    Found 1-bit comparator not equal for signal <n0104> created at line 464
     Summary:
 	inferred   5 Adder/Subtractor(s).
 	inferred  65 D-type flip-flop(s).
@@ -765,6 +686,7 @@ FlipFlop m/state_mkFSMstate_FSM_FFd6 has been replicated 1 time(s)
 FlipFlop m/uart/u_tx_tx_f/full_reg has been replicated 1 time(s)
 FlipFlop m/weightBRAM_serverAdapter_cnt_0 has been replicated 1 time(s)
 FlipFlop m/weightBRAM_serverAdapter_cnt_1 has been replicated 1 time(s)
+FlipFlop m/weightBRAM_serverAdapter_cnt_2 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -772,8 +694,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 296
- Flip-Flops                                            : 296
+# Registers                                            : 297
+ Flip-Flops                                            : 297
 
 =========================================================================
 
@@ -796,24 +718,24 @@ Top Level Output File Name         : mkML605Test.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 704
+# BELS                             : 705
 #      GND                         : 1
 #      INV                         : 14
 #      LUT1                        : 51
 #      LUT2                        : 26
 #      LUT3                        : 37
-#      LUT4                        : 94
+#      LUT4                        : 95
 #      LUT5                        : 110
 #      LUT6                        : 143
 #      MUXCY                       : 119
 #      MUXF7                       : 2
 #      VCC                         : 1
 #      XORCY                       : 106
-# FlipFlops/Latches                : 296
+# FlipFlops/Latches                : 297
 #      FD                          : 88
 #      FDE                         : 24
 #      FDR                         : 62
-#      FDRE                        : 80
+#      FDRE                        : 81
 #      FDS                         : 7
 #      FDSE                        : 35
 # RAMS                             : 17
@@ -834,17 +756,17 @@ Selected Device : 6vlx240tff1156-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             296  out of  301440     0%  
- Number of Slice LUTs:                  515  out of  150720     0%  
-    Number used as Logic:               475  out of  150720     0%  
+ Number of Slice Registers:             297  out of  301440     0%  
+ Number of Slice LUTs:                  516  out of  150720     0%  
+    Number used as Logic:               476  out of  150720     0%  
     Number used as Memory:               40  out of  58400     0%  
        Number used as RAM:               40
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    541
-   Number with an unused Flip Flop:     245  out of    541    45%  
-   Number with an unused LUT:            26  out of    541     4%  
-   Number of fully used LUT-FF pairs:   270  out of    541    49%  
+ Number of LUT Flip Flop pairs used:    543
+   Number with an unused Flip Flop:     246  out of    543    45%  
+   Number with an unused LUT:            27  out of    543     4%  
+   Number of fully used LUT-FF pairs:   270  out of    543    49%  
    Number of unique control sets:        18
 
 IO Utilization: 
@@ -877,7 +799,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | IBUFG+BUFG             | 313   |
+CLK                                | IBUFG+BUFG             | 314   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -900,7 +822,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
   Clock period: 3.385ns (frequency: 295.421MHz)
-  Total number of paths / destination ports: 14630 / 580
+  Total number of paths / destination ports: 14672 / 582
 -------------------------------------------------------------------------
 Delay:               3.385ns (Levels of Logic = 17)
   Source:            m/featureBRAM_memory/Mram_RAM (RAM)
@@ -937,7 +859,7 @@ Delay:               3.385ns (Levels of Logic = 17)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 210 / 203
+  Total number of paths / destination ports: 211 / 204
 -------------------------------------------------------------------------
 Offset:              1.905ns (Levels of Logic = 2)
   Source:            RST_N (PAD)
@@ -948,7 +870,7 @@ Offset:              1.905ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           183   0.003   0.961  RST_N_IBUF (RST_N_IBUF)
+     IBUF:I->O           184   0.003   0.961  RST_N_IBUF (RST_N_IBUF)
      LUT5:I0->O            7   0.068   0.439  m/Mcount_jj_1_delay_count_val1 (m/Mcount_jj_1_delay_count_val)
      FDRE:R                    0.434          m/jj_1_delay_count_0
     ----------------------------------------
@@ -1009,15 +931,15 @@ CLK            |    3.385|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 16.00 secs
-Total CPU time to Xst completion: 14.94 secs
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 11.82 secs
  
 --> 
 
 
-Total memory usage is 516688 kilobytes
+Total memory usage is 516072 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  102 (   0 filtered)
+Number of warnings :   23 (   0 filtered)
 Number of infos    :   21 (   0 filtered)
 

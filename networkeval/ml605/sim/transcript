@@ -1,0 +1,31 @@
+# vsim -quiet -novopt -lib work_mkSimML605Test -do "run -all; quit" -c main 
+# Start time: 16:50:05 on Jul 13,2017
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# //  ModelSim SE-64 10.3b May 29 2014 Linux 3.10.0-327.36.3.el7.x86_64
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.main
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.mkSimML605Test
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.ClockGen
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.mkML605Test
+# ** Error: (vsim-3033) ../vlog/mkML605Test.v(115): Instantiation of 'BUFG' failed. The design unit was not found.
+#         Region: /main/top/dut
+#         Searched libraries:
+#             /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.ResetInverter
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.mkBRAMUARTTest
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.BRAM1
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.SizedFIFO
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.mkUARTSpec
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.FIFO2
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.BRAM1Load
+# Refreshing /homes/miaorong/Documents/KWS/hardware-design/kws/fpga_test/BRAMUART/ml605/sim/work_mkSimML605Test.InitialReset
+# Error loading design
+# End time: 16:50:06 on Jul 13,2017, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1

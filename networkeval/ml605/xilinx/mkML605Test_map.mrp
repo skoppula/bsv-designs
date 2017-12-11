@@ -1,0 +1,6018 @@
+Release 14.6 Map P.68d (lin64)
+Xilinx Mapping Report File for Design 'mkML605Test'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol
+high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -detail
+-ir off -pr off -lc off -power off -o mkML605Test_map.ncd mkML605Test.ngd
+mkML605Test.pcf 
+Target Device  : xc6vlx240t
+Target Package : ff1156
+Target Speed   : -1
+Mapper Version : virtex6 -- $Revision: 1.55 $
+Mapped Date    : Mon Nov 27 18:48:12 2017
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    3
+Slice Logic Utilization:
+  Number of Slice Registers:                 1,112 out of 301,440    1%
+    Number used as Flip Flops:               1,096
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:               16
+  Number of Slice LUTs:                      9,320 out of 150,720    6%
+    Number used as logic:                    9,254 out of 150,720    6%
+      Number using O6 output only:           5,619
+      Number using O5 output only:             192
+      Number using O5 and O6:                3,443
+      Number used as ROM:                        0
+    Number used as Memory:                      40 out of  58,400    1%
+      Number used as Dual Port RAM:             20
+        Number using O6 output only:             4
+        Number using O5 output only:             0
+        Number using O5 and O6:                 16
+      Number used as Single Port RAM:           20
+        Number using O6 output only:            16
+        Number using O5 output only:             0
+        Number using O5 and O6:                  4
+      Number used as Shift Register:             0
+    Number used exclusively as route-thrus:     26
+      Number with same-slice register load:      9
+      Number with same-slice carry load:        17
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 2,873 out of  37,680    7%
+  Number of LUT Flip Flop pairs used:        9,451
+    Number with an unused Flip Flop:         8,355 out of   9,451   88%
+    Number with an unused LUT:                 131 out of   9,451    1%
+    Number of fully used LUT-FF pairs:         965 out of   9,451   10%
+    Number of unique control sets:              39
+    Number of slice register sites lost
+      to control set restrictions:             108 out of 301,440    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        13 out of     600    2%
+    Number of LOCed IOBs:                       13 out of      13  100%
+
+Specific Feature Utilization:
+  Number of RAMB36E1/FIFO36E1s:                  0 out of     416    0%
+  Number of RAMB18E1/FIFO18E1s:                  0 out of     832    0%
+  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
+    Number used as BUFGs:                        1
+    Number used as BUFGCTRLs:                    0
+  Number of ILOGICE1/ISERDESE1s:                 0 out of     720    0%
+  Number of OLOGICE1/OSERDESE1s:                 0 out of     720    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHCEs:                             0 out of     144    0%
+  Number of BUFIODQSs:                           0 out of      72    0%
+  Number of BUFRs:                               0 out of      36    0%
+  Number of CAPTUREs:                            0 out of       1    0%
+  Number of DSP48E1s:                          176 out of     768   22%
+  Number of EFUSE_USRs:                          0 out of       1    0%
+  Number of FRAME_ECCs:                          0 out of       1    0%
+  Number of GTXE1s:                              0 out of      20    0%
+  Number of IBUFDS_GTXE1s:                       0 out of      12    0%
+  Number of ICAPs:                               0 out of       2    0%
+  Number of IDELAYCTRLs:                         0 out of      18    0%
+  Number of IODELAYE1s:                          0 out of     720    0%
+  Number of MMCM_ADVs:                           0 out of      12    0%
+  Number of PCIE_2_0s:                           0 out of       2    0%
+  Number of STARTUPs:                            1 out of       1  100%
+  Number of SYSMONs:                             0 out of       1    0%
+  Number of TEMAC_SINGLEs:                       0 out of       4    0%
+
+Average Fanout of Non-Clock Nets:                2.19
+
+Peak Memory Usage:  1639 MB
+Total REAL time to MAP completion:  4 mins 26 secs 
+Total CPU time to MAP completion:   4 mins 24 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:PhysDesignRules:367 - The signal
+   <m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr2_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr1_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+
+Section 3 - Informational
+-------------------------
+INFO:LIT:243 - Logical network
+   m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr22/SPO has no load.
+INFO:LIT:243 - Logical network
+   m/le2_featureBRAM_serverAdapter_outDataCore/Mram_arr21/SPO has no load.
+INFO:LIT:243 - Logical network
+   m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr33/SPO has no load.
+INFO:LIT:243 - Logical network
+   m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr32/SPO has no load.
+INFO:LIT:243 - Logical network
+   m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr34/SPO has no load.
+INFO:LIT:243 - Logical network
+   m/le2_weightBRAM_serverAdapter_outDataCore/Mram_arr31/SPO has no load.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM1" (output
+   signal=m/le2_featureBRAM_memory/_n0014<0>) INITSTATE has been changed from
+   0000001D to 1D1D1D1D because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM2" (output
+   signal=m/le2_featureBRAM_memory/_n0014<1>) INITSTATE has been changed from
+   0000003A to 3A3A3A3A because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM3" (output
+   signal=m/le2_featureBRAM_memory/_n0014<2>) INITSTATE has been changed from
+   00000092 to 92929292 because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM4" (output
+   signal=m/le2_featureBRAM_memory/_n0014<3>) INITSTATE has been changed from
+   000000E6 to E6E6E6E6 because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM5" (output
+   signal=m/le2_featureBRAM_memory/_n0014<4>) INITSTATE has been changed from
+   00000093 to 93939393 because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM6" (output
+   signal=m/le2_featureBRAM_memory/_n0014<5>) INITSTATE has been changed from
+   000000BB to BBBBBBBB because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM7" (output
+   signal=m/le2_featureBRAM_memory/_n0014<6>) INITSTATE has been changed from
+   0000002C to 2C2C2C2C because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:MapLib:825 - RAM32X1S symbol "m/le2_featureBRAM_memory/Mram_RAM8" (output
+   signal=m/le2_featureBRAM_memory/_n0014<7>) INITSTATE has been changed from
+   0000002C to 2C2C2C2C because pins A3 and A4 are driven by GND. These pins
+   have been connected to VCC instead, in order to relieve routing congestion.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+   2 block(s) optimized away
+ 193 Block(s) redundant
+
+Section 5 - Removed Logic
+-------------------------
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+
+Redundant Block(s):
+TYPE 		BLOCK
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd1_cy<94
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd1_cy<93
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd1_cy<92
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd1_cy<91
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd1_cy<90
+>_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_Madd_cy<50>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<56>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<55>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<54>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<53>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<52>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<51>
+_rt
+LUT1
+		m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_Madd_cy<50>
+_rt
+LUT1 		m/Mcount_cycle2_xor<1>_rt
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CLK                                | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| RST_N                              | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| leds<0>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<1>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<2>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<3>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<4>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<5>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| leds<6>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| uart_cts                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| uart_rts                           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| uart_rxd                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| uart_txd                           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_0":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_01":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_02":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_03":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_1":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_11":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_12":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_13":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_2":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_21":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:CASCADE
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+DSP48E1
+"m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619_submult_3":
+ACASCREG:0
+ADREG:0
+ALUMODEREG:0
+AREG:0
+AUTORESET_PATDET:NO_RESET
+A_INPUT:DIRECT
+BCASCREG:0
+BREG:0
+B_INPUT:DIRECT
+CARRYINREG:0
+CARRYINSELREG:0
+CREG:0
+DREG:0
+INMODEREG:0
+MREG:0
+OPMODEREG:0
+PREG:0
+SEL_MASK:MASK
+SEL_PATTERN:PATTERN
+USE_DPORT:FALSE
+USE_MULT:MULTIPLY
+USE_PATTERN_DETECT:NO_PATDET
+USE_SIMD:ONE48
+MASK = 3fffffffffff
+PATTERN = 000000000000
+
+
+
+Section 12 - Control Set Information
+------------------------------------
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Clock Signal | Reset Signal                          | Set Signal | Enable Signal                                                       | Slice Load Count | Bel Load Count |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk$O        |                                       |            |                                                                     | 27               | 50             |
+| clk$O        |                                       |            | GLOBAL_LOGIC0                                                       | 4                | 16             |
+| clk$O        |                                       |            | m/WILL_FIRE_RL_le2_weightBRAM_serverAdapter_stageReadResponseAlways | 4                | 16             |
+| clk$O        |                                       |            | m/le2_featureBRAM_memory/WE_0                                       | 1                | 8              |
+| clk$O        |                                       |            | m/le2_featureBRAM_serverAdapter_outDataCore/CLR_DEQ_AND_17_o        | 2                | 12             |
+| clk$O        |                                       |            | m/le2_featureBRAM_serverAdapter_s1$D_IN<1>                          | 2                | 8              |
+| clk$O        |                                       |            | m/le2_weightBRAM_serverAdapter_outDataCore/CLR_DEQ_AND_22_o         | 3                | 24             |
+| clk$O        |                                       |            | m/uart/u_tx_parity_bit$EN                                           | 2                | 7              |
+| clk$O        |                                       |            | m/uart/u_tx_tx_f/d1di                                               | 1                | 1              |
+| clk$O        | RST_N_IBUF                            |            |                                                                     | 24               | 42             |
+| clk$O        | RST_N_IBUF                            |            | m/WILL_FIRE_RL_le2_feed_inputs_recv                                 | 2                | 4              |
+| clk$O        | RST_N_IBUF                            |            | m/WILL_FIRE_RL_le2_feed_weights_recieve                             | 1                | 6              |
+| clk$O        | RST_N_IBUF                            |            | m/cycle2$EN                                                         | 1                | 2              |
+| clk$O        | RST_N_IBUF                            |            | m/le2_featureBRAM_serverAdapter_cnt$EN                              | 1                | 3              |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_0_neg_partial_sum$EN8                                  | 99               | 376            |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_0_pos_partial_sum$EN                                   | 210              | 400            |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_0_weight_regs_0$EN                                     | 5                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_1_weight_regs_0$EN                                     | 6                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_2_weight_regs_0$EN                                     | 8                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_3_weight_regs_0$EN                                     | 7                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_4_weight_regs_0$EN                                     | 7                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_5_weight_regs_0$EN                                     | 7                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_6_weight_regs_0$EN                                     | 7                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pe_vec_7_weight_regs_0$EN                                     | 7                | 16             |
+| clk$O        | RST_N_IBUF                            |            | m/le2_pos_const$EN                                                  | 4                | 8              |
+| clk$O        | RST_N_IBUF                            |            | m/le2_waiting$EN                                                    | 1                | 1              |
+| clk$O        | RST_N_IBUF                            |            | m/le2_weightBRAM_serverAdapter_cnt$EN                               | 1                | 3              |
+| clk$O        | RST_N_IBUF                            |            | m/n1192                                                             | 2                | 3              |
+| clk$O        | RST_N_IBUF                            |            | m/uart/u_rx_rx_f_r_count$EN                                         | 2                | 4              |
+| clk$O        | RST_N_IBUF                            |            | m/uart/u_tx_tx_f/_n0063_inv                                         | 1                | 1              |
+| clk$O        | m/Mcount_le2_feat_addr_val            |            | m/le2_feat_addr$EN                                                  | 1                | 3              |
+| clk$O        | m/Reset_OR_DriverANDClockEnable       |            | m/n1192                                                             | 1                | 1              |
+| clk$O        | m/Reset_OR_DriverANDClockEnable10     |            | m/le2_bias$EN1                                                      | 2                | 8              |
+| clk$O        | m/Reset_OR_DriverANDClockEnable11     |            | m/le2_neg_const$EN1                                                 | 3                | 8              |
+| clk$O        | m/uart/Mcount_u_rx_bit_count_val      |            | m/uart/WILL_FIRE_RL_u_rx_data                                       | 1                | 3              |
+| clk$O        | m/uart/Mcount_u_tx_bit_count_val      |            | m/uart/WILL_FIRE_RL_u_tx_data                                       | 1                | 3              |
+| clk$O        | m/uart/Reset_OR_DriverANDClockEnable  |            | m/uart/u_rx_curr_rx_valid$EN                                        | 1                | 1              |
+| clk$O        | m/uart/Reset_OR_DriverANDClockEnable1 |            | m/uart/u_tx_parity_bit$EN                                           | 1                | 1              |
+| clk$O        | m/uart/u_rx_ticker_do_center$whas_0   |            |                                                                     | 3                | 5              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Module                                      | Partition | Slices*       | Slice Reg     | LUTs          | LUTRAM        | BRAM/FIFO | DSP48E1 | BUFG  | BUFIO | BUFR  | MMCM_ADV  | Full Hierarchical Name                                   |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| mkML605Test/                                |           | 0/2873        | 0/1096        | 0/9320        | 0/40          | 0/0       | 0/176   | 1/1   | 0/0   | 0/0   | 0/0       | mkML605Test                                              |
+| +m                                          |           | 2814/2873     | 982/1096      | 9159/9320     | 0/40          | 0/0       | 176/176 | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m                                            |
+| ++le2_featureBRAM_memory                    |           | 3/3           | 8/8           | 12/12         | 4/4           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/le2_featureBRAM_memory                     |
+| ++le2_featureBRAM_serverAdapter_outDataCore |           | 8/8           | 13/13         | 23/23         | 8/8           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/le2_featureBRAM_serverAdapter_outDataCore  |
+| ++le2_weightBRAM_memory                     |           | 4/4           | 16/16         | 16/16         | 16/16         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/le2_weightBRAM_memory                      |
+| ++le2_weightBRAM_serverAdapter_outDataCore  |           | 11/11         | 21/21         | 37/37         | 12/12         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/le2_weightBRAM_serverAdapter_outDataCore   |
+| ++uart                                      |           | 28/33         | 47/56         | 62/73         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/uart                                       |
+| +++u_rx_rx_f_rx_f                           |           | 2/2           | 5/5           | 5/5           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/uart/u_rx_rx_f_rx_f                        |
+| +++u_tx_tx_f                                |           | 3/3           | 4/4           | 6/6           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | mkML605Test/m/uart/u_tx_tx_f                             |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Slices can be packed with basic elements from multiple hierarchies.
+  Therefore, a slice will be counted in every hierarchical module
+  that each of its packed basic elements belong to.
+** For each column, there are two numbers reported <A>/<B>.
+   <A> is the number of elements that belong to that specific hierarchical module.
+   <B> is the total number of elements from that hierarchical module and any lower level
+   hierarchical modules below.
+*** The LUTRAM column counts all LUTs used as memory including RAM, ROM, and shift registers.

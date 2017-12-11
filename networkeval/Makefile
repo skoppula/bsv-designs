@@ -18,6 +18,16 @@ layerevalverilog:
 	bsc -verilog -bdir bin -info-dir bin -vdir bin -e mkTbLayerEval -o bin/verBinLayerEval bin/*.ba
 	# bsc -verilog -elab -bdir bin -info-dir bin -simdir bin -o simLayerEval bin/*.ba
 
+peverilog:
+	mkdir -p bin
+	bsc -p .:%/Prelude:./uart-bsv -u -verilog -elab -bdir bin -info-dir bin -vdir bin -aggressive-conditions TestBenchPE.bsv
+	bsc -verilog -bdir bin -info-dir bin -vdir bin -e mkTbPE -o bin/verBinPE bin/*.ba
+
+ml605verilog:
+	mkdir -p bin
+	bsc -p .:%/Prelude:./uart-bsv -u -verilog -elab -bdir bin -info-dir bin -vdir bin -aggressive-conditions ML605Test.bsv
+	bsc -verilog -bdir bin -info-dir bin -vdir bin -e mkML605Test -o bin/verML605Test bin/*.ba
+
 controller:
 	mkdir -p bin
 	bsc -p .:%/Prelude:./uart-bsv -u -sim -bdir bin -info-dir bin -simdir bin -vdir bin -aggressive-conditions TestBenchController.bsv

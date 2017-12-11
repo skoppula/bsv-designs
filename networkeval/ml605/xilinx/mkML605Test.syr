@@ -1,0 +1,1542 @@
+Release 14.6 - xst P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> 
+Reading design: mkML605Test.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "mkML605Test.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "mkML605Test"
+Output Format                      : NGC
+Target Device                      : xc6vlx240t-1-ff1156
+
+---- Source Options
+Top Module Name                    : mkML605Test
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v" into library work
+Parsing module <FIFO2>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v" into library work
+Parsing module <SizedFIFO>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" into library work
+Parsing module <BRAM1Load>.
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v" into library work
+Parsing module <mkUARTSpec>.
+Analyzing Verilog file "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v" into library work
+Parsing module <ResetInverter>.
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" into library work
+Parsing module <mkTbLayerEvalOnBoard>.
+Analyzing Verilog file "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkML605Test.v" into library work
+Parsing module <mkML605Test>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <mkML605Test>.
+
+Elaborating module <BUFG>.
+
+Elaborating module <ResetInverter>.
+
+Elaborating module <mkTbLayerEvalOnBoard>.
+
+Elaborating module <BRAM1Load(FILENAME="features.testing.txt",PIPELINED=1'b0,ADDR_WIDTH=32'b011,DATA_WIDTH=32'b01000,MEMSIZE=4'b1000,BINARY=1'b1)>.
+Reading initialization file \"features.testing.txt\".
+
+Elaborating module <SizedFIFO(p1width=32'b01000,p2depth=32'b011,p3cntr_width=32'b01,guarded=32'b01)>.
+
+Elaborating module <BRAM1Load(FILENAME="weights.testing.txt",PIPELINED=1'b0,ADDR_WIDTH=32'b0110,DATA_WIDTH=32'b010000,MEMSIZE=7'b1000000,BINARY=1'b1)>.
+Reading initialization file \"weights.testing.txt\".
+WARNING:HDLCompiler:1670 - "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v" Line 70: Signal <RAM> in initial block is partially initialized.
+
+Elaborating module <SizedFIFO(p1width=32'b010000,p2depth=32'b011,p3cntr_width=32'b01,guarded=32'b01)>.
+
+Elaborating module <mkUARTSpec>.
+
+Elaborating module <SizedFIFO(p1width=32'b01000,p2depth=32'b01000,p3cntr_width=32'b011,guarded=32'b01)>.
+
+Elaborating module <FIFO2(width=32'b01000,guarded=32'b01)>.
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v" Line 394: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v" Line 419: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v" Line 475: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v" Line 535: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4598: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4644: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4669: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4706: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4843: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 4880: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5017: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5054: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5191: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5228: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5365: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5402: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5539: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5576: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5713: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5750: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5887: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 5924: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6058: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6081: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6204: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6319: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6434: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6549: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6664: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6779: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 6894: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7009: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1311 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7120: Found parallel_case directive. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7315: Assignment to IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_47__ETC___d4153 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7321: Assignment to IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_47__ETC___d4426 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7327: Assignment to IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_47__ETC___d4488 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7393: Assignment to IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BIT_47_ETC___d5740 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7593: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3060 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7600: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3063 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7608: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3068 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7614: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3131 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7620: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3181 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7627: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3184 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7635: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3189 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7641: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3266 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7648: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3269 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7656: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3274 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7662: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3324 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7669: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3327 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7677: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3332 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7683: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3409 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7690: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3412 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7698: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3417 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7704: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3467 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7711: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3470 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7719: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3475 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7725: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3552 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7732: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3555 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7740: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3560 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7746: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3614 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7752: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3727 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7759: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3730 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7767: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3735 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7773: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3812 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7780: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3815 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7788: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3820 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7794: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3870 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7801: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3873 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7809: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3878 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7815: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3955 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7822: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3958 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7830: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d3963 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7836: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4013 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7843: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4016 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7851: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4021 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7857: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4098 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7864: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4101 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7872: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4106 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7884: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4377 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7891: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4378 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7899: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4379 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7905: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4380 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7912: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4381 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7920: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4382 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7926: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4383 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7933: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4384 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7941: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4385 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7947: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4386 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7954: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4387 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7962: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4388 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7968: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4389 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7975: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4390 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7983: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4391 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7989: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4392 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 7996: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4393 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8004: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4394 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8010: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4395 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8017: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4396 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8025: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4397 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8031: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4398 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8038: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4399 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8046: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4400 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8052: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4401 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8059: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4402 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8067: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4403 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8073: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4405 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8080: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4406 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8088: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4407 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8094: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4408 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8101: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4409 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8109: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4410 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8115: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4411 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8122: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4412 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8130: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4413 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8136: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4414 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8143: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4415 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8151: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4416 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8157: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4417 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8164: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4418 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8172: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4419 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8178: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4420 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8185: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4421 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8193: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4422 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8205: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4441 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8212: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4442 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8220: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4443 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8226: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4444 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8233: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4445 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8241: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4446 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8247: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4447 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8254: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4448 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8262: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4449 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8268: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4450 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8275: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4451 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8283: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4452 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8289: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4453 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8296: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4454 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8304: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4455 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8310: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4456 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8317: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4457 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8325: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4458 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8331: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4459 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8338: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4460 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8346: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4461 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8352: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4462 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8359: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4463 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8367: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4464 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8373: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4465 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8379: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4467 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8386: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4468 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8394: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4469 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8400: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4470 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8407: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4471 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8415: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4472 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8421: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4473 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8428: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4474 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8436: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4475 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8442: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4476 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8449: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4477 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8457: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4478 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8463: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4479 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8470: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4480 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8478: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4481 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8484: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4482 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8491: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4483 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8499: Assignment to NOT_IF_NOT_le1_pe_vec_0_pos_partial_sum_78_BIT_ETC___d4484 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8511: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4563 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8518: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4566 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8526: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4571 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8532: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4639 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8539: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4642 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8547: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4647 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8553: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4697 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8560: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4700 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8568: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4705 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8574: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4791 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8581: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4794 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8589: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4799 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8595: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4849 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8602: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4852 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8610: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4857 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8616: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4943 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8623: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4946 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8631: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d4951 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8637: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5001 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8644: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5004 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8652: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5009 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8658: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5095 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8665: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5098 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8673: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5103 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8679: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5153 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8686: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5156 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8694: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5161 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8700: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5287 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8707: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5290 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8715: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5295 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8721: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5381 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8728: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5384 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8736: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5389 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8742: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5439 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8749: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5442 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8757: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5447 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8763: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5533 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8770: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5536 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8778: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5541 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8784: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5591 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8791: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5594 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8799: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5599 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8805: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5685 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8812: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5688 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 8820: Assignment to NOT_IF_NOT_le2_pe_vec_0_pos_partial_sum_612_BI_ETC___d5693 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10116: Assignment to digit__h321746 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10131: Assignment to digit__h322355 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10149: Assignment to digit__h323085 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10164: Assignment to digit__h323706 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10182: Assignment to digit__h324436 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10197: Assignment to digit__h325057 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10215: Assignment to digit__h325787 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10230: Assignment to digit__h326408 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10248: Assignment to digit__h327126 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10263: Assignment to digit__h327735 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10281: Assignment to digit__h328465 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10296: Assignment to digit__h329086 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10314: Assignment to digit__h329816 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10329: Assignment to digit__h330437 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10347: Assignment to digit__h331167 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10362: Assignment to digit__h331788 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10383: Assignment to digit__h422924 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10398: Assignment to digit__h423533 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10419: Assignment to digit__h424343 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10434: Assignment to digit__h424964 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10455: Assignment to digit__h425774 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10470: Assignment to digit__h426395 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10491: Assignment to digit__h427205 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10506: Assignment to digit__h427826 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10527: Assignment to digit__h428624 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10542: Assignment to digit__h429233 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10563: Assignment to digit__h430043 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10578: Assignment to digit__h430664 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10599: Assignment to digit__h431474 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10614: Assignment to digit__h432095 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10635: Assignment to digit__h432905 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10650: Assignment to digit__h433526 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 10668: Assignment to digit__h434590 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" Line 14326: Assignment to psum ignored, since the identifier is never used
+WARNING:Xst:2972 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3176. All outputs of instance <le1_featureBRAM_memory> of block <BRAM1Load> are unconnected in block <mkTbLayerEvalOnBoard>. Underlying logic will be removed.
+WARNING:Xst:2972 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3187. All outputs of instance <le1_featureBRAM_serverAdapter_outDataCore> of block <SizedFIFO> are unconnected in block <mkTbLayerEvalOnBoard>. Underlying logic will be removed.
+WARNING:Xst:2972 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3203. All outputs of instance <le1_weightBRAM_memory> of block <BRAM1Load> are unconnected in block <mkTbLayerEvalOnBoard>. Underlying logic will be removed.
+WARNING:Xst:2972 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3214. All outputs of instance <le1_weightBRAM_serverAdapter_outDataCore> of block <SizedFIFO> are unconnected in block <mkTbLayerEvalOnBoard>. Underlying logic will be removed.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <mkML605Test>.
+    Related source file is "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkML605Test.v".
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkML605Test.v" line 106: Output port <RDY_test_error> of the instance <m> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <mkML605Test> synthesized.
+
+Synthesizing Unit <ResetInverter>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ResetInverter.v".
+    Summary:
+	no macro.
+Unit <ResetInverter> synthesized.
+
+Synthesizing Unit <mkTbLayerEvalOnBoard>.
+    Related source file is "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v".
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3279: Output port <rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3279: Output port <rx> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3279: Output port <RDY_rx_first> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3279: Output port <RDY_rx> of the instance <uart> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkTbLayerEvalOnBoard.v" line 3279: Output port <RDY_clear> of the instance <uart> is unconnected or connected to loadless signal.
+    Found 32-bit register for signal <cycle2>.
+    Found 6-bit register for signal <le2_base_weight_addr>.
+    Found 8-bit register for signal <le2_bias>.
+    Found 3-bit register for signal <le2_feat_addr>.
+    Found 3-bit register for signal <le2_featureBRAM_serverAdapter_cnt>.
+    Found 2-bit register for signal <le2_featureBRAM_serverAdapter_s1>.
+    Found 8-bit register for signal <le2_neg_const>.
+    Found 48-bit register for signal <le2_pe_vec_0_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_0_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_0_step>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_0_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_1_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_1_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_1_step>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_1_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_2_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_2_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_2_step>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_2_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_3_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_3_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_3_step>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_3_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_4_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_4_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_4_step>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_4_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_5_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_5_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_5_step>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_5_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_6_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_6_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_6_step>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_6_weight_regs_7>.
+    Found 48-bit register for signal <le2_pe_vec_7_neg_partial_sum>.
+    Found 48-bit register for signal <le2_pe_vec_7_pos_partial_sum>.
+    Found 4-bit register for signal <le2_pe_vec_7_step>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_0>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_1>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_2>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_3>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_4>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_5>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_6>.
+    Found 2-bit register for signal <le2_pe_vec_7_weight_regs_7>.
+    Found 8-bit register for signal <le2_pos_const>.
+    Found 8-bit register for signal <le2_step>.
+    Found 1-bit register for signal <le2_waiting>.
+    Found 3-bit register for signal <le2_weightBRAM_serverAdapter_cnt>.
+    Found 2-bit register for signal <le2_weightBRAM_serverAdapter_s1>.
+    Found 6-bit register for signal <le2_weight_addr_offset>.
+    Found 1-bit register for signal <test_error_reg>.
+    Found 48-bit subtractor for signal <le2_pe_vec_0_neg_partial_sum_650_MINUS_SEXT_le_ETC___d1659> created at line 10961.
+    Found 48-bit subtractor for signal <le2_pe_vec_1_neg_partial_sum_701_MINUS_SEXT_le_ETC___d1710> created at line 10967.
+    Found 48-bit subtractor for signal <le2_pe_vec_2_neg_partial_sum_752_MINUS_SEXT_le_ETC___d1761> created at line 10973.
+    Found 48-bit subtractor for signal <le2_pe_vec_3_neg_partial_sum_803_MINUS_SEXT_le_ETC___d1812> created at line 10979.
+    Found 48-bit subtractor for signal <le2_pe_vec_4_neg_partial_sum_854_MINUS_SEXT_le_ETC___d1863> created at line 10985.
+    Found 48-bit subtractor for signal <le2_pe_vec_5_neg_partial_sum_905_MINUS_SEXT_le_ETC___d1914> created at line 10991.
+    Found 48-bit subtractor for signal <le2_pe_vec_6_neg_partial_sum_956_MINUS_SEXT_le_ETC___d1965> created at line 10997.
+    Found 48-bit subtractor for signal <le2_pe_vec_7_neg_partial_sum_007_MINUS_SEXT_le_ETC___d2016> created at line 11003.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119[95]_unary_minus_3229_OUT> created at line 12458.
+    Found 48-bit subtractor for signal <le2_pe_vec_0_pos_partial_sum[47]_unary_minus_3231_OUT> created at line 12462.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164[95]_unary_minus_3233_OUT> created at line 12467.
+    Found 48-bit subtractor for signal <le2_pe_vec_0_neg_partial_sum[47]_unary_minus_3235_OUT> created at line 12471.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199[95]_unary_minus_3238_OUT> created at line 12481.
+    Found 48-bit subtractor for signal <tmp1a_i__h197292[23]_unary_minus_3240_OUT> created at line 12485.
+    Found 48-bit subtractor for signal <le2_pe_vec_1_pos_partial_sum[47]_unary_minus_3242_OUT> created at line 12489.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234[95]_unary_minus_3245_OUT> created at line 12499.
+    Found 48-bit subtractor for signal <tmp3a_i__h201392[23]_unary_minus_3247_OUT> created at line 12503.
+    Found 48-bit subtractor for signal <le2_pe_vec_1_neg_partial_sum[47]_unary_minus_3249_OUT> created at line 12507.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269[95]_unary_minus_3252_OUT> created at line 12517.
+    Found 48-bit subtractor for signal <le2_pe_vec_2_pos_partial_sum[47]_unary_minus_3254_OUT> created at line 12521.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304[95]_unary_minus_3257_OUT> created at line 12531.
+    Found 48-bit subtractor for signal <le2_pe_vec_2_neg_partial_sum[47]_unary_minus_3259_OUT> created at line 12535.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339[95]_unary_minus_3262_OUT> created at line 12545.
+    Found 48-bit subtractor for signal <le2_pe_vec_3_pos_partial_sum[47]_unary_minus_3264_OUT> created at line 12549.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374[95]_unary_minus_3267_OUT> created at line 12559.
+    Found 48-bit subtractor for signal <le2_pe_vec_3_neg_partial_sum[47]_unary_minus_3269_OUT> created at line 12563.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409[95]_unary_minus_3272_OUT> created at line 12573.
+    Found 48-bit subtractor for signal <le2_pe_vec_4_pos_partial_sum[47]_unary_minus_3274_OUT> created at line 12577.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444[95]_unary_minus_3277_OUT> created at line 12587.
+    Found 48-bit subtractor for signal <le2_pe_vec_4_neg_partial_sum[47]_unary_minus_3279_OUT> created at line 12591.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479[95]_unary_minus_3282_OUT> created at line 12601.
+    Found 48-bit subtractor for signal <le2_pe_vec_5_pos_partial_sum[47]_unary_minus_3284_OUT> created at line 12605.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514[95]_unary_minus_3287_OUT> created at line 12615.
+    Found 48-bit subtractor for signal <le2_pe_vec_5_neg_partial_sum[47]_unary_minus_3289_OUT> created at line 12619.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT> created at line 12629.
+    Found 48-bit subtractor for signal <le2_pe_vec_6_pos_partial_sum[47]_unary_minus_3294_OUT> created at line 12633.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584[95]_unary_minus_3297_OUT> created at line 12643.
+    Found 48-bit subtractor for signal <le2_pe_vec_6_neg_partial_sum[47]_unary_minus_3299_OUT> created at line 12647.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619[95]_unary_minus_3302_OUT> created at line 12657.
+    Found 48-bit subtractor for signal <le2_pe_vec_7_pos_partial_sum[47]_unary_minus_3304_OUT> created at line 12661.
+    Found 96-bit subtractor for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654[95]_unary_minus_3307_OUT> created at line 12671.
+    Found 48-bit subtractor for signal <le2_pe_vec_7_neg_partial_sum[47]_unary_minus_3309_OUT> created at line 12675.
+    Found 3-bit adder for signal <MUX_le2_feat_addr$write_1__VAL_1> created at line 4129.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_0_pos_partial_sum$write_1__VAL_1> created at line 4156.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_0_pos_partial_sum$write_1__VAL_2> created at line 4159.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_1_pos_partial_sum$write_1__VAL_1> created at line 4205.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_1_pos_partial_sum$write_1__VAL_2> created at line 4208.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_2_pos_partial_sum$write_1__VAL_1> created at line 4250.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_2_pos_partial_sum$write_1__VAL_2> created at line 4253.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_3_pos_partial_sum$write_1__VAL_1> created at line 4295.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_3_pos_partial_sum$write_1__VAL_2> created at line 4298.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_4_pos_partial_sum$write_1__VAL_1> created at line 4340.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_4_pos_partial_sum$write_1__VAL_2> created at line 4343.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_5_pos_partial_sum$write_1__VAL_1> created at line 4385.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_5_pos_partial_sum$write_1__VAL_2> created at line 4388.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_6_pos_partial_sum$write_1__VAL_1> created at line 4430.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_6_pos_partial_sum$write_1__VAL_2> created at line 4433.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_7_pos_partial_sum$write_1__VAL_1> created at line 4475.
+    Found 48-bit adder for signal <MUX_le2_pe_vec_7_pos_partial_sum$write_1__VAL_2> created at line 4478.
+    Found 8-bit adder for signal <MUX_le2_step$write_1__VAL_1> created at line 4501.
+    Found 32-bit adder for signal <cycle2$D_IN> created at line 4583.
+    Found 4-bit adder for signal <le2_pe_vec_0_step$D_IN> created at line 6231.
+    Found 4-bit adder for signal <le2_pe_vec_1_step$D_IN> created at line 6346.
+    Found 4-bit adder for signal <le2_pe_vec_2_step$D_IN> created at line 6461.
+    Found 4-bit adder for signal <le2_pe_vec_3_step$D_IN> created at line 6576.
+    Found 4-bit adder for signal <le2_pe_vec_4_step$D_IN> created at line 6691.
+    Found 4-bit adder for signal <le2_pe_vec_5_step$D_IN> created at line 6806.
+    Found 4-bit adder for signal <le2_pe_vec_6_step$D_IN> created at line 6921.
+    Found 4-bit adder for signal <le2_pe_vec_7_step$D_IN> created at line 7036.
+    Found 6-bit adder for signal <le2_weight_addr_offset$D_IN> created at line 7168.
+    Found 6-bit adder for signal <le2_weightBRAM_memory$ADDR> created at line 7262.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2173> created at line 7526.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2243> created at line 7530.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2313> created at line 7534.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2383> created at line 7538.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2453> created at line 7542.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2523> created at line 7546.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2593> created at line 7550.
+    Found 72-bit adder for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2663> created at line 7554.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2128> created at line 7558.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2208> created at line 7562.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2278> created at line 7566.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2348> created at line 7570.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2418> created at line 7574.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2488> created at line 7578.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2558> created at line 7582.
+    Found 72-bit adder for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2628> created at line 7586.
+    Found 3-bit adder for signal <n5429> created at line 10943.
+    Found 3-bit adder for signal <le2_featureBRAM_serverAdapter_cnt_460_PLUS_IF__ETC___d1466> created at line 10943.
+    Found 48-bit adder for signal <le2_pe_vec_0_pos_partial_sum_612_PLUS_SEXT_le2_ETC___d1640> created at line 10964.
+    Found 48-bit adder for signal <le2_pe_vec_1_pos_partial_sum_670_PLUS_SEXT_le2_ETC___d1691> created at line 10970.
+    Found 48-bit adder for signal <le2_pe_vec_2_pos_partial_sum_721_PLUS_SEXT_le2_ETC___d1742> created at line 10976.
+    Found 48-bit adder for signal <le2_pe_vec_3_pos_partial_sum_772_PLUS_SEXT_le2_ETC___d1793> created at line 10982.
+    Found 48-bit adder for signal <le2_pe_vec_4_pos_partial_sum_823_PLUS_SEXT_le2_ETC___d1844> created at line 10988.
+    Found 48-bit adder for signal <le2_pe_vec_5_pos_partial_sum_874_PLUS_SEXT_le2_ETC___d1895> created at line 10994.
+    Found 48-bit adder for signal <le2_pe_vec_6_pos_partial_sum_925_PLUS_SEXT_le2_ETC___d1946> created at line 11000.
+    Found 48-bit adder for signal <le2_pe_vec_7_pos_partial_sum_976_PLUS_SEXT_le2_ETC___d1997> created at line 11006.
+    Found 3-bit adder for signal <n5459> created at line 11010.
+    Found 3-bit adder for signal <le2_weightBRAM_serverAdapter_cnt_519_PLUS_IF_l_ETC___d1525> created at line 11010.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2164> created at line 7524.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2234> created at line 7528.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2304> created at line 7532.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2374> created at line 7536.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2444> created at line 7540.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2514> created at line 7544.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2584> created at line 7548.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_neg_const_149_BITS_7_TO_6_150_151__ETC___d2654> created at line 7552.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2119> created at line 7556.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2199> created at line 7560.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2269> created at line 7564.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2339> created at line 7568.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2409> created at line 7572.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2479> created at line 7576.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549> created at line 7580.
+    Found 48x48-bit multiplier for signal <IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2619> created at line 7584.
+    Found 8-bit 8-to-1 multiplexer for signal <MUX_le2_featureBRAM_memory$put_3__VAL_3> created at line 1362.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5608> created at line 1407.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5625> created at line 1406.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5642> created at line 1405.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5667> created at line 1403.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5684> created at line 1408.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5701> created at line 1409.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5718> created at line 1404.
+    Found 2-bit 8-to-1 multiplexer for signal <_n5735> created at line 1410.
+    Found 3-bit comparator greater for signal <le2_weightBRAM_serverAdapter_cnt[2]_PWR_4_o_LessThan_58_o> created at line 3439
+    Found 3-bit comparator greater for signal <le2_featureBRAM_serverAdapter_cnt_460_SLT_3___d1606> created at line 10949
+    Found 6-bit comparator greater for signal <le2_weight_addr_offset_561_ULT_8___d1569> created at line 11016
+    Summary:
+	inferred  16 Multiplier(s).
+	inferred  99 Adder/Subtractor(s).
+	inferred 1019 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+	inferred 168 Multiplexer(s).
+Unit <mkTbLayerEvalOnBoard> synthesized.
+
+Synthesizing Unit <BRAM1Load_1>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v".
+        FILENAME = "features.testing.txt"
+        PIPELINED = 1'b0
+        ADDR_WIDTH = 32'b00000000000000000000000000000011
+        DATA_WIDTH = 32'b00000000000000000000000000001000
+        MEMSIZE = 4'b1000
+        BINARY = 1'b1
+    Found 8x8-bit single-port RAM <Mram_RAM> for signal <RAM>.
+    Found 8-bit register for signal <DO_R>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <BRAM1Load_1> synthesized.
+
+Synthesizing Unit <SizedFIFO_1>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v".
+        p1width = 32'b00000000000000000000000000001000
+        p2depth = 32'b00000000000000000000000000000011
+        p3cntr_width = 32'b00000000000000000000000000000001
+        guarded = 32'b00000000000000000000000000000001
+    Set property "RAM_STYLE = DISTRIBUTED" for signal <arr>.
+    Found 2x8-bit dual-port RAM <Mram_arr> for signal <arr>.
+    Found 1-bit register for signal <tail>.
+    Found 1-bit register for signal <ring_empty>.
+    Found 1-bit register for signal <not_ring_full>.
+    Found 1-bit register for signal <hasodata>.
+    Found 8-bit register for signal <D_OUT>.
+    Found 1-bit register for signal <head>.
+    Found 1-bit adder for signal <incr_tail> created at line 99.
+    Found 1-bit adder for signal <incr_head> created at line 100.
+    Found 1-bit comparator equal for signal <next_head[0]_tail[0]_equal_7_o> created at line 168
+    Found 1-bit comparator not equal for signal <next_tail[0]_head[0]_equal_8_o> created at line 183
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  13 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <SizedFIFO_1> synthesized.
+
+Synthesizing Unit <BRAM1Load_2>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/BRAM1Load.v".
+        FILENAME = "weights.testing.txt"
+        PIPELINED = 1'b0
+        ADDR_WIDTH = 32'b00000000000000000000000000000110
+        DATA_WIDTH = 32'b00000000000000000000000000010000
+        MEMSIZE = 7'b1000000
+        BINARY = 1'b1
+    Found 64x16-bit single-port RAM <Mram_RAM> for signal <RAM>.
+    Found 16-bit register for signal <DO_R>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+Unit <BRAM1Load_2> synthesized.
+
+Synthesizing Unit <SizedFIFO_2>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v".
+        p1width = 32'b00000000000000000000000000010000
+        p2depth = 32'b00000000000000000000000000000011
+        p3cntr_width = 32'b00000000000000000000000000000001
+        guarded = 32'b00000000000000000000000000000001
+    Set property "RAM_STYLE = DISTRIBUTED" for signal <arr>.
+    Found 2x16-bit dual-port RAM <Mram_arr> for signal <arr>.
+    Found 1-bit register for signal <tail>.
+    Found 1-bit register for signal <ring_empty>.
+    Found 1-bit register for signal <not_ring_full>.
+    Found 1-bit register for signal <hasodata>.
+    Found 16-bit register for signal <D_OUT>.
+    Found 1-bit register for signal <head>.
+    Found 1-bit adder for signal <incr_tail> created at line 99.
+    Found 1-bit adder for signal <incr_head> created at line 100.
+    Found 1-bit comparator equal for signal <next_head[0]_tail[0]_equal_7_o> created at line 168
+    Found 1-bit comparator not equal for signal <next_tail[0]_head[0]_equal_8_o> created at line 183
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  21 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <SizedFIFO_2> synthesized.
+
+Synthesizing Unit <mkUARTSpec>.
+    Related source file is "/homes/skoppula/bsv/bsv-designs/networkeval/ml605/vlog/mkUARTSpec.v".
+    Found 1-bit register for signal <u_rx_curr_rx_valid>.
+    Found 1-bit register for signal <u_rx_last_stop>.
+    Found 1-bit register for signal <u_rx_parity_bit>.
+    Found 1-bit register for signal <u_rx_r_framing_error>.
+    Found 1-bit register for signal <u_rx_r_overrun_error>.
+    Found 1-bit register for signal <u_rx_r_parity_error>.
+    Found 4-bit register for signal <u_rx_rx_f_r_count>.
+    Found 3-bit register for signal <u_rx_state>.
+    Found 16-bit register for signal <u_rx_ticker_counter>.
+    Found 3-bit register for signal <u_tx_bit_count>.
+    Found 1-bit register for signal <u_tx_parity_bit>.
+    Found 2-bit register for signal <u_tx_state>.
+    Found 16-bit register for signal <u_tx_ticker_counter>.
+    Found 8-bit register for signal <u_rx_curr_rx>.
+    Found 1-bit register for signal <u_rx_r_rxd_old>.
+    Found 8-bit register for signal <u_tx_curr_tx>.
+    Found 3-bit register for signal <u_rx_bit_count>.
+    Found finite state machine <FSM_1> for signal <u_tx_state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 18                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Reset              | RST_N_GND_9_o_equal_98_o (positive)            |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 11                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+INFO:Xst:1799 - State 011 is never reached in FSM <u_rx_state>.
+    Found finite state machine <FSM_0> for signal <u_rx_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 19                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Reset              | RST_N_GND_9_o_equal_98_o (positive)            |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit subtractor for signal <u_rx_rx_f_r_count[3]_GND_9_o_sub_62_OUT> created at line 462.
+    Found 16-bit subtractor for signal <u_rx_ticker_counter[15]_GND_9_o_sub_77_OUT> created at line 498.
+    Found 16-bit subtractor for signal <u_tx_ticker_counter$D_IN> created at line 553.
+    Found 3-bit adder for signal <u_rx_bit_count[2]_GND_9_o_add_42_OUT> created at line 382.
+    Found 4-bit adder for signal <u_rx_rx_f_r_count[3]_GND_9_o_add_60_OUT> created at line 461.
+    Found 3-bit adder for signal <u_tx_bit_count[2]_GND_9_o_add_79_OUT> created at line 506.
+    Found 4-bit comparator lessequal for signal <n0007> created at line 256
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred  65 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred   4 Multiplexer(s).
+	inferred   2 Finite State Machine(s).
+Unit <mkUARTSpec> synthesized.
+
+Synthesizing Unit <SizedFIFO_3>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog.Vivado/SizedFIFO.v".
+        p1width = 32'b00000000000000000000000000001000
+        p2depth = 32'b00000000000000000000000000001000
+        p3cntr_width = 32'b00000000000000000000000000000011
+        guarded = 32'b00000000000000000000000000000001
+    Set property "RAM_STYLE = DISTRIBUTED" for signal <arr>.
+WARNING:Xst:3035 - Index value(s) does not match array range for signal <arr>, simulation mismatch.
+    Found 7x8-bit dual-port RAM <Mram_arr> for signal <arr>.
+    Found 3-bit register for signal <tail>.
+    Found 1-bit register for signal <ring_empty>.
+    Found 1-bit register for signal <not_ring_full>.
+    Found 1-bit register for signal <hasodata>.
+    Found 8-bit register for signal <D_OUT>.
+    Found 3-bit register for signal <head>.
+    Found 3-bit adder for signal <incr_tail> created at line 99.
+    Found 3-bit adder for signal <incr_head> created at line 100.
+    Found 3-bit comparator equal for signal <next_head[2]_tail[2]_equal_10_o> created at line 168
+    Found 3-bit comparator not equal for signal <next_tail[2]_head[2]_equal_11_o> created at line 183
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  17 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <SizedFIFO_3> synthesized.
+
+Synthesizing Unit <FIFO2>.
+    Related source file is "/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/FIFO2.v".
+        width = 32'b00000000000000000000000000001000
+        guarded = 32'b00000000000000000000000000000001
+    Found 1-bit register for signal <full_reg>.
+    Found 8-bit register for signal <data0_reg>.
+    Found 8-bit register for signal <data1_reg>.
+    Found 1-bit register for signal <empty_reg>.
+    Summary:
+	inferred  18 D-type flip-flop(s).
+	inferred   3 Multiplexer(s).
+Unit <FIFO2> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 5
+ 2x16-bit dual-port RAM                                : 1
+ 2x8-bit dual-port RAM                                 : 1
+ 64x16-bit single-port RAM                             : 1
+ 7x8-bit dual-port RAM                                 : 1
+ 8x8-bit single-port RAM                               : 1
+# Multipliers                                          : 16
+ 48x48-bit multiplier                                  : 16
+# Adders/Subtractors                                   : 110
+ 1-bit adder                                           : 4
+ 16-bit subtractor                                     : 2
+ 3-bit adder                                           : 9
+ 32-bit adder                                          : 1
+ 4-bit adder                                           : 8
+ 4-bit addsub                                          : 1
+ 48-bit adder                                          : 24
+ 48-bit subtractor                                     : 26
+ 6-bit adder                                           : 2
+ 72-bit adder                                          : 16
+ 8-bit adder                                           : 1
+ 96-bit subtractor                                     : 16
+# Registers                                            : 140
+ 1-bit register                                        : 24
+ 16-bit register                                       : 4
+ 2-bit register                                        : 66
+ 3-bit register                                        : 7
+ 32-bit register                                       : 1
+ 4-bit register                                        : 9
+ 48-bit register                                       : 16
+ 6-bit register                                        : 2
+ 8-bit register                                        : 11
+# Comparators                                          : 10
+ 1-bit comparator equal                                : 2
+ 1-bit comparator not equal                            : 2
+ 3-bit comparator equal                                : 1
+ 3-bit comparator greater                              : 2
+ 3-bit comparator not equal                            : 1
+ 4-bit comparator lessequal                            : 1
+ 6-bit comparator greater                              : 1
+# Multiplexers                                         : 191
+ 1-bit 2-to-1 multiplexer                              : 16
+ 16-bit 2-to-1 multiplexer                             : 3
+ 2-bit 2-to-1 multiplexer                              : 8
+ 2-bit 8-to-1 multiplexer                              : 8
+ 3-bit 2-to-1 multiplexer                              : 4
+ 48-bit 2-to-1 multiplexer                             : 98
+ 72-bit 2-to-1 multiplexer                             : 16
+ 8-bit 2-to-1 multiplexer                              : 21
+ 8-bit 8-to-1 multiplexer                              : 1
+ 96-bit 2-to-1 multiplexer                             : 16
+# FSMs                                                 : 2
+# Xors                                                 : 3
+ 1-bit xor2                                            : 1
+ 3-bit xor2                                            : 2
+
+=========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1710 - FF/Latch <head_0> (without init value) has a constant value of 0 in block <u_rx_rx_f_rx_f>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <head_1> (without init value) has a constant value of 0 in block <u_rx_rx_f_rx_f>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <head_2> (without init value) has a constant value of 0 in block <u_rx_rx_f_rx_f>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <u_rx_r_parity_error> (without init value) has a constant value of 0 in block <uart>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <test_error_reg> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_0> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_1> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_2> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_3> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_4> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_5> (without init value) has a constant value of 0 in block <m>. This FF/Latch will be trimmed during the optimization process.
+
+Synthesizing (advanced) Unit <BRAM1Load_1>.
+INFO:Xst:3231 - The small RAM <Mram_RAM> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to signal <WE_0>          | high     |
+    |     addrA          | connected to signal <ADDR>          |          |
+    |     diA            | connected to signal <DI>            |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <BRAM1Load_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <BRAM1Load_2>.
+INFO:Xst:3231 - The small RAM <Mram_RAM> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 64-word x 16-bit                    |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     enA            | connected to signal <EN>            | high     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <ADDR>          |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <BRAM1Load_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SizedFIFO_1>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_arr>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2-word x 8-bit                      |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <tail>          |          |
+    |     diA            | connected to signal <D_IN>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 2-word x 8-bit                      |          |
+    |     addrB          | connected to signal <head>          |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <SizedFIFO_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SizedFIFO_2>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_arr>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2-word x 16-bit                     |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <tail>          |          |
+    |     diA            | connected to signal <D_IN>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 2-word x 16-bit                     |          |
+    |     addrB          | connected to signal <head>          |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <SizedFIFO_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SizedFIFO_3>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_arr>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 7-word x 8-bit                      |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <tail>          |          |
+    |     diA            | connected to signal <D_IN>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 7-word x 8-bit                      |          |
+    |     addrB          | connected to signal <head>          |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <SizedFIFO_3> synthesized (advanced).
+
+Synthesizing (advanced) Unit <mkTbLayerEvalOnBoard>.
+The following registers are absorbed into counter <cycle2>: 1 register on signal <cycle2>.
+The following registers are absorbed into counter <le2_pe_vec_0_step>: 1 register on signal <le2_pe_vec_0_step>.
+The following registers are absorbed into counter <le2_pe_vec_1_step>: 1 register on signal <le2_pe_vec_1_step>.
+The following registers are absorbed into counter <le2_pe_vec_2_step>: 1 register on signal <le2_pe_vec_2_step>.
+The following registers are absorbed into counter <le2_pe_vec_3_step>: 1 register on signal <le2_pe_vec_3_step>.
+The following registers are absorbed into counter <le2_pe_vec_4_step>: 1 register on signal <le2_pe_vec_4_step>.
+The following registers are absorbed into counter <le2_pe_vec_5_step>: 1 register on signal <le2_pe_vec_5_step>.
+The following registers are absorbed into counter <le2_pe_vec_6_step>: 1 register on signal <le2_pe_vec_6_step>.
+The following registers are absorbed into counter <le2_pe_vec_7_step>: 1 register on signal <le2_pe_vec_7_step>.
+The following registers are absorbed into counter <le2_weight_addr_offset>: 1 register on signal <le2_weight_addr_offset>.
+The following registers are absorbed into counter <le2_feat_addr>: 1 register on signal <le2_feat_addr>.
+The following registers are absorbed into accumulator <le2_featureBRAM_serverAdapter_cnt>: 1 register on signal <le2_featureBRAM_serverAdapter_cnt>.
+The following registers are absorbed into accumulator <le2_weightBRAM_serverAdapter_cnt>: 1 register on signal <le2_weightBRAM_serverAdapter_cnt>.
+Unit <mkTbLayerEvalOnBoard> synthesized (advanced).
+
+Synthesizing (advanced) Unit <mkUARTSpec>.
+The following registers are absorbed into counter <u_rx_rx_f_r_count>: 1 register on signal <u_rx_rx_f_r_count>.
+The following registers are absorbed into counter <u_tx_bit_count>: 1 register on signal <u_tx_bit_count>.
+The following registers are absorbed into counter <u_rx_bit_count>: 1 register on signal <u_rx_bit_count>.
+Unit <mkUARTSpec> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 5
+ 2x16-bit dual-port distributed RAM                    : 1
+ 2x8-bit dual-port distributed RAM                     : 1
+ 64x16-bit single-port distributed RAM                 : 1
+ 7x8-bit dual-port distributed RAM                     : 1
+ 8x8-bit single-port distributed RAM                   : 1
+# Multipliers                                          : 16
+ 48x48-bit multiplier                                  : 16
+# Adders/Subtractors                                   : 92
+ 1-bit adder                                           : 4
+ 16-bit subtractor                                     : 2
+ 3-bit adder                                           : 2
+ 48-bit adder                                          : 24
+ 48-bit subtractor                                     : 26
+ 6-bit adder                                           : 1
+ 72-bit adder                                          : 16
+ 8-bit adder                                           : 1
+ 96-bit subtractor                                     : 16
+# Counters                                             : 14
+ 3-bit up counter                                      : 3
+ 32-bit up counter                                     : 1
+ 4-bit up counter                                      : 8
+ 4-bit updown counter                                  : 1
+ 6-bit up counter                                      : 1
+# Accumulators                                         : 2
+ 3-bit up accumulator cin                              : 2
+# Registers                                            : 1088
+ Flip-Flops                                            : 1088
+# Comparators                                          : 10
+ 1-bit comparator equal                                : 2
+ 1-bit comparator not equal                            : 2
+ 3-bit comparator equal                                : 1
+ 3-bit comparator greater                              : 2
+ 3-bit comparator not equal                            : 1
+ 4-bit comparator lessequal                            : 1
+ 6-bit comparator greater                              : 1
+# Multiplexers                                         : 284
+ 1-bit 2-to-1 multiplexer                              : 111
+ 16-bit 2-to-1 multiplexer                             : 3
+ 2-bit 2-to-1 multiplexer                              : 8
+ 2-bit 8-to-1 multiplexer                              : 8
+ 3-bit 2-to-1 multiplexer                              : 4
+ 48-bit 2-to-1 multiplexer                             : 96
+ 72-bit 2-to-1 multiplexer                             : 16
+ 8-bit 2-to-1 multiplexer                              : 21
+ 8-bit 8-to-1 multiplexer                              : 1
+ 96-bit 2-to-1 multiplexer                             : 16
+# FSMs                                                 : 2
+# Xors                                                 : 3
+ 1-bit xor2                                            : 1
+ 3-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <le2_base_weight_addr_0> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <le2_base_weight_addr_1> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <le2_base_weight_addr_2> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <le2_base_weight_addr_3> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <le2_base_weight_addr_4> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <le2_base_weight_addr_5> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_error_reg> (without init value) has a constant value of 0 in block <mkTbLayerEvalOnBoard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <u_rx_r_parity_error> (without init value) has a constant value of 0 in block <mkUARTSpec>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <head_0> (without init value) has a constant value of 0 in block <SizedFIFO_3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <head_1> (without init value) has a constant value of 0 in block <SizedFIFO_3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <head_2> (without init value) has a constant value of 0 in block <SizedFIFO_3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <ring_empty> of sequential type is unconnected in block <SizedFIFO_3>.
+INFO:Xst:2146 - In block <mkTbLayerEvalOnBoard>, Counter <le2_pe_vec_2_step> <le2_pe_vec_0_step> <le2_pe_vec_1_step> <le2_pe_vec_5_step> <le2_pe_vec_3_step> <le2_pe_vec_4_step> <le2_pe_vec_6_step> <le2_pe_vec_7_step> are equivalent, XST will keep only <le2_pe_vec_2_step>.
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <m/uart/FSM_0> on signal <u_rx_state[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 00
+ 100   | 01
+ 001   | 11
+ 011   | unreached
+ 010   | 10
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <m/uart/FSM_1> on signal <u_tx_state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 11    | 11
+ 00    | 00
+ 10    | 10
+ 01    | 01
+-------------------
+
+Optimizing unit <BRAM1Load_2> ...
+
+Optimizing unit <mkML605Test> ...
+
+Optimizing unit <mkTbLayerEvalOnBoard> ...
+
+Optimizing unit <BRAM1Load_1> ...
+
+Optimizing unit <SizedFIFO_1> ...
+
+Optimizing unit <SizedFIFO_2> ...
+
+Optimizing unit <mkUARTSpec> ...
+
+Optimizing unit <FIFO2> ...
+
+Optimizing unit <SizedFIFO_3> ...
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_7> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_6> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_5> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_4> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_3> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_2> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_1> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_curr_rx_0> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_7> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_6> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_5> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_4> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_3> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_2> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_1> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:2677 - Node <m/uart/u_rx_rx_f_rx_f/D_OUT_0> of sequential type is unconnected in block <mkML605Test>.
+WARNING:Xst:1710 - FF/Latch <m/le2_step_6> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/le2_step_4> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_tx_curr_tx_7> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_15> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_14> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_13> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_12> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_11> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_rx_ticker_counter_10> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_tx_tx_f/data0_reg_7> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <m/uart/u_tx_tx_f/data1_reg_7> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_15> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_14> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_13> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_12> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_11> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/uart/u_tx_ticker_counter_10> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/le2_step_5> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/le2_step_7> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_2> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_3> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_4> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_5> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_6> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_31> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_30> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_29> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_28> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_27> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_26> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_25> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_24> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_23> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_22> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_21> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_20> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_19> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_18> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_17> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_16> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_15> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_14> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_13> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_12> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_11> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_10> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_9> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_8> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <m/cycle2_7> (without init value) has a constant value of 0 in block <mkML605Test>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <m/uart/u_tx_tx_f/data1_reg_6> in Unit <mkML605Test> is equivalent to the following 6 FFs/Latches, which will be removed : <m/uart/u_tx_tx_f/data1_reg_5> <m/uart/u_tx_tx_f/data1_reg_4> <m/uart/u_tx_tx_f/data1_reg_3> <m/uart/u_tx_tx_f/data1_reg_2> <m/uart/u_tx_tx_f/data1_reg_1> <m/uart/u_tx_tx_f/data1_reg_0> 
+INFO:Xst:2261 - The FF/Latch <m/uart/u_tx_tx_f/data0_reg_6> in Unit <mkML605Test> is equivalent to the following 6 FFs/Latches, which will be removed : <m/uart/u_tx_tx_f/data0_reg_5> <m/uart/u_tx_tx_f/data0_reg_4> <m/uart/u_tx_tx_f/data0_reg_3> <m/uart/u_tx_tx_f/data0_reg_2> <m/uart/u_tx_tx_f/data0_reg_1> <m/uart/u_tx_tx_f/data0_reg_0> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block mkML605Test, actual ratio is 6.
+FlipFlop m/le2_pe_vec_0_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_0_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_1_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_1_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_2_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_2_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_3_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_3_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_4_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_4_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_5_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_5_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_6_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_6_pos_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_7_neg_partial_sum_47 has been replicated 2 time(s)
+FlipFlop m/le2_pe_vec_7_pos_partial_sum_47 has been replicated 2 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 1096
+ Flip-Flops                                            : 1096
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : mkML605Test.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 22284
+#      GND                         : 1
+#      INV                         : 2319
+#      LUT1                        : 193
+#      LUT2                        : 2978
+#      LUT3                        : 117
+#      LUT4                        : 1743
+#      LUT5                        : 128
+#      LUT6                        : 2563
+#      MUXCY                       : 6243
+#      MUXF7                       : 24
+#      VCC                         : 1
+#      XORCY                       : 5974
+# FlipFlops/Latches                : 1096
+#      FD                          : 50
+#      FDE                         : 32
+#      FDR                         : 40
+#      FDRE                        : 966
+#      FDS                         : 7
+#      FDSE                        : 1
+# RAMS                             : 33
+#      RAM32M                      : 3
+#      RAM32X1D                    : 6
+#      RAM32X1S                    : 8
+#      RAM64X1S                    : 16
+# Clock Buffers                    : 1
+#      BUFG                        : 1
+# IO Buffers                       : 13
+#      IBUF                        : 3
+#      IBUFG                       : 1
+#      OBUF                        : 9
+# DSPs                             : 176
+#      DSP48E1                     : 176
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6vlx240tff1156-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:            1096  out of  301440     0%  
+ Number of Slice LUTs:                10089  out of  150720     6%  
+    Number used as Logic:             10041  out of  150720     6%  
+    Number used as Memory:               48  out of  58400     0%  
+       Number used as RAM:               48
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:  10229
+   Number with an unused Flip Flop:    9133  out of  10229    89%  
+   Number with an unused LUT:           140  out of  10229     1%  
+   Number of fully used LUT-FF pairs:   956  out of  10229     9%  
+   Number of unique control sets:        35
+
+IO Utilization: 
+ Number of IOs:                          13
+ Number of bonded IOBs:                  13  out of    600     2%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+ Number of DSP48E1s:                    176  out of    768    22%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | IBUFG+BUFG             | 1129  |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 18.351ns (Maximum Frequency: 54.493MHz)
+   Minimum input arrival time before clock: 2.184ns
+   Maximum output required time after clock: 1.608ns
+   Maximum combinational path delay: 0.419ns
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 18.351ns (frequency: 54.493MHz)
+  Total number of paths / destination ports: 320694535645407296 / 2310
+-------------------------------------------------------------------------
+Delay:               18.351ns (Levels of Logic = 63)
+  Source:            m/le2_pe_vec_6_pos_partial_sum_18 (FF)
+  Destination:       m/le2_pe_vec_6_pos_partial_sum_17 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: m/le2_pe_vec_6_pos_partial_sum_18 to m/le2_pe_vec_6_pos_partial_sum_17
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.375   0.524  m/le2_pe_vec_6_pos_partial_sum_18 (m/le2_pe_vec_6_pos_partial_sum_18)
+     LUT2:I0->O            1   0.068   0.399  m/MUX_le2_pe_vec_6_pos_partial_sum$write_1__VAL_5<18>1 (m/MUX_le2_pe_vec_6_pos_partial_sum$write_1__VAL_5<18>)
+     MUXCY:DI->O           1   0.223   0.000  m/Mmux_x__h238618_rs_cy<18> (m/Mmux_x__h238618_rs_cy<18>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<19> (m/Mmux_x__h238618_rs_cy<19>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<20> (m/Mmux_x__h238618_rs_cy<20>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<21> (m/Mmux_x__h238618_rs_cy<21>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<22> (m/Mmux_x__h238618_rs_cy<22>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<23> (m/Mmux_x__h238618_rs_cy<23>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<24> (m/Mmux_x__h238618_rs_cy<24>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<25> (m/Mmux_x__h238618_rs_cy<25>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<26> (m/Mmux_x__h238618_rs_cy<26>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<27> (m/Mmux_x__h238618_rs_cy<27>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<28> (m/Mmux_x__h238618_rs_cy<28>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<29> (m/Mmux_x__h238618_rs_cy<29>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<30> (m/Mmux_x__h238618_rs_cy<30>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<31> (m/Mmux_x__h238618_rs_cy<31>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<32> (m/Mmux_x__h238618_rs_cy<32>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<33> (m/Mmux_x__h238618_rs_cy<33>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<34> (m/Mmux_x__h238618_rs_cy<34>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<35> (m/Mmux_x__h238618_rs_cy<35>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<36> (m/Mmux_x__h238618_rs_cy<36>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<37> (m/Mmux_x__h238618_rs_cy<37>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<38> (m/Mmux_x__h238618_rs_cy<38>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<39> (m/Mmux_x__h238618_rs_cy<39>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<40> (m/Mmux_x__h238618_rs_cy<40>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<41> (m/Mmux_x__h238618_rs_cy<41>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<42> (m/Mmux_x__h238618_rs_cy<42>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<43> (m/Mmux_x__h238618_rs_cy<43>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<44> (m/Mmux_x__h238618_rs_cy<44>)
+     MUXCY:CI->O           1   0.020   0.000  m/Mmux_x__h238618_rs_cy<45> (m/Mmux_x__h238618_rs_cy<45>)
+     MUXCY:CI->O           0   0.020   0.000  m/Mmux_x__h238618_rs_cy<46> (m/Mmux_x__h238618_rs_cy<46>)
+     XORCY:CI->O           3   0.239   0.413  m/Mmux_x__h238618_rs_xor<47> (m/x__h238618<47>)
+     DSP48E1:B13->PCOUT47    1   3.691   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_1 (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_1_PCOUT_to_Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_11_PCIN_47)
+     DSP48E1:PCIN47->PCOUT47    1   1.684   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_11 (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_11_PCOUT_to_Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_12_PCIN_47)
+     DSP48E1:PCIN47->PCOUT47    1   1.684   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_12 (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_12_PCOUT_to_Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_13_PCIN_47)
+     DSP48E1:PCIN47->P0    1   1.591   0.417  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_13 (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_submult_1_34)
+     LUT2:I1->O            1   0.068   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_lut<36> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_lut<36>)
+     MUXCY:S->O            1   0.290   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<36> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<36>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<37> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<37>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<38> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<38>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<39> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<39>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<40> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<40>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<41> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<41>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<42> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<42>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<43> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<43>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<44> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<44>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<45> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<45>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<46> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<46>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<47> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<47>)
+     MUXCY:CI->O           1   0.019   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<48> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_cy<48>)
+     XORCY:CI->O           1   0.239   0.417  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_xor<49> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd_81)
+     LUT2:I1->O            1   0.068   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_lut<81> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_lut<81>)
+     MUXCY:S->O            1   0.290   0.000  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<81> (m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_cy<81>)
+     XORCY:CI->O           2   0.239   0.405  m/Mmult_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549_Madd1_xor<82> (m/IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549<82>)
+     INV:I->O              1   0.086   0.000  m/Msub_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT_lut<82>_INV_0 (m/Msub_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT_lut<82>)
+     MUXCY:S->O            1   0.290   0.000  m/Msub_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT_cy<82> (m/Msub_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT_cy<82>)
+     XORCY:CI->O           1   0.239   0.417  m/Msub_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT_xor<83> (m/IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2549[95]_unary_minus_3292_OUT<83>)
+     LUT4:I3->O            1   0.068   0.000  m/Mmux_x__h238550611 (m/x__h238550<83>)
+     MUXCY:S->O            1   0.290   0.000  m/Madd_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2558_cy<59> (m/Madd_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2558_cy<59>)
+     XORCY:CI->O           2   0.239   0.781  m/Madd_IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2558_xor<60> (m/IF_SEXT_le2_pos_const_104_BITS_7_TO_6_105_106__ETC___d2558<60>)
+     LUT6:I1->O           11   0.068   0.483  m/x__h237966[71]_x__h237966[47]_AND_459_o1_SW0 (N1078)
+     LUT6:I5->O           20   0.068   0.542  m/x__h237966[71]_x__h237966[47]_AND_459_o4 (m/x__h237966[71]_x__h237966[47]_AND_459_o4)
+     LUT6:I5->O           18   0.068   0.529  m/x__h237966[71]_x__h237966[47]_AND_459_o5 (m/x__h237966[71]_x__h237966[47]_AND_459_o)
+     LUT6:I5->O            1   0.068   0.000  m/le2_pe_vec_6_pos_partial_sum$D_IN<47> (m/le2_pe_vec_6_pos_partial_sum$D_IN<1>)
+     FDRE:D                    0.011          m/le2_pe_vec_6_pos_partial_sum_1
+    ----------------------------------------
+    Total                     18.351ns (13.024ns logic, 5.327ns route)
+                                       (71.0% logic, 29.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 1078 / 1049
+-------------------------------------------------------------------------
+Offset:              2.184ns (Levels of Logic = 4)
+  Source:            RST_N (PAD)
+  Destination:       m/le2_pe_vec_7_neg_partial_sum_47 (FF)
+  Destination Clock: CLK rising
+
+  Data Path: RST_N to m/le2_pe_vec_7_neg_partial_sum_47
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O           998   0.003   0.694  RST_N_IBUF (RST_N_IBUF)
+     LUT6:I5->O            2   0.068   0.781  m/_n581810_SW0 (N1108)
+     LUT6:I1->O            1   0.068   0.491  m/Reset_OR_DriverANDClockEnable261_SW0 (N1588)
+     LUT6:I4->O            3   0.068   0.000  m/le2_pe_vec_7_neg_partial_sum_47_rstpot (m/le2_pe_vec_7_neg_partial_sum_47_rstpot)
+     FD:D                      0.011          m/le2_pe_vec_7_neg_partial_sum_47
+    ----------------------------------------
+    Total                      2.184ns (0.218ns logic, 1.966ns route)
+                                       (10.0% logic, 90.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 10 / 5
+-------------------------------------------------------------------------
+Offset:              1.608ns (Levels of Logic = 2)
+  Source:            m/uart/u_tx_state_FSM_FFd1 (FF)
+  Destination:       uart_txd (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: m/uart/u_tx_state_FSM_FFd1 to uart_txd
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q             20   0.375   0.763  m/uart/u_tx_state_FSM_FFd1 (m/uart/u_tx_state_FSM_FFd1)
+     LUT4:I0->O            1   0.068   0.399  m/uart/pins_txd1 (uart_txd_OBUF)
+     OBUF:I->O                 0.003          uart_txd_OBUF (uart_txd)
+    ----------------------------------------
+    Total                      1.608ns (0.446ns logic, 1.162ns route)
+                                       (27.7% logic, 72.3% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               0.419ns (Levels of Logic = 2)
+  Source:            uart_cts (PAD)
+  Destination:       leds<5> (PAD)
+
+  Data Path: uart_cts to leds<5>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.003   0.413  uart_cts_IBUF (leds_5_OBUF)
+     OBUF:I->O                 0.003          leds_5_OBUF (leds<5>)
+    ----------------------------------------
+    Total                      0.419ns (0.006ns logic, 0.413ns route)
+                                       (1.4% logic, 98.6% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |   18.351|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 105.00 secs
+Total CPU time to Xst completion: 103.04 secs
+ 
+--> 
+
+
+Total memory usage is 776384 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  339 (   0 filtered)
+Number of infos    :   16 (   0 filtered)
+

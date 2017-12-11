@@ -23,17 +23,13 @@
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/bitgen.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="mkML605Test.bgn" xil_pn:subbranch="FPGAConfiguration"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="mkML605Test.bit" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="mkML605Test.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="mkML605Test.cmd_log"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_DRC" xil_pn:name="mkML605Test.drc" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="mkML605Test.lso"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="mkML605Test.ncd" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="mkML605Test.ngc"/>
@@ -49,10 +45,8 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="mkML605Test.twr" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="mkML605Test.twx" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="mkML605Test.unroutes" xil_pn:subbranch="Par"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="mkML605Test.ut" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:fileType="FILE_XPI" xil_pn:name="mkML605Test.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="mkML605Test.xst"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="mkML605Test_envsettings.html"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="mkML605Test_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="mkML605Test_map.map" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="mkML605Test_map.mrp" xil_pn:subbranch="Map"/>
@@ -63,47 +57,43 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="mkML605Test_pad.csv" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="mkML605Test_pad.txt" xil_pn:subbranch="Par"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="mkML605Test_par.xrpt"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="mkML605Test_summary.html"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="mkML605Test_summary.xml"/>
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="mkML605Test_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="mkML605Test_xst.xrpt"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="usage_statistics_webtalk.html"/>
-    <file xil_pn:fileType="FILE_LOG" xil_pn:name="webtalk.log"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1511807477">
+      <status xil_pn:value="SuccessfullyRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6597990461270953043" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6597990461270953043" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="3932646426525361664" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="3932646426525361664" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="8708246168520488963" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="8708246168520488963" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="15701343915878886" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="15701343915878886" xil_pn:start_ts="1499980079">
+    <transform xil_pn:end_ts="1511807478" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-7740743937752664054" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499980079" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-7740743937752664054" xil_pn:start_ts="1499980079">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1499986463" xil_pn:in_ck="7932827772928240639" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="6336740520604925974" xil_pn:start_ts="1499986445">
+    <transform xil_pn:end_ts="1511807494" xil_pn:in_ck="5503387378298145658" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="6336740520604925974" xil_pn:start_ts="1511807478">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -121,11 +111,11 @@
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1499980099" xil_pn:in_ck="-467768836259919153" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-5815183515858381266" xil_pn:start_ts="1499980099">
+    <transform xil_pn:end_ts="1511807494" xil_pn:in_ck="-467768836259919153" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-5815183515858381266" xil_pn:start_ts="1511807494">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1499986472" xil_pn:in_ck="-8430306161825239071" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="6668033119261485770" xil_pn:start_ts="1499986463">
+    <transform xil_pn:end_ts="1511807505" xil_pn:in_ck="-8430306161825239071" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="6668033119261485770" xil_pn:start_ts="1511807494">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
@@ -134,7 +124,7 @@
       <outfile xil_pn:name="mkML605Test.ngd"/>
       <outfile xil_pn:name="mkML605Test_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1499986555" xil_pn:in_ck="-8430306161825239070" xil_pn:name="TRANEXT_map_virtex6" xil_pn:prop_ck="-8140363645429675909" xil_pn:start_ts="1499986472">
+    <transform xil_pn:end_ts="1511807579" xil_pn:in_ck="-8430306161825239070" xil_pn:name="TRANEXT_map_virtex6" xil_pn:prop_ck="-8140363645429675909" xil_pn:start_ts="1511807505">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
@@ -147,9 +137,8 @@
       <outfile xil_pn:name="mkML605Test_summary.xml"/>
       <outfile xil_pn:name="mkML605Test_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1499986654" xil_pn:in_ck="-2994387128312619013" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="6734387949470617483" xil_pn:start_ts="1499986555">
+    <transform xil_pn:end_ts="1511807673" xil_pn:in_ck="-2994387128312619013" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="6734387949470617483" xil_pn:start_ts="1511807579">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
       <outfile xil_pn:name="mkML605Test.ncd"/>
@@ -162,20 +151,7 @@
       <outfile xil_pn:name="mkML605Test_pad.txt"/>
       <outfile xil_pn:name="mkML605Test_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1499986728" xil_pn:in_ck="-717815403110759313" xil_pn:name="TRANEXT_bitFile_virtex6" xil_pn:prop_ck="-3618303722886493866" xil_pn:start_ts="1499986654">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
-      <outfile xil_pn:name="mkML605Test.bgn"/>
-      <outfile xil_pn:name="mkML605Test.bit"/>
-      <outfile xil_pn:name="mkML605Test.drc"/>
-      <outfile xil_pn:name="mkML605Test.ut"/>
-      <outfile xil_pn:name="usage_statistics_webtalk.html"/>
-      <outfile xil_pn:name="webtalk.log"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-    </transform>
-    <transform xil_pn:end_ts="1499986654" xil_pn:in_ck="-8430306161825239202" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1499986630">
+    <transform xil_pn:end_ts="1511807673" xil_pn:in_ck="-8430306161825239202" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1511807650">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>

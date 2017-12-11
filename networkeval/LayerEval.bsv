@@ -87,7 +87,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec, accum_prec_
     endrule
 
     rule feed_inputs_recv (step == 2 && waiting);
-	Bit#(TAdd#(prec_int, prec_dec)) recv_bits <- featureBRAM.portA.response.get();
+	    Bit#(TAdd#(prec_int, prec_dec)) recv_bits <- featureBRAM.portA.response.get();
         FixedPoint#(prec_int,prec_dec) inp = unpack(recv_bits);
         for(Integer i = 0; i < valueOf(n_pes); i=i+1) begin
             pe_vec[i].add_input(inp);
@@ -207,7 +207,7 @@ module mkLayerEval( LayerEvalIfc#(n_pes, n_cols, prec_int, prec_dec, accum_prec_
     endmethod
 
     method Action read_feat_bram_req( UInt#(TLog#(n_cols)) f_addr );
-	featureBRAM.portA.request.put(makeRequest(False, pack(f_addr), 0));
+        featureBRAM.portA.request.put(makeRequest(False, pack(f_addr), 0));
     endmethod
 
     method ActionValue#(Bit#(TAdd#(prec_int, prec_dec))) read_feat_bram();

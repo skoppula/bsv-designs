@@ -5,14 +5,14 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="par" timeStamp="Thu Jul 13 18:56:17 2017">
+  <application stringID="par" timeStamp="Mon Nov 27 13:33:19 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
         <column stringID="value"/>
         <row stringID="row" value="0">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/gtkwave/3.3.64/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/sublime/3083:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:."/>
+          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/opt/Xilinx/SDK/2016.3/tps/lnx64/cmake-3.3.2/bin:/opt/Xilinx/SDK/2016.3/gnu/armr5/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-none/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-linux/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xilinx/SDK/2016.3/gnu/arm/lin/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/lin/bin:/opt/Xilinx/SDK/2016.3/bin:/opt/Xilinx/DocNav:/opt/Xilinx/Vivado_HLS/2016.3/bin:/opt/Xilinx/Vivado/2016.3/bin:/u/anantha/workspace3/share/programs/ise:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/u/anantha/workspace3/share/programs/pandoc/1.19.2/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/anaconda/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:/homes/skoppula/bin:."/>
         </row>
         <row stringID="row" value="1">
           <item stringID="variable" value="LD_LIBRARY_PATH"/>
@@ -27,41 +27,45 @@
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE/"/>
         </row>
         <row stringID="row" value="4">
-          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
-          <item stringID="value" value="@mtl-licsrv1"/>
-        </row>
-        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_DSP"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE"/>
         </row>
-        <row stringID="row" value="6">
+        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_EDK"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/EDK"/>
         </row>
-        <row stringID="row" value="7">
+        <row stringID="row" value="6">
           <item stringID="variable" value="XILINX_PLANAHEAD"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead"/>
         </row>
+        <row stringID="row" value="7">
+          <item stringID="variable" value="XILINXDIR"/>
+          <item stringID="value" value="/opt/Xilinx/14.6"/>
+        </row>
         <row stringID="row" value="8">
+          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
+          <item stringID="value" value="@mtl-licsrv1"/>
+        </row>
+        <row stringID="row" value="9">
           <item stringID="variable" value="XILINX_VIVADO"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2"/>
+          <item stringID="value" value="/opt/Xilinx/Vivado/2016.3"/>
         </row>
       </table>
       <item stringID="User_EnvOs" value="OS Information">
         <item stringID="User_EnvOsname" value="RedHatEnterpriseServer"/>
-        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.3 (Maipo)"/>
+        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.4 (Maipo)"/>
       </item>
-      <item stringID="User_EnvHost" value="mindtrap"/>
+      <item stringID="User_EnvHost" value="jalapeno"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
         <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
       </table>
     </section>
@@ -75,12 +79,12 @@
     </task>
     <task stringID="PAR_PAR">
       <section stringID="PAR_DESIGN_SUMMARY">
-        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="1 mins 5 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="1 mins 5 secs "/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="58 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="58 secs "/>
         <item dataType="int" stringID="PAR_UNROUTES" value="0"/>
         <item dataType="float" stringID="PAR_TIMING_SCORE" value="0.000000"/>
-        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="1 mins 12 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="1 mins 12 secs "/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="1 mins 5 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="1 mins 4 secs "/>
       </section>
     </task>
     <task stringID="PAR_par">
@@ -99,9 +103,9 @@
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="BUFGCTRL_X0Y0"/>
             <item label="Locked" stringID="LOCKED" value="No"/>
-            <item dataType="float" label="Fanout" stringID="FANOUT" value="109.000000"/>
+            <item dataType="float" label="Fanout" stringID="FANOUT" value="112.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.132000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="1.719000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="1.721000"/>
           </row>
         </table>
       </section>
@@ -7072,14 +7076,14 @@
     </task>
   </application>
 
-  <application stringID="Par" timeStamp="Thu Jul 13 18:56:18 2017">
+  <application stringID="Par" timeStamp="Mon Nov 27 13:33:20 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
         <column stringID="value"/>
         <row stringID="row" value="0">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/gtkwave/3.3.64/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/sublime/3083:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:."/>
+          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE//bin/lin64:/opt/Xilinx/SDK/2016.3/tps/lnx64/cmake-3.3.2/bin:/opt/Xilinx/SDK/2016.3/gnu/armr5/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-none/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch64/lin/aarch64-linux/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-none-eabi/bin:/opt/Xilinx/SDK/2016.3/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xilinx/SDK/2016.3/gnu/arm/lin/bin:/opt/Xilinx/SDK/2016.3/gnu/microblaze/lin/bin:/opt/Xilinx/SDK/2016.3/bin:/opt/Xilinx/DocNav:/opt/Xilinx/Vivado_HLS/2016.3/bin:/opt/Xilinx/Vivado/2016.3/bin:/u/anantha/workspace3/share/programs/ise:/fs/cad3/xilinx/14.6/ISE_DS/common/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/arm/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/powerpc-eabi/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/gnu/microblaze/lin64/bin:/fs/cad3/xilinx/14.6/ISE_DS/EDK/bin/lin64:/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead/bin:/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/bin:/fs/cad3/xilinx/14.6/ISE_DS/ISE/sysgen/util:/fs/cad3/xilinx/14.6/ISE_DS/ISE/bin/lin64:/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/bin:/u/anantha/workspace3/share/programs/pandoc/1.19.2/bin:/u/anantha/workspace3/share/programs/vim/74/bin:/u/anantha/workspace3/share/programs/anaconda/bin:/usr/local/bin:/opt/mtl-sys/bin:/opt/coral/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/java/j2sdk/bin:/bin:/usr/bin:/sbin:/usr/sbin:/homes/skoppula/bin:."/>
         </row>
         <row stringID="row" value="1">
           <item stringID="variable" value="LD_LIBRARY_PATH"/>
@@ -7094,56 +7098,60 @@
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE/"/>
         </row>
         <row stringID="row" value="4">
-          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
-          <item stringID="value" value="@mtl-licsrv1"/>
-        </row>
-        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_DSP"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/ISE"/>
         </row>
-        <row stringID="row" value="6">
+        <row stringID="row" value="5">
           <item stringID="variable" value="XILINX_EDK"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/EDK"/>
         </row>
-        <row stringID="row" value="7">
+        <row stringID="row" value="6">
           <item stringID="variable" value="XILINX_PLANAHEAD"/>
           <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/PlanAhead"/>
         </row>
+        <row stringID="row" value="7">
+          <item stringID="variable" value="XILINXDIR"/>
+          <item stringID="value" value="/opt/Xilinx/14.6"/>
+        </row>
         <row stringID="row" value="8">
+          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
+          <item stringID="value" value="@mtl-licsrv1"/>
+        </row>
+        <row stringID="row" value="9">
           <item stringID="variable" value="XILINX_VIVADO"/>
-          <item stringID="value" value="/fs/cad3/xilinx/14.6/ISE_DS/../../Vivado/2012.2"/>
+          <item stringID="value" value="/opt/Xilinx/Vivado/2016.3"/>
         </row>
       </table>
       <item stringID="User_EnvOs" value="OS Information">
         <item stringID="User_EnvOsname" value="RedHatEnterpriseServer"/>
-        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.3 (Maipo)"/>
+        <item stringID="User_EnvOsrelease" value="Red Hat Enterprise Linux Server release 7.4 (Maipo)"/>
       </item>
-      <item stringID="User_EnvHost" value="mindtrap"/>
+      <item stringID="User_EnvHost" value="jalapeno"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
         <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5607  @ 2.27GHz"/>
-          <item stringID="speed" value="2260.851 MHz"/>
+          <item stringID="arch" value="Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz"/>
+          <item stringID="speed" value="2395.000 MHz"/>
         </row>
       </table>
     </section>
     <task label="Device Utilization Summary" stringID="PAR_DEVICE_UTLIZATION">
       <section stringID="PAR_SLICE_REPORTING">
-        <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="PAR_SLICE_REGISTERS" value="296">
-          <item dataType="int" stringID="PAR_NUM_SLICE_FF" value="296"/>
+        <item AVAILABLE="301440" dataType="int" label="Number of Slice Registers" stringID="PAR_SLICE_REGISTERS" value="297">
+          <item dataType="int" stringID="PAR_NUM_SLICE_FF" value="297"/>
           <item dataType="int" stringID="PAR_NUM_SLICE_LATCH" value="0"/>
           <item dataType="int" stringID="PAR_NUM_SLICE_LATCHTHRU" value="0"/>
           <item dataType="int" stringID="PAR_NUM_SLICE_LATCHLOGIC" value="0"/>
         </item>
-        <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTS" stringID="PAR_SLICE_LUTS" value="454">
+        <item AVAILABLE="150720" dataType="int" label="Number of Slice LUTS" stringID="PAR_SLICE_LUTS" value="448">
           <item dataType="int" stringID="PAR_NUM_LOGIC_O5ONLY" value="48"/>
-          <item dataType="int" stringID="PAR_NUM_LOGIC_O6ONLY" value="257"/>
-          <item dataType="int" stringID="PAR_NUM_LOGIC_O5ANDO6" value="110"/>
+          <item dataType="int" stringID="PAR_NUM_LOGIC_O6ONLY" value="252"/>
+          <item dataType="int" stringID="PAR_NUM_LOGIC_O5ANDO6" value="113"/>
           <item dataType="int" stringID="PAR_NUM_ROM_O5ONLY" value="0"/>
           <item dataType="int" stringID="PAR_NUM_ROM_O6ONLY" value="0"/>
           <item dataType="int" stringID="PAR_NUM_ROM_O5ANDO6" value="0"/>
@@ -7157,20 +7165,20 @@
           <item dataType="int" stringID="PAR_NUM_SRL_O6ONLY" value="0"/>
           <item dataType="int" stringID="PAR_NUM_SRL_O5ANDO6" value="0"/>
           <item dataType="int" stringID="PAR_NUM_LUT_RT_EXO6" value="3"/>
-          <item dataType="int" stringID="PAR_NUM_LUT_RT_EXO5" value="4"/>
+          <item dataType="int" stringID="PAR_NUM_LUT_RT_EXO5" value="0"/>
           <item dataType="int" stringID="PAR_NUM_LUT_RT_O5ANDO6" value="0"/>
-          <item dataType="int" stringID="PAR_NUM_LUT_RT_DRIVES_FLOP" value="4"/>
+          <item dataType="int" stringID="PAR_NUM_LUT_RT_DRIVES_FLOP" value="0"/>
           <item dataType="int" stringID="PAR_NUM_LUT_RT_DRIVES_CARRY4" value="3"/>
           <item dataType="int" stringID="PAR_NUM_LUT_RT_DRIVES_OTHERS" value="0"/>
         </item>
-        <item AVAILABLE="37680" dataType="int" stringID="PAR_OCCUPIED_SLICES" value="144">
-          <item AVAILABLE="23080" dataType="int" stringID="PAR_NUM_SLICEL" value="136"/>
+        <item AVAILABLE="37680" dataType="int" stringID="PAR_OCCUPIED_SLICES" value="152">
+          <item AVAILABLE="23080" dataType="int" stringID="PAR_NUM_SLICEL" value="144"/>
           <item AVAILABLE="14600" dataType="int" stringID="PAR_NUM_SLICEM" value="8"/>
         </item>
-        <item dataType="int" stringID="PAR_OCCUPIED_LUT_AND_FF" value="456">
+        <item dataType="int" stringID="PAR_OCCUPIED_LUT_AND_FF" value="461">
           <item dataType="int" stringID="PAR_OCCUPIED_LUT_ONLY" value="192"/>
-          <item dataType="int" stringID="PAR_OCCUPIED_FF_ONLY" value="2"/>
-          <item dataType="int" stringID="PAR_OCCUPIED_FF_AND_LUT" value="262"/>
+          <item dataType="int" stringID="PAR_OCCUPIED_FF_ONLY" value="13"/>
+          <item dataType="int" stringID="PAR_OCCUPIED_FF_AND_LUT" value="256"/>
         </item>
       </section>
       <section stringID="PAR_IOB_REPORTING">

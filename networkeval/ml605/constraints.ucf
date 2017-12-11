@@ -1,0 +1,22 @@
+CONFIG PART = XC6VLX240T-FF1156-1;
+
+NET "CLK" TNM_NET = "CLK";
+TIMESPEC TS_MAINCLK = PERIOD "CLK" 15 ns HIGH 50 %; # 66MHz USER_CLOCK
+
+NET "CLK" LOC = "U23";    ## 5   on X5
+NET "RST_N" LOC = "G26";    ## 2   on SW9 pushbutton (active-high)
+##NET "leds[7]" LOC = "AC22";   ## 2   on LED DS12, 1 on J62
+NET "leds[6]" LOC = "AC24";   ## 2   on LED DS11, 2 on J62
+NET "leds[5]" LOC = "AE22";   ## 2   on LED DS9,  3 on J62
+NET "leds[4]" LOC = "AE23";   ## 2   on LED DS10, 4 on J62
+NET "leds[3]" LOC = "AB23";   ## 2   on LED DS15, 5 on J62
+NET "leds[2]" LOC = "AG23";   ## 2   on LED DS14, 6 on J62
+NET "leds[1]" LOC = "AE24";   ## 2   on LED DS22, 7 on J62
+NET "leds[0]" LOC = "AD24";   ## 2   on LED DS21, 8 on J62
+
+NET "uart_cts"  LOC = "T23";    ## 22  on U34
+NET "uart_rts"  LOC = "T24";    ## 23  on U34
+NET "uart_rxd"  LOC = "J24";    ## 24  on U34
+NET "uart_txd"  LOC = "J25";    ## 25  on U34
+
+##NET "set_echo_b" LOC = "D22";  ## 1 on SW1 DIP switch (active-High)
