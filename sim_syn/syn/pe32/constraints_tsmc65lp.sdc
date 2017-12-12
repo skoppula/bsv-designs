@@ -7,7 +7,7 @@ set_load_unit -femtofarads
 #########################################
 # operating conditions (conditions.tcl) #
 #########################################
-set clock_period 3800
+set clock_period 10000
 set clock_uncertainty 100
 set clock_latency 200
 set max_transition 100

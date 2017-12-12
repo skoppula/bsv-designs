@@ -1,0 +1,73 @@
+TOOL:	irun(64)	15.20-s028: Started on Dec 11, 2017 at 19:05:41 EST
+irun
+	-64bit
+	-nocopyright
+	+name+mkPEFPTest
+	+nclibdirname+INCA_libs_hdlsim
+	-log hdlsim.log
+	+define+BSV_ASSIGNMENT_DELAY=#1
+	+define+BSV_NO_INITIAL_BLOCKS
+	+libext+.v
+	+access+rw
+	-timescale 1ps/1ps
+	/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
+	-top worklib.mkPEFPTest
+	vlog/*.v
+	-y /u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+	-input /homes/skoppula/bsv/bsv-standard/bin/dump.tcl
+Recompiling... reason: file './vlog/mkPEFPTest.v' is newer than expected.
+	expected: Mon Dec 11 19:02:13 2017
+	actual:   Mon Dec 11 19:05:35 2017
+file: vlog/mkPEFPTest.v
+	module worklib.mkPEFPTest:v
+		errors: 0, warnings: 0
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+		Caching library 'Verilog' ....... Done
+	Top level design units:
+		mkPEFPTest
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.ClockGen:v <0x10d6fd9f>
+			streams:   2, words:  1169
+		worklib.mkPEFPTest:v <0x03329953>
+			streams: 183, words: 88016
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 6       4
+		Registers:              57      31
+		Scalar wires:          156       -
+		Vectored wires:        303       -
+		Always blocks:          25      17
+		Initial blocks:          3       3
+		Cont. assignments:     241     324
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.mkPEFPTest:v
+Loading snapshot worklib.mkPEFPTest:v .................... Done
+ncsim> source /opt/cadence/INCISIVE/15.20.028/tools/inca/files/ncsimrc
+ncsim> if {![info exists ::env(DUMP)]} {set ::env(DUMP) ncsim.shm}
+ncsim> set ext [string trimleft [file ext $::env(DUMP)] "."]
+saif
+ncsim> 
+ncsim> if {$ext == "saif"} {
+>     dumpsaif -hierarchy -internal -scope -output $::env(DUMP)
+> } elseif {$ext == "tcf"} {
+>     dumptcf -scope main.dut -output $::env(DUMP)
+> } elseif {$ext == "vcd" || $ext == "shm"} {
+>     database -open -$ext -default $::env(DUMP)
+>     probe $::env(TOP_MODULE) -all -depth all -$ext
+> }
+ncsim> 
+ncsim> run
+Passed all r/w weight tests.
+Passed all dot product tests.
+Passed all non-linearity tests.
+Simulation complete via $finish(1) at time 125 NS + 2
+./vlog/mkPEFPTest.v:1267       if (WILL_FIRE_RL_test_end) $finish(32'd1);
+ncsim> 
+ncsim> if {$ext == "saif" || $ext == "tcf"} {dump$ext -end}
+ncsim> 
+ncsim> if {![info exists ::env(NOEXIT)]} exit
+TOOL:	irun(64)	15.20-s028: Exiting on Dec 11, 2017 at 19:05:42 EST  (total: 00:00:01)

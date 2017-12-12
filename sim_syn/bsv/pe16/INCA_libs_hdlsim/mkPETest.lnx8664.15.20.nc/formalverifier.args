@@ -6,5 +6,5 @@
 -NOCOPYRIGHT
 +TOP_INTERNAL+worklib.mkPETest
 -INPUT
-/homes/mrhamid/6888_prj/6888_Project/bsv-standard/bin/dump.tcl
+/homes/skoppula/bsv/bsv-standard/bin/dump.tcl
 -MESSAGES

@@ -5,7 +5,7 @@ import PE::*;
 
 (* no_default_clock, no_default_reset *)
 module mkPETest(Empty);
-    let clk <- mkAbsoluteClock(0, 3800);
+    let clk <- mkAbsoluteClock(0, 10000);
     let rstn <- mkInitialReset(2, clocked_by clk);
 
     Reg#(Bit#(32)) cycle1 <- mkReg(clocked_by clk, reset_by rstn, 0);

@@ -3,6 +3,11 @@ pe:
 	bsc -u -sim -bdir bin -info-dir bin -simdir bin -vdir bin -aggressive-conditions TestBenchPE.bsv
 	bsc -sim -e mkTbPE -bdir bin -info-dir bin -simdir bin -o simPe bin/*.ba
 
+pefp:
+	mkdir -p bin
+	bsc -u -sim -bdir bin -info-dir bin -simdir bin -vdir bin -aggressive-conditions TestBenchPEFP.bsv
+	bsc -sim -e mkTbPEFP -bdir bin -info-dir bin -simdir bin -o simPeFp bin/*.ba
+
 layereval:
 	mkdir -p bin
 	bsc -p .:%/Prelude:./uart-bsv -u -sim -bdir bin -info-dir bin -simdir bin -vdir bin -aggressive-conditions TestBenchLayerEval.bsv

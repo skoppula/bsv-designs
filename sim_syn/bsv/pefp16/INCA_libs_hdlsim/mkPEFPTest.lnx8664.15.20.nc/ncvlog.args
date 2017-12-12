@@ -1,0 +1,36 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+-XLMODE
+./INCA_libs_hdlsim/mkPEFPTest.lnx8664.15.20.nc
+-RUNMODE
+-NOCOPYRIGHT
+-NCLIBDIRNAME
+INCA_libs_hdlsim
+-DEFINE
+"BSV_ASSIGNMENT_DELAY=#1"
+-DEFINE
+BSV_NO_INITIAL_BLOCKS
+-LIBEXT
+.v
+/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog/ClockGen.v
+vlog/mkPE16.v
+vlog/mkPE8.v
+vlog/mkPEFP16.v
+vlog/mkPEFPTest.v
+vlog/mkPETest.v
+-YDIR
+/u/anantha/workspace3/share/programs/Bluespec/2016.07.beta1/lib/Verilog
+-SNAPSHOT
+mkPEFPTest
+-CDSLIB
+./INCA_libs_hdlsim/mkPEFPTest.lnx8664.15.20.nc/cdsrun.lib
+-HDLVAR
+./INCA_libs_hdlsim/mkPEFPTest.lnx8664.15.20.nc/hdlrun.var
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./INCA_libs_hdlsim/mkPEFPTest.lnx8664.15.20.nc/xllibs
+-ALLOWUNBOUND
+-hastop
