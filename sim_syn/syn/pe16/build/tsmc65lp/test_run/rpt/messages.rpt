@@ -9,8 +9,8 @@ Num   Sev       Id                        Message Text
   4   Info  CDFG-500   Unused module input port.                          
                        The value of the input port is not used within     
                        the design.                                        
-317   Info  CWD-19     An implementation was inferred.                    
-317   Info  CWD-36     Sorted the set of valid implementations for        
+314   Info  CWD-19     An implementation was inferred.                    
+314   Info  CWD-36     Sorted the set of valid implementations for        
                        synthetic operator.                                
   1   Info  ELAB-1     Elaborating Design.                                
   1   Info  ELAB-3     Done Elaborating Design.                           
@@ -29,7 +29,7 @@ Num   Sev       Id                        Message Text
                        'delete_unloaded_insts' root/subdesign attribute   
                        to 'false' or 'preserve' instance attribute to     
                        'true'.                                            
-  6   Info  GLO-51     Hierarchical instance automatically ungrouped.     
+  4   Info  GLO-51     Hierarchical instance automatically ungrouped.     
                        Hierarchical instances can be automatically        
                        ungrouped to allow for better area or timing       
                        optimization. You can control auto ungrouping      
@@ -95,11 +95,11 @@ Num   Sev       Id                        Message Text
                        filename, column, and line number tracking in the  
                        datapath report.                                   
   1   Info  RTLOPT-1   Optimizing RTL.                                    
-  3   Info  RTLOPT-19  Grouping carry-save logic.                         
+  4   Info  RTLOPT-19  Grouping carry-save logic.                         
   1   Info  RTLOPT-2   Done optimizing RTL.                               
-  4   Info  RTLOPT-20  Accepted carry-save configuration.                 
-  1   Info  RTLOPT-21  Rejected carry-save configuration.                 
-  3   Info  RTLOPT-23  Done grouping carry-save logic.                    
+  2   Info  RTLOPT-20  Accepted carry-save configuration.                 
+  3   Info  RTLOPT-21  Rejected carry-save configuration.                 
+  4   Info  RTLOPT-23  Done grouping carry-save logic.                    
   1   Info  RTLOPT-30  Accepted resource sharing opportunity.             
   1   Info  SYNTH-1    Synthesizing.                                      
   1   Info  SYNTH-13   Gating clocks.                                     

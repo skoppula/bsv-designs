@@ -1,12 +1,12 @@
 # Cadence Genus(TM) Synthesis Solution, Version 16.22-s033_1, built Apr  5 2017
 
-# Date: Mon Dec 11 16:40:30 2017
+# Date: Mon Dec 11 21:02:47 2017
 # Host: ellora (x86_64 w/Linux 3.10.0-693.5.2.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU E5-2623 v3 @ 3.00GHz 10240KB)
 # OS:   Red Hat Enterprise Linux Server release 7.4 (Maipo)
 
 source setup_design.tcl
-# set design mkPE16
-# set design_folder pe16
+# set design mkPEFP32
+# set design_folder pefp32
 # set rtl_top_inst dut
 # set libname tsmc65lp
 # set do_power_opt true
@@ -25,7 +25,7 @@ source setup_design.tcl
 #    $::env(BLUESPECDIR)/Verilog \
 #]
 # set rtl_files [ list \
-#    mkPE16.v \
+#    mkPEFP32.v \
 #    FIFOL1.v \
 #]
 # set sdc_file constraints_${libname}.sdc

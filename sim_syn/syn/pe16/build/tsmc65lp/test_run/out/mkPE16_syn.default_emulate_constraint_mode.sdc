@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 16.22-s033_1 on Mon Dec 11 16:41:19 -0500 2017
+#  Created by Genus(TM) Synthesis Solution 16.22-s033_1 on Mon Dec 11 21:02:14 -0500 2017
 
 # ####################################################################
 
@@ -12,7 +12,7 @@ set_units -time 1000.0ps
 # Set the current design
 current_design mkPE16
 
-create_clock -name "clk" -add -period 3.8 -waveform {0.0 1.9} [get_ports CLK]
+create_clock -name "clk" -add -period 10.0 -waveform {0.0 5.0} [get_ports CLK]
 set_clock_transition 0.1 [get_clocks clk]
 set_load -pin_load 0.005 [get_ports RDY_load_weights]
 set_load -pin_load 0.005 [get_ports RDY_add_input]

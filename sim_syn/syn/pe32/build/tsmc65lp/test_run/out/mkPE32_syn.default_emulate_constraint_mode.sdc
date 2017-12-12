@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 16.22-s033_1 on Mon Dec 11 16:42:44 -0500 2017
+#  Created by Genus(TM) Synthesis Solution 16.22-s033_1 on Mon Dec 11 21:04:34 -0500 2017
 
 # ####################################################################
 
@@ -12,7 +12,7 @@ set_units -time 1000.0ps
 # Set the current design
 current_design mkPE32
 
-create_clock -name "clk" -add -period 3.8 -waveform {0.0 1.9} [get_ports CLK]
+create_clock -name "clk" -add -period 10.0 -waveform {0.0 5.0} [get_ports CLK]
 set_clock_transition 0.1 [get_clocks clk]
 set_load -pin_load 0.005 [get_ports RDY_load_weights]
 set_load -pin_load 0.005 [get_ports RDY_add_input]
@@ -63,12 +63,10 @@ group_path -name cg_enable_group_clk -through [list \
   [get_pins RC_CG_HIER_INST1/enable]  \
   [get_pins RC_CG_HIER_INST2/enable]  \
   [get_pins RC_CG_HIER_INST3/enable]  \
-  [get_pins RC_CG_HIER_INST4/enable]  \
   [get_pins RC_CG_HIER_INST0/enable]  \
   [get_pins RC_CG_HIER_INST1/enable]  \
   [get_pins RC_CG_HIER_INST2/enable]  \
-  [get_pins RC_CG_HIER_INST3/enable]  \
-  [get_pins RC_CG_HIER_INST4/enable] ]
+  [get_pins RC_CG_HIER_INST3/enable] ]
 set_clock_gating_check -setup 0.0 
 set_input_delay -clock [get_clocks clk] -add_delay -min 0.1 [get_ports RST_N]
 set_input_delay -clock [get_clocks clk] -add_delay -min 0.1 [get_ports {load_weights_weights[15]}]
